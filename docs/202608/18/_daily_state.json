@@ -1,0 +1,89 @@
+{
+  "date": "20260818",
+  "date_label": "",
+  "generated_at": "2026-08-18 21:00:40 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.04830v1",
+      "route": "202608/18/2608.04830v1-contextweave-a-real-world-workflow-benchmark",
+      "title": "ContextWeave: A Real-World Workflow Benchmark",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "评估长时程智能体工作流中的记忆与回忆体验",
+      "first_seen_at": "2026-08-18 21:00:40 UTC",
+      "updated_at": "2026-08-18 21:00:40 UTC"
+    },
+    {
+      "paper_id": "2608.04843v1",
+      "route": "202608/18/2608.04843v1-memorycpt-an-end-to-end-agent-memory-framework-for-cost-performance-trade-off",
+      "title": "MemoryCPT: An End-to-End Agent Memory Framework for Cost-Performance Trade-off",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "端到端可训练的记忆管线，减少冗余上下文与推理成本",
+      "first_seen_at": "2026-08-18 21:00:40 UTC",
+      "updated_at": "2026-08-18 21:00:40 UTC"
+    },
+    {
+      "paper_id": "2608.08995v1",
+      "route": "202608/18/2608.08995v1-muscle-memory-for-agents-compile-not-merely-retrieve",
+      "title": "Muscle Memory for Agents: Compile not Merely Retrieve",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "提出将反复出现的用户意图编译为专用智能体，作为不同于检索的LLM智能体记忆范式",
+      "first_seen_at": "2026-08-18 21:00:40 UTC",
+      "updated_at": "2026-08-18 21:00:40 UTC"
+    },
+    {
+      "paper_id": "2608.15008v1",
+      "route": "202608/18/2608.15008v1-harness-the-memory-a-holistic-evaluation-of-memory-substrates-in-memory-agents",
+      "title": "Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "对记忆增强型LLM智能体的记忆基质进行整体评估",
+      "first_seen_at": "2026-08-18 21:00:40 UTC",
+      "updated_at": "2026-08-18 21:00:40 UTC"
+    },
+    {
+      "paper_id": "2608.16168v1",
+      "route": "202608/18/2608.16168v1-qumem-personalized-memory-for-query-conditioned-user-state-inference-in-llm-agents",
+      "title": "QUMem: Personalized Memory for Query-Conditioned User-State Inference in LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向LLM智能体个性化记忆，以查询条件化用户状态推断为核心",
+      "first_seen_at": "2026-08-18 21:00:40 UTC",
+      "updated_at": "2026-08-18 21:00:40 UTC"
+    }
+  ]
+}

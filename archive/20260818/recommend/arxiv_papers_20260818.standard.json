@@ -1,0 +1,249 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-18T20:55:52.152774+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2608.04830v1",
+      "source": "arxiv",
+      "title": "ContextWeave: A Real-World Workflow Benchmark",
+      "abstract": "Memory is essential as language agents move from isolated tasks to long-horizon, stateful workflows, yet existing evaluations often reduce it to retrieval or question answering. We introduce ContextWeave, a longitudinal benchmark that evaluates whether recalled experience improves downstream agent performance in realistic office-work streams. ContextWeave reconstructs privacy-preserved, multi-month workflows of 14 participants into 1,005 executable tasks, including 568 core evaluation tasks, with instructions, containerized environments, trajectories, and task-specific rubrics. It measures workspace quality and alignment with participant-specific preferences, complemented by diagnostics of relevance, continuity, solvability, and robustness to misleading recall. Across six memory components under a fixed model, the strongest configuration raises Workspace Score from 68.08 to 78.20 and Preference Score from 41.50 to 70.60. With a fixed memory component, recall improves both outcomes for all five tested base models, although gains vary substantially. Our analysis shows that actionable, experience-rich memory supports workflow continuation and reduces redundant exploration more effectively than compact summaries, while it can also be more susceptible to misleading recall. These findings motivate memory systems that optimize not only retrieval relevance but also reliable use during execution.",
+      "authors": [
+        "Bo Wang",
+        "Yuqian Yao",
+        "Enxi Wang",
+        "Luozhijie Jin",
+        "Yang Liu",
+        "Yiran Suo",
+        "Yuxuan Cai",
+        "Enyu Zhou",
+        "Yufei Gao",
+        "Honglin Guo",
+        "Tianyu Huai",
+        "Li Ji",
+        "Zhikai Lei",
+        "Bufan Li",
+        "Lizhi Lin",
+        "Jinxiu Liu",
+        "Jie Yang",
+        "Jiazheng Zhou",
+        "Maosen Zhou",
+        "Pengfang Qian",
+        "Shichun Liu",
+        "Guanshan Liu",
+        "Hao Zheng",
+        "Yunhao Yu",
+        "Hang Yan",
+        "Jihua Kang",
+        "Xinchi Chen",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-05T13:31:18+00:00",
+      "link": "https://arxiv.org/pdf/2608.04830v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "evaluates memory and recalled experience in long-horizon agent workflows",
+      "llm_evidence_cn": "评估长时程智能体工作流中的记忆与回忆体验",
+      "llm_evidence": "评估长时程智能体工作流中的记忆与回忆体验",
+      "canonical_evidence": "评估长时程智能体工作流中的记忆与回忆体验",
+      "llm_tldr_en": "ContextWeave is a longitudinal benchmark for testing whether recalled memory improves downstream agent performance in long-horizon office workflows, offering executable tasks and diagnostics beyond simple retrieval.",
+      "llm_tldr_cn": "ContextWeave 是一个真实世界工作流基准，面向从孤立任务转向长时程有状态工作流的语言智能体，指出现有评测常把记忆简化为检索或问答。该基准重建了14名参与者的多月工作流，形成1005个可执行任务，并衡量召回的经验是否真正提升下游智能体表现，同时诊断记忆的相关性、连贯性、可解性与抗误导能力。它为评估智能体记忆管理能力提供了更贴近实际的测评方式。",
+      "llm_tldr": "ContextWeave 是一个真实世界工作流基准，面向从孤立任务转向长时程有状态工作流的语言智能体，指出现有评测常把记忆简化为检索或问答。该基准重建了14名参与者的多月工作流，形成1005个可执行任务，并衡量召回的经验是否真正提升下游智能体表现，同时诊断记忆的相关性、连贯性、可解性与抗误导能力。它为评估智能体记忆管理能力提供了更贴近实际的测评方式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2608.04830v1"
+    },
+    {
+      "id": "2608.04843v1",
+      "source": "arxiv",
+      "title": "MemoryCPT: An End-to-End Agent Memory Framework for Cost-Performance Trade-off",
+      "abstract": "Long-horizon LLM agents require memory systems that recover useful evidence from large interaction histories without passing excessive context to downstream models. Existing memory pipelines often rely on hand-crafted heuristics and repeated LLM calls, which can introduce redundant context and high inference cost. We propose MemoryCPT, an end-to-end trainable agent memory pipeline that spans offline memory construction and online query-conditioned context generation. MemoryCPT consists of two stages: Query-agnostic Distillation (QAD), which distills a modular memory-construction pipeline into a compact model using explicit reasoning traces; and Query-aware Retrieval and Summarization (QAR), which combines reciprocal rank fusion (RRF) with a LoRA-based summarizer trained via Group Relative Policy Optimization (GRPO) under a cost-aware reward. We further introduce Quality per Cost (QPC) to quantify answer quality per unit inference cost. Experiments on LoCoMo and LongMemEval show that MemoryCPT improves the cost-performance trade-off over the evaluated baselines, while ablation and sensitivity analyses characterize the contributions of its components and the effects of key design choices.",
+      "authors": [
+        "Songxin Lei",
+        "Kun Ouyang",
+        "Weilin Ruan",
+        "Yuqian Wu",
+        "Zhijiang Guo",
+        "Yushi Sun",
+        "Fugee Tsung"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-08-05T13:37:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.04843v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "end-to-end trainable memory pipeline reducing redundant context and inference cost",
+      "llm_evidence_cn": "端到端可训练的记忆管线，减少冗余上下文与推理成本",
+      "llm_evidence": "端到端可训练的记忆管线，减少冗余上下文与推理成本",
+      "canonical_evidence": "端到端可训练的记忆管线，减少冗余上下文与推理成本",
+      "llm_tldr_en": "MemoryCPT is an end-to-end trainable agent memory pipeline with query-agnostic distillation and query-aware retrieval/summarization, balancing memory quality and inference cost.",
+      "llm_tldr_cn": "长时程LLM智能体需要从大量交互历史中恢复有用证据，但现有记忆管线依赖手工规则和多次LLM调用，会引入冗余上下文和高推理成本。MemoryCPT提出端到端可训练的智能体记忆管线，包含查询无关蒸馏（QAD）和查询感知检索与摘要（QAR）两个阶段：前者将模块化记忆构建流程蒸馏为紧凑模型，后者结合倒数排名融合与LoRA高效生成查询条件上下文。实验表明，MemoryCPT在降低推理成本的同时保持了记忆质量，在成本-性能权衡上优于已有方法。",
+      "llm_tldr": "长时程LLM智能体需要从大量交互历史中恢复有用证据，但现有记忆管线依赖手工规则和多次LLM调用，会引入冗余上下文和高推理成本。MemoryCPT提出端到端可训练的智能体记忆管线，包含查询无关蒸馏（QAD）和查询感知检索与摘要（QAR）两个阶段：前者将模块化记忆构建流程蒸馏为紧凑模型，后者结合倒数排名融合与LoRA高效生成查询条件上下文。实验表明，MemoryCPT在降低推理成本的同时保持了记忆质量，在成本-性能权衡上优于已有方法。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2608.04843v1"
+    },
+    {
+      "id": "2608.08995v1",
+      "source": "arxiv",
+      "title": "Muscle Memory for Agents: Compile not Merely Retrieve",
+      "abstract": "Memory for LLM agents has converged on a single architectural pattern: store experience as text, embeddings, reflections, or rules; retrieve at inference time; let a general-purpose orchestrator interpret what to do. This paper argues that the pattern is the wrong default for personalization. We position Muscle Memory - the practice of compiling recurring user intent into purpose-built specialist agents - as a distinct memory paradigm from retrieval, and we argue that compilation is a better fit for the workloads where current assistants impose a multi-turn tax on their users: making them repeatedly correct format, depth, and scope to obtain a domain-appropriate answer. We support the position with a reference implementation and empirical evidence. The implementation is a four-phase pipeline (Harvest $\\rightarrow$ Analyze $\\rightarrow$ Augment $\\rightarrow$ Evaluate) that mines conversational history, separates behavioral from task patterns, and emits quality-gated executable compiled specialists with two-stage trigger matching. On 90 held-out scenarios across five user personas, the augmented assistant wins 32 of 36 cases where a specialist fires, an 88.9% win rate, with a +2.05 personalization gain and only a $-0.28$ accuracy cost on a 1-4 scale. We discuss why compilation is better suited than retrieval in this regime, what the result implies for the broader memory design space, and what open problems remain.",
+      "authors": [
+        "Pouya Ghiasnezhad Omran",
+        "Soujanya Lanka",
+        "Qin Zhang",
+        "Tanya Dixit"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-08-10T01:30:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.08995v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes compiled specialist agents as a distinct memory paradigm for LLM agent personalization",
+      "llm_evidence_cn": "提出将反复出现的用户意图编译为专用智能体，作为不同于检索的LLM智能体记忆范式",
+      "llm_evidence": "提出将反复出现的用户意图编译为专用智能体，作为不同于检索的LLM智能体记忆范式",
+      "canonical_evidence": "提出将反复出现的用户意图编译为专用智能体，作为不同于检索的LLM智能体记忆范式",
+      "llm_tldr_en": "Muscle Memory argues that retrieving text/embeddings is the wrong default for agent memory, proposing compilation of recurring user intent into specialist agents, with reference implementation and evidence.",
+      "llm_tldr_cn": "当前LLM智能体记忆几乎都采用存储-检索模式，把经验写成文本或嵌入并在推理时检索，但这对个性化任务并非最优。该论文提出'肌肉记忆'范式，将反复出现的用户意图编译为专用智能体，以减轻多轮纠正的负担。通过参考实现和实证证据说明了该范式在领域适配上更高效。这为智能体记忆架构提供了检索之外的另一种设计选择。",
+      "llm_tldr": "当前LLM智能体记忆几乎都采用存储-检索模式，把经验写成文本或嵌入并在推理时检索，但这对个性化任务并非最优。该论文提出'肌肉记忆'范式，将反复出现的用户意图编译为专用智能体，以减轻多轮纠正的负担。通过参考实现和实证证据说明了该范式在领域适配上更高效。这为智能体记忆架构提供了检索之外的另一种设计选择。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2608.08995v1"
+    },
+    {
+      "id": "2608.15008v1",
+      "source": "arxiv",
+      "title": "Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents",
+      "abstract": "Memory is becoming core infrastructure for long-horizon LLM agents, yet existing evaluations offer limited guidance on which memory substrate, namely the underlying medium in which memory is represented and stored, should be used under different operating regimes. We present a controlled harness evaluation of memory substrates for memory-augmented agents, covering dense and sparse indices, text records, structural stores, hierarchical stores, refinement-based memories, parametric updates, and activation-compatible context mechanisms. Across three backbone models and four benchmark suites spanning user-centric question answering and agent-centric decision-making, we instrument 26 performance and efficiency metrics under a unified harness. Our results show that no single substrate consistently dominates: broad retrieval benefits long-context factual QA, while excessive retrieval can harm sequential decision-making by shifting attention away from action-critical context. Scalability introduces a further routing axis, as substrates that perform well at moderate history lengths can become costly or brittle at longer horizons. These findings motivate substrate routing as a necessary component of adaptive agent memory systems and provide empirical guidance for designing efficient, reliable, and regime-aware long-term memory for LLM agents. Code will be made available upon acceptance.",
+      "authors": [
+        "Wei-Chieh Huang",
+        "Weizhi Zhang",
+        "Yuchen Wu",
+        "Yankai Chen",
+        "Eric Hanchen Jiang",
+        "Wooseong Yang",
+        "Yiwei Yang",
+        "Henry Peng Zou",
+        "Hanrong Zhang",
+        "Ying Nian Wu",
+        "Haolun Wu",
+        "Kai-Wei Chang",
+        "Philip S. Yu",
+        "Xue Liu",
+        "Aylin Caliskan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-15T03:29:48+00:00",
+      "link": "https://arxiv.org/pdf/2608.15008v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "holistic evaluation of memory substrates for memory-augmented LLM agents",
+      "llm_evidence_cn": "对记忆增强型LLM智能体的记忆基质进行整体评估",
+      "llm_evidence": "对记忆增强型LLM智能体的记忆基质进行整体评估",
+      "canonical_evidence": "对记忆增强型LLM智能体的记忆基质进行整体评估",
+      "llm_tldr_en": "This paper presents a controlled harness evaluation of memory substrates for memory-augmented LLM agents, covering diverse storage and index types and context mechanisms, measuring 26 metrics across three backbones and four benchmarks.",
+      "llm_tldr_cn": "该工作对记忆智能体的记忆基质进行了系统评测，覆盖稠密/稀疏索引、文本记录、结构化存储、层级存储、精炼记忆、参数化更新及与激活兼容的上下文机制。研究在三种骨干模型和四个基准套件上统一测量26项性能与效率指标，为不同运行场景下选择何种记忆存储介质提供了实证指导。该评测框架有助于推动记忆架构的标准化比较。",
+      "llm_tldr": "该工作对记忆智能体的记忆基质进行了系统评测，覆盖稠密/稀疏索引、文本记录、结构化存储、层级存储、精炼记忆、参数化更新及与激活兼容的上下文机制。研究在三种骨干模型和四个基准套件上统一测量26项性能与效率指标，为不同运行场景下选择何种记忆存储介质提供了实证指导。该评测框架有助于推动记忆架构的标准化比较。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2608.15008v1"
+    },
+    {
+      "id": "2608.16168v1",
+      "source": "arxiv",
+      "title": "QUMem: Personalized Memory for Query-Conditioned User-State Inference in LLM Agents",
+      "abstract": "Large language model (LLM) agents increasingly use external memory systems to support personalization by drawing on long and evolving interaction histories, in which user preferences may be distributed across time, change with context, and conflict with earlier evidence. However, existing systems face three limitations: fixed-turn, fixed-token, or session-based boundaries can mix unrelated dialogue or split an event from its causes, decisions, and outcomes; storing multiple pieces of user information from the same interaction as a single memory binds together items that serve different functions and should be independently retrievable; and treating the current task as a single top-$k$ retrieval query can return fragments that are individually relevant but fail to jointly capture preference evolution, temporal validity, and contextual applicability. We introduce \\textsc{QUMem}, a structured memory framework for query-conditioned user-state inference. \\textsc{QUMem} first segments interaction histories into variable-length episodes according to semantic continuity, then decomposes each episode into independently retrievable factual, preference, and transferable insight memories while preserving temporal positions and source evidence. At inference time, three sequential agents identify task-specific information needs, plan multi-query retrieval over the typed memory stores, and jointly infer a temporally and contextually valid user state for downstream response generation. \\textsc{QUMem} achieves state-of-the-art performance on both PersonaMem and KnowU-Bench, demonstrating the effectiveness of query-conditioned user-state inference for long-term personalization.",
+      "authors": [
+        "Heng Wang",
+        "Yifei Li",
+        "Lingling Zhang",
+        "Pengyu Li",
+        "Xinyu Che",
+        "Xinyu Zhang",
+        "Zesheng Yang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-17T06:34:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.16168v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "personalized memory design with query-conditioned user-state inference in LLM agents",
+      "llm_evidence_cn": "面向LLM智能体个性化记忆，以查询条件化用户状态推断为核心",
+      "llm_evidence": "面向LLM智能体个性化记忆，以查询条件化用户状态推断为核心",
+      "canonical_evidence": "面向LLM智能体个性化记忆，以查询条件化用户状态推断为核心",
+      "llm_tldr_en": "QUMem addresses limitations in agent memory boundaries and retrieval by storing memories as query-conditioned user-state inferences for personalization in evolving interaction histories.",
+      "llm_tldr_cn": "LLM智能体靠外部记忆支持个性化，但现有系统在分界、存储粒度与检索方式上有三个局限：固定轮次或会话边界可能割裂事件；把同一次交互的多条信息绑成一条记忆；把当前任务当作单一top-k查询导致碎片化结果。QUMem提出将记忆按查询条件化的用户状态推断来存储和检索。它使不同功能的信息可独立检索，并更符合当前任务上下文。这为个性化对话记忆提供了更精细的架构。",
+      "llm_tldr": "LLM智能体靠外部记忆支持个性化，但现有系统在分界、存储粒度与检索方式上有三个局限：固定轮次或会话边界可能割裂事件；把同一次交互的多条信息绑成一条记忆；把当前任务当作单一top-k查询导致碎片化结果。QUMem提出将记忆按查询条件化的用户状态推断来存储和检索。它使不同功能的信息可独立检索，并更符合当前任务上下文。这为个性化对话记忆提供了更精细的架构。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2608.16168v1"
+    }
+  ],
+  "quick_skim": []
+}
