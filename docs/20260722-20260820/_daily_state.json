@@ -1,0 +1,201 @@
+{
+  "date": "20260722-20260820",
+  "date_label": "2026-07-22 ~ 2026-08-20",
+  "generated_at": "2026-08-20 02:25:23 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.15703v1",
+      "route": "20260722-20260820/2608.15703v1-hymem-hierarchical-context-management-for-long-horizon-agents-via-information-isolation",
+      "title": "HyMem: Hierarchical Context Management for Long-Horizon Agents via Information Isolation",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 10.0,
+      "evidence": "提出分层上下文管理框架，将智能体上下文按功能分层以应对长时程任务。",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2607.20064v2",
+      "route": "20260722-20260820/2607.20064v2-pro-long-programmatic-memory-enables-long-horizon-reasoning",
+      "title": "PRO-LONG: Programmatic Memory Enables Long-Horizon Reasoning",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向长程推理的极简上下文管理策略：保存什么以及如何载入模型上下文",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.01507v1",
+      "route": "20260722-20260820/2608.01507v1-deep-agentic-search-for-repository-level-code-question-answering-an-empirical-study",
+      "title": "Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "明确讨论智能体搜索中的上下文窗口隔离与上下文腐蚀预防",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.05013v1",
+      "route": "20260722-20260820/2608.05013v1-onedayagent-towards-a-long-horizon-harness-for-autonomous-agents",
+      "title": "OneDayAgent: Towards a Long-Horizon Harness for Autonomous Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向长程任务的智能体框架，在上下文压力下维护执行记忆并防止上下文溢出",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.09153v1",
+      "route": "20260722-20260820/2608.09153v1-trace-trajectory-attribution-for-automated-context-engineering",
+      "title": "TRACE: TRajectory Attribution for Automated Context Engineering",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "通过轨迹归因自动进行上下文工程，诊断与修复智能体上下文故障",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.17188v1",
+      "route": "20260722-20260820/2608.17188v1-token-optimization-and-context-window-management-in-multi-agent-ai-workflows",
+      "title": "Token Optimization and Context Window Management in Multi-Agent AI Workflows",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "直接提出多智能体工作流中的Token优化与上下文窗口管理框架",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2607.27249v1",
+      "route": "20260722-20260820/2607.27249v1-owlpath-lossless-knowledge-compression-for-llm-bug-repair",
+      "title": "OwlPath: Lossless Knowledge Compression for LLM Bug Repair",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "通过无损知识压缩应对LLM智能体的上下文窗口限制",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.05141v1",
+      "route": "20260722-20260820/2608.05141v1-octolong-mid-training-on-cross-repository-code-contexts-enhances-long-context-modeling",
+      "title": "OctoLong: Mid-Training On Cross-Repository Code Contexts Enhances Long-Context Modeling",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "通过上下文工程流水线构造依赖丰富的代码上下文以提升长上下文建模",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2607.27562v1",
+      "route": "20260722-20260820/2607.27562v1-deepresearch-agent-system",
+      "title": "DeepResearch Agent System",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "支持128K-token上下文窗口并结合分层注意力机制，提升长上下文准确率与召回率。",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.05813v1",
+      "route": "20260722-20260820/2608.05813v1-cautious-context-steering-for-language-model-personalization",
+      "title": "Cautious Context Steering for Language Model Personalization",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "通过谨慎上下文引导在解码时动态校准上下文影响，优化上下文使用",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2608.16068v1",
+      "route": "20260722-20260820/2608.16068v1-capo-constraint-aware-prompt-optimization-for-llm-agents",
+      "title": "CAPO: Constraint-Aware Prompt Optimization for LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "面向LLM智能体的约束感知提示优化，属于上下文工程技术",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    },
+    {
+      "paper_id": "2607.24625v1",
+      "route": "20260722-20260820/2607.24625v1-agentic-permissions-policy-algebra-for-taint-confinement-in-llm-agents",
+      "title": "Agentic Permissions Policy Algebra for Taint Confinement in LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "引入上下文分支以避免智能体权限处理中的上下文污染",
+      "first_seen_at": "2026-08-20 02:25:23 UTC",
+      "updated_at": "2026-08-20 02:25:23 UTC"
+    }
+  ]
+}

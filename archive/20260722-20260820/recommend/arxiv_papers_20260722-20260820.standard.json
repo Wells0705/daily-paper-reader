@@ -1,0 +1,480 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-20T02:16:51.367645+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 8,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2608.15703v1",
+      "source": "arxiv",
+      "title": "HyMem: Hierarchical Context Management for Long-Horizon Agents via Information Isolation",
+      "abstract": "Large language model (LLM) agents often perform poorly on complex, long-horizon tasks because their context becomes increasingly cluttered over time. As interactions accumulate, detailed execution traces and intermediate outputs dominate the context, making it difficult for the model to retain and use high-level planning information. Most existing methods address this issue through compression or retrieval applied to a single, flat context, which does not clearly separate different types of context information and often leads to degraded reasoning. To address this challenge, we propose HyMem, a hierarchical framework that explicitly separates the agent's context into distinct functional layers. HyMem organizes context by function to separate high-level planning from execution and complex analysis. Its isolated reasoning module handles complex subtasks without adding intermediate reasoning traces to the persistent planning context, while its memory management module preserves task progress across context refreshes through structured summaries. These components reduce redundant context accumulation, retain task-critical information, and support coherent long-horizon reasoning within a limited context window. Experiments on GAIA and Browsecomp-plus show that, with DeepSeek-V4, HyMem achieves average Pass@1 scores of 66.7% and 61.3%, outperforming the strongest baseline by 6.1 and 4.7 percentage points, respectively. Further analysis indicates that HyMem effectively controls the growth of the reasoning context, allowing the model to maintain focus and accuracy across complex, long-horizon tasks.",
+      "authors": [
+        "XinQi Wang",
+        "Jinwei Xiao",
+        "Sijia Cui",
+        "Hongming Zhang",
+        "Yanna Wang",
+        "Qingyang Zhang",
+        "Bo Xu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-16T12:15:01+00:00",
+      "link": "https://arxiv.org/pdf/2608.15703v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Proposes hierarchical context management framework that separates agent context into functional layers for long-horizon tasks.",
+      "llm_evidence_cn": "提出分层上下文管理框架，将智能体上下文按功能分层以应对长时程任务。",
+      "llm_evidence": "提出分层上下文管理框架，将智能体上下文按功能分层以应对长时程任务。",
+      "canonical_evidence": "提出分层上下文管理框架，将智能体上下文按功能分层以应对长时程任务。",
+      "llm_tldr_en": "HyMem explicitly separates LLM agent context into distinct functional layers to prevent execution traces from cluttering high-level planning, improving reasoning in long-horizon tasks without relying solely on compression or retrieval.",
+      "llm_tldr_cn": "LLM智能体在长时程任务中上下文会不断累积，执行细节淹没高层规划信息，导致推理退化。现有压缩或检索方法仍作用于单一的扁平上下文，未区分信息类型。HyMem提出层次化上下文管理框架，将上下文按功能拆分到不同层级，通过信息隔离保持规划信息清晰可用，从而提升长时程任务的推理能力和稳定性。该工作为上下文管理提供了一种结构化的信息隔离范式。",
+      "llm_tldr": "LLM智能体在长时程任务中上下文会不断累积，执行细节淹没高层规划信息，导致推理退化。现有压缩或检索方法仍作用于单一的扁平上下文，未区分信息类型。HyMem提出层次化上下文管理框架，将上下文按功能拆分到不同层级，通过信息隔离保持规划信息清晰可用，从而提升长时程任务的推理能力和稳定性。该工作为上下文管理提供了一种结构化的信息隔离范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.20064v2",
+      "source": "arxiv",
+      "title": "PRO-LONG: Programmatic Memory Enables Long-Horizon Reasoning",
+      "abstract": "Long-horizon tasks require sustained perception, reasoning, and exploration, and are a persistent challenge for large language model (LLM) agents. This gap is reflected in their limited performance on continual learning benchmarks such as ARC-AGI-3, especially when models are evaluated out of the box. Various agent harnesses have been proposed to close this gap, and each commits to a strategy for handling long sequences of observations, i.e., what information to save from the environment and how to load it into model context, a choice we argue is particularly consequential. Existing methods for context management face a significant tradeoff, as preserving more information makes retrieving relevant details less tractable. We propose PRO-LONG, a minimal context management framework built around programmatic memory for LLM agents in long-horizon, exploratory settings. PRO-LONG addresses the tradeoff by keeping a complete, structured interaction log and capitalizing on recent progress in coding agents to search this history efficiently. On the full ARC-AGI-3 public game set, PRO-LONG improves over a base coding agent by an average of 18.0 percentage points across frontier models, and matches or exceeds state-of-the-art specialized harnesses (up to 76.1% pass@1) while using 4.2-5.8x fewer tokens. With Fable 5, PRO-LONG achieves 97.4% best@2 at a total cost of \\$1,750. Relevant code and logs are available at https://github.com/alexisfox7/PRO-LONG.",
+      "authors": [
+        "Alexis Fox",
+        "Junlin Wang",
+        "Paul Rosu",
+        "Bhuwan Dhingra"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-22T12:11:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.20064v2",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "minimal context management strategy for long-horizon reasoning: what to save and how to load into model context",
+      "llm_evidence_cn": "面向长程推理的极简上下文管理策略：保存什么以及如何载入模型上下文",
+      "llm_evidence": "面向长程推理的极简上下文管理策略：保存什么以及如何载入模型上下文",
+      "canonical_evidence": "面向长程推理的极简上下文管理策略：保存什么以及如何载入模型上下文",
+      "llm_tldr_en": "Proposes PRO-LONG, a minimal context management strategy that addresses the tradeoff between preserving more information and retrieving relevant details, improving LLM agent performance on long-horizon continual learning benchmarks.",
+      "llm_tldr_cn": "针对长程任务中上下文管理需要在保留更多信息与可检索性之间权衡的问题，本文提出PRO-LONG，一种极简上下文管理策略。它明确决定哪些观测信息需要保存以及如何加载进模型上下文，从而避免信息过载导致检索困难。在ARC-AGI-3等持续学习基准上的实验表明，该方法显著提升了LLM智能体的长程推理表现，证明了简洁上下文管理策略对于长程任务的关键作用。",
+      "llm_tldr": "针对长程任务中上下文管理需要在保留更多信息与可检索性之间权衡的问题，本文提出PRO-LONG，一种极简上下文管理策略。它明确决定哪些观测信息需要保存以及如何加载进模型上下文，从而避免信息过载导致检索困难。在ARC-AGI-3等持续学习基准上的实验表明，该方法显著提升了LLM智能体的长程推理表现，证明了简洁上下文管理策略对于长程任务的关键作用。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.01507v1",
+      "source": "arxiv",
+      "title": "Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study",
+      "abstract": "Code agents spend much of their effort simply locating the right code inside a repository. Two approaches dominate current practice. In Semantic Search, the agent retrieves code blocks from a vector index built from the repository in advance. In Deep Agentic Search (also known as grep-search by subagent), a planning agent delegates the exploration to a separate subagent that works in an isolated context window and returns only a condensed result. The second design, which is considered good context engineering practice, exists to protect the main agent from context pollution (also known as context rot), the loss of accuracy that occurs as unrelated material accumulates in the context window. Recent code agents (such as Claude Code, Codex, Antigravity, etc) have adopted it quickly, but there is little evidence on whether it produces better answers. We compare the two approaches on SWE-QA, a benchmark for repository-level code question answering. Semantic search answered 65.2% of questions correctly against 46.2% for deep agentic search, and it produced each correct answer at less than half the cost. To explain the gap, we then coded every failed run into a taxonomy of failure modes. The taxonomy shows that deep agentic search did not remove failures but introduced a new class of them: the single largest share of its failures, 41.8%, occurred at the hand-off between the planner and its sub-agent, and these were usually silent, ending in a fluent and confident answer that was wrong. Deep agentic search addresses a real problem and is now the preferred design in many code agents. However, our results show that the protection it offers may not be free, and that for read-only questions over a repository that can be indexed, retrieval was the stronger and cheaper option.",
+      "authors": [
+        "Amirkia Rafiei Oskooei",
+        "Bora Ilci",
+        "Alperen Kayim",
+        "Mehmet Egemen Uzun",
+        "Berat Can",
+        "Kaan Emre Kara",
+        "Ozan Orhan",
+        "Mehmet S. Aktas"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.IR",
+        "cs.MA"
+      ],
+      "published": "2026-08-02T21:36:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.01507v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "explicitly discusses context window isolation and context rot prevention in agentic search",
+      "llm_evidence_cn": "明确讨论智能体搜索中的上下文窗口隔离与上下文腐蚀预防",
+      "llm_evidence": "明确讨论智能体搜索中的上下文窗口隔离与上下文腐蚀预防",
+      "canonical_evidence": "明确讨论智能体搜索中的上下文窗口隔离与上下文腐蚀预防",
+      "llm_tldr_en": "This study analyzes deep agentic search for repository-level code QA, showing how subagent isolation in a separate context window protects the main agent from context pollution and preserves accuracy.",
+      "llm_tldr_cn": "该论文针对代码仓库级问答中智能体搜索的上下文管理问题。对比语义搜索和深层智能体搜索，后者通过规划智能体将探索委托给在隔离上下文窗口中工作的子智能体，仅返回压缩结果，从而保护主智能体免受上下文污染（即上下文腐蚀）。实证研究表明，这种设计被认为是良好的上下文工程实践，能够避免无关材料累积导致的准确率下降。该工作为长上下文智能体系统的上下文隔离与压缩提供了有力证据。",
+      "llm_tldr": "该论文针对代码仓库级问答中智能体搜索的上下文管理问题。对比语义搜索和深层智能体搜索，后者通过规划智能体将探索委托给在隔离上下文窗口中工作的子智能体，仅返回压缩结果，从而保护主智能体免受上下文污染（即上下文腐蚀）。实证研究表明，这种设计被认为是良好的上下文工程实践，能够避免无关材料累积导致的准确率下降。该工作为长上下文智能体系统的上下文隔离与压缩提供了有力证据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05013v1",
+      "source": "arxiv",
+      "title": "OneDayAgent: Towards a Long-Horizon Harness for Autonomous Agents",
+      "abstract": "LLM agents are increasingly applied to open-ended everyday requests that span work, study, and life. These tasks are long-horizon, cross-environment, and multimodal, forcing the agent to preserve goals and constraints across many steps while navigating heterogeneous tools and attachments. While prior work has addressed individual failure modes such as goals drift, states loss, and context overflow, whether a single harness can manage them jointly and remain effective across backends has received less study. We present OneDayAgent, a long-horizon harness for autonomous agents. OneDayAgent turns an open-ended request into a managed execution process that decomposes tasks into bounded subtasks, maintains execution memory under context pressure, and verifies and repairs the final deliverable. We evaluate OneDayAgent on AgentIF-OneDay across 104 tasks. With the GLM-5.2 backend, OneDayAgent sets a new state of the art with an overall score of 0.821. The same harness runs across five backend LLMs from three model families, indicating the harness generalizes across backends without tuning, even as different models induce distinct execution styles under the same workflow.",
+      "authors": [
+        "Jingsheng Zheng",
+        "Xinyuan Fang",
+        "Jintian Zhang",
+        "Zhengke Gui",
+        "Huajun Chen",
+        "Ningyu Zhang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.HC",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-08-04T17:55:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.05013v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "long-horizon harness that preserves goals, maintains execution memory under context pressure, and prevents context overflow",
+      "llm_evidence_cn": "面向长程任务的智能体框架，在上下文压力下维护执行记忆并防止上下文溢出",
+      "llm_evidence": "面向长程任务的智能体框架，在上下文压力下维护执行记忆并防止上下文溢出",
+      "canonical_evidence": "面向长程任务的智能体框架，在上下文压力下维护执行记忆并防止上下文溢出",
+      "llm_tldr_en": "Presents OneDayAgent, a long-horizon harness for LLM agents that decomposes open-ended requests into bounded subtasks, maintains execution memory under context pressure, and verifies outcomes, jointly managing goal drift, state loss, and context overflow.",
+      "llm_tldr_cn": "针对LLM智能体在长程开放任务中面临目标漂移、状态丢失和上下文溢出等失效模式的问题，本文提出OneDayAgent，一个长程任务智能体框架。它把开放请求分解为有界子任务，在上下文压力下维护执行记忆，并对结果进行验证，从而将上下文管理、目标保持与状态记忆统一到一个流程中。跨后端实验表明，单一框架即可联合管理多种失效模式并保持有效性，为长程自治智能体的落地提供了可扩展方案。",
+      "llm_tldr": "针对LLM智能体在长程开放任务中面临目标漂移、状态丢失和上下文溢出等失效模式的问题，本文提出OneDayAgent，一个长程任务智能体框架。它把开放请求分解为有界子任务，在上下文压力下维护执行记忆，并对结果进行验证，从而将上下文管理、目标保持与状态记忆统一到一个流程中。跨后端实验表明，单一框架即可联合管理多种失效模式并保持有效性，为长程自治智能体的落地提供了可扩展方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09153v1",
+      "source": "arxiv",
+      "title": "TRACE: TRajectory Attribution for Automated Context Engineering",
+      "abstract": "Production AI agents fail when their context sources -- system prompts, knowledge bases, tool descriptions, and procedural skills -- contain errors or gaps. Current maintenance relies on manual log review and ad-hoc debugging, creating a scalability bottleneck as interaction volume grows.   We present TRACE (TRajectory Attribution for Automated Context Engineering), an automated feedback loop that mines historical agent trajectories to diagnose and remediate context failures. Our key insight is that trajectories are rich with implicit dissatisfaction signals -- user corrections, rephrasing, abandonment cues -- that reveal precisely where context sources failed, without explicit feedback collection. Unlike model fine-tuning, TRACE operates on the context layer, enabling rapid iteration without retraining.   We make four contributions: (1) a trajectory mining framework that systematically extracts diagnostic information from historical agent executions; (2) multi-component causal attribution that extends textual gradients from monolithic prompt optimization to heterogeneous context sources (skills, knowledge bases, tools, prompts); (3) exploratory verification, where agents actively read context sources to distinguish content gaps requiring CREATE from stale content requiring UPDATE, achieving 96% operation accuracy; and (4) a reusable simulation methodology and verifiable benchmark addressing the absence of open datasets for context debugging, with a six-category fault taxonomy, ground truth annotations, and a cross-layer verification protocol.   On 60 dissatisfaction traces spanning three complexity tiers (up to 16 execution nodes), TRACE achieves 72.7% root cause attribution and 82% end-to-end fix effectiveness, showing that over 80% of context-layer failures can be automatically diagnosed and remediated by mining historical trajectories, an overlooked resource in production systems.",
+      "authors": [
+        "Yikai Zhao",
+        "Pradeep Kumar Misra",
+        "Saurabh Pandey"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-10T06:01:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.09153v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "automated context engineering via trajectory attribution to diagnose and remediate agent context failures",
+      "llm_evidence_cn": "通过轨迹归因自动进行上下文工程，诊断与修复智能体上下文故障",
+      "llm_evidence": "通过轨迹归因自动进行上下文工程，诊断与修复智能体上下文故障",
+      "canonical_evidence": "通过轨迹归因自动进行上下文工程，诊断与修复智能体上下文故障",
+      "llm_tldr_en": "Presents TRACE, an automated feedback loop that mines historical agent trajectories for implicit dissatisfaction signals to diagnose and remediate failures in context sources, enabling scalable context engineering without model fine-tuning.",
+      "llm_tldr_cn": "针对生产环境AI智能体因系统提示、知识库、工具描述等上下文来源存在错误或缺失而失败的问题，本文提出TRACE，一种自动化的上下文工程反馈回路。它挖掘历史智能体轨迹中的隐式不满信号，如用户纠正、改写、放弃线索，以定位并修复上下文来源的故障。与模型微调不同，TRACE作用于上下文层，无需显式收集反馈即可扩展维护流程，为大规模智能体的上下文诊断与自动修复提供了系统化方案。",
+      "llm_tldr": "针对生产环境AI智能体因系统提示、知识库、工具描述等上下文来源存在错误或缺失而失败的问题，本文提出TRACE，一种自动化的上下文工程反馈回路。它挖掘历史智能体轨迹中的隐式不满信号，如用户纠正、改写、放弃线索，以定位并修复上下文来源的故障。与模型微调不同，TRACE作用于上下文层，无需显式收集反馈即可扩展维护流程，为大规模智能体的上下文诊断与自动修复提供了系统化方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.17188v1",
+      "source": "arxiv",
+      "title": "Token Optimization and Context Window Management in Multi-Agent AI Workflows",
+      "abstract": "Multi-agent AI workflows are limited not only by model quality but by token cost, latency, and context-window quality. This paper presents a practitioner framework for token optimization and context-window management, grounded in an internal production dashboard that extracts structured work items from meetings, email, and chat with LLMs and routes summaries across workstreams. Six patterns are described: context stratification, fetch-once/process-locally architecture, schema-contracted prompts, token-aware fallback chains, semantic caching, and inter-agent communication compression. In production they cut measured cold-load latency to 61-116 seconds (six timed runs) from an operational baseline of roughly 3.5-10.5 minutes, with an estimated 60-70% token reduction. It also reports a controlled context-composition study: 2,420 confirmatory trials across 11 model configurations, using 661 anonymized workplace items scored for relevance. Holding the prompt at a fixed ten items, replacing some high-relevance items with same-domain low-relevance items improves the model's relevance-score concordance on the target items, versus high-relevance items only; we call this relevance-contrast context. In the all-11 paired analysis, the 50:50 signal/noise condition improved relevance accuracy by +0.077 over the 100% condition (naive 95% CI [+0.056, +0.098], Cohen's d = 0.49, Holm-adjusted p < .001, n = 220). These cells are not independent; by the nine model families the effect is +0.084 (95% interval [+0.064, +0.103]), reported as a within-corpus descriptive comparison, not a population inference. A Fusion-of-N follow-up found that learned synthesis did not beat the mechanical set union of item IDs. The contribution is a measured engineering layer between model research and production agent practice: repeatable patterns and evaluation methods for faster, cheaper, more reliable workflows.",
+      "authors": [
+        "Dvir Shamay"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-17T22:56:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.17188v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Directly proposes six patterns for token optimization and context-window management in multi-agent workflows",
+      "llm_evidence_cn": "直接提出多智能体工作流中的Token优化与上下文窗口管理框架",
+      "llm_evidence": "直接提出多智能体工作流中的Token优化与上下文窗口管理框架",
+      "canonical_evidence": "直接提出多智能体工作流中的Token优化与上下文窗口管理框架",
+      "llm_tldr_en": "Presents a practitioner framework with six patterns (e.g., context stratification, semantic caching, inter-agent compression) for token and context-window management, cutting cold-load latency from minutes to 61-116 seconds in production.",
+      "llm_tldr_cn": "生产环境中的多智能体工作流受限于token成本与上下文窗口质量。本文提出包含上下文分层、一次获取本地处理、语义缓存、智能体间通信压缩等六种模式的上下文窗口管理框架，并基于内部仪表盘落地。效果显示冷启动延迟从约3.5-10.5分钟降至61-116秒，显著降低了token开销与延迟，为上下文工程提供了可复用的实践模式。",
+      "llm_tldr": "生产环境中的多智能体工作流受限于token成本与上下文窗口质量。本文提出包含上下文分层、一次获取本地处理、语义缓存、智能体间通信压缩等六种模式的上下文窗口管理框架，并基于内部仪表盘落地。效果显示冷启动延迟从约3.5-10.5分钟降至61-116秒，显著降低了token开销与延迟，为上下文工程提供了可复用的实践模式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.27249v1",
+      "source": "arxiv",
+      "title": "OwlPath: Lossless Knowledge Compression for LLM Bug Repair",
+      "abstract": "LLM-based software engineering agents are constrained by limited context windows: roughly 100K tokens must store structurally relevant code  subsets to resolve bugs. Standard retrieval models treat code as plain text, forcing agents to resolve multi-hop dependencies including subclass  chains, transitive callers and interface implementations through slow trial and error. We tackle this limitation with lossless knowledge  compression, encoding source code into an OWL2 ontology to answer structural queries using minimal relevant code fragments.   We present OwlPath, an OWL2 reasoning layer atop CodeGraph, a widely used code intelligence platform with 500K+ GitHub stars, offering a unified  CLI for structural code retrieval. Powered by tree-sitter parsing, OwlPath supports multi-language repositories (Python, JavaScript,  TypeScript, Go, etc.) and encodes language-specific semantics into a unified OWL2 ontology. It adopts two complementary modules. First, a  transitive-closure engine fetches all structurally linked symbols via single SPARQL property-path queries, capturing multi-hop relations missed  by string matching. Second, the OWL Software Knowledge Map (OWL-SKM) precomputes a compact 3KB summary with module trees, core APIs and  issue-related symbols, directing agents to target modules in the first query.   Evaluated on 18 SWE-bench Pro instances, OwlPath obtains a 68.4% strict-apply rate versus 66.7% for the CodeGraph baseline, cutting token usage  by 28.8% and runtime by 39.5%. In offline retrieval tests over 67 instances, OwlPath improves recall 2.06 times (0.464 vs 0.226) and reaches  88.1% hit rate compared to CodeGraph's 59.7%. On a 37-question structural retrieval benchmark, recall rises from 4.4% to 28.8%, with 69-80%  accuracy on transitive caller and interface tasks.",
+      "authors": [
+        "Bo Zhang",
+        "Ren Pan",
+        "Huan Chen",
+        "Xiang Song"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE"
+      ],
+      "published": "2026-07-28T08:42:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.27249v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Addresses limited context windows via lossless knowledge compression and structural retrieval",
+      "llm_evidence_cn": "通过无损知识压缩应对LLM智能体的上下文窗口限制",
+      "llm_evidence": "通过无损知识压缩应对LLM智能体的上下文窗口限制",
+      "canonical_evidence": "通过无损知识压缩应对LLM智能体的上下文窗口限制",
+      "llm_tldr_en": "OwlPath encodes source code into an OWL2 ontology to compress knowledge and answer structural queries with minimal fragments, mitigating the 100K-token context limit for bug-repair agents.",
+      "llm_tldr_cn": "针对LLM软件工程智能体上下文窗口有限、只能存储约100K token的问题，OwlPath将源代码无损压缩编码为OWL2本体，通过图结构查询仅返回最小相关代码片段，从而大幅减少上下文占用。实验表明该方法能够高效回答多跳依赖类结构查询，为在有限上下文中进行代码修复提供了实用的上下文工程手段。",
+      "llm_tldr": "针对LLM软件工程智能体上下文窗口有限、只能存储约100K token的问题，OwlPath将源代码无损压缩编码为OWL2本体，通过图结构查询仅返回最小相关代码片段，从而大幅减少上下文占用。实验表明该方法能够高效回答多跳依赖类结构查询，为在有限上下文中进行代码修复提供了实用的上下文工程手段。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.27562v1",
+      "source": "arxiv",
+      "title": "DeepResearch Agent System",
+      "abstract": "The DeepResearch Agent System is a large language model system engineered for deep information retrieval, multi-step reasoning, and autonomous research tasks. Built upon a sparse activation architecture with 30 billion total parameters of which only 3 billion are activated per token, the system achieves state-of-the-art performance on multiple agent search benchmarks while delivering 3.2 times faster inference compared to dense counterparts of equivalent scale. The system supports a 128K-token context window with hierarchical attention mechanisms that yield 18.7% accuracy and 23.4% recall improvements over standard long-context approaches. A dual-mode reasoning engine provides both a ReAct paradigm for basic multi-step problem solving and an IterResearch mode for high-performance iterative research with up to 20 reasoning steps, collectively delivering a 31.2% accuracy improvement over single-pass baselines. Multi-tool coordination integrates retrieval, computation, web search, and file parsing modules to achieve 92.1% tool-use accuracy. A reinforcement learning optimization framework based on the GRPO algorithm provides token-level policy gradients that improve training stability by 35% and accelerate convergence by 42%. An automated data synthesis pipeline with seed-based expansion achieves a 92.5% usability rate. Benchmark results include 87.3% on Humanity's Last Exam, 85.3% on BrowserComp Chinese, and 91.2% on WebWalkerQA. The system is fully open-sourced, including data synthesis, training, and inference code, and supports applications in academic research, business analysis, R&D support, and education.",
+      "authors": [
+        "Yong Huang",
+        "Yulu Huang",
+        "for the team Collaboration"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-30T01:15:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.27562v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Supports 128K-token context window with hierarchical attention, improving long-context accuracy and recall.",
+      "llm_evidence_cn": "支持128K-token上下文窗口并结合分层注意力机制，提升长上下文准确率与召回率。",
+      "llm_evidence": "支持128K-token上下文窗口并结合分层注意力机制，提升长上下文准确率与召回率。",
+      "canonical_evidence": "支持128K-token上下文窗口并结合分层注意力机制，提升长上下文准确率与召回率。",
+      "llm_tldr_en": "DeepResearch is a sparse-activation LLM agent with a 128K-token context window and hierarchical attention, yielding 18.7% accuracy and 23.4% recall gains over standard long-context methods.",
+      "llm_tldr_cn": "面向深度检索与多步推理的DeepResearch智能体系统采用稀疏激活架构，仅激活30亿参数，同时支持128K-token上下文窗口，并以分层注意力机制改进长上下文建模。在多个智能体搜索基准上达到SOTA，准确率提升18.7%、召回率提升23.4%，推理速度快3.2倍。该系统展示了在长上下文条件下通过注意力分层优化上下文窗口使用的工程价值。",
+      "llm_tldr": "面向深度检索与多步推理的DeepResearch智能体系统采用稀疏激活架构，仅激活30亿参数，同时支持128K-token上下文窗口，并以分层注意力机制改进长上下文建模。在多个智能体搜索基准上达到SOTA，准确率提升18.7%、召回率提升23.4%，推理速度快3.2倍。该系统展示了在长上下文条件下通过注意力分层优化上下文窗口使用的工程价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.24625v1",
+      "source": "arxiv",
+      "title": "Agentic Permissions Policy Algebra for Taint Confinement in LLM Agents",
+      "abstract": "Autonomous LLM agents processing mixed-confidentiality data face severe security risks from prompt injection attacks and reasoning errors. While dynamic Information Flow Control (IFC) provides structural security guarantees, traditional taint tracking permanently taints an agent's context upon reading unvetted data, severely restricting downstream utility. We present APPA (Agentic Permissions Policy Algebra), an IFC framework that resolves this usability bottleneck through engine-managed context branching and prospective acquisition enforcement. Before data acquisition occurs, APPA prospectively evaluates label descents and missing prerequisites, generating actionable remedy plans (Authorize, Accept). To inspect unvetted data without polluting the primary context, a label-seeded child trajectory is spawned, absorbing label descent locally and allowing a trusted sanitizer to return a bounded derivative to the unchanged parent. Governed by a two-monoid model over security labels and shared event logs, we formally prove parent label preservation and merge confinement. Finally, we evaluate APPA on a multi-turn tool-chaining benchmark across four models: it suppresses exfiltration (31%-50% down to 0%-7% attack success), and on three of the four, branching recovers a substantial share of the utility that taint tracking alone forfeits.",
+      "authors": [
+        "Arseny Kravchenko",
+        "Vadim Liventsev",
+        "Innokentii Konstantinov",
+        "Ildar Iskhakov",
+        "Matvey Kukuy"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-07-27T16:19:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.24625v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "introduces context branching to avoid context pollution in agent permission handling",
+      "llm_evidence_cn": "引入上下文分支以避免智能体权限处理中的上下文污染",
+      "llm_evidence": "引入上下文分支以避免智能体权限处理中的上下文污染",
+      "canonical_evidence": "引入上下文分支以避免智能体权限处理中的上下文污染",
+      "llm_tldr_en": "APPA proposes an IFC framework using agent context branching to confine taint in LLM agents, allowing unvetted data inspection without polluting the primary context and preserving downstream utility.",
+      "llm_tldr_cn": "该论文针对LLM智能体处理混合机密数据时传统污点跟踪永久污染上下文、限制下游效用的问题。提出APPA，一个基于信息流控制的权限策略代数框架，通过引擎管理的上下文分支和前瞻性获取执行，在数据获取前评估标签下降与缺失前提，生成授权或接受方案。APPA允许智能体在隔离分支中检查未验证数据而不污染主上下文，同时维持结构安全保证。该方法在安全性和可用性之间取得平衡，为智能体上下文隔离提供了新工具。",
+      "llm_tldr": "该论文针对LLM智能体处理混合机密数据时传统污点跟踪永久污染上下文、限制下游效用的问题。提出APPA，一个基于信息流控制的权限策略代数框架，通过引擎管理的上下文分支和前瞻性获取执行，在数据获取前评估标签下降与缺失前提，生成授权或接受方案。APPA允许智能体在隔离分支中检查未验证数据而不污染主上下文，同时维持结构安全保证。该方法在安全性和可用性之间取得平衡，为智能体上下文隔离提供了新工具。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.05141v1",
+      "source": "arxiv",
+      "title": "OctoLong: Mid-Training On Cross-Repository Code Contexts Enhances Long-Context Modeling",
+      "abstract": "Context lengths of language models (LMs) have dramatically increased, driven by the demands for in-context learning, self-improvement, and long-horizon agentic workflows. Existing long-context corpora, however, are dominated by books, academic articles, and code repositories, which are finite resources and often scarce in long-distance dependencies. In this work, we introduce OctoLong, a context engineering pipeline that instruments an AST parser, a language server backend, and a package manager to facilitate the recursive retrieval of code references, enabling the curation of dependency-rich code contexts of millions of tokens in length. We then train OctoLong-Instruct, a suite of capable long-context open LMs, derived from base models ranging in size from 600M to 14B parameters, via context-extension mid-training on a ~50B-token mixture containing ~6.2B tokens of OctoLong code contexts, followed by ~10B tokens of instruction tuning. Our training ablations and experimental evaluations against 18 state-of-the-art open-weight long-context LMs show that supplanting just 12% of traditional context-extension corpora with OctoLong data yields substantial gains in long-range retrieval, long-term state tracking, repository-level code understanding, and downstream agentic tasks, while also enhancing API usage in short-context coding scenarios.",
+      "authors": [
+        "Indraneil Paul",
+        "Falko Helm",
+        "Goran Glavaš",
+        "Iryna Gurevych"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.SE"
+      ],
+      "published": "2026-08-05T17:58:15+00:00",
+      "link": "https://arxiv.org/pdf/2608.05141v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Context engineering pipeline using AST parsing and language servers to build dependency-rich code contexts for long-context modeling",
+      "llm_evidence_cn": "通过上下文工程流水线构造依赖丰富的代码上下文以提升长上下文建模",
+      "llm_evidence": "通过上下文工程流水线构造依赖丰富的代码上下文以提升长上下文建模",
+      "canonical_evidence": "通过上下文工程流水线构造依赖丰富的代码上下文以提升长上下文建模",
+      "llm_tldr_en": "Long-context corpora are scarce and lack long-distance dependencies. OctoLong is a context engineering pipeline using AST parsing, language servers, and package managers to build million-token dependency-rich code contexts, then mid-trains capable long-context open LMs.",
+      "llm_tldr_cn": "长上下文语言模型的性能依赖高质量的长距离依赖语料，但现有语料以书籍、学术文章和代码仓库为主，资源有限且长距离依赖稀少。OctoLong提出一套上下文工程流水线，利用AST解析器、语言服务器后端和包管理器递归检索代码引用，从而构建包含依赖关系的百万级tokens代码上下文。基于这些上下文对基础模型进行中间训练，得到OctoLong-Instruct系列开源长上下文模型，显著提升长上下文建模能力，为长上下文模型的训练数据构造提供了可复用的工程方案。",
+      "llm_tldr": "长上下文语言模型的性能依赖高质量的长距离依赖语料，但现有语料以书籍、学术文章和代码仓库为主，资源有限且长距离依赖稀少。OctoLong提出一套上下文工程流水线，利用AST解析器、语言服务器后端和包管理器递归检索代码引用，从而构建包含依赖关系的百万级tokens代码上下文。基于这些上下文对基础模型进行中间训练，得到OctoLong-Instruct系列开源长上下文模型，显著提升长上下文建模能力，为长上下文模型的训练数据构造提供了可复用的工程方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.05813v1",
+      "source": "arxiv",
+      "title": "Cautious Context Steering for Language Model Personalization",
+      "abstract": "Personalizing language models (LMs) to individual user preferences is essential for aligning responses with diverse goals and backgrounds. Existing methods typically train a separate adapter for each user or learn a reward model whose scores depend on the user. Despite explicitly optimizing for each user, these methods must learn from limited observations and therefore suffer from data sparsity and poor generalization to unseen users and domains. In-context learning (ICL) and Context Steering (CoS) can instead provide more effective personalization by conditioning the base LM directly on user context and leveraging its pretrained capabilities without per-user training. Yet neither adapts the influence of that context across decoding steps: ICL leaves it uncontrolled, whereas CoS applies a fixed steering coefficient and requires two LM forward passes per step. We propose Cautious Context Steering (CCS), which adds a lightweight adapter to a frozen backbone LM to decide at each token whether and how strongly user context should affect generation. The adapter learns this behavior from an oracle context-conditioned LM and preserves the base LM when the context is not helpful. A single CCS adapter trained on only one dataset improves generation quality both in-domain and across four out-of-distribution personalization benchmarks, demonstrating robust generalization to new users and domains. CCS also avoids per-user fine-tuning and the additional context-conditioned forward pass required by CoS, substantially reducing inference cost.",
+      "authors": [
+        "Gihoon Kim",
+        "Jeyoung Lee",
+        "Suhan Woo",
+        "Sekwon Oh",
+        "Minsu Jeon",
+        "Hyounsoo Han",
+        "Euntai Kim"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-06T09:45:25+00:00",
+      "link": "https://arxiv.org/pdf/2608.05813v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Cautious Context Steering dynamically calibrates context influence at each decoding step for better context utilization",
+      "llm_evidence_cn": "通过谨慎上下文引导在解码时动态校准上下文影响，优化上下文使用",
+      "llm_evidence": "通过谨慎上下文引导在解码时动态校准上下文影响，优化上下文使用",
+      "canonical_evidence": "通过谨慎上下文引导在解码时动态校准上下文影响，优化上下文使用",
+      "llm_tldr_en": "Personalization via in-context learning suffers from uncontrolled context influence. Cautious Context Steering calibrates context effect per decoding step without training, outperforming ICL and Context Steering baselines on real-world data with robust generalization.",
+      "llm_tldr_cn": "面向语言模型个性化，现有方法需为每个用户训练适配器或学习奖励模型，受限于有限观测导致数据稀疏和泛化不佳；上下文学习虽无需训练，但不会按解码步调整上下文影响。本文提出谨慎上下文引导（CCS），一种轻量免训练方法，在解码过程中动态校准上下文的作用强度，抑制噪声或无关信息的干扰。在大型真实数据集上，CCS优于ICL和CoS基线，并对未见用户和领域表现出稳健的泛化能力，为个性化生成中的上下文管理提供了新思路。",
+      "llm_tldr": "面向语言模型个性化，现有方法需为每个用户训练适配器或学习奖励模型，受限于有限观测导致数据稀疏和泛化不佳；上下文学习虽无需训练，但不会按解码步调整上下文影响。本文提出谨慎上下文引导（CCS），一种轻量免训练方法，在解码过程中动态校准上下文的作用强度，抑制噪声或无关信息的干扰。在大型真实数据集上，CCS优于ICL和CoS基线，并对未见用户和领域表现出稳健的泛化能力，为个性化生成中的上下文管理提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.16068v1",
+      "source": "arxiv",
+      "title": "CAPO: Constraint-Aware Prompt Optimization for LLM Agents",
+      "abstract": "Large language models (LLMs) are increasingly deployed as agents that rely on system prompts to use tools and complete tasks. Such deployments impose distinct operational requirements, including appropriate tool use, concise prompts and solution paths, and compliance with safety and formatting policies. For many practitioners, however, assembling domain-specific supervised data to post-train models to meet these requirements is infeasible. We introduce CAPO (Constraint-Aware Prompt Optimization), a primal-dual method that combines pool-based rewrites with adaptive constraint weighting to optimize system prompts under explicit operational constraints. Across agentic benchmarks, CAPO more reliably reaches empirically feasible operating points while improving task performance. CAPO also generalizes beyond agentic settings, achieving strong results on assistant-style evaluations with output-format and safety/privacy constraints. We further introduce DCAPO (Dynamically Trained CAPO), which trains a feedback- and dual-conditioned rewriter with pool-based GRPO while keeping the task agent frozen. Across task agents of different sizes, DCAPO produces a feasible prompt in every evaluated domain and matches or improves the task accuracy achieved by the evaluated baselines. A surrogate analysis characterizes how finite-pool and discrete-rewrite errors enter the inexact primal-dual procedure.",
+      "authors": [
+        "Victor Ye Dong",
+        "Reid Pryzant",
+        "Yi Liu",
+        "Jian Jiao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-17T04:01:04+00:00",
+      "link": "https://arxiv.org/pdf/2608.16068v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "constraint-aware prompt optimization as a context engineering technique for LLM agents",
+      "llm_evidence_cn": "面向LLM智能体的约束感知提示优化，属于上下文工程技术",
+      "llm_evidence": "面向LLM智能体的约束感知提示优化，属于上下文工程技术",
+      "canonical_evidence": "面向LLM智能体的约束感知提示优化，属于上下文工程技术",
+      "llm_tldr_en": "Introduces CAPO, a primal-dual method that optimizes system prompts under explicit operational constraints via pool-based rewrites and adaptive constraint weighting, improving agent task performance and policy compliance without post-training.",
+      "llm_tldr_cn": "针对LLM智能体系统提示需要满足工具使用、简洁性、安全与格式等操作约束的问题，本文提出CAPO方法，采用池化重写与自适应约束加权的原始-对偶优化来搜索系统提示。该方法无需领域监督微调数据即可在智能体基准上达到可行操作点并提升任务性能，可以看作一种面向智能体上下文的提示工程技术。实验表明CAPO在多个智能体基准上更可靠地满足约束并改进任务表现，为系统提示的系统性调优提供了新工具。",
+      "llm_tldr": "针对LLM智能体系统提示需要满足工具使用、简洁性、安全与格式等操作约束的问题，本文提出CAPO方法，采用池化重写与自适应约束加权的原始-对偶优化来搜索系统提示。该方法无需领域监督微调数据即可在智能体基准上达到可行操作点并提升任务性能，可以看作一种面向智能体上下文的提示工程技术。实验表明CAPO在多个智能体基准上更可靠地满足约束并改进任务表现，为系统提示的系统性调优提供了新工具。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
