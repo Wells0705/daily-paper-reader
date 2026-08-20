@@ -1,0 +1,604 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-20T20:42:27.795151+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 12,
+    "deep_cap": 6,
+    "deep_selected": 9,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2608.11775v1",
+      "source": "arxiv",
+      "title": "The Sleeping Agent: What Gist-Based Context Compression Loses and Why",
+      "abstract": "Gist-based context compression---summarising older conversation history into compact representations---is a common approach in long-horizon language model agents, yet its effect on different types of memory retrieval is poorly understood. We use Salience-Weighted Consolidation (SWC), a biologically-inspired compression framework motivated by sleep-based memory consolidation, as a diagnostic probe to study when gist compression helps and when it hurts. SWC scores conversation history by salience, partitions it into priority tiers, and applies structured gist abstraction to mid-priority content. Evaluating four conditions on all ten LoCoMo conversations---1,935 matched text-only questions in total, 1,501 used in the primary aggregate after excluding Category 5 (adversarial) questions---at temperature 0, we find a consistent task-type interaction: gist compression substantially outperforms truncation on multi-hop reasoning and single-hop factual questions, but temporal questions remain substantially harder under compression, with compressed conditions scoring well below the full-context reference on the conversations where both are evaluated. We trace this failure to a specific mechanism: the gist abstraction prompt preserves relational and event structure while discarding dates and times. A preservation analysis across all ten conversations confirms the mechanism: an approximately 20-fold increase in temporal expression preservation (3.05% to 62.39%) with a one-sentence prompt modification, while named entity and event preservation rates barely change (x1.02 and x1.11), demonstrating that the fix is a precision instrument. The prompt modification recovers +0.314 [0.254, 0.375] judge accuracy on category-2 (temporal) questions in the matched set. Code and results: https://github.com/kyrkewood/sleeping-agent.",
+      "authors": [
+        "Nicholas E. Kyrkewood"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-12T08:19:15+00:00",
+      "link": "https://arxiv.org/pdf/2608.11775v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "context compression effects on memory retrieval",
+      "llm_evidence_cn": "上下文压缩对记忆检索的影响",
+      "llm_evidence": "上下文压缩对记忆检索的影响",
+      "canonical_evidence": "上下文压缩对记忆检索的影响",
+      "llm_tldr_en": "Gist-based context compression is common yet poorly understood. Using sleep-inspired Salience-Weighted Consolidation as a probe, this study evaluates four compression conditions on 1,935 LoCoMo questions, revealing when gist compression helps or hurts different memory retrieval types and informing context engineering.",
+      "llm_tldr_cn": "将较旧对话历史压缩为紧凑表示的gist式上下文压缩，在长时程语言智能体中十分常用，但它在不同记忆检索类型上的收益与损失尚未被充分理解。论文提出睡眠记忆巩固启发的显著性加权整合SWC作为诊断探针，按显著性对对话历史分层，并对中优先级内容进行结构化gist抽象。在LoCoMo全部十段对话的1935个匹配文本问题上的评估显示，该压缩对部分检索有帮助而对另一些有害。这一结果为智能体上下文压缩策略的选择提供了经验依据。",
+      "llm_tldr": "将较旧对话历史压缩为紧凑表示的gist式上下文压缩，在长时程语言智能体中十分常用，但它在不同记忆检索类型上的收益与损失尚未被充分理解。论文提出睡眠记忆巩固启发的显著性加权整合SWC作为诊断探针，按显著性对对话历史分层，并对中优先级内容进行结构化gist抽象。在LoCoMo全部十段对话的1935个匹配文本问题上的评估显示，该压缩对部分检索有帮助而对另一些有害。这一结果为智能体上下文压缩策略的选择提供了经验依据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.11654v1",
+      "source": "arxiv",
+      "title": "Towards a Formal Definition of Agent Memory: Basis, Span, Optimality, and the Sequential Memory Problem",
+      "abstract": "Despite the wide deployment of memory in large-model agents, there is no unified formal account of what a memory is or when it is optimal. This paper takes a first step toward this account. The central idea is that memory is a basis, knowledge is its span, and answerability is a coverage problem: an agent stores events extracted from a material; a generation operator turns any event set into the knowledge it entails; and a query is answerable exactly when some single item in the span covers it. The optimal memory is then the capacity-constrained maximizer of expected coverage, and its value traces a utility--capacity frontier, the common yardstick on which memory systems can be compared. Next, we consider noise in the memory and discuss coverage versus precision under it: a memory may store false claims, so the write policy must infer the truth of what it stores. Drawing an analogy with biological memory, which is formed continuously through ongoing experience, we formalize the continual agent-memory problem in a sequential MDP that covers multiple levels, where memory is the state, writing is the action, and the utility settled at query time is the delayed reward that drives learning. To make the framework concrete, we instantiate it on Homer's \\emph{Odyssey}, turning the frontier, the compression zone, and the divergence of coverage from precision into concrete numbers. Finally, we position existing systems within the framework, making ``how good is a memory'' measurable and recasting the open problems of constructing and learning agent memory as concrete research questions.",
+      "authors": [
+        "Hongyao Tang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-12T04:54:26+00:00",
+      "link": "https://arxiv.org/pdf/2608.11654v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Formal foundation for agent memory optimality and coverage in LLM agents",
+      "llm_evidence_cn": "为LLM智能体记忆最优性与覆盖率建立形式化基础",
+      "llm_evidence": "为LLM智能体记忆最优性与覆盖率建立形式化基础",
+      "canonical_evidence": "为LLM智能体记忆最优性与覆盖率建立形式化基础",
+      "llm_tldr_en": "Defines agent memory as a basis with knowledge span and answerability as coverage, then characterizes capacity-constrained optimal memory and the utility-capacity frontier, addressing the sequential memory problem.",
+      "llm_tldr_cn": "针对大模型智能体中记忆缺乏统一形式化定义的问题，提出将记忆视为基、知识视为其张成、查询可回答性视为覆盖问题，并以期望覆盖最大化为目标刻画容量受限下的最优记忆。进一步引入效用-容量前沿来比较不同记忆系统，并分析噪声条件下的顺序记忆问题。该理论为记忆系统的最优设计提供了统一评判标准，对智能体上下文工程和记忆架构设计具有重要指导意义。",
+      "llm_tldr": "针对大模型智能体中记忆缺乏统一形式化定义的问题，提出将记忆视为基、知识视为其张成、查询可回答性视为覆盖问题，并以期望覆盖最大化为目标刻画容量受限下的最优记忆。进一步引入效用-容量前沿来比较不同记忆系统，并分析噪声条件下的顺序记忆问题。该理论为记忆系统的最优设计提供了统一评判标准，对智能体上下文工程和记忆架构设计具有重要指导意义。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.12626v1",
+      "source": "arxiv",
+      "title": "LLMs Are Not Good Strategists, Yet Memory-Enhanced Agency Boosts Reasoning",
+      "abstract": "Strategic reasoning in Large Language Models (LLMs) within long-horizon environments is often limited by inconsistent subgoals. In these settings, finite attention resources prevent the model from maintaining strategic coherence over thousands of steps. This limitation leads to strategic drift, where localized decisions fail to sustain a coherent trajectory across reasoning. To address this, we introduce EpicStar, a framework that enables agents to learn memory as policy to tackle long-horizon reasoning. Specifically, the agent maintains a bank of successful past episodes as a heuristic alongside a working memory to track short-term environmental changes. During inference, a dynamic gating mechanism determines whether to execute a retrieved action directly or to perform new reasoning through a contextual fusion of the retrieved episodes and current working memory. Utilizing StarCraft II as the testbed, we evaluated EpicStar against diverse opponent styles. It significantly outperforms baseline methods, achieving higher win rates while consuming an order of magnitude fewer tokens, and it maintains this advantage consistently across difficulty levels and opponent strategies. Our findings provide compelling evidence that structured cross-episode memory is essential for enabling LLM agents to perform robust, long-term strategic execution in dynamic, autonomous settings.",
+      "authors": [
+        "Yi Wu",
+        "Zhimin Hu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-12T22:17:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.12626v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "memory as policy with episodic and working memory for LLM agents",
+      "llm_evidence_cn": "面向长时程推理的记忆增强与工作记忆架构",
+      "llm_evidence": "面向长时程推理的记忆增强与工作记忆架构",
+      "canonical_evidence": "面向长时程推理的记忆增强与工作记忆架构",
+      "llm_tldr_en": "LLMs suffer strategic drift in long-horizon reasoning. EpicStar learns memory as policy, combining episodic success bank and working memory with a dynamic gating mechanism to maintain coherence and boost reasoning performance.",
+      "llm_tldr_cn": "长时程战略推理中，LLM常因有限注意力与不一致子目标出现战略漂移，难以在数千步内保持一致轨迹。为此提出EpicStar框架，将记忆作为策略学习：智能体维护成功过往片段作为启发式，并结合工作记忆跟踪短期环境变化。推理时通过动态门控机制决定是否执行检索到的动作，从而在长时程推理中保持战略连贯性。实验证明，这种记忆增强机制显著提升长时程推理的表现，凸显了记忆架构对LLM智能体的关键价值。",
+      "llm_tldr": "长时程战略推理中，LLM常因有限注意力与不一致子目标出现战略漂移，难以在数千步内保持一致轨迹。为此提出EpicStar框架，将记忆作为策略学习：智能体维护成功过往片段作为启发式，并结合工作记忆跟踪短期环境变化。推理时通过动态门控机制决定是否执行检索到的动作，从而在长时程推理中保持战略连贯性。实验证明，这种记忆增强机制显著提升长时程推理的表现，凸显了记忆架构对LLM智能体的关键价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.12720v1",
+      "source": "arxiv",
+      "title": "ERSkill: Evolving for Skill-Guided Adaptive Memory Retrieval",
+      "abstract": "While Large Language Model (LLM) agents increasingly rely on long-term memory for persistent interactions, the retrieval mechanisms governing this memory are rarely treated as evolvable components. This static approach limits performance on heterogeneous memory queries, which often demand diverse evidence construction strategies. To address this, we introduce \\textbf{ERSkill}, a retrieval-centric framework for self-evolving, skill-guided memory access. ERSkill compiles interaction histories into a structured memory store and represents retrieval behaviors as executable skills composed of fundamental primitives. At inference time, a trained router dynamically matches each query to the optimal skill to construct tailored evidence for answer generation. To enable continuous improvement, ERSkill co-evolves the skill set and the router during training. It employs an experience trie to efficiently record explored retrieval paths, alongside a double-frontier mechanism that safely decouples the expansion of new skill capabilities from stable, router-facing deployment. Experiments across multiple agent memory benchmarks demonstrate that ERSkill substantially outperforms strong non-evolving and self-evolving baselines. Notably, it improves the overall average across F1, BLEU-1, and LLM-judge scores by 31.3\\% with Qwen3-Next-80B-A3B-Instruct and by 28.1\\% with GPT-5.4-nano.",
+      "authors": [
+        "Haolong Chen",
+        "Liang Zhang",
+        "Zhuo Li",
+        "Lei Xue",
+        "Guanrxu Zhu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-13T02:06:01+00:00",
+      "link": "https://arxiv.org/pdf/2608.12720v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "adaptive skill-guided memory retrieval for agents",
+      "llm_evidence_cn": "面向智能体的技能引导自适应记忆检索",
+      "llm_evidence": "面向智能体的技能引导自适应记忆检索",
+      "canonical_evidence": "面向智能体的技能引导自适应记忆检索",
+      "llm_tldr_en": "Memory retrieval in LLM agents is rarely treated as evolvable. ERSkill compiles interaction histories into a structured store, models retrieval behaviors as executable skills, and routes each query to an optimal skill, improving adaptive memory access on heterogeneous queries.",
+      "llm_tldr_cn": "LLM智能体的长期记忆检索机制通常是静态的，面对多样的记忆查询难以灵活构造证据。ERSkill将交互历史编译成结构化记忆库，并将检索行为定义为由基本原语组成的可执行技能；推理时由训练好的路由器为每个查询匹配最优技能以生成定制证据。实验结果表明这种自进化技能引导的检索策略能显著提升异构查询上的记忆访问质量，为智能体记忆管理提供了可学习的检索基元。",
+      "llm_tldr": "LLM智能体的长期记忆检索机制通常是静态的，面对多样的记忆查询难以灵活构造证据。ERSkill将交互历史编译成结构化记忆库，并将检索行为定义为由基本原语组成的可执行技能；推理时由训练好的路由器为每个查询匹配最优技能以生成定制证据。实验结果表明这种自进化技能引导的检索策略能显著提升异构查询上的记忆访问质量，为智能体记忆管理提供了可学习的检索基元。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.13334v1",
+      "source": "arxiv",
+      "title": "RippleMem: From Isolated Retrieval to Associative Recollection for Long-Term Agent Memory",
+      "abstract": "LLM-based agents increasingly rely on external memory to support long-horizon reasoning and interaction. However, the main bottleneck is not simply storing past experience, but recovering the right set of evidence when relevant information is distributed across many interactions. Existing approaches struggle with this access problem. Full-context methods require noisy long-context search, flat retrieval often returns isolated and incomplete records, and graph-based memory systems can be expensive to construct while compressing rich event context. We introduce RippleMem, a long-term memory system that replaces one-shot retrieval with adaptive associative recollection. Inspired by cue-dependent episodic retrieval and associative completion, RippleMem stores interaction history as cue-rich episodic memory units and organizes them in an event-centric memory graph. Given a query, it first recalls relevant memory anchors through hybrid cues, then expands from these anchors along semantic and structural associations to recover missing supporting evidence. In this way, initially recalled memories serve not only as answer context, but also as cues for completing the evidence needed to answer. Experiments on LoCoMo and LongMemEval-S show that RippleMem achieves the best overall performance across evaluated settings, improving LLM-as-a-Judge accuracy by 3.95% on LoCoMo and up to 11.87% on LongMemEval-S, while reducing graph construction cost by about 30x.",
+      "authors": [
+        "Jingbo Ji",
+        "Lingyi Li",
+        "Xilong Cheng",
+        "Yuhao Zhou",
+        "Wenji Zhang",
+        "Yuting Tan",
+        "Yunxiao Qin"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-13T15:05:01+00:00",
+      "link": "https://arxiv.org/pdf/2608.13334v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "long-term agent memory retrieval and associative recollection",
+      "llm_evidence_cn": "长期智能体记忆与联想回忆",
+      "llm_evidence": "长期智能体记忆与联想回忆",
+      "canonical_evidence": "长期智能体记忆与联想回忆",
+      "llm_tldr_en": "Long-term agent memory has an access problem: relevant evidence is spread over many interactions. RippleMem replaces one-shot retrieval with adaptive associative recollection inspired by cue-dependent episodic memory, improving retrieval of distributed evidence and setting a new direction for agent memory management.",
+      "llm_tldr_cn": "LLM智能体依赖外部记忆支持长期推理与交互，但瓶颈在于如何从分散在多段交互中的信息里找到正确的证据。现有全上下文检索噪声大、平面检索返回孤立记录、图记忆构建成本高且压缩了事件细节。为此提出RippleMem，一种模拟情景记忆联想回忆的长期记忆系统，用自适应联想回忆取代一次性检索。实验表明该方法能更有效地恢复跨交互的关联证据，为智能体长期记忆管理提供了新思路。",
+      "llm_tldr": "LLM智能体依赖外部记忆支持长期推理与交互，但瓶颈在于如何从分散在多段交互中的信息里找到正确的证据。现有全上下文检索噪声大、平面检索返回孤立记录、图记忆构建成本高且压缩了事件细节。为此提出RippleMem，一种模拟情景记忆联想回忆的长期记忆系统，用自适应联想回忆取代一次性检索。实验表明该方法能更有效地恢复跨交互的关联证据，为智能体长期记忆管理提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.14528v1",
+      "source": "arxiv",
+      "title": "Handover of In-Context Learning State Across Session Boundaries",
+      "abstract": "This study investigates the methodological and theoretical properties of session handover in applications that use large language models. A task may continue in a new session when the context reaches the model's input limit, when the application restarts, or when another agent is asked to finish the task. The application must then decide which information from the earlier session to pass on. We formulate handover as the transfer of a task-relative in-context learning (ICL) state and distinguish exact recovery of earlier material from preservation of the target distribution. Under an exogeneity condition, predictive equivalence characterizes the coarsest deterministic sufficient handover and gives a fixed-length bit requirement. The analysis isolates the effects of the memory constraint, the writer, and the continuation procedure, and quantifies the cost of writing before the realized downstream query is known. We propose a three-part record that stores decisions and constraints exactly, uses task-justified statistics for repeated evidence, and retains original observations whose effect is not preserved by those statistics. Gaussian linear regression gives an exact finite-dimensional handover and finite-bit perturbation bounds, while nonparametric regression gives upper and lower bounds that relate memory to squared prediction error. These results provide a theory and method for deciding what a handover must retain and how its memory requirement depends on the continuation task.",
+      "authors": [
+        "Masahiro Kato",
+        "Taka Kato"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "econ.EM",
+        "math.ST",
+        "stat.ME",
+        "stat.ML"
+      ],
+      "published": "2026-08-14T17:47:13+00:00",
+      "link": "https://arxiv.org/pdf/2608.14528v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Investigates handover of in-context state when context reaches input limit; theoretical characterization for context window management",
+      "llm_evidence_cn": "研究上下文达到输入上限时的跨会话状态移交，为上下文窗口管理提供理论基础",
+      "llm_evidence": "研究上下文达到输入上限时的跨会话状态移交，为上下文窗口管理提供理论基础",
+      "canonical_evidence": "研究上下文达到输入上限时的跨会话状态移交，为上下文窗口管理提供理论基础",
+      "llm_tldr_en": "Formulates session handover as transfer of task-relative in-context learning state, giving predictive equivalence conditions and fixed-length bit requirements for context-boundary decisions.",
+      "llm_tldr_cn": "当会话因上下文达到输入上限等原因需要续接时，如何选择传给下一个会话的信息是LLM应用的重要问题。本文将交接形式化为任务相对上下文学习状态的有损传递，区分精确恢复目标与分布保持目标，并给出在弱外生条件下预测等价的最粗确定性充分交接及固定长度比特要求。分析隔离了上下文上限对性能的影响，为会话续接和上下文窗口管理提供了理论依据。该工作对智能体跨会话上下文工程具有直接指导意义。",
+      "llm_tldr": "当会话因上下文达到输入上限等原因需要续接时，如何选择传给下一个会话的信息是LLM应用的重要问题。本文将交接形式化为任务相对上下文学习状态的有损传递，区分精确恢复目标与分布保持目标，并给出在弱外生条件下预测等价的最粗确定性充分交接及固定长度比特要求。分析隔离了上下文上限对性能的影响，为会话续接和上下文窗口管理提供了理论依据。该工作对智能体跨会话上下文工程具有直接指导意义。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.15451v1",
+      "source": "arxiv",
+      "title": "Mental Model Management: An Operator-Based Framework for LLM Memory",
+      "abstract": "Large language models process large amounts of information but usually lack an explicit mechanism for maintaining compact and evolving conceptual representations. We introduce Mental Model Management (3M), a framework in which knowledge is represented as mental models consisting of compact chunks. Rather than accumulating text passages, 3M continuously integrates new information into an existing conceptual representation. A set of operators extracts knowledge, retrieves relevant models, adds and updates chunks, reorganizes representations, detects inconsistencies, and derives new knowledge. We describe the main 3M operators and illustrate each operation using Evolution Strategies as a running example.",
+      "authors": [
+        "Oliver Kramer"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.NE"
+      ],
+      "published": "2026-08-16T00:01:07+00:00",
+      "link": "https://arxiv.org/pdf/2608.15451v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "operator-based memory management for LLM agents",
+      "llm_evidence_cn": "基于操作符的LLM记忆管理",
+      "llm_evidence": "基于操作符的LLM记忆管理",
+      "canonical_evidence": "基于操作符的LLM记忆管理",
+      "llm_tldr_en": "Introduces Mental Model Management (3M), an operator-based LLM memory framework that represents knowledge as compact mental models and continuously integrates new information via operators for retrieval, update, reorganization, and inconsistency detection.",
+      "llm_tldr_cn": "该文提出心智模型管理（3M）框架，用由紧凑块构成的心智模型表示知识，取代单纯积累文本段落。通过一组操作符完成知识抽取、相关模型检索、块添加与更新、表示重组、不一致检测和新知识推导，使模型能够持续将新信息整合进既有概念表示。以进化策略为例说明各操作，为LLM提供显式的记忆管理与概念演化机制。",
+      "llm_tldr": "该文提出心智模型管理（3M）框架，用由紧凑块构成的心智模型表示知识，取代单纯积累文本段落。通过一组操作符完成知识抽取、相关模型检索、块添加与更新、表示重组、不一致检测和新知识推导，使模型能够持续将新信息整合进既有概念表示。以进化策略为例说明各操作，为LLM提供显式的记忆管理与概念演化机制。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.16114v1",
+      "source": "arxiv",
+      "title": "HyperSkill: Self-Evolving LLM Agents via Hypergraph-Structured Skill Memory",
+      "abstract": "As agentic tasks grow in complexity, LLM agents increasingly rely on experiential memory to reuse procedural knowledge across tasks. Effective memory design must jointly address what to store, how memory is structured and retrieved, and how memory evolves. Existing systems tackle each only partially: they store trajectories, insights, or workflows as isolated entries, discarding compositional relationships among subtasks and reusable skills; retrieve by flat embedding similarity that ignores relational signals; and maintain memory without leveraging its relational structure. We propose HyperSkill, a hypergraph-based memory framework that jointly improves all three. HyperSkill represents memory as a hypergraph with two node types, subtask steps and reusable skills, where each hyperedge links the subtasks and skills from a single trajectory. Dual-path retrieval queries both subtask and trajectory levels, ranking skills by co-occurrence across retrieved trajectories. Periodic structure-informed maintenance prunes low-utility nodes and merges redundant skills via quality-weighted propagation. Across xBench, GAIA, and WebWalkerQA with GPT-4o and Qwen3-30B-A3B, HyperSkill outperforms ten memory baselines, yielding gains of up to +11.51 on GAIA and +11.18 on WebWalkerQA.",
+      "authors": [
+        "Ruiyao Xu",
+        "Tiankai Yang",
+        "Wei-Chieh Huang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-17T05:10:27+00:00",
+      "link": "https://arxiv.org/pdf/2608.16114v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "memory architecture for LLM agents using hypergraph-structured skill memory",
+      "llm_evidence_cn": "面向LLM智能体的超图结构技能记忆架构",
+      "llm_evidence": "面向LLM智能体的超图结构技能记忆架构",
+      "canonical_evidence": "面向LLM智能体的超图结构技能记忆架构",
+      "llm_tldr_en": "Proposes HyperSkill, a hypergraph-based memory framework for LLM agents that jointly improves what to store, structure/retrieval, and evolution of memory, capturing compositional relationships among subtasks. Experiments show gains in procedural knowledge reuse across complex agentic tasks.",
+      "llm_tldr_cn": "现有智能体记忆系统通常以孤立条目存储轨迹，采用扁平相似度检索且不利用关系结构，难以支持子任务与技能的组合复用和记忆演化。本文提出HyperSkill超图记忆框架，将记忆表示为包含子任务步骤与技能两类节点的超图，同时优化存储、检索与演化。实验表明该方法在复杂智能体任务上显著提升程序性知识复用与任务性能，为LLM智能体记忆管理提供了一种关系结构化的新思路。",
+      "llm_tldr": "现有智能体记忆系统通常以孤立条目存储轨迹，采用扁平相似度检索且不利用关系结构，难以支持子任务与技能的组合复用和记忆演化。本文提出HyperSkill超图记忆框架，将记忆表示为包含子任务步骤与技能两类节点的超图，同时优化存储、检索与演化。实验表明该方法在复杂智能体任务上显著提升程序性知识复用与任务性能，为LLM智能体记忆管理提供了一种关系结构化的新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.17911v1",
+      "source": "arxiv",
+      "title": "CABLE: Extending the Reach of Memory Retrieval via Complementary Antecedent-Based Linking and Expansion",
+      "abstract": "As LLM agents operate across structured workflows and sessions, preserving long-term history does not ensure that later contexts can recover relevant evidence through a bounded memory interface. We study this evidence-reachability problem in long-term conversational memory, where retrieval still relies heavily on semantic similarity. This works well for topical recall, but it often misses earlier experiences, plans, or motivations that are semantically distant from the later events they help explain. Existing memory graphs provide cross-memory structure, yet links driven mainly by semantic overlap can duplicate what the host retriever already recovers. We argue that link construction should instead prioritize a sparse set of retriever-complementary associations. We present CABLE (Complementary Antecedent-Based Linking and Expansion), a plug-in augmentation that constructs links designed to extend the host retriever's direct semantic reach. For each new memory, CABLE generates antecedent-oriented queries, retrieves prior memories, subtracts candidates in the direct semantic neighborhood, and verifies the remainder before adding the accepted complementary associations into a sparse directed graph. At retrieval time, CABLE expands the host system's retrieved seeds along these links to surface implicit supporting evidence. We evaluate CABLE with A-MEM on LoCoMo and MA-LongMemEval, and further integrate it into SimpleMem and Mem0g on LoCoMo, using Qwen3.5-27B, DeepSeek-chat, and GPT-4o-mini. CABLE yields higher mean LLM-judge scores in every evaluated system-level setting, with the largest gains in categories where useful evidence is distributed across memories or sessions, including open-domain, multi-session, and preference-oriented questions. These results support prioritizing sparse, reasoning-relevant associations that complement rather than duplicate the host retriever.",
+      "authors": [
+        "Zheling Tan",
+        "Jin Gao",
+        "Dequan Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-18T15:40:29+00:00",
+      "link": "https://arxiv.org/pdf/2608.17911v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Long-term conversational memory retrieval and linkage for LLM agents",
+      "llm_evidence_cn": "面向LLM智能体的长期会话记忆检索与关联",
+      "llm_evidence": "面向LLM智能体的长期会话记忆检索与关联",
+      "canonical_evidence": "面向LLM智能体的长期会话记忆检索与关联",
+      "llm_tldr_en": "Proposes complementary antecedent-based linking and expansion to extend memory retrieval reach, solving evidence reachability beyond semantic similarity in long-term conversational memory for LLM agents.",
+      "llm_tldr_cn": "针对LLM智能体在跨会话长期记忆中因单纯依赖语义相似性而无法找回早期相关证据的问题，CABLE提出基于互补前因的链接与扩展机制，在记忆图中建立稀疏的语义互补边，并扩展可检索证据范围。实验表明它比基于语义重叠的记忆图能显著提升后续上下文的证据可恢复性，使长期记忆接口更有效地支撑智能体决策。该工作为对话系统与智能体的上下文管理提供了新思路。",
+      "llm_tldr": "针对LLM智能体在跨会话长期记忆中因单纯依赖语义相似性而无法找回早期相关证据的问题，CABLE提出基于互补前因的链接与扩展机制，在记忆图中建立稀疏的语义互补边，并扩展可检索证据范围。实验表明它比基于语义重叠的记忆图能显著提升后续上下文的证据可恢复性，使长期记忆接口更有效地支撑智能体决策。该工作为对话系统与智能体的上下文管理提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.15071v1",
+      "source": "arxiv",
+      "title": "Evo-Harness: Context-to-Harness Skill Compilation for Self-Evolving Agents",
+      "abstract": "Learning from experience is critical for developing capable, self-improving large language model (LLM) agents. Existing methods typically extract knowledge from accumulated trajectories via reflection, memory, rules, or skills. However, agents in realistic environments continuously encounter novel tasks, often offering only a one-shot opportunity to improve. These executions yield rich but highly noisy contexts, entangling broadly useful lessons with task-specific artifacts. Critically, prior works rarely validate their effectiveness on complex real-world tasks or isolate the underlying drivers of improvement. To address these gaps, we formulate online harness learning, where a frozen agent improves by continually updating a structured harness across sequential tasks. This formulation enables a systematic study of key self-improvement factors through our proposed Evo-Harness. At its core, context-to-harness skill compilation distills noisy, single-shot executions into reusable skill harnesses for cross-domain and topic-level adaptation. To demonstrate the efficacy of one-shot skill compilation, we evaluate across five realistic benchmarks (TerminalBench2, SWE-bench, CL-Bench, -bench, WebArena-Infinity). Our extensive analysis demonstrates the effectiveness of Evo-Harness and provides a principled understanding of how LLM agents can effectively learn on the fly. Our code is available at https://github.com/A-EVO-Lab/a-evolve/tree/release/evo-harness.",
+      "authors": [
+        "Tianxin Wei",
+        "Zhan Shi",
+        "Minhua Lin",
+        "Bing He",
+        "Zewen Liu",
+        "Yisi Sang",
+        "Yuanchen Bei",
+        "Xuying Ning",
+        "Jiaru Zou",
+        "Ting-Wei Li",
+        "Xiao Lin",
+        "Yanjun Zhao",
+        "Chi Wang",
+        "Benoit Dumoulin",
+        "Dakuo Wang",
+        "Jingrui He",
+        "Hanqing Lu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-15T06:43:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.15071v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "context-to-harness skill compilation from noisy contexts",
+      "llm_evidence_cn": "从嘈杂上下文中编译框架技能",
+      "llm_evidence": "从嘈杂上下文中编译框架技能",
+      "canonical_evidence": "从嘈杂上下文中编译框架技能",
+      "llm_tldr_en": "Proposes online harness learning where a frozen LLM agent improves by compiling noisy execution contexts into structured harness updates, enabling self-evolution without parameter updates.",
+      "llm_tldr_cn": "针对现有智能体经验学习方法难以从一次性任务的嘈杂上下文中提取可复用知识的问题，该文提出在线框架学习（online harness learning）。其核心思路是让冻结参数的智能体不断将执行上下文编译为结构化的框架更新，从而在不更新模型参数的情况下实现技能积累与自进化。该方法强调把上下文转化为框架中的可执行技能，为上下文工程提供了新视角。实验验证了其在复杂真实任务上的有效性。",
+      "llm_tldr": "针对现有智能体经验学习方法难以从一次性任务的嘈杂上下文中提取可复用知识的问题，该文提出在线框架学习（online harness learning）。其核心思路是让冻结参数的智能体不断将执行上下文编译为结构化的框架更新，从而在不更新模型参数的情况下实现技能积累与自进化。该方法强调把上下文转化为框架中的可执行技能，为上下文工程提供了新视角。实验验证了其在复杂真实任务上的有效性。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.17528v1",
+      "source": "arxiv",
+      "title": "Agent Lightning v1.0: Towards Harnessed Agentic RL",
+      "abstract": "Modern agents operate inside agent harnesses that manage tools, context, and control flow, making the harness a critical part of the agent system. Our original Agent Lightning introduced a disaggregated architecture that connects arbitrary agents to RL training through an LLM endpoint proxy, an approach later adopted by frameworks such as verl Uni-Agent, AReaL 2.0, slime, and Polar. We refer to this paradigm as harnessed agentic RL, where the deploy-time harness directly participates in model post-training. Harnessed agentic RL differs fundamentally from traditional agentic RL: the harness, rather than the training engine, owns the environment interaction loop, while the trainer observes only sequences of LLM request-response pairs. This introduces challenges in retokenization, sample merging, advantage calculation, loss normalization, and backend scheduling, which can substantially affect training stability and effectiveness. We present Agent Lightning v1.0, a lightweight framework for harnessed agentic RL implemented in approximately 3,500 lines of code. It supports arbitrary agent harnesses and serves as a practical testbed for studying these challenges. We evaluate it on instruction-following, search, and coding agents, and provide a complete reproducible pipeline for coding-agent RL. Using only 6K training examples and modest compute, RL improves Qwen3.5-9B on SWE-bench Verified from 41.8% to 56.4%, a 14.6-point absolute gain. We release the complete workflow and training scripts to facilitate reproducible research on harnessed agentic RL.",
+      "authors": [
+        "Zhiyuan He",
+        "Siwei Zhang",
+        "Zhiwen Zhou",
+        "Yuqing Yang",
+        "Yu Kang",
+        "Yuge Zhang",
+        "Luna K. Qiu",
+        "Tin Yan Tsui",
+        "Jiahang Xu",
+        "Chong Luo"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-08-18T08:50:13+00:00",
+      "link": "https://arxiv.org/pdf/2608.17528v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "harness manages context and control flow in agentic RL",
+      "llm_evidence_cn": "框架在智能体强化学习中管理上下文与控制流",
+      "llm_evidence": "框架在智能体强化学习中管理上下文与控制流",
+      "canonical_evidence": "框架在智能体强化学习中管理上下文与控制流",
+      "llm_tldr_en": "Introduces harnessed agentic RL, where the deploy-time harness that manages tools, context, and control flow directly participates in model post-training, decoupling the trainer from the environment loop.",
+      "llm_tldr_cn": "该文提出框架化智能体强化学习范式，明确智能体框架负责管理工具、上下文与控制流。在此范式中，部署时的框架而非训练引擎拥有环境交互循环，训练器仅观察LLM请求-响应序列。这一解耦架构使框架直接参与模型后训练，为上下文管理在智能体训练中的角色提供了系统性视角。",
+      "llm_tldr": "该文提出框架化智能体强化学习范式，明确智能体框架负责管理工具、上下文与控制流。在此范式中，部署时的框架而非训练引擎拥有环境交互循环，训练器仅观察LLM请求-响应序列。这一解耦架构使框架直接参与模型后训练，为上下文管理在智能体训练中的角色提供了系统性视角。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.13317v1",
+      "source": "arxiv",
+      "title": "StateBridge: Training-free Hidden-state Alignment for Latent Communication in LLM Multi-Agent Systems",
+      "abstract": "Large language model based multi-agent systems usually communicate in text, i.e., using discrete tokens. However, text introduces a discrete bottleneck. Converting the sender's continuous hidden states into discrete tokens discards information that token identities alone cannot capture. Recent work proposes latent communication as an alternative, where agents transmit hidden representations directly without converting them to text. However, existing latent methods either inject working memory layer by layer across the transformers, or require trained projectors that limit portability. We propose StateBridge, a training-free latent communication approach that aligns the sender's final-layer hidden states to the receiver's input space via a closed-form orthogonal transformation. Lightweight norm calibration and vocabulary anchoring ensure compatibility with the pretrained input distribution. The aligned states are prepended to the input of the receiver agent as a continuous prefix. We evaluate StateBridge on math reasoning, code generation, and question answering with four models from two families. StateBridge achieves the best or tied-best score on 22 out of 26 model-task pairs, consistently outperforming the strongest baseline.",
+      "authors": [
+        "Yanwen Peng",
+        "Delvin Ce Zhang",
+        "Xi Wang",
+        "Nikolaos Aletras"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-13T14:40:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.13317v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "training-free hidden-state alignment for inter-agent context transfer",
+      "llm_evidence_cn": "面向智能体间上下文传递的无训练隐藏状态对齐",
+      "llm_evidence": "面向智能体间上下文传递的无训练隐藏状态对齐",
+      "canonical_evidence": "面向智能体间上下文传递的无训练隐藏状态对齐",
+      "llm_tldr_en": "Multi-agent LLM systems suffer from discrete text bottleneck. StateBridge proposes a training-free latent communication method that aligns sender final-layer hidden states to the receiver, avoiding trained projectors and enabling portable context transfer.",
+      "llm_tldr_cn": "多智能体LLM系统通常用离散文本通信，造成信息瓶颈，而现有潜通信方法要么逐层注入工作记忆，要么依赖训练投影器从而限制可移植性。StateBridge提出一种无训练方案，通过将发送方最终层隐藏状态对齐到接收方，无需训练投影器即可实现高效的潜通信。该方法直接传递连续隐藏状态，避免离散化丢失信息，并为多智能体系统中的上下文与状态传递提供了一种可移植、轻量级的实现路径，具有实用价值。",
+      "llm_tldr": "多智能体LLM系统通常用离散文本通信，造成信息瓶颈，而现有潜通信方法要么逐层注入工作记忆，要么依赖训练投影器从而限制可移植性。StateBridge提出一种无训练方案，通过将发送方最终层隐藏状态对齐到接收方，无需训练投影器即可实现高效的潜通信。该方法直接传递连续隐藏状态，避免离散化丢失信息，并为多智能体系统中的上下文与状态传递提供了一种可移植、轻量级的实现路径，具有实用价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.16447v1",
+      "source": "arxiv",
+      "title": "HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents",
+      "abstract": "Long-horizon embodied tasks require LLM agents to iteratively decompose high-level goals, revise plans in response to environmental feedback, and ground leaf-level subgoals into valid executable actions. Recursive context-management methods such as ReCAP improve planning stability through multi-level task decomposition and parent-node refinement, but still repeatedly invoke the LLM at leaf nodes to ground atomic subtasks into exact valid actions. We refer to this final grounding step as last-mile grounding redundancy, which accumulates into substantial LLM-call and token overhead during long-horizon execution. To mitigate this issue, we propose HaReCAP (Habitual-action Grounded ReCAP), a low-intrusion leaf grounding extension for ReCAP. HaReCAP extracts frequent leaf decisions from successful trajectories and compiles them offline into auditable and abstainable one-step leaf-reflex rules. At runtime, it skips the leaf LLM call only when a rule can uniquely determine a legal action in the current valid-action set; otherwise, it falls back to the original ReCAP. This design avoids repeatedly carrying the full recursive context into the LLM for routine leaf action grounding, while preserving the original recursive control flow. We evaluate HaReCAP on Robotouille and ALFWorld with Qwen3.5-27B as the main model. On tasks solved by both ReCAP and HaReCAP, HaReCAP reduces token consumption by 14.67%, 17.93%, and 20.08% on Robotouille synchronous, Robotouille asynchronous, and ALFWorld, respectively. The results show that HaReCAP can serve as a low-intrusion extension to ReCAP-style recursive context-management frameworks, reducing last-mile grounding redundancy across environments and models on commonly successful trajectories.",
+      "authors": [
+        "Shen Liu",
+        "Zhenguo Xu",
+        "Shaopu Wang",
+        "Yike Gao",
+        "Chunlei Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-08-17T11:47:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.16447v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "recursive context-management and leaf grounding efficiency",
+      "llm_evidence_cn": "递归上下文管理与叶子节点落地效率",
+      "llm_evidence": "递归上下文管理与叶子节点落地效率",
+      "canonical_evidence": "递归上下文管理与叶子节点落地效率",
+      "llm_tldr_en": "Recursive context-management methods such as ReCAP suffer from repeated LLM calls at leaf nodes. HaReCAP, a low-intrusion extension, grounds leaf actions via habitual-action memory, significantly lowering LLM-call and token overhead while preserving planning stability in long-horizon embodied tasks.",
+      "llm_tldr_cn": "长时程具身任务要求LLM智能体反复进行任务分解和环境反馈修正，递归上下文管理方法ReCAP等通过多层分解提高规划稳定性，但叶子节点仍反复调用LLM来把子目标落地为有效动作，造成大量额外调用与token开销。HaReCAP在ReCAP基础上引入低侵入的叶子落地扩展，利用习惯性动作记忆减少冗余LLM调用。实验显示该方法在保持规划性能的同时显著降低了计算开销，为递归智能体的上下文管理提供高效扩展。",
+      "llm_tldr": "长时程具身任务要求LLM智能体反复进行任务分解和环境反馈修正，递归上下文管理方法ReCAP等通过多层分解提高规划稳定性，但叶子节点仍反复调用LLM来把子目标落地为有效动作，造成大量额外调用与token开销。HaReCAP在ReCAP基础上引入低侵入的叶子落地扩展，利用习惯性动作记忆减少冗余LLM调用。实验显示该方法在保持规划性能的同时显著降低了计算开销，为递归智能体的上下文管理提供高效扩展。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.14026v2",
+      "source": "arxiv",
+      "title": "MMDynOpt-Agent: Dynamic Optimization for Multimodal Large Language Model Reasoning via Reinforcement Learning",
+      "abstract": "Recently, multimodal large language models (MLLMs) have demonstrated strong potential in visual understanding and complex reasoning tasks. However, existing methods often struggle to efficiently transform visual cues from multimodal inputs and the semantics of the question into effective reasoning conditions, thereby limiting the reasoning performance of multimodal large language models. To address this challenge, we propose MMDynOpt-Agent, which models the dynamic optimization of multimodal reasoning as a Markov decision process via end-to-end reinforcement learning. Specifically, a lightweight multimodal agent serves as the decision policy and interacts with the target MLLM as the environment, adaptively steering its reasoning through multi-turn dynamic optimization prompts. Furthermore, to reduce the cost of multimodal reasoning, a reward mechanism that combines format compliance, answer correctness, and budget awareness is designed to jointly ensure reasoning accuracy and efficiency. MMDynOpt-Agent is transferable and generalizable, enabling training with one target MLLM and inference-time transfer to others. Experimental results on fifteen public datasets show MMDynOpt-Agent achieves strong performance and outperforms baselines. Our project is available at https://github.com/QwenQKing/MMDynOpt-Agent.",
+      "authors": [
+        "Wenjin Liu",
+        "Haoran Luo",
+        "Fayuan Ke",
+        "Zhenghong Lin",
+        "Yue Lu",
+        "Zhe Cui",
+        "Anh Tuan Luu",
+        "Carl Yang"
+      ],
+      "primary_category": "cs.CE",
+      "categories": [
+        "cs.CE"
+      ],
+      "published": "2026-08-14T07:17:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.14026v2",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "dynamically optimizes reasoning conditions for multimodal LLM agents",
+      "llm_evidence_cn": "动态优化多模态LLM智能体的推理条件",
+      "llm_evidence": "动态优化多模态LLM智能体的推理条件",
+      "canonical_evidence": "动态优化多模态LLM智能体的推理条件",
+      "llm_tldr_en": "Proposes MMDynOpt-Agent, an RL-based dynamic optimization agent that models multimodal reasoning as a Markov decision process and adaptively steers the target MLLM to construct effective reasoning conditions.",
+      "llm_tldr_cn": "针对多模态大语言模型难以将视觉线索与问题语义高效转化为有效推理条件的问题，该文提出MMDynOpt-Agent，将多模态推理的动态优化建模为马尔可夫决策过程，并用端到端强化学习训练一个轻量级多模态智能体作为决策策略，与目标MLLM交互以自适应引导推理。该方法将上下文/推理条件的构建视为可优化策略，为多模态推理的上下文工程提供了强化学习方案。",
+      "llm_tldr": "针对多模态大语言模型难以将视觉线索与问题语义高效转化为有效推理条件的问题，该文提出MMDynOpt-Agent，将多模态推理的动态优化建模为马尔可夫决策过程，并用端到端强化学习训练一个轻量级多模态智能体作为决策策略，与目标MLLM交互以自适应引导推理。该方法将上下文/推理条件的构建视为可优化策略，为多模态推理的上下文工程提供了强化学习方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.16515v1",
+      "source": "arxiv",
+      "title": "When Context Misleads: Intent-Guided Decoding for Robust Retrieval-Augmented Generation",
+      "abstract": "Retrieval-augmented generation (RAG) improves large language models by grounding generation in external evidence, but it also introduces a source trust problem: retrieved context may be useful, irrelevant, or even misleading. Existing RAG systems often apply a fixed trust policy toward retrieved evidence, which can either over-trust incorrect context or underuse context when the user explicitly asks for context-following behavior. Therefore, we propose Intent-Guided Decoding (IGD), a framework that arbitrates between retrieved context and parametric memory according to user intent. IGD uses answer-level filtering and token-level correction to steer the final decoding trajectory between retrieved context and parametric memory. We evaluate IGD on three faithful QA benchmarks and three factual-conflict benchmarks across five LLMs, IGD substantially improves factual recovery, achieving gains of up to 65.4 percentage points on factual-conflict benchmarks over Direct RAG, while preserving or improving strict context-following behavior, this findings highlight the importance of balancing factuality and faithfulness in RAG.",
+      "authors": [
+        "Haolin Jin",
+        "Pengyue Yang",
+        "Huaming Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-17T12:56:43+00:00",
+      "link": "https://arxiv.org/pdf/2608.16515v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Intent-guided arbitration between retrieved context and parametric memory for robust RAG",
+      "llm_evidence_cn": "在RAG中依据用户意图仲裁检索上下文与参数化记忆，增强上下文使用的可靠性",
+      "llm_evidence": "在RAG中依据用户意图仲裁检索上下文与参数化记忆，增强上下文使用的可靠性",
+      "canonical_evidence": "在RAG中依据用户意图仲裁检索上下文与参数化记忆，增强上下文使用的可靠性",
+      "llm_tldr_en": "IGD uses answer-level filtering and token-level correction to mediate between retrieved context and parametric memory according to user intent, fixing the fixed-trust problem in RAG.",
+      "llm_tldr_cn": "RAG引入外部证据的同时也带来上下文误导风险，固定信任策略会导致过度信任或忽略上下文。本文提出意图引导解码IGD，通过答案级过滤和词元级纠正在检索上下文与参数化记忆之间动态抉择，以匹配用户意图。实验表明该方法能提升RAG系统在有用、无关乃至误导性上下文下的稳健性。其为上下文工程中的证据取舍提供了一种通用解码层面的实现方式。",
+      "llm_tldr": "RAG引入外部证据的同时也带来上下文误导风险，固定信任策略会导致过度信任或忽略上下文。本文提出意图引导解码IGD，通过答案级过滤和词元级纠正在检索上下文与参数化记忆之间动态抉择，以匹配用户意图。实验表明该方法能提升RAG系统在有用、无关乃至误导性上下文下的稳健性。其为上下文工程中的证据取舍提供了一种通用解码层面的实现方式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}

@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-07-22 ~ 2026-08-20</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-20</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 12 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 15 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>6</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>9</dd></div>
     <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-20 02:25:23 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-20 20:52:44 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日精读6篇、速读6篇，重点聚焦长时记忆与长上下文智能体的最新进展；最值得看的是《HyMem》通过信息隔离实现分层上下文管理（10分）和《PRO-LONG》用程序化记忆提升长程推理（9分）。建议优先精读HyMem，其余可关注代码修复与跨仓库上下文建模方向。</p>
+<p>今日15篇论文聚焦AI智能体记忆与上下文压缩，精读2篇、速读3篇，核心方向为记忆形式化与压缩缺陷。</p>
+<p>最值得关注10分论文《The Sleeping Agent》揭示基于要点压缩会丢失关键信息，9分论文则首次提出记忆的“基础-跨度-最优性”形式化定义及顺序记忆问题。</p>
+<p>建议普通读者优先阅读这两篇精读，并结合速读中意图引导解码的思路，警惕上下文压缩对关键信息的隐性损耗。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">6 篇</strong>
+    <strong class="dpr-home-dashboard-count">9 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="HyMem: Hierarchical Context Management for Long-Horizon Agents via Information Isolation">HyMem: Hierarchical Context Management for Long-Horizon Agents via Information Isolation</span></li><li><span class="dpr-home-dashboard-paper-title" title="PRO-LONG: Programmatic Memory Enables Long-Horizon Reasoning">PRO-LONG: Programmatic Memory Enables Long-Horizon Reasoning</span></li><li><span class="dpr-home-dashboard-paper-title" title="Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study">Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="The Sleeping Agent: What Gist-Based Context Compression Loses and Why">The Sleeping Agent: What Gist-Based Context Compression Loses and Why</span></li><li><span class="dpr-home-dashboard-paper-title" title="Towards a Formal Definition of Agent Memory: Basis, Span, Optimality, and the Sequential Memory Problem">Towards a Formal Definition of Agent Memory: Basis, Span, Optimality, and the Sequential Memory Problem</span></li><li><span class="dpr-home-dashboard-paper-title" title="LLMs Are Not Good Strategists, Yet Memory-Enhanced Agency Boosts Reasoning">LLMs Are Not Good Strategists, Yet Memory-Enhanced Agency Boosts Reasoning</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>9</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -87,7 +89,7 @@
     <strong class="dpr-home-dashboard-count">6 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="OwlPath: Lossless Knowledge Compression for LLM Bug Repair">OwlPath: Lossless Knowledge Compression for LLM Bug Repair</span></li><li><span class="dpr-home-dashboard-paper-title" title="OctoLong: Mid-Training On Cross-Repository Code Contexts Enhances Long-Context Modeling">OctoLong: Mid-Training On Cross-Repository Code Contexts Enhances Long-Context Modeling</span></li><li><span class="dpr-home-dashboard-paper-title" title="DeepResearch Agent System">DeepResearch Agent System</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Evo-Harness: Context-to-Harness Skill Compilation for Self-Evolving Agents">Evo-Harness: Context-to-Harness Skill Compilation for Self-Evolving Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents">HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="When Context Misleads: Intent-Guided Decoding for Robust Retrieval-Augmented Generation">When Context Misleads: Intent-Guided Decoding for Robust Retrieval-Augmented Generation</span></li></ul>
   </div>
   <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
 </section>

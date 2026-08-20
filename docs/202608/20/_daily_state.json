@@ -1,0 +1,249 @@
+{
+  "date": "20260820",
+  "date_label": "",
+  "generated_at": "2026-08-20 20:52:44 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.11775v1",
+      "route": "202608/20/2608.11775v1-the-sleeping-agent-what-gist-based-context-compression-loses-and-why",
+      "title": "The Sleeping Agent: What Gist-Based Context Compression Loses and Why",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 10.0,
+      "evidence": "上下文压缩对记忆检索的影响",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.11654v1",
+      "route": "202608/20/2608.11654v1-towards-a-formal-definition-of-agent-memory-basis-span-optimality-and-the-sequential-memory-problem",
+      "title": "Towards a Formal Definition of Agent Memory: Basis, Span, Optimality, and the Sequential Memory Problem",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "为LLM智能体记忆最优性与覆盖率建立形式化基础",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.12626v1",
+      "route": "202608/20/2608.12626v1-llms-are-not-good-strategists-yet-memory-enhanced-agency-boosts-reasoning",
+      "title": "LLMs Are Not Good Strategists, Yet Memory-Enhanced Agency Boosts Reasoning",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向长时程推理的记忆增强与工作记忆架构",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.12720v1",
+      "route": "202608/20/2608.12720v1-erskill-evolving-for-skill-guided-adaptive-memory-retrieval",
+      "title": "ERSkill: Evolving for Skill-Guided Adaptive Memory Retrieval",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向智能体的技能引导自适应记忆检索",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.13334v1",
+      "route": "202608/20/2608.13334v1-ripplemem-from-isolated-retrieval-to-associative-recollection-for-long-term-agent-memory",
+      "title": "RippleMem: From Isolated Retrieval to Associative Recollection for Long-Term Agent Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "长期智能体记忆与联想回忆",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.14528v1",
+      "route": "202608/20/2608.14528v1-handover-of-in-context-learning-state-across-session-boundaries",
+      "title": "Handover of In-Context Learning State Across Session Boundaries",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "研究上下文达到输入上限时的跨会话状态移交，为上下文窗口管理提供理论基础",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.15451v1",
+      "route": "202608/20/2608.15451v1-mental-model-management-an-operator-based-framework-for-llm-memory",
+      "title": "Mental Model Management: An Operator-Based Framework for LLM Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "基于操作符的LLM记忆管理",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.16114v1",
+      "route": "202608/20/2608.16114v1-hyperskill-self-evolving-llm-agents-via-hypergraph-structured-skill-memory",
+      "title": "HyperSkill: Self-Evolving LLM Agents via Hypergraph-Structured Skill Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向LLM智能体的超图结构技能记忆架构",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.17911v1",
+      "route": "202608/20/2608.17911v1-cable-extending-the-reach-of-memory-retrieval-via-complementary-antecedent-based-linking-and-expansion",
+      "title": "CABLE: Extending the Reach of Memory Retrieval via Complementary Antecedent-Based Linking and Expansion",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向LLM智能体的长期会话记忆检索与关联",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.15071v1",
+      "route": "202608/20/2608.15071v1-evo-harness-context-to-harness-skill-compilation-for-self-evolving-agents",
+      "title": "Evo-Harness: Context-to-Harness Skill Compilation for Self-Evolving Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "从嘈杂上下文中编译框架技能",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.16447v1",
+      "route": "202608/20/2608.16447v1-harecap-habitual-action-grounding-for-recursive-large-language-model-agents",
+      "title": "HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "递归上下文管理与叶子节点落地效率",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.16515v1",
+      "route": "202608/20/2608.16515v1-when-context-misleads-intent-guided-decoding-for-robust-retrieval-augmented-generation",
+      "title": "When Context Misleads: Intent-Guided Decoding for Robust Retrieval-Augmented Generation",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "在RAG中依据用户意图仲裁检索上下文与参数化记忆，增强上下文使用的可靠性",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.17528v1",
+      "route": "202608/20/2608.17528v1-agent-lightning-v10-towards-harnessed-agentic-rl",
+      "title": "Agent Lightning v1.0: Towards Harnessed Agentic RL",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "框架在智能体强化学习中管理上下文与控制流",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.13317v1",
+      "route": "202608/20/2608.13317v1-statebridge-training-free-hidden-state-alignment-for-latent-communication-in-llm-multi-agent-systems",
+      "title": "StateBridge: Training-free Hidden-state Alignment for Latent Communication in LLM Multi-Agent Systems",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "面向智能体间上下文传递的无训练隐藏状态对齐",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    },
+    {
+      "paper_id": "2608.14026v2",
+      "route": "202608/20/2608.14026v2-mmdynopt-agent-dynamic-optimization-for-multimodal-large-language-model-reasoning-via-reinforcement-learning",
+      "title": "MMDynOpt-Agent: Dynamic Optimization for Multimodal Large Language Model Reasoning via Reinforcement Learning",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "动态优化多模态LLM智能体的推理条件",
+      "first_seen_at": "2026-08-20 20:52:44 UTC",
+      "updated_at": "2026-08-20 20:52:44 UTC"
+    }
+  ]
+}
