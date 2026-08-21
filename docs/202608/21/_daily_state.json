@@ -1,0 +1,89 @@
+{
+  "date": "20260821",
+  "date_label": "",
+  "generated_at": "2026-08-21 19:42:23 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.19652v1",
+      "route": "202608/21/2608.19652v1-can-agent-memory-systems-track-evolving-state",
+      "title": "Can Agent Memory Systems Track Evolving State?",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "为LLM智能体记忆系统在状态追踪能力上提供基准与分析",
+      "first_seen_at": "2026-08-21 19:42:23 UTC",
+      "updated_at": "2026-08-21 19:42:23 UTC"
+    },
+    {
+      "paper_id": "2608.19993v1",
+      "route": "202608/21/2608.19993v1-optimal-skill-selection-for-llm-agents-with-provable-bicriteria-guarantees",
+      "title": "Optimal Skill Selection for LLM Agents with Provable Bicriteria Guarantees",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "在有限上下文窗口和token预算下优化技能文档选择，以最大化次模效益",
+      "first_seen_at": "2026-08-21 19:42:23 UTC",
+      "updated_at": "2026-08-21 19:42:23 UTC"
+    },
+    {
+      "paper_id": "2608.19621v1",
+      "route": "202608/21/2608.19621v1-mitigating-identity-essentialism-in-llm-agents-with-longitudinal-life-trajectories",
+      "title": "Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "探讨静态画像与提示记忆的局限，用纵向轨迹增强智能体的记忆与上下文",
+      "first_seen_at": "2026-08-21 19:42:23 UTC",
+      "updated_at": "2026-08-21 19:42:23 UTC"
+    },
+    {
+      "paper_id": "2608.15165v1",
+      "route": "202608/21/2608.15165v1-skillcommit-evolving-agent-skills-through-behaviorally-validated-scope-expansion",
+      "title": "SkillCommit: Evolving Agent Skills through Behaviorally Validated Scope Expansion",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "基于行为验证将历史经验转化为可复用技能的层级库",
+      "first_seen_at": "2026-08-21 19:42:23 UTC",
+      "updated_at": "2026-08-21 19:42:23 UTC"
+    },
+    {
+      "paper_id": "2608.15834v1",
+      "route": "202608/21/2608.15834v1-schema-agnostic-graph-reasoning-agent-for-hybrid-knowledge-graphs",
+      "title": "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "提供一种用通用工具探索知识图谱以替代全上下文处理的方法，属于上下文优化技术",
+      "first_seen_at": "2026-08-21 19:42:23 UTC",
+      "updated_at": "2026-08-21 19:42:23 UTC"
+    }
+  ]
+}

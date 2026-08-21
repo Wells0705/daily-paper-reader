@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-20</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-21</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 15 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 5 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>9</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>3</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-20 20:52:44 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-21 19:42:23 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日15篇论文聚焦AI智能体记忆与上下文压缩，精读2篇、速读3篇，核心方向为记忆形式化与压缩缺陷。</p>
-<p>最值得关注10分论文《The Sleeping Agent》揭示基于要点压缩会丢失关键信息，9分论文则首次提出记忆的“基础-跨度-最优性”形式化定义及顺序记忆问题。</p>
-<p>建议普通读者优先阅读这两篇精读，并结合速读中意图引导解码的思路，警惕上下文压缩对关键信息的隐性损耗。</p>
+<p>今日5篇论文聚焦LLM Agent能力提升，记忆与技能成为核心话题。</p>
+<p>最值得精读两篇9分工作：记忆系统如何追踪动态状态，以及技能选择为何能提供可证明的双准则保证。</p>
+<p>建议后续关注Agent长期记忆维护与技能高效分配的实际应用场景。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -73,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">9 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="The Sleeping Agent: What Gist-Based Context Compression Loses and Why">The Sleeping Agent: What Gist-Based Context Compression Loses and Why</span></li><li><span class="dpr-home-dashboard-paper-title" title="Towards a Formal Definition of Agent Memory: Basis, Span, Optimality, and the Sequential Memory Problem">Towards a Formal Definition of Agent Memory: Basis, Span, Optimality, and the Sequential Memory Problem</span></li><li><span class="dpr-home-dashboard-paper-title" title="LLMs Are Not Good Strategists, Yet Memory-Enhanced Agency Boosts Reasoning">LLMs Are Not Good Strategists, Yet Memory-Enhanced Agency Boosts Reasoning</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Can Agent Memory Systems Track Evolving State?">Can Agent Memory Systems Track Evolving State?</span></li><li><span class="dpr-home-dashboard-paper-title" title="Optimal Skill Selection for LLM Agents with Provable Bicriteria Guarantees">Optimal Skill Selection for LLM Agents with Provable Bicriteria Guarantees</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>9</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -86,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">6 篇</strong>
+    <strong class="dpr-home-dashboard-count">3 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Evo-Harness: Context-to-Harness Skill Compilation for Self-Evolving Agents">Evo-Harness: Context-to-Harness Skill Compilation for Self-Evolving Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents">HaReCAP: Habitual-action Grounding for Recursive Large Language Model Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="When Context Misleads: Intent-Guided Decoding for Robust Retrieval-Augmented Generation">When Context Misleads: Intent-Guided Decoding for Robust Retrieval-Augmented Generation</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories">Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories</span></li><li><span class="dpr-home-dashboard-paper-title" title="SkillCommit: Evolving Agent Skills through Behaviorally Validated Scope Expansion">SkillCommit: Evolving Agent Skills through Behaviorally Validated Scope Expansion</span></li><li><span class="dpr-home-dashboard-paper-title" title="Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs">Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
 </section>
 </div>
 

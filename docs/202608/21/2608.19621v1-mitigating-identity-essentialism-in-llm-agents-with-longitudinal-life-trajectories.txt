@@ -1,0 +1,1482 @@
+Title: Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories
+
+URL Source: https://arxiv.org/pdf/2608.19621v1
+
+Published Time: Fri, 21 Aug 2026 00:24:40 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories 
+
+## Hexi Wang 1,2 , Yujia Zhou ∗2,1 , Bangde Du 1, Weihang Su 1, Xinyuan Cao 1, Qingyi Pan 1,Qingyao Ai ∗2,1 , Yueyue Wu 1, Min Zhang 1, Yiqun Liu 1
+
+> 1
+
+Department of Computer Science and Technology, Tsinghua University 
+
+> 2
+
+Quan Cheng Laboratory whx25@mails.tsinghua.edu.cn, zhouyujia@mail.tsinghua.edu.cn, aiqy@tsinghua.edu.cn 
+
+Abstract 
+
+Large language models (LLMs) offer a scalable approach to social simulation, but their credibility depends on how agents are constructed. Existing methods can partially reproduce population-level patterns, yet often fail to capture human-like diversity. Our analysis shows that static-profile agents exhibit stronger demographic separation and within-group compres-sion than humans, a pattern consistent with identity essen-tialism: demographic labels can encourage models to treat group-average tendencies as individual traits , homogeniz-ing responses within groups. We argue that this limitation arises from two related factors: sparse, static agent repre-sentations and the limited ability of prompt-only memory to persistently integrate experience. Inspired by complementary memory systems, we propose LifeMem, a longitudinal mem-ory framework that combines structured life-event retrieval with agent-specific parametric memory for experience inte-gration. Experiments on Add Health and Understanding Soci-ety with three LLMs show that LifeMem improves alignment with human data in terms of response distributions, overall and within-group diversity, and patterns of within-person re-sponse change across life stages. These findings highlight the value of longitudinal life-event memory for constructing more faithful and dynamically evolving social agents. 
+
+Code — https://github.com/halsayxi/LifeMem 
+
+## Introduction 
+
+Large language models (LLMs) provide a scalable founda-tion for social simulation, enabling researchers to study hu-man opinions, attitudes, behaviors, and interactions when conventional surveys or experiments are costly or difficult (Aher, Arriaga, and Kalai 2023; Argyle et al. 2023; Park et al. 2023). The credibility of such simulations depends critically on how agents are constructed. Most approaches instantiate agents from demographic la-bels, personas, or static profiles (Argyle et al. 2023; Santurkar et al. 2023; Bisbee et al. 2024; Hu and Collier 2024). Al-though these representations effectively condition models on individual attributes, they often produce responses that are less diverse than human data (Bisbee et al. 2024; Wang, Mor-genstern, and Dickerson 2025; Xie et al. 2026; Wang et al. 2026). This diversity collapse may reflect a form of identity 
+
+> ∗
+
+Corresponding author. 
+
+essentialism (Wang, Morgenstern, and Dickerson 2025). In social psychology, essentialism treats social categories as reflecting stable underlying essences, making members of the same category appear fundamentally alike (Prentice and Miller 2007; Bastian and Haslam 2006). In social simula-tion, a corresponding pattern arises when static identity la-bels become overly predictive of agent responses, compress-ing within-group variation while amplifying between-group differences. Figure 1 presents a response-space analysis con-sistent with this pattern. Such distortions may exaggerate de-mographic differences, reinforce stereotypes, and bias con-clusions drawn from simulated populations. We attribute this limitation to both the content and form of agent memory. First, demographic attributes provide only a sparse and static account of an individual, omitting the richer, evolving experiences associated with between-person differences and within-person change (Elder Jr 1998; Curran and Bauer 2011). Second, prompt-based conditioning may lead to diversity collapse (Wang et al. 2026). As shown in Figure 3, explicit memory alone does not ensure that accu-mulated experience is persistently integrated into the agent. Inspired by cognitive science, we propose LifeMem , a longitudinal memory framework for constructing dynami-cally evolving LLM social agents. Human memory is com-monly understood as relying on complementary systems: the hippocampal system rapidly preserves individual ex-periences, whereas the neocortex gradually integrates in-formation across experiences into persistent representations (McClelland, McNaughton, and O’Reilly 1995; Kumaran, Hassabis, and McClelland 2016). LifeMem translates this distinction into two complementary components for repre-senting life experiences: (1) structured life-event memory, which explicitly preserves event content, timing, and sup-porting evidence for retrieval; and (2) agent-specific LoRA adapters, which encode accumulated experiences as para-metric memory persistent across questions and updated over time. By combining richer longitudinal information with per-sistent parametric memory, LifeMem targets limitations in both the content and representation of agent memory, aim-ing to construct agents that more faithfully reflect individual differences and temporal change. We evaluate LifeMem on Add Health (Harris et al. 2019) and Understanding Society (Buck and McFall 2012) us-arXiv:2608.19621v1 [cs.CL] 20 Aug 2026 Human Responses Static Profile Agents Lower SES Middle SES Higher SES          
+
+> PCA projection (2D)
+> S=Silhouette x! !"# $,g! !"# $
+> 43
+> ✓Q₁: ……?
+> ✓Q₂: ……?
+> ✓Qₘ: ……?
+> LLM agents answer survey questions
+> 2
+> You are a person with the following attributes. • Age: 34 • Gender: Female • Education: College • Income: Low ...
+> Static profile prompt
+> 1
+> Grouped by socioeconomic status
+> Lower SES …
+> Middle SES …
+> Higher SES …
+> WVS respondents (N=2,000)
+
+Figure 1: Static demographic conditioning produces a pattern consistent with identity essentialism. We divide 2,000 randomly sampled WVS wave 7 respondents (Haerpfer et al. 2022) into three socioeconomic status groups and compare human responses with those of profile-conditioned Llama-8B agents. Each individual’s responses are concatenated and projected into a two-dimensional PCA space. The separate projections show greater within-group variation and overlap among humans (silhouette 
+
+−0.02 ), whereas agents exhibit stronger within-group compression and between-group separation (silhouette 0.19 ). Silhouette scores are computed in the original response space before PCA projection. ing three instruction-tuned LLMs from different families: 
+
+Llama-3.1-8B-Instruct (hereafter, Llama-8B ) (Grattafiori et al. 2024), Ministral-3-8B-Instruct-2512 (Liu et al. 2026), and Qwen3.5-9B (Qwen Team 2026). Compared to static conditioning, diversity-oriented prompting, non-parametric memory, and control baselines, LifeMem improves align-ment with human data in terms of response distributions, overall and within-group diversity, and within-person re-sponse change across life stages. Our contributions are: 
+
+• We identify identity essentialism in static-profile LLM agents, which reduces within-group diversity and exag-gerates between-group differences. 
+
+• We propose LifeMem, combining structured life-event memory with agent-specific parametric memory to model diverse and evolving individuals. 
+
+• Across two longitudinal surveys and three LLMs, Life-Mem improves alignment with human distributions, di-versity, and within-person changes. 
+
+## Related Work 
+
+Current LLM-based social simulation often relies on per-sona conditioning and static agent representations. LLMs are increasingly used as experimental participants and survey respondents (Aher, Arriaga, and Kalai 2023; Argyle et al. 2023; Santurkar et al. 2023; Bisbee et al. 2024; Hu and Collier 2024; Lutz et al. 2025). Existing approaches often construct agents from interviews, interaction histories, or social-media records (Park et al. 2024; Du et al. 2025; Li and Conrad 2026; Du et al. 2026; Guo et al. 2026b), sup-porting partial alignment with populations. However, per-sona conditioning may reduce response variance or intro-duce bias (Bisbee et al. 2024; Boelaert et al. 2025; Wang, Morgenstern, and Dickerson 2025). Moreover, static profiles can compress individuals into demographic types (Xie et al. 2026; Hu and Collier 2024). This pattern resembles iden-tity essentialism, which attributes stable properties to social categories (Prentice and Miller 2007; Bastian and Haslam 2006), although demographic conditioning is not inherently essentialist (Wang, Morgenstern, and Dickerson 2025). More broadly, LLM social agents are typically fixed rather than up-dated from temporally ordered observations. In contrast, lon-gitudinal research distinguishes between-person differences from within-person change and uses detailed life-event his-tories to better characterize individual trajectories (Curran and Bauer 2011; Elder Jr 1998). 
+
+Prior work improves diversity at the output, prompt, memory, or parameter level. Output-level methods modify sampling, decoding (Holtzman et al. 2019; Platt et al. 1999; Li et al. 2016; Vijayakumar et al. 2018; Chung, Kamar, and Amershi 2023; Wong et al. 2026; Zhang et al. 2025), or hu-man involvement (Abels and Lenaerts 2025) to increase re-sponse diversity, but the resulting variation is often stochastic rather than grounded in individual experience. Prompt-level methods introduce multilingual, anti-stereotype, biography-based, population-aligned, or ensemble personas (Wang et al. 2025; Sivakumar et al. 2025; Lutz et al. 2025; Ge et al. 2024; Hu et al. 2025; Ashkinaze et al. 2025), but they generally lack an evolving representation of individuals. Memory methods store, retrieve, update, or forget experience (Maharana et al. 2024; Lewis et al. 2020; Park et al. 2023; Zhong et al. 2024; Long et al. 2026; Guo et al. 2026a), but retrieval alone may not support persistent integration. Parameter-level methods encode knowledge or identity into model parameters or acti-vations (Su et al. 2025; Chen et al. 2025; Wang et al. 2026), but are not typically updated from longitudinal observations. 
+
+## Methodology 
+
+This section formulates the longitudinal simulation task and introduces LifeMem’s dual-memory framework. We then de-scribe its structured memory for explicit event retrieval and parametric memory for integrating experiences across waves. 
+
+Problem Formulation 
+
+Let I = {1, . . . , N } denote a population of individuals and 
+
+W = {1, . . . , T } the ordered longitudinal waves. Each indi-𝒯 𝒾 = ℯ𝒾 ", ℯ 𝒾 #, ⋯ , ℯ 𝒾 $
+
+Agent B Agent C Agent D Agent E 
+
+Individual Life Trajectories 
+
+Agent A                    
+
+> ℯ!ℯ"ℯ#
+> Job promotion Migration Political engagement
+> ℯ!ℯ"ℯ#
+> Unemployment Marriage Community participation
+> ℯ!ℯ"ℯ#
+> Financial pressure Military Service Business success
+> ℯ!ℯ"ℯ#
+> Family illness Home purchase Financial hardship
+> ℯ!ℯ"ℯ#
+> College enrollment Career transition Moving abroad
+
+Diverse and Dynamic Opinions 
+
+> Dimension 1 (Policy Attitudes) Dimension 2 (Values)  Support Conditional support Neutral Oppose Uncertain
+> Opinion Diversification
+> Longitudinal Dynamics
+> Experience-Grounded Diversity
+
+Dual Memory Formation 
+
+Hippocampal Structured Memory Cortical Parametric Memory           
+
+> Decay
+> Recent Older Recency/Importance Structured Episode Memory
+> ℯ!Political engagement Impact: +0.8 Emotion: Hope
+> ℯ"
+> Migration Impact: +0.2 Emotion: Mixed
+> ℯ#Job promotion Impact: +0.6 Emotion: Joy
+> ℯ$# College graduation Impact: +0.1 Emotion: Mixed
+> ℯ$"
+> High school graduation Impact: +0.2 Emotion: Joy
+> ……
+> Frozen Base Model
+> Agent A LoRA
+> Agent B LoRA
+> Agent C LoRA
+> Agent D LoRA
+> Agent E LoRA
+> Sequential Recursive Update (for Agent A)
+> Update at time t!Update at time t"
+> Current Event (Job promotion)
+
+Longitudinal Agent Evolution 
+
+Dynamic State Update 
+
+Y𝒾 & = f Pro'ile 𝒾 , M 𝒾 &, LoRA 𝒾 &Pro*ile 𝒾 
+
+> (stable memory)
+> M𝒾 &
+> (structured memory)
+> LoRA 𝒾 &
+> (parametric memory)
+
+t& t' t(
+
+t& t' t)
+
+> ……
+> Different life stages, Different opinions
+> Agent A Agent B Agent C Agent E Agent D
+> Within-Agent Temporal Variation
+
+Identity-Based Initialization 
+
+Agent A 
+
+> Male
+> Age 25
+> College educated
+> Urban resident
+
+Agent B Agent C Agent E Agent D 
+
+Homogeneous Initial Opinions 
+
+> Identity Essentialism
+> Dimension 1 (Policy Attitudes)
+
+Similar Profiles   
+
+> Replay Buffer Current Event
+> Replay Buffer Update at time t!
+> Replay Buffer Current Event Update at time t!
+> Replay Buffer Current Event
+> State (Value) Dimension 2 (Values)
+> Male
+> Age 25
+> College educated
+> Urban resident
+> Male
+> Age 25
+> College educated
+> Urban resident
+> Male
+> Age 25
+> College educated
+> Urban resident
+> Male
+> Age 25
+> College educated
+> Urban resident
+
+a b cd eFigure 2: Overview of LifeMem. (a) Individual life trajectories contain diverse longitudinal experiences. (b) Structured mem-ory supports explicit retrieval, while agent-specific LoRA adapters consolidate experiences into parametric memory through recursive updates. (c) The resulting agent state evolves across life stages. (d) Agents are initialized from similar demographic profiles, which may produce homogeneous opinions. (e) LifeMem produces diverse and dynamic opinions. vidual i has a static profile Pi constructed from background information and a sequence of life events observed at wave t,
+
+Ei,t = {ei,t,k }Ki,t 
+
+k=1 , (1) where ei,t,k denotes the k-th observed life event and Ki,t =
+
+|E i,t |. The accumulated trajectory through wave t is 
+
+Ti, ≤t =
+
+t[
+
+τ =1 
+
+Ei,τ . (2) For an evaluation question qt,j , LifeMem predicts 
+
+ˆyi,t,j = Fθ,A i,t (Pi, R i,t (qt,j ), q t,j ) , (3) where θ is the frozen base LLM, Ai,t is an agent-specific LoRA adapter, and Ri,t (qt,j ) contains events retrieved from structured memory. LifeMem combines question-dependent evidence with a persistent individual state to model between-person differences and within-person change. 
+
+LifeMem Overview 
+
+LifeMem is a dual-memory framework inspired by comple-mentary learning systems theory, which distinguishes rapid encoding of specific experiences in the hippocampal system from gradual integration in the neocortex (McClelland, Mc-Naughton, and O’Reilly 1995; O’Reilly and Norman 2002; O’Reilly et al. 2014). In LifeMem, structured memory stores explicit and traceable life events, while agent-specific LoRA adapters integrate accumulated experiences into persistent parametric memory, as illustrated in Figure 2. Both memories receive the same longitudinal event stream but serve complementary roles. Structured memory provides relevant evidence for the question, whereas parametric mem-ory integrates accumulated experience across questions and waves without repeatedly adding the full trajectory into the prompt. Temporal decay prioritizes retrieval, and replay pre-serves earlier information during sequential adapter updates. 
+
+Hippocampal Structured Memory 
+
+Each life event ei,t,k is derived from a survey question– answer pair and converted into a second-person statement 
+
+xi,t,k while retaining its original question and response. A frozen encoder gϕ maps the statement to an embedding 
+
+hi,t,k = gϕ(xi,t,k ). (4) The structured memory stores each event together with its embedding and wave index: 
+
+MSi,t = {(ei,τ,k , hi,τ,k , τ ) | 1 ≤ τ ≤ t} . (5) New events are appended without removing earlier records, preserving a traceable account of the observed trajectory. For a question q, retrieval combines semantic relevance with temporal decay: 
+
+Score t(q, e i,τ,k ) = sim ( gϕ(q), hi,τ,k ) exp[ −λ(t−τ )] , (6) where λ ≥ 0 controls the preference for recent events. This decay modifies retrieval priority rather than deleting older experiences, which remain available when sufficiently rele-vant. The top-K events form the retrieved evidence: 
+
+Ri,t (q) = Top-K e∈M Si,t Score t(q, e ). (7) The selected statements are inserted into the inference prompt, providing question-dependent evidence without ex-posing the complete history. 
+
+Cortical Parametric Memory 
+
+LifeMem maintains an independently updated LoRA adapter for each agent while keeping the base LLM frozen. For a target layer l, the agent-specific weight is 
+
+W(l) 
+
+> i,t
+
+= W(l)0 + αLoRA 
+
+r B(l) 
+
+> i,t
+
+A(l) 
+
+> i,t
+
+, (8) where r and αLoRA denote the LoRA rank and scaling co-efficient. We use ΘLoRA  
+
+> i,t
+
+to denote all agent-specific LoRA parameters, including {A(l) 
+
+> i,t
+
+, B(l) 
+
+> i,t
+
+}l. Separate adapters allow individuals with similar demographic profiles to develop dif-ferent parametric states as their trajectories diverge. Each life event yields two training instances: a survey question–answer pair preserving the observed response and an event-reconstruction instance linking the event to the agent’s first-person representation. Together, they encode the survey signal and individualized semantics. Adapters are updated sequentially across waves: 
+
+ΘLoRA ,(0)  
+
+> i,t
+
+= Θ LoRA  
+
+> i,t −1
+
+, t > 1, (9) with the first wave initialized from a shared adapter state. At each wave, training combines instances from current events with a small sample of historical instances sampled uniformly at random for replay: 
+
+Li,t = X
+
+> z∈B cur
+> i,t
+
+ℓ(z; θ, ΘLoRA  
+
+> i,t
+
+) + η X
+
+> z∈B rep
+> i,t
+
+ℓ(z; θ, ΘLoRA  
+
+> i,t
+
+),
+
+(10) where η controls the contribution of replayed experiences. The base model remains frozen, and only the agent-specific low-rank parameters ΘLoRA  
+
+> i,t
+
+are optimized. Replay serves as a lightweight mechanism for mitigating catastrophic forget-ting rather than a separate memory component. 
+
+## Experimental Setup 
+
+Datasets 
+
+We evaluate LifeMem on the National Longitudinal Study of Adolescent to Adult Health (Add Health) and the UK House-hold Longitudinal Study (Understanding Society). We use six waves from Add Health and fifteen waves from Understand-ing Society. To ensure consistent longitudinal tracking, we retain only respondents observed in all selected waves. Survey variables are semantically categorized into three types: demographic attributes for initial profiles, life events describing evolving experiences, and evaluation targets. To prevent leakage, evaluation targets are excluded from both demographic and life-event variables. To evaluate within-person opinion changes, we further identify a shared set of evaluation questions available in every wave of Understand-ing Society and use them as the longitudinal evaluation set. 
+
+Baselines 
+
+Static conditioning includes Direct and Profile (Argyle et al. 2023; Santurkar et al. 2023; Bisbee et al. 2024; Hu and Collier 2024); diversity-oriented prompting includes Multilingual (Wang et al. 2025) and Anti-Stereotype (Sivakumar et al. 2025); and non-parametric memory in-cludes SimVBG (Du et al. 2025), Full History (Maharana et al. 2024), and Event RAG (Lewis et al. 2020; Maharana et al. 2024). Random Event uses random events to test the importance of respondent-specific trajectories. 
+
+Evaluation Metrics 
+
+We use four lower-is-better metrics. KL divergence measures alignment between human and agent response distributions. The within-group pairwise distance gap is the absolute dif-ference between human and agent within-group pairwise response distances. A smaller gap indicates that simulated within-group diversity is closer to that of humans, suggest-ing less identity-essentialist behavior. The normalized en-tropy gap is the absolute difference between the normalized response entropies of humans and agents. The transition-distribution JS divergence measures how closely the model reproduces the human population-level distribution of re-sponse transitions between adjacent survey waves. 
+
+Implementation Details 
+
+We use three similarly sized LLMs: Llama-3.1-8B-Instruct, Ministral-3-8B-Instruct-2512, and Qwen3.5-9B. Using a random seed of 42, we sample 100 respondents per dataset. All methods share the same samples, questions, backbones, and deterministic decoding settings, with temperature 0 and sampling disabled. Event RAG uses the stronger bge-m3 re-triever, whereas LifeMem uses the lightweight all-MiniLM-L6-v2 encoder. Both methods retrieve the top-K = 5 events. LifeMem uses a temporal decay factor of 0.105 , rank-8 LoRA adapters, replay size 4, and replay weight 0.5. Experiments run on one NVIDIA A800-SXM4 80 GB GPU. 
+
+## Experiments and Results 
+
+This section evaluates LifeMem’s effectiveness, mecha-nisms, scaling, and efficiency. We examine explicit-memory limitations, overall performance, parameter differentiation, component contributions, and computational costs. 
+
+Limits of Explicit Prompt Memory 
+
+We test whether retrieving more explicit life-history infor-mation is sufficient for longitudinal simulation by varying Event RAG retrieval depth from K = 1 to K = 180 (i.e., Full History) on Add Health with Llama-8B. We evaluate distributional and diversity alignment together with runtime and average input-token use to characterize both effective-ness and computational cost. As shown in Figure 3, the three simulation metrics initially improve but largely saturate around K = 40 and sometimes deteriorate, while runtime and input-token use continue to increase. This trade-off illustrates a practical limitation of prompt-only memory and motivates combining selective re-trieval with persistent parametric memory. Category Method Add Health Understanding Society 
+
+KL Div. ↓ WG Gap ↓ Ent. Gap ↓ KL Div. ↓ WG Gap ↓ Ent. Gap ↓ Trans. JS ↓
+
+Llama-3.1-8B-Instruct 
+
+Static Conditioning Direct 14.7551 ∗ 0.5596 ∗ 0.7053 ∗ 15.3734 ∗ 0.5561 ∗ 0.7076 ∗ 0.4580 ∗
+
+Profile 8.6719 ∗ 0.3951 ∗ 0.5112 ∗ 7.1522 ∗ 0.3835 ∗ 0.4972 ∗ 0.3886 ∗
+
+Diversity-Oriented Prompting 
+
+Multilingual 10.4654 ∗ 0.3733 ∗ 0.5035 ∗ 11.7367 ∗ 0.3446 ∗ 0.4763 ∗ 0.4570 ∗
+
+Anti-Stereotype 9.8270 ∗ 0.4163 ∗ 0.5452 ∗ 8.1485 ∗ 0.4066 ∗ 0.5120 ∗ 0.3592 ∗
+
+Non-Parametric Memory 
+
+SimVBG 6.8058 ∗ 0.3380 ∗ 0.4345 ∗ 6.2912 ∗ 0.3544 ∗ 0.4730 ∗ 0.3709 ∗
+
+Full History 6.1176 ∗ 0.3079 ∗ 0.3974 ∗ 4.9344 ∗ 0.3198 ∗ 0.4004 ∗ 0.3633 ∗
+
+Event RAG 5.8264 ∗ 0.2964 ∗ 0.3951 ∗ 5.2935 ∗ 0.3163 ∗ 0.3991 ∗ 0.3648 ∗
+
+Control Baseline Random Event 6.8821 ∗ 0.3524 ∗ 0.4538 ∗ 5.5673 ∗ 0.3429 ∗ 0.4539 ∗ 0.3803 ∗
+
+Proposed Method LifeMem 4.0635 0.2309 0.3207 3.4529 0.2886 0.3742 0.3331 Ministral-3-8B-Instruct-2512 
+
+Static Conditioning Direct 15.5952 ∗ 0.5679 ∗ 0.7161 ∗ 15.4925 ∗ 0.5648 ∗ 0.7182 ∗ 0.5076 ∗
+
+Profile 8.8060 ∗ 0.4120 ∗ 0.5263 ∗ 6.8298 ∗ 0.3622 ∗ 0.4622 ∗ 0.3609 
+
+Diversity-Oriented Prompting 
+
+Multilingual 12.7028 ∗ 0.3597 ∗ 0.5129 ∗ 13.1824 ∗ 0.3942 ∗ 0.5350 ∗ 0.4889 ∗
+
+Anti-Stereotype 10.0458 ∗ 0.4339 ∗ 0.5537 ∗ 8.7660 ∗ 0.3946 ∗ 0.5066 ∗ 0.3757 
+
+Non-Parametric Memory 
+
+SimVBG 6.9946 ∗ 0.3427 ∗ 0.4566 ∗ 4.8323 ∗ 0.3272 ∗ 0.4156 ∗ 0.3610 Full History 4.7175 ∗ 0.2893 ∗ 0.3817 ∗ 3.8053 ∗ 0.2927 ∗ 0.3413 ∗ 0.3528 Event RAG 5.4368 ∗ 0.2849 ∗ 0.3895 ∗ 4.3342 ∗ 0.2887 ∗ 0.3413 ∗ 0.4693 ∗
+
+Control Baseline Random Event 6.1787 ∗ 0.3578 ∗ 0.4647 ∗ 4.7275 ∗ 0.3156 ∗ 0.4048 ∗ 0.3924 
+
+Proposed Method LifeMem 2.2959 0.1928 0.2783 1.9659 0.2277 0.2659 0.3399 Qwen3.5-9B 
+
+Static Conditioning Direct 13.9957 ∗ 0.5482 ∗ 0.6923 ∗ 15.9998 ∗ 0.5559 ∗ 0.7080 ∗ 0.4452 ∗
+
+Profile 8.0174 ∗ 0.4004 ∗ 0.5093 ∗ 5.3214 ∗ 0.3463 ∗ 0.4325 ∗ 0.3471 ∗
+
+Diversity-Oriented Prompting 
+
+Multilingual 7.7194 ∗ 0.2211 0.3395 10.9903 ∗ 0.3438 ∗ 0.4728 ∗ 0.4405 ∗
+
+Anti-Stereotype 7.7407 ∗ 0.3743 ∗ 0.4770 ∗ 6.0185 ∗ 0.3422 ∗ 0.4254 ∗ 0.3356 ∗
+
+Non-Parametric Memory 
+
+SimVBG 5.7090 ∗ 0.3307 ∗ 0.4311 ∗ 4.4864 ∗ 0.3182 ∗ 0.3889 ∗ 0.3298 ∗
+
+Full History 4.5266 0.2599 0.3432 3.7659 ∗ 0.2979 ∗ 0.3441 ∗ 0.3203 ∗
+
+Event RAG 4.3701 0.2676 0.3574 3.5507 ∗ 0.2673 ∗ 0.3070 0.3394 ∗
+
+Control Baseline Random Event 6.0741 ∗ 0.3625 ∗ 0.4584 ∗ 3.7848 ∗ 0.3031 ∗ 0.3707 ∗ 0.3466 ∗
+
+Proposed Method LifeMem 4.1177 0.2723 0.3601 2.6879 0.2519 0.2932 0.3060 
+
+Table 1: Overall results on Add Health and Understanding Society across three models. KL Div., WG Gap, Ent. Gap, and Trans. JS denote KL divergence, within-group pairwise distance gap, normalized entropy gap, and transition-distribution JS divergence. Lower values are better for all metrics. Bold marks the best result for each model and metric; LifeMem is shaded light gray. ∗
+
+indicates results significantly worse than LifeMem in a two-sided paired t-test conducted over shared questions ( p < 0.05 ). 
+
+Overall Performance and Diversity 
+
+Table 1 shows that LifeMem performs consistently well across four dimensions, with largely significant gains across three backbones and two datasets. It reduces distributional and diversity gaps relative to human responses across set-tings. Direct performs similarly poorly across models, while Ministral shows the largest improvement with LifeMem. Profile improves over Direct but remains behind Life-Mem, suggesting that static demographic profiles cannot fully capture human heterogeneity and temporal varia-tion in these settings. Multilingual and Anti-Stereotype prompting yield inconsistent gains, suggesting that these prompting strategies do not reliably reproduce human-like di-versity across settings. SimVBG, Full History, and Event RAG perform better than static baselines but still generally trail LifeMem, suggesting that non-parametric memory alone may be insufficient to achieve the same level of alignment. LifeMem also outperforms Random Event, highlighting the importance of respondent-specific trajectories. One notable exception is Qwen3.5-9B on Add Health, where Multilingual achieves slightly lower within-group pairwise distance gap and normalized entropy gap than Life-Mem. However, its substantially higher KL divergence in-dicates that these gains in diversity alignment are accompa-nied by poorer agreement with the overall human response distribution, suggesting a less balanced improvement across evaluation dimensions. Overall, LifeMem improves alignment with human data across response distributions, overall and within-group di-versity, and longitudinal response dynamics. These results suggest that LifeMem mitigates patterns consistent with iden-tity essentialism by reducing within-group homogenization while maintaining closer alignment with human responses. 
+
+Ablation Study 
+
+Table 2 evaluates the contributions of structured and para-metric memory. Removing either component significantly degrades performance on most metrics, supporting their Method Add Health Understanding Society 
+
+KL Div. ↓ WG Gap ↓ Ent. Gap ↓ KL Div. ↓ WG Gap ↓ Ent. Gap ↓ Trans. JS ↓
+
+Llama-3.1-8B-Instruct 
+
+LifeMem (Full) 4.0635 0.2309 0.3207 3.4529 0.2886 0.3742 0.3331 
+
+LifeMem w/o Param. Mem. 5.3517 ∗ 0.2554 ∗ 0.3436 5.0874 ∗ 0.3259 ∗ 0.4150 ∗ 0.3594 ∗
+
+LifeMem w/o Struct. Mem. 6.2815 ∗ 0.3132 ∗ 0.4164 ∗ 4.7555 ∗ 0.3379 ∗ 0.4318 ∗ 0.3614 ∗
+
+Ministral-3-8B-Instruct-2512 
+
+LifeMem (Full) 2.2959 0.1928 0.2783 1.9659 0.2277 0.2659 0.3399 
+
+LifeMem w/o Param. Mem. 4.6504 ∗ 0.2516 ∗ 0.3456 ∗ 3.8454 ∗ 0.2810 ∗ 0.3389 ∗ 0.3838 LifeMem w/o Struct. Mem. 3.3799 ∗ 0.2627 ∗ 0.3597 ∗ 2.4410 ∗ 0.2483 ∗ 0.3093 ∗ 0.3443 
+
+Qwen3.5-9B 
+
+LifeMem (Full) 4.1177 0.2723 0.3601 2.6879 0.2519 0.2932 0.3060 
+
+LifeMem w/o Param. Mem. 4.4295 0.2733 0.3604 3.4224 ∗ 0.2738 ∗ 0.3193 ∗ 0.3411 ∗
+
+LifeMem w/o Struct. Mem. 6.0934 ∗ 0.3651 ∗ 0.4760 ∗ 3.2797 ∗ 0.2842 ∗ 0.3430 ∗ 0.3235 ∗
+
+Table 2: Ablation study of LifeMem on Add Health and Understanding Society. KL Div., WG Gap, Ent. Gap, and Trans. JS denote KL divergence, within-group pairwise distance gap, normalized entropy gap, and transition-distribution JS divergence. All metrics are lower-is-better. Bold marks the best result for each model and metric; LifeMem (Full) is shaded light gray. ∗
+
+indicates results significantly worse than LifeMem (Full) in a two-sided paired t-test conducted over shared questions ( p < 0.05 ). 1 10 50 80 110 150 180    
+
+> Retrieved Events (Top-K)
+> 0.0 0.5 1.0 1.5 2.0
+> 0k 1k 2k 3k 4k
+> 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5
+> 0.20 0.22 0.24 0.26 0.28 0.30
+> 0.32 0.34 0.36 0.38 0.40 0.42 0.44 0.46
+> Runtime (h) KL Divergence ↓
+> Input Tokens WG Pairwise Gap ↓
+> LifeMem Score Entropy Gap ↓
+
+Figure 3: Effect of Event RAG retrieval depth on Add Health with Llama-8B across 100 agents. We report alignment met-rics, runtime, and input tokens for top-K ∈ [1 , 180] . Stars mark LifeMem at K = 5 . The shaded bands indicate stan-dard deviation across waves. complementarity. Parametric memory maintains a persistent agent state that integrates experiences across waves beyond the events retrieved for the current question, whereas struc-tured memory supplies explicit, traceable, and temporally grounded evidence for generation and tends to contribute more strongly to diversity alignment. Their relative effects vary across different models and datasets. 
+
+Evolution of Agent-Specific LoRA States 
+
+Figure 4 uses PCA to project the high-dimensional agent-specific LoRA states into a shared two-dimensional space, illustrating how the states of 100 Llama-8B agents evolve −0.05 0.00 0.05 0.10 
+
+> PCA 1
+> −0.08 −0.06 −0.04 −0.02 0.00 0.02 0.04 0.06
+> PCA 2
+> 1357911 13 15
+> Wave
+
+Figure 4: PCA visualization of LifeMem’s agent-specific LoRA states for 100 Understanding Society agents using Llama-8B. Points represent states after each wave, with tra-jectories connecting the same agent over time. Agent states increasingly diverge as life histories accumulate. over 15 waves on Understanding Society. The initially con-centrated adapters become progressively more dispersed and follow distinct trajectories as individual histories accumulate over time. This pattern suggests that sequential updates grad-ually encode heterogeneous life experiences into differenti-ated parametric states, reflecting increasing personalization across agents with different longitudinal trajectories. 
+
+Scaling with Accumulated Life Experiences 
+
+Figure 5 examines the effect of longitudinal life-event cover-age in LifeMem on the Add Health dataset with Llama-8B. We vary the maximum number of available events per wave 510 20 40 60 90 120 150 180      
+
+> Max life events per wave
+> 4.0 4.5 5.0 5.5
+> 0.20 0.22 0.24 0.26 0.28
+> 0.28 0.30 0.32 0.34 0.36 0.38 0.40
+> KL Divergence ↓WG Pairwise Gap ↓Entropy Gap ↓
+
+Figure 5: Effect of life-event coverage in LifeMem on Add Health with Llama-8B. We simulate 100 agents while vary-ing the maximum number of life events available per wave from 5 to 180. Curves report KL divergence, within-group pairwise distance gap, and normalized entropy gap. The shaded bands indicate standard deviation across waves. In-creasing life-event coverage generally improves alignment with human response distributions and diversity. from 5 to 180 for 100 agents. Increasing coverage generally reduces KL divergence, normalized entropy gap, and within-group pairwise distance gap, with the improvements gradu-ally plateauing after roughly 90 events per wave. This pat-tern indicates that richer longitudinal histories provide more informative and individualized evidence for distinguishing individuals and recovering more human-like response distri-butions and levels of diversity over time. Overall, these re-sults further support our motivation to model agents through accumulated life experiences rather than relying on static demographic profiles alone. 
+
+Efficiency Analysis 
+
+All efficiency measurements are obtained under the same hardware configuration. We focus primarily on relative trends and comparisons across methods, as absolute runtime may vary with different hardware characteristics, including CPU, GPU, memory, and storage configurations. 
+
+Online inference. Table 3 compares the average per-question inference latency across different methods on the Add Health and Understanding Society datasets using Llama-8B. Re-trieval latency is included for both the Event RAG and Life-Mem methods to ensure a consistent end-to-end comparison. LifeMem is slower than lightweight prompt-only baselines but remains faster than Full History, Event RAG, and SimVBG on both datasets. Adapter loading introduces lit-tle additional latency and can be amortized across questions once an agent’s adapter is loaded. 
+
+Storage. Figure 6 compares per-agent adapter and struc-tured life-event storage for Llama-8B as longitudinal histories accumulate. Structured event storage grows with trajectory length because newly observed experiences must be retained explicitly, whereas each agent maintains a single fixed-size LoRA adapter that is updated after each wave. The updated adapter is then used for subsequent inference, so parametric-memory storage remains bounded rather than growing with 
+
+Method AH USoc Time Rel. Time Rel. 
+
+Direct 13.8 1.0 14.4 1.0 Profile 65.2 4.7 70.8 4.9 Multilingual 24.5 1.8 26.5 1.8 Anti-Stereotype 66.8 4.9 72.9 5.1 SimVBG 196.4 14.3 196.4 13.7 Full History 334.5 24.3 318.1 22.1 Event RAG 1094.2 79.5 956.2 66.5 Random Event 73.0 5.3 79.8 5.6 LifeMem 161.7 +0 .9 11.7 154.5 +1 .4 10.7 Table 3: Average per-question inference latency with Llama-8B. AH and USoc denote Add Health and Understanding Society. Time is reported in milliseconds, and Rel. denotes latency relative to Direct. Retrieval latency is included for Event RAG and LifeMem. For LifeMem, the subscripted +x
+
+indicates the LoRA adapter-loading latency. Rel. excludes the one-time LoRA adapter-loading latency. 0 1350 2700 4050 5400 6750  
+
+> Number of Life Events
+> 0.0 2.5 5.0 7.5 10.0
+> Storage (MB)
+> 4.93 MB
+> ∞
+> LoRA adapter Life-event records
+
+Figure 6: Per-agent storage with Llama-8B as life events accu-mulate. The fixed-size LoRA adapter remains constant, while structured life-event storage grows with trajectory length. the number of accumulated events. 
+
+Offline training. With Llama-8B, the average offline adapter update time per agent and wave is 7.21 seconds on Add Health and 2.63 seconds on Understanding Society. This one-time cost is incurred during wave-level updates and is not repeated for each subsequent online query. 
+
+## Conclusion 
+
+This work aims to mitigate patterns consistent with iden-tity essentialism in LLM social simulation, where static pro-files can suppress individual diversity and temporal change. LifeMem combines structured life-event retrieval with agent-specific LoRA parametric memory. Across two longitudinal datasets and three model backbones, it consistently improves alignment with human response distributions, diversity, and changes across life stages. Overall, the results suggest that, in these settings, incorporating longitudinal life experiences together with persistent parametric memory provides a more faithful representation of individuals. Ethical Statement 
+
+We use only public-use, de-identified survey data, comply with applicable data-use agreements, avoid re-identification, and report aggregate results. Because agent-specific adapters may memorize respondent information, we do not release respondent-level adapters. These agents are not digital repli-cas and should not be used for consequential person-level decisions; they are intended for methodological research on longitudinal LLM social simulation. 
+
+## Acknowledgements 
+
+This work is supported by the Research Project of Quancheng Laboratory, China (Grant No. QCL20250105), the National Natural Science Foundation of China No. 62502260, and the Postdoctoral Fellowship Program of China Postdoctoral Science Foundation No. GZC20240833. 
+
+## References 
+
+Abels, A.; and Lenaerts, T. 2025. Wisdom from diversity: bias mitigation through hybrid human-llm crowds. arXiv preprint arXiv:2505.12349 .Aher, G. V.; Arriaga, R. I.; and Kalai, A. T. 2023. Using large language models to simulate multiple humans and replicate human subject studies. In International conference on ma-chine learning , 337–371. PMLR. Argyle, L. P.; Busby, E. C.; Fulda, N.; Gubler, J. R.; Rytting, C.; and Wingate, D. 2023. Out of one, many: Using language models to simulate human samples. Political Analysis , 31(3): 337–351. Ashkinaze, J.; Fry, E.; Edara, N.; Gilbert, E.; and Budak, C. 2025. Plurals: A system for guiding llms via simulated social ensembles. In Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems , 1–21. Bastian, B.; and Haslam, N. 2006. Psychological essentialism and stereotype endorsement. Journal of experimental social psychology , 42(2): 228–235. Bisbee, J.; Clinton, J. D.; Dorff, C.; Kenkel, B.; and Lar-son, J. M. 2024. Synthetic replacements for human survey data? The perils of large language models. Political Analysis ,32(4): 401–416. Boelaert, J.; Coavoux, S.; Ollion, É.; Petev, I.; and Präg, P. 2025. Machine bias. How do generative language models answer opinion polls? Sociological Methods & Research ,54(3): 1156–1196. Buck, N.; and McFall, S. 2012. Understanding Society: de-sign overview. Longitudinal and Life Course Studies , 3(1): 5–17. Chen, R.; Arditi, A.; Sleight, H.; Evans, O.; and Lindsey, J. 2025. Persona vectors: Monitoring and controlling character traits in language models. arXiv preprint arXiv:2507.21509 .Chung, J. J. Y.; Kamar, E.; and Amershi, S. 2023. Increasing diversity while maintaining accuracy: Text data generation with large language models and human interventions. In 
+
+Proceedings of the 61st annual meeting of the association for computational linguistics (volume 1: Long papers) , 575– 593. Curran, P. J.; and Bauer, D. J. 2011. The disaggregation of within-person and between-person effects in longitudinal models of change. Annual review of psychology , 62(1): 583– 619. Du, B.; Guo, M.; He, S.; Ye, Z.; Zhu, X.; Su, W.; Zhu, S.; Zhou, Y.; Zhang, Y.; Ai, Q.; and Liu, Y. 2026. TwinVoice: A Multi-dimensional Benchmark Towards Digital Twins via LLM Persona Simulation. In Findings of the Association for Computational Linguistics: ACL 2026 , 19604–19628. Asso-ciation for Computational Linguistics. Du, B.; Ye, Z.; Wu, Z.; Jankowska, M. A.; Zhu, S.; Ai, Q.; Zhou, Y.; and Liu, Y. 2025. SimVBG: Simulating Individ-ual Values by Backstory Generation. In Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing , 13104–13133. Elder Jr, G. H. 1998. The life course as developmental theory. 
+
+Child development , 69(1): 1–12. Ge, T.; Chan, X.; Wang, X.; Yu, D.; Mi, H.; and Yu, D. 2024. Scaling synthetic data creation with 1,000,000,000 personas. 
+
+arXiv preprint arXiv:2406.20094 .Grattafiori, A.; Dubey, A.; Jauhri, A.; Pandey, A.; Kadian, A.; Al-Dahle, A.; Letman, A.; Mathur, A.; Schelten, A.; Vaughan, A.; et al. 2024. The llama 3 herd of models. arXiv preprint arXiv:2407.21783 .Guo, M.; Jiao, Q.; Shi, Z.; Quan, Y.; Zhang, B.; Li, D.; Che, L.; Xu, W.; Liu, S.; Liu, Z.; Kapadia, M.; Pavlovic, V.; Liu, J.; Wang, M.; Shi, Y.; Metaxas, D. N.; and Tang, R. 2026a. MemEye: A Visual-Centric Evaluation Framework for Multimodal Agent Memory. arXiv:2605.15128. Guo, M.; Ye, Z.; Xu, W.; Zhu, X.; Hua, W.; and Metaxas, D. N. 2026b. Individual Turing Test: A Case Study of LLM-based Simulation Using Longitudinal Personal Data. In Pro-ceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval , 3770– 3775. New York, NY, USA: Association for Computing Ma-chinery. Haerpfer, C.; Inglehart, R.; Moreno, A.; Welzel, C.; Kizilova, K.; Diez-Medrano, J.; Lagos, M.; Norris, P.; Ponarin, E.; and Puranen, B. 2022. World values survey wave 7 (2017-2022) cross-national data-set. Harris, K. M.; Halpern, C. T.; Whitsel, E. A.; Hussey, J. M.; Killeya-Jones, L. A.; Tabor, J.; and Dean, S. C. 2019. Cohort profile: The national longitudinal study of adolescent to adult health (add health). International journal of epidemiology ,48(5): 1415–1415k. Holtzman, A.; Buys, J.; Du, L.; Forbes, M.; and Choi, Y. 2019. The curious case of neural text degeneration. arXiv preprint arXiv:1904.09751 .Hu, T.; and Collier, N. 2024. Quantifying the persona effect in LLM simulations. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) , 10289–10307. Hu, Z.; Lian, J.; Xiao, Z.; Xiong, M.; Lei, Y.; Wang, T.; Ding, K.; Xiao, Z.; Yuan, N. J.; and Xie, X. 2025. Population-aligned persona generation for llm-based social simulation. 
+
+arXiv preprint arXiv:2509.10127 .Kumaran, D.; Hassabis, D.; and McClelland, J. L. 2016. What Learning Systems Do Intelligent Agents Need? Com-plementary Learning Systems Theory Updated. Trends in Cognitive Sciences , 20(7): 512–534. Lewis, P.; Perez, E.; Piktus, A.; Petroni, F.; Karpukhin, V.; Goyal, N.; Küttler, H.; Lewis, M.; Yih, W.-t.; Rocktäschel, T.; et al. 2020. Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in neural information process-ing systems , 33: 9459–9474. Li, J.; Galley, M.; Brockett, C.; Gao, J.; and Dolan, W. B. 2016. A diversity-promoting objective function for neural conversation models. In Proceedings of the 2016 conference of the North American chapter of the association for compu-tational linguistics: human language technologies , 110–119. Li, M.; and Conrad, F. G. 2026. Persona-Based Simula-tion of Human Opinion at Population Scale. arXiv preprint arXiv:2603.27056 .Liu, A. H.; Khandelwal, K.; Subramanian, S.; Jouault, V.; Rastogi, A.; Sadé, A.; Jeffares, A.; Jiang, A.; Cahill, A.; Gavaudan, A.; et al. 2026. Ministral 3. arXiv preprint arXiv:2601.08584 .Long, L.; He, Y.; Ye, W.; Pan, Y.; Lin, Y.; Li, H.; Zhao, J.; and Li, W. 2026. Seeing, Listening, Remembering, and Rea-soning: A Multimodal Agent with Long-Term Memory. In 
+
+The Fourteenth International Conference on Learning Rep-resentations .Lutz, M.; Sen, I.; Ahnert, G.; Rogers, E.; and Strohmaier, M. 2025. The prompt makes the person (a): A systematic evaluation of sociodemographic persona prompting for large language models. arXiv preprint arXiv:2507.16076 .Maharana, A.; Lee, D.-H.; Tulyakov, S.; Bansal, M.; Bar-bieri, F.; and Fang, Y. 2024. Evaluating very long-term conversational memory of llm agents. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) , 13851–13870. McClelland, J. L.; McNaughton, B. L.; and O’Reilly, R. C. 1995. Why there are complementary learning systems in the hippocampus and neocortex: insights from the successes and failures of connectionist models of learning and memory. 
+
+Psychological review , 102(3): 419. O’Reilly, R. C.; Bhattacharyya, R.; Howard, M. D.; and Ketz, N. 2014. Complementary Learning Systems. Cognitive Sci-ence , 38(6): 1229–1248. O’Reilly, R. C.; and Norman, K. A. 2002. Hippocampal and Neocortical Contributions to Memory: Advances in the Complementary Learning Systems Framework. Trends in Cognitive Sciences , 6(12): 505–510. Park, J. S.; O’Brien, J.; Cai, C. J.; Morris, M. R.; Liang, P.; and Bernstein, M. S. 2023. Generative agents: Interac-tive simulacra of human behavior. In Proceedings of the 36th annual acm symposium on user interface software and technology , 1–22. Park, J. S.; Zou, C. Q.; Shaw, A.; Hill, B. M.; Cai, C.; Morris, M. R.; Willer, R.; Liang, P.; and Bernstein, M. S. 2024. Generative agent simulations of 1,000 people. arXiv preprint arXiv:2411.10109 , 52. Platt, J.; et al. 1999. Probabilistic outputs for support vector machines and comparisons to regularized likelihood meth-ods. Advances in large margin classifiers , 10(3): 61–74. Prentice, D. A.; and Miller, D. T. 2007. Psychological essen-tialism of human categories. Current directions in psycho-logical science , 16(4): 202–206. Qwen Team. 2026. Qwen3.5: Towards Native Multimodal Agents. https://qwen.ai/blog?id=qwen3.5. Santurkar, S.; Durmus, E.; Ladhak, F.; Lee, C.; Liang, P.; and Hashimoto, T. 2023. Whose opinions do language models reflect? In International conference on machine learning ,29971–30004. PMLR. Sivakumar, N.; Mackraz, N.; Khorshidi, S.; Patel, K.; Theobald, B.-J.; Zappella, L.; and Apostoloff, N. 2025. Bias after Prompting: Persistent Discrimination in Large Lan-guage Models. arXiv preprint arXiv:2509.08146 .Su, W.; Tang, Y.; Ai, Q.; Yan, J.; Wang, C.; Wang, H.; Ye, Z.; Zhou, Y.; and Liu, Y. 2025. Parametric retrieval aug-mented generation. In Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval , 1240–1250. Vijayakumar, A.; Cogswell, M.; Selvaraju, R.; Sun, Q.; Lee, S.; Crandall, D.; and Batra, D. 2018. Diverse beam search for improved description of complex scenes. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 32. Wang, A.; Morgenstern, J.; and Dickerson, J. P. 2025. Large language models that replace human participants can harm-fully misportray and flatten identity groups. Nature Machine Intelligence , 7(3): 400–411. Wang, H.; Zhou, Y.; Du, B.; Ai, Q.; and Liu, Y. 2026. Para-metric Social Identity Injection and Diversification in Public Opinion Simulation. arXiv preprint arXiv:2603.16142 .Wang, Q.; Pan, S.; Linzen, T.; and Black, E. 2025. Multi-lingual prompting for improving llm generation diversity. In 
+
+Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing , 6378–6400. Wong, J.; Orlovskiy, Y.; Shypula, A.; Luo, M.; Seshia, S.; and Gonzalez, J. 2026. Simplestrat: Diversifying language model generation with stratification. Advances in Neural Information Processing Systems , 38: 116906–116935. Xie, Y.; Liang, L.; Li, S.; Lu, Y.; Xiao, Z.; Shi, M.; Huang, J.; Wang, M.; and Xie, Y. 2026. Evaluating the statistical realism of LLM-generated social science data. Proceedings of the National Academy of Sciences , 123(19): e2538145123. Zhang, L. H.; Milli, S.; Jusko, K.; Smith, J.; Amos, B.; Bouaziz, W.; Revel, M.; Kussman, J.; Sheynin, Y.; Titus, L.; et al. 2025. Cultivating pluralism in algorithmic mono-culture: The community alignment dataset. arXiv preprint arXiv:2507.09650 .Zhong, W.; Guo, L.; Gao, Q.; Ye, H.; and Wang, Y. 2024. Memorybank: Enhancing large language models with long-term memory. In Proceedings of the AAAI conference on artificial intelligence , volume 38, 19724–19731. Limitations 
+
+LifeMem is limited by the coverage and granularity of lon-gitudinal surveys, which cannot fully capture an individual’s life experiences. Surveys may omit events outside the ques-tionnaire, record them only at coarse intervals, and fail to capture event duration or respondents’ subjective interpre-tations. Thus, reconstructed trajectories remain partial rep-resentations of personal development rather than complete life histories. Moreover, self-reported survey responses may be affected by recall bias and question framing, and do not necessarily correspond to real-world behavior. 
+
+## Details of the Motivating Analyses 
+
+WVS Static-Profile Experiment 
+
+Experimental setup. We use Wave 7 of the World Values Survey (WVS) (Haerpfer et al. 2022) and randomly sample 2,000 respondents with seed 42. For each respondent, we construct a static profile from answers in the WVS demo-graphic section, corresponding to Questions Q260–Q290. The profile is provided to Llama-3.1-8B-Instruct ,which is instructed to simulate the corresponding respon-dent and answer the survey questions. This setup represents a typical profile-conditioned social simulation in which each agent is reconstructed from demographic attributes. 
+
+Prompt template. The following prompt template is in-stantiated with the recoded demographic attributes of each respondent:               
+
+> Prompt Template
+> Forget you are an AI model. Simulate a human being. Please answer the following question truthfully. Please answer based on the following personal profile: You are <gender>. You are aged <age>. You live in <country>. You are <citizenship status>. You were born <birthplace status>. Your mother was born <mother’s birthplace status>. Your father was born <father’s birth-place status>. You live in <urbanicity>, <settlement type>, with a population of <population size>. Your household consists of <household size> members. You <parent cohabitation status>. You speak <home lan-guage> at home. You are <marital status> and <chil-dren description>. Your education level is <education level>. Your spouse’s education level is <spouse edu-cation level>. You are <employment status>. You work as <occupation>. You work in <employment sector>. Your spouse is <spouse employment status>. Your spouse works as <spouse occupation>. You are <chief wage earner status>. During the past year, your family <household financial change>. You belong to <subjec-tive social class>. Your income is in income group <in-come group> (1 = lowest, 10 = highest). You identify as <religion>. Your ethnic group is <ethnic group>.
+> Question: <question>
+> Options: <options>
+> Please ONLY output a number. Do NOT write any words, symbols, punctuation, or explanations.
+
+Response processing. For both human respondents and their corresponding agents, the survey answers are converted into response vectors. Each question dimension is standard-ized before dimensionality reduction, after which PCA is applied to obtain two-dimensional representations. Human and agent responses follow the same response labeling, pro-cessing, standardization, PCA, and visualization procedure. 
+
+Socioeconomic status construction. We construct a com-posite socioeconomic status (SES) measure from four WVS variables: subjective social class (Q287), household eco-nomic situation (Q286), educational attainment (Q275), and income group (Q288). Each variable is converted to a directionally consistent numerical scale such that larger values indicate higher so-cioeconomic status. Let exim denote the recoded value of variable m for respondent i, and let Mi denote the set of available SES variables for that respondent. The composite score is 
+
+SES i = 1
+
+|M i|
+
+X
+
+> m∈M i
+
+exim . (11) Respondents are divided into low-, middle-, and high-SES groups according to the tertiles of the composite score. 
+
+Silhouette score. We use the silhouette score to quantify how strongly the response representations separate according to the predefined SES groups. Let Ci denote the SES group containing individual i. The average distance between i and other members of the same group is 
+
+a(i) = 1
+
+|Ci| − 1
+
+X 
+
+> j∈Ci
+> j̸=i
+
+d(i, j ). (12) The minimum average distance between i and any other SES group is 
+
+b(i) = min  
+
+> C̸=Ci
+
+1
+
+|C|
+
+X
+
+> j∈C
+
+d(i, j ). (13) The silhouette value for individual i is 
+
+s(i) = b(i) − a(i)max {a(i), b (i)} , (14) and the overall silhouette score is 
+
+S = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+s(i). (15) Silhouette scores are computed in the standardized re-sponse space before PCA projection; PCA is used only for visualization. A score close to 1 indicates compact within-group repre-sentations and clear between-group separation, a score close to 0 indicates substantial overlap, and a negative score indi-cates that some individuals are closer to another group than to their assigned group. In this work, the silhouette score is used only to quan-tify the extent to which response representations align with predefined demographic groups. It is not interpreted as a standalone measure of simulation quality. 
+
+Result summary. Human responses are broadly dispersed and substantially overlap across SES groups, resulting in a silhouette score of S = −0.02 . In contrast, agent responses form more compact within-group clusters and show clearer separation between SES groups, resulting in S = 0 .19 . This pattern suggests that static demographic prompting may com-press complex individuals into group-typical representatives, thereby reducing within-group heterogeneity and amplify-ing between-group differences. We treat this experiment as a motivating diagnostic that reveals a pattern consistent with identity essentialism in LLM agents. 
+
+Event RAG Retrieval-Depth Analysis 
+
+We analyze how retrieval depth affects the effectiveness and computational cost of the Event RAG baseline. Experiments are conducted on Add Health using Llama-3.1-8B-Instruct and 100 respondents sampled with random seed 42. Event retrieval uses all-MiniLM-L6-v2 , consistent with the retrieval component used by LifeMem in this comparison. Its lightweight architecture keeps retrieval overhead low while maintaining competitive retrieval quality. We vary the retrieval depth (Top-K) from 1 to 180. For each value of K, Event RAG retrieves the K highest-ranked life events relevant to each evaluation question and inserts them into the model prompt. We report KL divergence, within-group pairwise distance gap, and normalized entropy gap, where lower values indicate closer agreement with the corresponding human distributions. 
+
+Runtime. Runtime is measured as the end-to-end wall-clock duration of one complete Event RAG experiment over all 100 respondents and all six survey waves. It therefore includes model loading, population initialization, life-event loading, event retrieval, prompt construction, model infer-ence, output parsing, and metric computation. 
+
+Input tokens. For each retrieval depth K, we average the estimated input tokens over all respondent–question prompts across all six survey waves. The reported value therefore represents the mean input length per evaluation prompt. 
+
+Comparison with LifeMem. Figure 3 in the main paper additionally marks LifeMem at K = 5 as a reference. While increasing Event RAG retrieval depth initially improves dis-tributional and diversity alignment, the gains largely plateau around K = 40 and sometimes deteriorate, whereas runtime and input-token use continue to increase. Notably, LifeMem already achieves substantially better performance with only 
+
+K = 5 , suggesting that its gains are unlikely to be explained solely by retrieving more life events. Instead, these results motivate combining selective retrieval with persistent para-metric memory. 
+
+## Dataset Construction and Preprocessing 
+
+Dataset Overviews 
+
+Add Health. The National Longitudinal Study of Ado-lescent to Adult Health (Add Health) follows a nationally 
+
+Wave Respondents Wave Respondents 
+
+I 6,504 IV 5,114 II 4,834 V 4,196 III 4,882 VI 3,937 Table 4: Number of respondents in the public-use Add Health files across Waves I–VI. 
+
+Wave Respondents Wave Respondents 
+
+1 77,308 9 52,694 2 77,495 10 50,113 3 70,671 11 46,965 4 65,626 12 43,577 5 61,512 13 41,601 6 64,712 14 55,400 7 59,941 15 48,896 8 56,608 Table 5: Number of respondents in the public-use Under-standing Society files across Waves 1–15. representative U.S. cohort initially recruited from students in Grades 7–12 during the 1994–1995 school year (Har-ris et al. 2019). We use all six available survey waves: Wave I (1994–1995), Wave II (1996), Wave III (2001–2002), Wave IV (2008–2009), Wave V (2016–2018), and Wave VI (2022–2025). These waves trace respondents from adoles-cence through young adulthood and into early midlife. The survey content evolves with the cohort’s life stage. Waves I–II focus on adolescent health, education, family and peer relationships, and risk behavior. Wave III expands to relationship, fertility, education, and employment histories during the transition to adulthood. Waves IV–VI further ex-amine adult health, socioeconomic circumstances, cognition, caregiving, and family life. Together, these waves provide rich longitudinal records spanning education, employment, health, family, and residential transitions. The public-use files contain between 3,937 and 6,504 re-spondents per wave across Waves I–VI. Detailed wave-level sample sizes are reported in Table 4. Respondents are linked across waves using the stable person identifier AID .
+
+Understanding Society. Understanding Society, also known as the UK Household Longitudinal Study (UKHLS), is an annual household panel survey that began in 2009 (Buck and McFall 2012). We use UKHLS Waves 1–15, covering in-terviews conducted from 2009 to 2024. Each wave is fielded over an overlapping period, while individual sample mem-bers are generally interviewed approximately one year apart. Understanding Society follows members of sampled UK households and covers household composition, family rela-tionships, education, employment, income, housing, health and well-being, finances, political attitudes, and social par-ticipation. Its annual panel structure and broad question cov-erage across fifteen waves support the evaluation of changes in respondents’ answers between adjacent waves. The public-use files contain between 41,601 and 77,495 respondents per wave across Waves 1–15. Detailed wave-level sample sizes are reported in Table 5. Respondents are linked across waves using the stable person identifier pidp .
+
+Respondent Alignment and Sampling 
+
+To construct complete longitudinal trajectories, we align re-spondents using stable cross-wave identifiers and retain only individuals observed in every wave of the corresponding dataset. After alignment, 2,048 Add Health respondents are observed with the same AID across all six waves, while 14,104 Understanding Society respondents are observed with the same pidp across all fifteen waves. For the main experiments, we randomly sample 100 re-spondents from each aligned pool using seed 42. The sampled respondent identifiers are fixed and shared across all methods and backbone models within each dataset. Consequently, all comparisons use the same individuals, survey questions, and observed life histories, thereby controlling for differences in respondent composition. Additional experiments using seeds 43 and 44 evaluate robustness to respondent sampling, as re-ported in Appendix . 
+
+Variable Classification 
+
+Structured Question Records. Each selected variable is represented as a structured question record with the following fields: 
+
+• Variable: the survey variable name. 
+
+• Section: the questionnaire section. 
+
+• Question: the natural-language survey question. 
+
+• Options: the response options for closed-ended questions. 
+
+• Note: additional constraints for open-ended responses. 
+
+Functional Categories. We organize survey variables into three functional categories: demographic , life event , and eval-uate . The demographic variables are used to construct the ini-tial profile of an agent, including background and profile at-tributes such as age, gender, education, employment, house-hold composition, region, religion, and family background. The life event variables describe longitudinal experiences and state changes, such as schooling, work transitions, partner-ship changes, fertility, housing changes, health events, care-giving, economic hardship, and other major events. These variables are used to construct structured memory and para-metric memory updates across waves. The evaluate variables are reserved exclusively for model evaluation and are ex-cluded from profile construction, structured memory, and parametric-memory updates. Examples include questions about residential preferences, internet use, social participa-tion, political attitudes, and subjective well-being. 
+
+Classification and Filtering. Variables are classified us-ing a rule-based semantic matching procedure followed by response-quality filtering. The semantic classifier considers the section, question, options, note, and variable fields. We maintain category-specific keyword dictionaries for the three categories. After semantic matching, we filter variables using response-quality statistics computed from the human answer files. For each variable, we compute the total number of re-sponses, the number of valid responses, and the number and Dataset Wave Demo. Event Eval. Add Health 1 73 172 75 2 65 171 75 3 76 179 56 4 65 179 72 5 70 171 59 6 75 179 53 UKHLS 1 68 72 11 2 62 37 11 3 67 55 38 4 69 55 37 5 61 69 49 6 66 85 41 7 62 54 26 8 69 47 16 9 68 68 34 10 68 44 28 11 71 56 50 12 65 57 64 13 70 65 25 14 70 66 43 15 65 89 45 Table 6: Numbers of demographic, life-event, and evaluation variables selected for each dataset and survey wave. Demo., Event, and Eval. denote demographic, life-event, and evalua-tion variables, respectively. UKHLS denotes Understanding Society. rate of missing responses. Variables with severe missing-ness or too few valid responses are removed. Table 6 reports the number of selected variables in each category for every dataset and wave. 
+
+Examples of Classified Variables. The following exam-ples illustrate the three variable categories using questions from Add Health Wave 1.                   
+
+> Demographic Variables Variable: BIO_SEX
+> Section: Section A: Setup of CAPI Interview
+> Question: What is your gender?
+> Options:
+> 1: Male; 2: Female
+> Variable: H1GI1M
+> Section: Section 1: General Introductory
+> Question: Which month were you born in?
+> Options:
+> 1: January; 2: February; 3: March; 4: April; 5: May; 6: June; 7: July; 8: August; 9: September; 10: October; 11: November; 12: December
+> Life-Event Variables Variable: H1GH2
+> Section: Section 3: General Health
+> Question: How often have you had a headache?
+> Options:
+> 0: Never; 1: Just a few times; 2: About once a week; 3: Almost every day; 4: Every day
+> Variable: H1GH43
+> Section: Section 3: General Health
+> Question: During the past 30 days, how often did you drive a car or other vehicle when you had been drinking alcohol?
+> Options:
+> 0: Never; 1: 1 time; 2: 2 or 3 times; 3: 4 or 5 times; 4: 6 or more times
+> Evaluation Variables Variable: H1ED19
+> Section: Section 5: Academics and Education
+> Question: You feel close to people at your school.
+> Options:
+> 1: Strongly agree; 2: Agree; 3: Neither agree nor disagree; 4: Disagree; 5: Strongly disagree
+> Variable: H1PF4
+> Section: Section 18: Personality and Family
+> Question: You are satisfied with the way your mother and you communicate with each other.
+> Options:
+> 1: Strongly agree; 2: Agree; 3: Neither agree nor disagree; 4: Disagree; 5: Strongly disagree
+
+Common Longitudinal Evaluation Set 
+
+In addition to the wave-specific evaluation variables, we con-struct a common longitudinal evaluation set for Understand-ing Society. This set provides a fixed target space across waves, enabling us to evaluate whether agents reproduce not only population-level response distributions but also changes in the same survey variables over time. We first retain variables that appear in the question files for all 15 waves, yielding 198 shared variables. We then exclude variables used as demographic or life-event inputs, leaving 136 candidates. After semantic and response-quality filter-ing, the final evaluation set contains 50 variables covering housing, employment, income, caregiving, family, education, and related life outcomes. Transition-distribution JS divergence is computed only on Understanding Society because it provides a fixed set of com-parable evaluation variables across all 15 waves. Add Health contains fewer waves and substantially less overlap among comparable evaluation variables, so we do not report Tran-sition JS for Add Health. 
+
+## Shared Experimental Setup 
+
+Inference Protocol 
+
+We evaluate all methods using three instruction-tuned backbone models: Llama-3.1-8B-Instruct, Ministral-3-8B-Instruct-2512, and Qwen3.5-9B. Thinking mode is disabled for Qwen3.5-9B, and each model uses its native tokenizer and chat template. All methods share the same determin-istic decoding configuration, with temperature 0, sampling disabled, a maximum input length of 4,096 tokens, and a maximum output length of 16 tokens. Inference is conducted with a batch size of four using bfloat16 precision. All methods also share the same survey-response prompt structure. Method-specific context, such as a demographic profile or retrieved life events, is inserted before the ques-tion when applicable. For closed-ended questions, the model is required to return exactly one option number. For open-ended questions, it is instead instructed to provide a concise response without explanation.    
+
+> Shared Survey Prompt
+> You are not an AI assistant; you are role-playing a hu-man survey respondent.
+> Question: <question>
+> For closed-ended questions:
+> Options: <options>
+> Answer with exactly one option number. Do not provide any explanation.
+> For open-ended questions:
+> Notes: <notes>
+> Answer concisely. Do not provide any explanation.
+
+Survey-to-Statement Conversion 
+
+We convert each survey question–answer pair into one second-person statement and one first-person statement. The second-person statements are used to construct demo-graphic profiles and structured life-event memory, while the first-person statements serve as reconstruction targets for parametric-memory training. Conversion is performed using gpt-3.5-turbo-0125, with temperature 0 and a maximum output length of 2,048 tokens. The conversion prompt is shown below.    
+
+> Survey-to-Statement Conversion Prompt
+> You convert survey question-answer pairs into concise personal statements. Rewrite the provided question and answer as one faith-ful second-person statement and one first-person state-ment about the respondent.
+> Rules:
+> 1. Preserve the exact meaning of the answer. 2. Do not add information, explanations, causes, stereo-types, or assumptions. 3. Preserve negation, quantities, dates, frequencies, and time ranges. 4. For life events, do not convert an event into a perma-nent trait unless the answer says so. 5. Return valid JSON only with keys second_person
+> and first_person .
+> Input: <input>
+
+For example, the survey response         
+
+> Example Survey Response Question: How often have you had trouble falling asleep or staying asleep?
+> Answer: Never
+
+is converted into:   
+
+> Example Converted Statements Second_Person: You have never had trouble falling asleep or staying asleep.
+> First_Person: I have never had trouble falling asleep or staying asleep.
+
+This conversion preserves the observed survey response while producing textual representations suitable for profile construction, event retrieval, and adapter training. 
+
+## Baseline Implementation Details 
+
+Static Conditioning 
+
+Direct. Direct (Argyle et al. 2023; Santurkar et al. 2023; Bisbee et al. 2024; Hu and Collier 2024) receives only the shared survey instruction, the current question, its response options or notes, and the corresponding output constraint. It does not receive demographic information or longitudinal life events. 
+
+Profile. Profile (Argyle et al. 2023; Santurkar et al. 2023; Bisbee et al. 2024; Hu and Collier 2024) addition-ally conditions the model on each respondent’s fixed initial demographic profile.  
+
+> Profile Conditioning Prompt
+> You are answering a longitudinal social survey as the described person.
+> Demographic profile: <profile_text>
+
+Diversity-Oriented Prompting 
+
+Multilingual. Multilingual (Wang et al. 2025) fol-lows the Direct setting but translates the complete survey prompt into four widely used languages: Chinese, Spanish, English, and Arabic. For each respondent-question pair, one of the four languages is selected uniformly at random using a deterministic hash of the global seed, wave index, respondent ID, and question variable. 
+
+Anti-Stereotype. Anti-Stereotype (Sivakumar et al. 2025) follows the Profile setting and appends an explicit in-struction discouraging demographic stereotyping. This base-line evaluates whether explicit anti-stereotyping guidance can mitigate demographic overgeneralization. 
+
+> Anti-Stereotype Instruction
+> Do not assume that one demographic attribute deter-mines another. When information is missing, preserve uncertainty rather than filling it with stereotypes.
+
+Non-Parametric Memory 
+
+SimVBG. SimVBG (Du et al. 2025) first uses the cur-rent backbone model to expand each respondent’s demo-graphic profile into a comprehensive second-person back-ground story, which remains fixed across all survey waves. Story generation uses a batch size of four, temperature 0,sampling disabled, and a maximum output length of 2,048 tokens. The generation prompt includes the following instructions:  
+
+> Background-Story Generation Prompt
+> You are a background story writer. Your task is to craft a comprehensive backstory for a person based on the in-formation provided below. You must include every single data point from the original information, without excep-tion.
+> This person’s information: <profile_text>
+
+During evaluation, the generated story is inserted before the shared survey prompt: SimVBG Evaluation Prompt  
+
+> You are answering a longitudinal social survey as the person described in the background story.
+> Background story: <background_story>
+
+Full History. Full History (Maharana et al. 2024) conditions the model on the demographic profile and all respondent-specific life events accumulated through the cur-rent wave:    
+
+> Full-History Prompt
+> You are answering a longitudinal social survey as the described person.
+> Demographic profile: <profile_text>
+> Life history:
+> –<event_1>
+> –<event_2>
+> ...
+
+When the accumulated history exceeds the available input budget, events are retained in reverse chronological order under a character budget of 3 × max_input_length .Recent events are therefore preserved first, while older events may be truncated. 
+
+Event RAG. Event RAG (Lewis et al. 2020; Maharana et al. 2024) conditions the model on the demographic pro-file and the five accumulated life events most relevant to the current evaluation question. It uses bge-m3 to encode each evaluation question and each life-event text, where a life-event text concatenates the wave index, survey section, original question, answer text, and second-person statement. For an event ei,τ observed for respondent i at wave τ and a question qt asked at wave t, the retrieval score is 
+
+s(qt, e i,τ ) = sim( qt, e i,τ ) · α t−τ 
+
+> ret
+
+, (16) where αret = 0 .9 controls recency decay. The semantic sim-ilarity is computed as 
+
+sim( qt, e i,τ ) = h⊤ 
+
+> qt
+
+hei,τ , (17) where hqt and hei,τ are ℓ2-normalized embeddings from 
+
+bge-m3 ; hence the dot product is cosine similarity. The five highest-scoring events are inserted into the prompt.    
+
+> Event RAG Prompt
+> You are answering a longitudinal social survey as the described person.
+> Demographic profile: <profile_text>
+> Relevant life experiences:
+> –<retrieved_event_1>
+> –<retrieved_event_2>
+> ...
+
+Setting Value 
+
+LoRA rank 8LoRA scaling coefficient 16 LoRA dropout 0Target modules q_proj , v_proj o_proj , down_proj 
+
+Learning rate 1 × 10 −4
+
+Training epochs per update 2Training batch size 16 Gradient accumulation steps 1Maximum gradient norm 1.0 Table 7: Default configuration for agent-specific LoRA up-dates. 
+
+Control Baseline 
+
+Random Event. Random Event uses the same prompt structure and the same number of events as Event RAG. Instead of retrieving respondent-specific events, it samples five events from other agents using a pseudorandom generator initialized with the global simulation seed. This baseline preserves the amount and format of event information while removing the correspondence between the supplied events and the target respondent. 
+
+## LifeMem Implementation Details 
+
+LifeMem combines demographic profile conditioning, struc-tured life-event memory, and agent-specific parametric mem-ory. At each survey wave, the system updates and evaluates every agent sequentially. For each agent at every wave, LifeMem first loads the newly observed life events and updates the agent-specific LoRA adapter using both current and replayed events. It then adds the current events to structured memory, retrieves relevant events for each evaluation question, and constructs the corresponding prompt. After activating the agent-specific adapter, the model generates responses in batches, which are subsequently parsed and evaluated. Finally, the updated LoRA state is saved for use in the next wave. 
+
+Structured Life-Event Memory 
+
+LifeMem uses all-MiniLM-L6-v2 as a frozen retrieval encoder. Its lightweight architecture provides a practical bal-ance between semantic retrieval quality and computational efficiency. Apart from the encoder choice, its retrieval pro-cedure, including top-K, similarity scoring, and recency weighting, is identical to that of Event RAG. The recency term favors recent experiences while allowing older events to be retrieved when their semantic relevance remains high. 
+
+Agent-Specific Parametric Memory 
+
+Each agent maintains an independent LoRA adapter, while the parameters of the underlying language model remain frozen. Table 7 reports the default adapter and optimization settings. Algorithm 1: Agent-specific parametric-memory update  
+
+> 1:
+
+for each wave t do  
+
+> 2:
+
+for each agent i do  
+
+> 3:
+
+Ecur  
+
+> i,t
+
+← events of agent i observed at wave t 
+
+> 4:
+
+Erep  
+
+> i,t
+
+← sample R events from agent i’s previous events  
+
+> 5:
+
+Bi,t ← ∅  
+
+> 6:
+
+for each event e ∈ E cur  
+
+> i,t
+
+do  
+
+> 7:
+
+Add (e. question , e. answer) to Bi,t  
+
+> 8:
+
+Add (e. statement , e. first _person) to Bi,t  
+
+> 9:
+
+end for  
+
+> 10:
+
+for each event e ∈ E rep  
+
+> i,t
+
+do  
+
+> 11:
+
+Add (e. question , e. answer) to Bi,t  
+
+> 12:
+
+Add (e. statement , e. first _person) to Bi,t  
+
+> 13:
+
+Mark both examples with replay = true  
+
+> 14:
+
+end for  
+
+> 15:
+
+Activate agent i’s LoRA adapter  
+
+> 16:
+
+Save the pre-update parameters Θbefore  
+
+> i,t
+
+← Θi,t  
+
+> 17:
+
+for each training epoch do  
+
+> 18:
+
+for each minibatch M ⊂ B i,t do  
+
+> 19:
+
+for each example z ∈ M do  
+
+> 20:
+
+ℓz ← CE  fΘi,t (zinput ), z assistant 
+
+ 
+
+> 21:
+
+if z is a replay example then  
+
+> 22:
+
+ℓz ← ηℓ z 
+
+> 23:
+
+end if  
+
+> 24:
+
+end for  
+
+> 25:
+
+LCE ← 1
+
+> |M|
+
+P 
+
+> z∈M
+
+ℓz 
+
+> 26:
+
+L ← L CE + γ Θi,t − Θbefore  
+
+> i,t
+> 22
+> 27:
+
+Backpropagate L 
+
+> 28:
+
+Clip gradients using max_grad_norm  
+
+> 29:
+
+Update the active adapter using the optimizer  
+
+> 30:
+
+end for  
+
+> 31:
+
+end for  
+
+> 32:
+
+Save agent i’s updated LoRA adapter state  
+
+> 33:
+
+end for  
+
+> 34:
+
+end for Training examples. Each life event is converted into two training examples. The first teaches the association between the original survey question and the respondent’s observed answer:   
+
+> Question–Answer Training Example User: <event_question>
+> Assistant: <event_answer_text>
+
+The second reconstructs a first-person self-memory from the corresponding second-person event statement:   
+
+> Self-Memory Reconstruction Example User: Recall the following personal information: <sec-ond_person_event>
+> Assistant: <first_person_event>
+
+The adapter therefore learns both the mapping from survey questions to observed responses and the reconstruction of life events as first-person personal memories. 
+
+Sequential adapter updates. At each wave, LifeMem up-dates every agent’s adapter using the events newly observed at that wave together with replayed events sampled from the same agent’s history. Algorithm 1 summarizes the training procedure. Replay events are sampled exclusively from the same agent’s previously observed life events. By default, we uni-formly sample up to R = 4 historical events and assign replay examples a loss weight of η = 0 .5. Each replayed event yields the same question–answer and self-memory re-construction examples as a current event. Sampling uses a pseudorandom generator initialized with the global simula-tion seed. When fewer than R historical events are available, all available events are included. Stability regularization is enabled by default. Before up-dating an agent at wave t, we store the current adapter pa-rameters Θbefore  
+
+> i,t
+
+and add 
+
+γ Θi,t − Θbefore  
+
+> i,t
+> 22
+
+(18) to the training objective, where γ = 0 .01 . This term limits abrupt parameter changes and reduces the extent to which newly observed events overwrite previously accumu-lated parametric memory. During inference, multiple evaluation questions for the same agent are generated in batches while that agent’s LoRA adapter remains active. This avoids repeatedly switching adapters between individual questions and ensures that all responses for an agent at a given wave use the same paramet-ric state. 
+
+## Evaluation Metrics 
+
+All metrics are computed only from valid human–model response pairs. Specifically, a sample is retained only when the human response corresponds to a predefined valid option and the model output can be parsed into a valid option from the same response space. Human responses coded as missing, refusal, “do not know,” or “not applicable” are excluded. This shared filtering rule prevents differences in missing-response behavior from affecting comparisons between methods. Let C denote the set of eligible wave–question cells. For a cell (t, q ) ∈ C , let Ytq be its set of valid response labels, and let ntq h (y) and ntq m(y) denote the numbers of valid human and model responses assigned to label y, respectively. 
+
+KL Divergence 
+
+For each wave–question cell, we construct empirical human and model response distributions. To avoid zero probabilities, we add ϵ = 10 −9 to the count of every valid label: 
+
+P tq h (y) = ntq h (y) + ϵ
+
+P 
+
+> y′∈Y tq
+
+ntq h (y′) + |Y tq |ϵ , (19) and 
+
+P tq m (y) = ntq m(y) + ϵ
+
+P 
+
+> y′∈Y tq
+
+ntq m(y′) + |Y tq |ϵ . (20) Dataset Grouping variables 
+
+Add Health BIO_SEX , H1GI1Y , H1GI9 , H1RE1 
+
+UKHLS Sex , Birthy , Marstat , Employ ,
+
+Oprlg1 , Qfhigh , Jbstat 
+
+Table 8: Demographic variables used to define groups for the within-group pairwise distance metric. UKHLS denotes Understanding Society. We then compute the KL divergence from the human dis-tribution to the model distribution: 
+
+KL tq = KL  P tq h ∥ P tq m
+
+ = X
+
+> y∈Y tq
+
+P tq h (y) log P tq h (y)
+
+P tq m (y) .
+
+(21) The reported KL divergence is the unweighted mean across all eligible wave–question cells: 
+
+KL = 1
+
+|C| 
+
+X
+
+> (t,q )∈C
+
+KL tq . (22) Lower values indicate closer alignment between the model and human response distributions. 
+
+Normalized Entropy Gap 
+
+For a response distribution P over the valid label set Ytq ,normalized entropy is defined as 
+
+H(P ) = − 1log |Y tq |
+
+X
+
+> y∈Y tq
+
+P (y) log P (y). (23) The normalization bounds entropy between zero and one for questions with at least two valid response options. We compute the human and model entropies separately: 
+
+Htq h = H P tq h
+
+ , Htq m = H P tq m
+
+ . (24) The entropy gap for each wave–question cell is the absolute difference between them: 
+
+EntropyGap tq = Htq m − Htq h . (25) The reported normalized entropy gap is 
+
+NormEntropyGap = 1
+
+|C| 
+
+X
+
+> (t,q )∈C
+
+EntropyGap tq . (26) A smaller value indicates that the overall concentration or dispersion of model responses is closer to that of human responses. 
+
+Within-Group Pairwise Distance Gap 
+
+The within-group pairwise distance measures whether re-sponse diversity within demographic groups is preserved. We form groups separately using each discrete demographic variable. The grouping variables are shown in Table 8. Consider demographic variable g, group value v, wave 
+
+t, and question q. Let ntqgv h (y) be the number of human respondents in the group who select option y, and let 
+
+ntqgv h = X
+
+> y∈Y tq
+
+ntqgv h (y). (27) For groups containing at least two valid responses, the human within-group categorical pairwise distance is 
+
+Dh(t, q, g, v ) = 1 −
+
+P 
+
+> y∈Y tq
+
+ntqgv h (y)  ntqgv h (y) − 1
+
+ntqgv h
+
+ ntqgv h − 1 .
+
+(28) This quantity is the probability that two distinct respon-dents sampled from the same group provide different an-swers. The model distance is computed analogously: 
+
+Dm(t, q, g, v ) = 1 −
+
+P 
+
+> y∈Y tq
+
+ntqgv m (y) ( ntqgv m (y) − 1) 
+
+ntqgv m
+
+ ntqgv m − 1 .
+
+(29) Group cells with fewer than two valid responses are ex-cluded. Let Gtq denote the set of eligible demographic-variable–value cells for wave t and question q. We first aver-age the group-specific distances: 
+
+Dh(t, q ) = 1
+
+|G tq |
+
+X
+
+> (g,v )∈G tq
+
+Dh(t, q, g, v ), (30) 
+
+Dm(t, q ) = 1
+
+|G tq |
+
+X
+
+> (g,v )∈G tq
+
+Dm(t, q, g, v ). (31) The wave–question-level gap is then 
+
+WGGap tq = |Dm(t, q ) − Dh(t, q )| . (32) Finally, the reported within-group pairwise distance gap is 
+
+WGPairwiseDistGap = 1
+
+|C WG |
+
+X
+
+> (t,q )∈C WG
+
+WGGap tq ,
+
+(33) where CWG contains wave–question cells with at least one eligible group cell. Lower values indicate closer alignment between model and human within-group response diversity. 
+
+Transition-Distribution JS Divergence 
+
+Transition-distribution JS divergence evaluates whether agents reproduce longitudinal patterns of response change rather than only the marginal response distribution at an in-dividual wave. It is computed using the common longitudinal evaluation set described in Appendix . For a common question q, respondent i, and two adjacent waves t and t + 1 , the human response transition is 
+
+yqi,t → yqi,t +1 , (34) while the corresponding model transition is 
+
+ˆyqi,t → ˆyqi,t +1 . (35) Category Method Add Health Understanding Society 
+
+KL Div. ↓ WG Gap ↓ Ent. Gap ↓ KL Div. ↓ WG Gap ↓ Ent. Gap ↓
+
+Llama-3.1-8B-Instruct 
+
+Static Conditioning Direct 14 .678 ±0.192 0.551 ±0.009 0.698 ±0.009 15 .317 ±0.144 0.552 ±0.004 0.698 ±0.008 
+
+Profile 9.147 ±0.450 0.389 ±0.006 0.512 ±0.004 7.234 ±0.072 0.376 ±0.006 0.486 ±0.011 
+
+Diversity-Oriented Prompting 
+
+Multilingual 10 .459 ±0.109 0.368 ±0.007 0.497 ±0.006 11 .653 ±0.074 0.341 ±0.004 0.472 ±0.004 
+
+Anti-Stereotype 10 .317 ±0.470 0.425 ±0.010 0.556 ±0.011 8.372 ±0.197 0.401 ±0.006 0.515 ±0.004 
+
+Non-Parametric Memory 
+
+SimVBG 7.540 ±0.639 0.343 ±0.004 0.452 ±0.015 5.950 ±0.315 0.345 ±0.008 0.454 ±0.017 
+
+Full History 6.462 ±0.400 0.316 ±0.007 0.407 ±0.009 4.658 ±0.342 0.311 ±0.008 0.388 ±0.011 
+
+Event RAG 6.086 ±0.307 0.291 ±0.008 0.388 ±0.011 5.068 ±0.209 0.308 ±0.011 0.393 ±0.008 
+
+Control Baseline Random Event 7.399 ±0.496 0.347 ±0.005 0.455 ±0.002 5.443 ±0.125 0.341 ±0.003 0.446 ±0.007 
+
+Proposed Method LifeMem 4.351 ±0.354 0.240 ±0.008 0.325 ±0.008 3.320 ±0.202 0.280 ±0.008 0.371 ±0.009 
+
+Ministral-3-8B-Instruct-2512 
+
+Static Conditioning Direct 15 .533 ±0.248 0.560 ±0.009 0.710 ±0.008 15 .408 ±0.083 0.561 ±0.004 0.713 ±0.006 
+
+Profile 8.558 ±0.229 0.395 ±0.015 0.511 ±0.014 6.065 ±0.674 0.346 ±0.015 0.437 ±0.022 
+
+Diversity-Oriented Prompting 
+
+Multilingual 12 .705 ±0.200 0.350 ±0.011 0.502 ±0.011 13 .114 ±0.070 0.393 ±0.002 0.532 ±0.003 
+
+Anti-Stereotype 9.842 ±0.355 0.425 ±0.009 0.542 ±0.011 8.243 ±0.501 0.381 ±0.012 0.490 ±0.014 
+
+Non-Parametric Memory 
+
+SimVBG 6.526 ±0.406 0.325 ±0.020 0.437 ±0.018 4.744 ±0.272 0.303 ±0.021 0.394 ±0.020 
+
+Full History 5.271 ±0.550 0.303 ±0.013 0.391 ±0.009 3.462 ±0.623 0.259 ±0.041 0.321 ±0.033 
+
+Event RAG 5.198 ±0.214 0.272 ±0.011 0.373 ±0.015 4.128 ±0.237 0.273 ±0.014 0.334 ±0.008 
+
+Control Baseline Random Event 5.887 ±0.357 0.348 ±0.009 0.452 ±0.011 4.467 ±0.226 0.307 ±0.008 0.393 ±0.010 
+
+Proposed Method LifeMem 2.164 ±0.243 0.195 ±0.005 0.272 ±0.010 1.850 ±0.144 0.207 ±0.020 0.251 ±0.014 
+
+Qwen3.5-9B 
+
+Static Conditioning Direct 13 .960 ±0.140 0.543 ±0.006 0.687 ±0.007 16 .041 ±0.044 0.551 ±0.004 0.703 ±0.005 
+
+Profile 7.690 ±0.289 0.382 ±0.020 0.492 ±0.018 5.431 ±0.159 0.313 ±0.029 0.394 ±0.034 
+
+Diversity-Oriented Prompting 
+
+Multilingual 7.550 ±0.192 0.218 ±0.005 0.333 ±0.006 11 .029 ±0.034 0.341 ±0.003 0.469 ±0.003 
+
+Anti-Stereotype 7.374 ±0.418 0.355 ±0.021 0.469 ±0.012 6.323 ±0.348 0.312 ±0.026 0.400 ±0.024 
+
+Non-Parametric Memory 
+
+SimVBG 5.518 ±0.188 0.312 ±0.017 0.412 ±0.018 4.839 ±0.306 0.304 ±0.013 0.384 ±0.011 
+
+Full History 4.486 ±0.091 0.254 ±0.005 0.341 ±0.002 3.488 ±0.251 0.273 ±0.024 0.329 ±0.014 
+
+Event RAG 4.323 ±0.141 0.263 ±0.010 0.348 ±0.011 3.659 ±0.200 0.248 ±0.020 0.296 ±0.010 
+
+Control Baseline Random Event 5.937 ±0.154 0.351 ±0.013 0.452 ±0.011 3.938 ±0.133 0.287 ±0.014 0.356 ±0.013 
+
+Proposed Method LifeMem 4.015 ±0.259 0.266 ±0.009 0.354 ±0.010 2.622 ±0.140 0.228 ±0.021 0.276 ±0.016 
+
+Table 9: Robustness across respondent samples on Add Health and Understanding Society. Results report means across three independently sampled respondent sets generated with seeds 42, 43, and 44, with the corresponding ± standard deviations shown as subscripts. Each sample contains 100 respondents per dataset. KL Div., WG Gap, and Ent. Gap denote KL divergence, within-group pairwise distance gap, and normalized entropy gap. Lower values are better for all metrics. Bold marks the best mean result for each model and metric; LifeMem is shaded light gray. We pool valid transitions across respondents and adjacent-wave pairs to construct empirical distributions over ordered response pairs: 
+
+P qh (a, b ) = Pr  yqt = a, y qt+1 = b , (36) 
+
+P qm(a, b ) = Pr  ˆyqt = a, ˆyqt+1 = b , (37) where (a, b ) ∈ Y q × Y q represents an ordered transition such as 1 → 1, 1 → 2, or 2 → 1. A transition is included only when both adjacent human responses are valid and both cor-responding model responses can be parsed into valid options. For each common question, we define the midpoint distri-bution 
+
+M q = 12 (P qh + P qm) , (38) and compute 
+
+JS q 
+
+> trans
+
+= 12 KL ( P qh ∥ M q ) + 12 KL ( P qm ∥ M q ) . (39) The reported transition-distribution JS divergence is the mean across eligible common questions: 
+
+TransitionJS = 1
+
+|Q common |
+
+X
+
+> q∈Q common
+
+JS q 
+
+> trans
+
+. (40) Lower values indicate that the model more closely repro-duces the human population-level distribution of response persistence and change across adjacent waves. 
+
+## Additional Results 
+
+Robustness Across Respondent Samples 
+
+To evaluate robustness to respondent sampling, we repeat the main experiments using three independently sampled re-spondent sets generated with seeds 42, 43, and 44. Each run contains 100 respondents per dataset, while all other experi-mental settings remain unchanged. Table 9 reports the main-method comparison, while Table 10 reports the LifeMem Method Add Health Understanding Society 
+
+KL Div. ↓ WG Gap ↓ Ent. Gap ↓ KL Div. ↓ WG Gap ↓ Ent. Gap ↓
+
+Llama-3.1-8B-Instruct 
+
+LifeMem (Full) 4.351 ±0.354 0.240 ±0.008 0.325 ±0.008 3.320 ±0.202 0.280 ±0.008 0.371 ±0.009 
+
+LifeMem w/o Param. Mem. 5.655 ±0.302 0.266 ±0.011 0.354 ±0.012 4.744 ±0.318 0.308 ±0.016 0.402 ±0.014 
+
+LifeMem w/o Struct. Mem. 6.161 ±0.197 0.310 ±0.003 0.413 ±0.005 4.313 ±0.413 0.317 ±0.018 0.418 ±0.013 
+
+Ministral-3-8B-Instruct-2512 
+
+LifeMem (Full) 2.164 ±0.243 0.195 ±0.005 0.272 ±0.010 1.850 ±0.144 0.207 ±0.020 0.251 ±0.014 
+
+LifeMem w/o Param. Mem. 4.478 ±0.210 0.246 ±0.006 0.338 ±0.006 3.680 ±0.206 0.267 ±0.012 0.329 ±0.010 
+
+LifeMem w/o Struct. Mem. 2.981 ±0.428 0.242 ±0.028 0.327 ±0.040 2.268 ±0.152 0.236 ±0.011 0.300 ±0.012 
+
+Qwen3.5-9B 
+
+LifeMem (Full) 4.015 ±0.259 0.266 ±0.009 0.354 ±0.010 2.622 ±0.140 0.228 ±0.021 0.276 ±0.016 
+
+LifeMem w/o Param. Mem. 4.424 ±0.040 0.267 ±0.010 0.356 ±0.009 3.619 ±0.247 0.253 ±0.019 0.304 ±0.014 
+
+LifeMem w/o Struct. Mem. 6.057 ±0.435 0.348 ±0.018 0.459 ±0.017 3.521 ±0.270 0.274 ±0.013 0.342 ±0.015 
+
+Table 10: Robustness of the LifeMem ablations across respondent samples. Results report means across three independently sampled respondent sets generated with seeds 42, 43, and 44, with the corresponding ± standard deviations shown as subscripts. KL Div., WG Gap, and Ent. Gap denote KL divergence, within-group pairwise distance gap, and normalized entropy gap. All metrics are lower-is-better. Bold marks the best mean result for each model and metric; LifeMem (Full) is shaded light gray. ablation results. Both tables present the mean and standard deviation across the three respondent samples. Table 9 shows that LifeMem remains the strongest method across respondent samples, achieving the best mean result in 16 of the 18 model–dataset–metric settings. The generally small standard deviations indicate that the main conclusions are not driven by a particular respondent sample. Table 10 further shows that the full LifeMem model con-sistently outperforms both ablations. This result supports the complementary contributions of structured event memory and persistent parametric memory across different respon-dent samples. 
+
+Valid Response Rates 
+
+Table 11 shows that all LLM-based methods achieve high valid response rates across models and datasets, generally exceeding those in the human survey data. The lower human rates reflect refusals, nonresponse, and other missing-value cases that naturally occur in real-world surveys. The consis-tently high rates across methods also indicate that the exper-imental framework reliably produces responses that can be mapped to the predefined answer options. 
+
+## Mechanism and Representation Analyses 
+
+LoRA Visualization Procedure 
+
+To visualize the evolution of agent-specific parametric mem-ory, we extract the LoRA parameters of every agent after each survey wave. For agent i at wave t, all LoRA parameter tensors are flattened and concatenated into a single vector: 
+
+θi,t = concat m∈M vec 
+
+
+
+Θ(m)
+
+> i,t
+
+
+
+, (41) where M denotes the consistently ordered set of LoRA ten-sors, including the corresponding lora_A and lora_B 
+
+parameters across adapted modules. Using a fixed ordering ensures that each dimension has the same parameter identity across agents and waves. We stack the vectors from all N agents and T waves into a single matrix: 
+
+X =
+
+
+
+θ⊤
+
+> 1,1
+
+θ⊤
+
+> 1,2
+
+...
+
+θ⊤
+
+> N,T
+
+ . (42) Each parameter dimension is then standardized globally across all agent–wave states: 
+
+X′ 
+
+> j,d
+
+= Xj,d − μd
+
+σd + ϵ , (43) where μd and σd are the mean and standard deviation of dimension d over all rows of X, and ϵ is a small constant for numerical stability. This shared normalization prevents dimensions with larger numerical scales from dominating the projection. We fit a single two-dimensional PCA projection to the globally standardized matrix: 
+
+Z = PCA 2(X′). (44) The resulting point zi,t ∈ R2 represents the LoRA state of agent i after wave t. For each agent, states are connected in chronological order, 
+
+zi, 1 → zi, 2 → · · · → zi,T , (45) forming a longitudinal parameter trajectory. Point colors in-dicate survey waves, while connecting lines identify states belonging to the same agent. Method Add Health Understanding Society 
+
+Llama-3.1-8B Ministral-3-8B Qwen3.5-9B Llama-3.1-8B Ministral-3-8B Qwen3.5-9B 
+
+Human 87.37% 64.31% 
+
+Direct 97.51% 96.09% 97.51% 91.33% 90.87% 92.27% Profile 97.45% 96.84% 97.51% 91.58% 91.14% 93.04% Multilingual 92.87% 96.14% 97.51% 89.07% 91.01% 92.00% Anti-Stereotype 97.45% 97.17% 97.51% 91.54% 90.97% 93.29% SimVBG 97.40% 97.30% 97.49% 91.60% 91.71% 93.02% Full History 96.84% 97.16% 97.51% 91.73% 91.35% 93.34% Event RAG 97.24% 96.99% 97.45% 91.63% 91.04% 93.15% Random Event 97.33% 97.18% 97.51% 91.72% 91.05% 93.11% LifeMem 97.28% 96.41% 97.35% 92.28% 91.59% 93.34% Table 11: Valid response rates across different methods and backbone models on Add Health and Understanding Society. A response is considered valid when it can be mapped to one of the predefined answer options. Higher values indicate fewer missing or unparsable responses. 
+
+αret KL Div. ↓ WG Gap ↓ Ent. Gap ↓
+
+0.50 4.394 0.228 0.351 0.70 4.396 0.222 0.346 0.80 4.260 0.2201 0.342 0.90 4.063 0.231 0.321 
+
+0.95 4.487 0.2202 0.344 1.00 4.414 0.224 0.349 Table 12: Effect of the temporal decay coefficient αret in LifeMem on Add Health with Llama-3.1-8B-Instruct. Lower values are better for all metrics. Bold marks the best result for each metric, and the setting used in the main experiments is shaded light gray. 
+
+Additional LoRA Visualizations 
+
+Figures 8–12 extend the Evolution of Agent-Specific LoRA States analysis in the main paper, which presents only the Understanding Society results with Llama-3.1-8B-Instruct. Here, we provide the corresponding visualizations for all remaining model–dataset combinations: the three backbone models on Add Health and Ministral-3-8B-Instruct-2512 and Qwen3.5-9B on Understanding Society. Each point repre-sents an agent’s LoRA state after a survey wave, while con-nected points trace the same agent over time. Together, these figures show whether the longitudinal evolution of agent-specific parametric states observed in the main-paper exam-ple also appears across other backbone models and datasets. 
+
+LoRA States across Life-Event Coverage 
+
+Figure 7 compares the LoRA trajectories obtained when each wave is allowed to use at most 5, 20, 40, or 90 life events. With only a small number of life events, the adapter trajec-tories remain comparatively concentrated. As event availabil-ity increases, later-wave states show clearer agent-specific differentiation. 
+
+η KL Div. ↓ WG Gap ↓ Ent. Gap ↓
+
+0.00 4.381 0.215 0.345 0.25 4.353 0.218 0.342 0.50 4.064 0.231 0.321 
+
+0.75 4.370 0.219 0.341 1.00 4.329 0.218 0.343 Table 13: Effect of the replay loss weight η in LifeMem on Add Health with Llama-3.1-8B-Instruct. Lower values are better for all metrics. Bold marks the best result for each metric, and the setting used in the main experiments is shaded light gray. 
+
+## Hyperparameter and Design Analyses 
+
+Temporal Decay 
+
+We examine the temporal decay coefficient αret in LifeMem on Add Health with Llama-3.1-8B-Instruct. We vary αret 
+
+over {0.5, 0.7, 0.8, 0.9, 0.95 , 1.0} while keeping all other set-tings fixed. A larger value assigns relatively more weight to earlier life events, whereas a smaller value emphasizes more recent events. Table 12 suggests that an intermediate temporal decay coefficient provides the most favorable overall performance among the evaluated settings. In particular, αret = 0.9
+
+achieves the lowest KL divergence and entropy gap. Smaller values may discount earlier events too strongly, whereas val-ues closer to 1 preserve older events with little decay. These results suggest that balancing recent and earlier experiences is useful for maintaining both distributional and diversity alignment. 
+
+Replay 
+
+We examine the replay loss weight η in LifeMem on Add Health with Llama-3.1-8B-Instruct. We vary η over 
+
+{0, 0.25 , 0.5, 0.75 , 1.0} while keeping all other settings fixed. A larger η places greater emphasis on replayed his-Method Retriever Add Health Understanding Society                                                 
+
+> KL Div. ↓WG Gap ↓Ent. Gap ↓KL Div. ↓WG Gap ↓Ent. Gap ↓
+> Event RAG BM25 5.357 0.295 0.389 4.237 0.290 0.356 all-MiniLM-L6-v2 4.650 0.252 0.346 3.845 0.281 0.339 E5-large-v2 5.537 0.294 0.399 4.466 0.299 0.355 BGE-M3 5.437 0.285 0.390 4.334 0.289 0.341 BGE-M3 + BGE-Reranker-v2-M3 5.035 0.280 0.375 3.597 0.277 0.322 LifeMem all-MiniLM-L6-v2 2.296 0.193 0.278 1.966 0.228 0.266
+
+Table 14: Effect of retriever choice on Event RAG and LifeMem with Ministral-3-8B-Instruct-2512. Lower values are better for all metrics. Bold marks the best overall result, and LifeMem is shaded light gray. 
+
+r KL Div. ↓ WG Gap ↓ Ent. Gap ↓
+
+4 4.876 0.227 0.356 8 4.063 0.231 0.321 16 4.041 0.196 0.326 32 3.289 0.165 0.298 
+
+Table 15: Effect of the LoRA rank r in LifeMem on Add Health with Llama-3.1-8B-Instruct. Lower values are better for all metrics. Bold marks the best result for each metric, and the setting used in the main experiments is shaded light gray. torical events during optimization, whereas a smaller η pri-oritizes examples from the current wave. The setting η = 0 
+
+disables the contribution of replay examples to the training loss. Table 13 suggests that an intermediate replay weight pro-vides a favorable trade-off across the evaluated metrics. In particular, η = 0 .5 yields the lowest KL divergence and en-tropy gap, although smaller replay weights achieve a lower WG Gap. This pattern indicates that replay can support the retention of earlier experiences, but assigning it excessive or insufficient weight does not consistently improve all evalua-tion dimensions. 
+
+LoRA Rank 
+
+We examine the LoRA rank r in LifeMem on Add Health with Llama-3.1-8B-Instruct. We vary r over {4, 8, 16 , 32 }
+
+while keeping all other settings fixed. A larger rank increases the capacity of the agent-specific adapter, but also raises its training and storage cost. Table 15 shows that performance generally improves as the LoRA rank increases, with r = 32 achieving the lowest val-ues across all three metrics. The improvement is especially clear for KL divergence and WG Gap, suggesting that addi-tional adapter capacity may better support the representation of heterogeneous longitudinal information. We nevertheless use r = 8 in the main experiments because it provides a more practical balance between predictive performance, computa-tional cost, and per-agent storage, which becomes important when simulating many agents across multiple waves. 5 events 20 events       
+
+> 40 events 90 events
+> Wave 1 Wave 2 Wave 3 Wave 4 Wave 5 Wave 6
+
+Figure 7: PCA visualization of agent-specific LoRA states learned by LifeMem for 100 agents on Add Health with 
+
+Llama-3.1-8B-Instruct under maximum life-event counts of 5, 20, 40, and 90. Points denote LifeMem agent states after each survey wave, and connected trajectories trace the same agent over time. With fewer events, differ-ent agents remain relatively concentrated; richer histories produce clearer agent-specific differentiation in later waves. 
+
+Retriever Choice 
+
+We compare several retrieval backends for Event RAG on Add Health and Understanding Society with Ministral-3-8B-Instruct-2512. The evaluated retrievers include BM25, 
+
+all-MiniLM-L6-v2 , E5-large-v2 , BGE-M3 , and 
+
+BGE-M3 followed by BGE-Reranker-v2-M3 . We addi-tionally report LifeMem, which uses all-MiniLM-L6-v2 
+
+for structured event retrieval while maintaining an agent-specific parametric memory. Table 14 shows that retriever choice affects Event RAG, but no single retriever performs best on both datasets. 
+
+all-MiniLM-L6-v2 performs best among the Event RAG variants on Add Health, while BGE-M3 with rerank-ing performs best on Understanding Society. LifeMem achieves lower values across all metrics while using the same all-MiniLM-L6-v2 retriever, suggesting that its gains are not solely due to retriever choice. −0.075 −0.050 −0.025 0.000 0.025 0.050 0.075 
+
+PCA 1 
+
+> −0.06 −0.04 −0.02 0.00 0.02 0.04 0.06
+> PCA 2
+> 123456
+> Wave
+
+Figure 8: PCA visualization of agent-specific LoRA states learned by LifeMem for 100 agents on Add Health with Llama-3.1-8B-Instruct. Points represent agent states after each survey wave, and connected trajectories trace the same agent over time. Colors indicate survey waves. −0.04 −0.02 0.00 0.02 0.04 
+
+PCA 1 
+
+> −0.04 −0.02 0.00 0.02 0.04 0.06
+> PCA 2
+> 123456
+> Wave
+
+Figure 9: PCA visualization of agent-specific LoRA states learned by LifeMem for 100 agents on Add Health with Ministral-3-8B-Instruct-2512. Points represent agent states after each survey wave, and connected trajectories trace the same agent over time. Colors indicate survey waves. −0.10 −0.05 0.00 0.05 0.10 
+
+PCA 1 
+
+> −0.100 −0.075 −0.050 −0.025 0.000 0.025 0.050 0.075 0.100
+> PCA 2
+> 123456
+> Wave
+
+Figure 10: PCA visualization of agent-specific LoRA states learned by LifeMem for 100 agents on Add Health with Qwen3.5-9B. Points represent agent states after each survey wave, and connected trajectories trace the same agent over time. Colors indicate survey waves. −0.075 −0.050 −0.025 0.000 0.025 0.050 
+
+PCA 1 
+
+> −0.06 −0.04 −0.02 0.00 0.02 0.04
+> PCA 2
+> 1357911 13 15
+> Wave
+
+Figure 11: PCA visualization of agent-specific LoRA states learned by LifeMem for 100 agents on Understanding Society with Ministral-3-8B-Instruct-2512. Points represent agent states after each survey wave, and connected trajectories trace the same agent over time. Colors indicate survey waves. −0.1 0.0 0.1 
+
+PCA 1 
+
+> −0.05 0.00 0.05 0.10 0.15
+> PCA 2
+> 1357911 13 15
+> Wave
+
+Figure 12: PCA visualization of agent-specific LoRA states learned by LifeMem for 100 agents on Understanding Society with Qwen3.5-9B. Points represent agent states after each survey wave, and connected trajectories trace the same agent over time. Colors indicate survey waves.

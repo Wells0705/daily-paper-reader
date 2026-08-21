@@ -1,0 +1,214 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-21T19:37:34.747660+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2608.19652v1",
+      "source": "arxiv",
+      "title": "Can Agent Memory Systems Track Evolving State?",
+      "abstract": "As LLM-based agents are deployed for longer and higher-stakes tasks, their memory systems continue to have crucial gaps. While existing memory benchmarks focus largely on recall-shaped tasks, we argue an effective memory system must track the evolving state of the world; as facts, constraints, and decisions are revised over a long interaction, answers must reflect the current state and not a superseded one. We define this capability as state tracking and instantiate it in StateMemBench, a benchmark of 234 multi-session scenarios spanning two conversation-length regimes. Its closed-pool grading scores whether an answer reflects the current state, the superseded state, or fails otherwise, separating state-tracking failures from other errors by construction. Our analysis shows that this task is challenging for existing memory systems, retrieval-augmented baselines, and long-context baselines. We then present StateMem, a state-first memory method that explicitly tracks supersession and relational dependencies, and show it improves current-state accuracy over the strongest same-backbone baseline by 1.8x (0.205 -> 0.363) on DeepSeek-V4-Flash and over the strongest memory system by 1.6x (0.149 -> 0.233) on Qwen-3.5-9B, while remaining competitive with the long-context baselines. Finally, we show the same state approach can be applied as a lightweight single-call wrapper over existing memory systems, lifting current-state accuracy by +32 to +67 points on StateMemBench across six memory and retrieval backends. A length- and cost-matched control attributes +15 to +32 of those points to state structure rather than added context.",
+      "authors": [
+        "Xinyi Fan",
+        "Miri Liu",
+        "Ruozhen Yang",
+        "Siru Ouyang",
+        "Jiawei Han"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-20T05:41:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.19652v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Benchmark and analysis for memory systems tracking evolving world state in LLM agents",
+      "llm_evidence_cn": "为LLM智能体记忆系统在状态追踪能力上提供基准与分析",
+      "llm_evidence": "为LLM智能体记忆系统在状态追踪能力上提供基准与分析",
+      "canonical_evidence": "为LLM智能体记忆系统在状态追踪能力上提供基准与分析",
+      "llm_tldr_en": "Introduces StateMemBench, a 234-scenario benchmark that evaluates whether agent memory systems reflect the current world state rather than superseded facts, separating state-tracking failures from other errors.",
+      "llm_tldr_cn": "随着LLM智能体被部署到长期高价值任务，记忆系统需要追踪不断变化的世界状态，而非只做回忆。论文定义状态追踪能力，并构造包含234个多会话场景的StateMemBench基准，覆盖两种对话长度区间。其闭池评分能区分回答反映当前状态、已取代状态或失败，从而分离状态追踪错误与其他错误。分析显示现有记忆系统在状态追踪上仍存在明显短板。",
+      "llm_tldr": "随着LLM智能体被部署到长期高价值任务，记忆系统需要追踪不断变化的世界状态，而非只做回忆。论文定义状态追踪能力，并构造包含234个多会话场景的StateMemBench基准，覆盖两种对话长度区间。其闭池评分能区分回答反映当前状态、已取代状态或失败，从而分离状态追踪错误与其他错误。分析显示现有记忆系统在状态追踪上仍存在明显短板。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.19993v1",
+      "source": "arxiv",
+      "title": "Optimal Skill Selection for LLM Agents with Provable Bicriteria Guarantees",
+      "abstract": "Loading reusable skill documents into a bounded context window is now the primary way large language model (LLM) agents acquire task-specific capabilities, which makes skill selection a first-order determinant of task performance and token cost. Yet current agents score skills independently by semantic relevance and assemble the set by top-$k$ or greedy packing, with no quality guarantee or cost awareness on the selected set. As a result, redundant or poorly chosen skills waste scarce context tokens and can even degrade performance. We give the first model of how the selected skill set shapes execution outcomes and cast skill selection as an optimization problem: choose a skill set under a hard token budget to maximize a monotone submodular benefit minus context penalty. For this problem, we develop Best Prefix Selection (BPS), a polynomial-time algorithm, and prove, to our knowledge, the first performance guarantee for skill selection: a bicriteria $(1-1/e,1)$ approximation whose benefit coefficient is optimal in polynomial time. On a contamination-controlled BigCodeBench variant, BPS outperforms all the baselines, reaching $0.73$ measured task success versus $0.20$--$0.52$ for released skill routers, text retrievers, and the executor's own selection, on $28\\%$ fewer tokens than the strongest released router.",
+      "authors": [
+        "Yu Chen",
+        "Ruishuo Chen",
+        "Xun Wang",
+        "Zhuoran Li",
+        "Longbo Huang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-20T13:08:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.19993v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Optimizes selection of skill documents under a bounded context window with token budget and submodular benefit",
+      "llm_evidence_cn": "在有限上下文窗口和token预算下优化技能文档选择，以最大化次模效益",
+      "llm_evidence": "在有限上下文窗口和token预算下优化技能文档选择，以最大化次模效益",
+      "canonical_evidence": "在有限上下文窗口和token预算下优化技能文档选择，以最大化次模效益",
+      "llm_tldr_en": "First model and optimization for skill set selection under hard token budget, maximizing a monotone submodular benefit with provable bicriteria guarantees, improving task performance and token cost.",
+      "llm_tldr_cn": "LLM智能体通常通过将有界上下文窗口中的技能文档加载来获取能力，因此技能选择直接影响任务性能和token成本。现有方法按语义相关独立排序再取top-k或贪心选择，缺乏质量保证和成本意识。该论文首次对技能集合如何影响执行结果建模，将选择问题形式化为在硬token预算下最大化单调次模效益的优化问题，并提出具有可证明双标准保证的算法。",
+      "llm_tldr": "LLM智能体通常通过将有界上下文窗口中的技能文档加载来获取能力，因此技能选择直接影响任务性能和token成本。现有方法按语义相关独立排序再取top-k或贪心选择，缺乏质量保证和成本意识。该论文首次对技能集合如何影响执行结果建模，将选择问题形式化为在硬token预算下最大化单调次模效益的优化问题，并提出具有可证明双标准保证的算法。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.19621v1",
+      "source": "arxiv",
+      "title": "Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories",
+      "abstract": "Large language models (LLMs) offer a scalable approach to social simulation, but their credibility depends on how agents are constructed. Existing methods can partially reproduce population-level patterns, yet often fail to capture human-like diversity. Our analysis shows that static-profile agents exhibit stronger demographic separation and within-group compression than humans, a pattern consistent with identity essentialism: demographic labels can encourage models to treat group-average tendencies as individual traits, homogenizing responses within groups. We argue that this limitation arises from two related factors: sparse, static agent representations and the limited ability of prompt-only memory to persistently integrate experience. Inspired by complementary memory systems, we propose LifeMem, a longitudinal memory framework that combines structured life-event retrieval with agent-specific parametric memory for experience integration. Experiments on Add Health and Understanding Society with three LLMs show that LifeMem improves alignment with human data in terms of response distributions, overall and within-group diversity, and patterns of within-person response change across life stages. These findings highlight the value of longitudinal life-event memory for constructing more faithful and dynamically evolving social agents.",
+      "authors": [
+        "Hexi Wang",
+        "Yujia Zhou",
+        "Bangde Du",
+        "Weihang Su",
+        "Xinyuan Cao",
+        "Qingyi Pan",
+        "Qingyao Ai",
+        "Yueyue Wu",
+        "Min Zhang",
+        "Yiqun Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-20T04:13:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.19621v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "discusses static profiles and prompt-only memory limits; proposes longitudinal trajectories for agent memory/context",
+      "llm_evidence_cn": "探讨静态画像与提示记忆的局限，用纵向轨迹增强智能体的记忆与上下文",
+      "llm_evidence": "探讨静态画像与提示记忆的局限，用纵向轨迹增强智能体的记忆与上下文",
+      "canonical_evidence": "探讨静态画像与提示记忆的局限，用纵向轨迹增强智能体的记忆与上下文",
+      "llm_tldr_en": "Addresses identity essentialism in LLM agents by replacing static profiles with longitudinal life trajectories, showing richer memory integration reduces demographic over-compression and yields more human-like diversity.",
+      "llm_tldr_cn": "论文关注LLM智能体社会模拟中的身份本质主义问题，指出静态画像式智能体因缺乏动态经验记忆而导致人口统计上的过度分离与组内同质化。作者提出以纵向生活轨迹来组织智能体的记忆与上下文，使个体经验能够持续累积并影响行为。实验分析表明该方法能够缓解身份标签带来的同质化倾向，让智能体输出更接近人类多样性。该工作为智能体的上下文与记忆设计提供了新思路。",
+      "llm_tldr": "论文关注LLM智能体社会模拟中的身份本质主义问题，指出静态画像式智能体因缺乏动态经验记忆而导致人口统计上的过度分离与组内同质化。作者提出以纵向生活轨迹来组织智能体的记忆与上下文，使个体经验能够持续累积并影响行为。实验分析表明该方法能够缓解身份标签带来的同质化倾向，让智能体输出更接近人类多样性。该工作为智能体的上下文与记忆设计提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.15165v1",
+      "source": "arxiv",
+      "title": "SkillCommit: Evolving Agent Skills through Behaviorally Validated Scope Expansion",
+      "abstract": "Large language model (LLM) agents can continually improve without parameter updates by converting historical experience into reusable procedural knowledge. However, existing methods often consolidate experience based on semantic similarity or LLM judgments, which may merge superficially related but behaviorally incompatible strategies and thereby degrade performance. To address the issue, we propose SkillCommit, an online skill evolution framework that continuously transforms experience into a hierarchical library of reusable skills. Each new experience is initially preserved as an instance-specific patch, retaining the behavior validated in its local context. As related skills accumulate, SkillCommit abstracts those sharing a common behavioral mechanism into higher-level skills. Specifically, for each incoming skill, embedding-based retrieval first identifies candidate related skills. Cross-instance replay and an LLM-based mechanism check determine whether these skills transfer across cases and share a common underlying mechanism. Candidates that pass both checks are abstracted into a higher-level skill and committed only if it preserves the validated behavior of all constituent skills. Experiments on RuleArena, OpenExempt and KOR-Bench demonstrate that SkillCommit consistently improves agent performance across diverse domains. Moreover, the learned skills transfer across model scales and families, enabling cross-model experience transfer.",
+      "authors": [
+        "Yu He",
+        "Weikai Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T11:03:07+00:00",
+      "link": "https://arxiv.org/pdf/2608.15165v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "converts historical agent experience into a hierarchical library of reusable skills based on behavioral validation",
+      "llm_evidence_cn": "基于行为验证将历史经验转化为可复用技能的层级库",
+      "llm_evidence": "基于行为验证将历史经验转化为可复用技能的层级库",
+      "canonical_evidence": "基于行为验证将历史经验转化为可复用技能的层级库",
+      "llm_tldr_en": "Presents SkillCommit, an online skill evolution framework that converts agent experience into a hierarchical skill library with behaviorally validated scope expansion, improving lifelong learning without parameter updates.",
+      "llm_tldr_cn": "LLM智能体可通过将历史经验转化为可复用程序性知识进行持续改进，但现有方法常按语义相似度合并策略，可能损害行为兼容性。SkillCommit将每个新经验先保留为实例补丁，再在积累后按共同行为范围抽象成层级技能库。实验表明该方法避免了不兼容合并，有效提升持续学习性能。该工作从经验记忆与知识演化角度支持智能体的长期上下文利用。",
+      "llm_tldr": "LLM智能体可通过将历史经验转化为可复用程序性知识进行持续改进，但现有方法常按语义相似度合并策略，可能损害行为兼容性。SkillCommit将每个新经验先保留为实例补丁，再在积累后按共同行为范围抽象成层级技能库。实验表明该方法避免了不兼容合并，有效提升持续学习性能。该工作从经验记忆与知识演化角度支持智能体的长期上下文利用。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.15834v1",
+      "source": "arxiv",
+      "title": "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs",
+      "abstract": "Tool-calling LLM agents navigate unfamiliar codebases with a handful of generic primitives for listing, reading and searching files (ls, cat, grep). A knowledge graph admits the same interface: listing neighbours, reading node content and searching descriptions are the same operations on a different substrate. Building on this correspondence, we present GRA, a Graph Reasoning Agent that explores hybrid knowledge graphs, whose nodes are either textual concepts or relational tables, with seven generic tools, discovering everything domain-specific at run time. On UFK-M (Unified Factory Knowledge Model), an industrial benchmark of 258 analytical questions whose gold answers are produced by executing validated SQL programs, GRA beats a full-context agent by 5.1 pp (88.4% vs. 83.3%), while reading under a third of its input tokens. A graph-free control shows the gain comes chiefly from selective agentic access rather than graph topology, and that the effect depends on a model able to drive tools reliably. Seeing less, the agent answers better: selective navigation over a structured substrate beats exhaustive context.",
+      "authors": [
+        "Marius Dragic",
+        "Ruben Ifrah",
+        "Alexandre Rio"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.DB"
+      ],
+      "published": "2026-08-16T16:10:32+00:00",
+      "link": "https://arxiv.org/pdf/2608.15834v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Provides a method to optimize agent context by exploring knowledge graphs with generic tools instead of full-context processing",
+      "llm_evidence_cn": "提供一种用通用工具探索知识图谱以替代全上下文处理的方法，属于上下文优化技术",
+      "llm_evidence": "提供一种用通用工具探索知识图谱以替代全上下文处理的方法，属于上下文优化技术",
+      "canonical_evidence": "提供一种用通用工具探索知识图谱以替代全上下文处理的方法，属于上下文优化技术",
+      "llm_tldr_en": "Presents GRA, a graph reasoning agent that navigates hybrid knowledge graphs with generic tools, beating a full-context agent on an industrial benchmark by reducing context burden.",
+      "llm_tldr_cn": "论文针对工具型LLM智能体在陌生代码库或知识图谱中需要依赖全上下文导致信息过载的问题，提出GRA图推理智能体。GRA仅用七个通用工具在异构知识图谱上进行探索，在运行时发现所有领域特定信息，无需全量上下文。在工业基准UFK-M上，GRA相比全上下文智能体提升5.1个百分点，表明图结构探索可显著优化上下文使用。这项工作为上下文精简与图推理结合提供了有效途径。",
+      "llm_tldr": "论文针对工具型LLM智能体在陌生代码库或知识图谱中需要依赖全上下文导致信息过载的问题，提出GRA图推理智能体。GRA仅用七个通用工具在异构知识图谱上进行探索，在运行时发现所有领域特定信息，无需全量上下文。在工业基准UFK-M上，GRA相比全上下文智能体提升5.1个百分点，表明图结构探索可显著优化上下文使用。这项工作为上下文精简与图推理结合提供了有效途径。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
