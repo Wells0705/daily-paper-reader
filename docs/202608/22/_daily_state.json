@@ -1,0 +1,57 @@
+{
+  "date": "20260822",
+  "date_label": "",
+  "generated_at": "2026-08-22 19:30:00 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.19564v1",
+      "route": "202608/22/2608.19564v1-remember-verify-or-ask-cross-family-evaluation-of-memory-commitment-in-llm-agents",
+      "title": "Remember, Verify, or Ask? Cross-Family Evaluation of Memory Commitment in LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "评估LLM智能体中信息应持久化还是仅用于当前上下文的记忆承诺边界",
+      "first_seen_at": "2026-08-22 19:30:00 UTC",
+      "updated_at": "2026-08-22 19:30:00 UTC"
+    },
+    {
+      "paper_id": "2608.19662v1",
+      "route": "202608/22/2608.19662v1-recache-efficient-kv-cache-reuse-and-compression-for-tool-augmented-llm-agents",
+      "title": "ReCache: Efficient KV Cache Reuse and Compression for Tool-Augmented LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向工具增强LLM智能体，通过KV缓存复用与压缩降低推理时上下文内存开销",
+      "first_seen_at": "2026-08-22 19:30:00 UTC",
+      "updated_at": "2026-08-22 19:30:00 UTC"
+    },
+    {
+      "paper_id": "2608.15241v1",
+      "route": "202608/22/2608.15241v1-local-enabling-learning-on-device-contiguously-for-agent-llms",
+      "title": "LOCAL: Enabling Learning On-device Contiguously for Agent LLMs",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "面向设备端智能体LLM的KV缓存有效性管理，处理适配器更新导致的上下文缓存失效",
+      "first_seen_at": "2026-08-22 19:30:00 UTC",
+      "updated_at": "2026-08-22 19:30:00 UTC"
+    }
+  ]
+}

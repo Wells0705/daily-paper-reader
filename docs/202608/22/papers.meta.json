@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-22",
+  "date": "2026-08-22",
+  "generated_at": "2026-08-22T19:30:04",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/22/2608.19564v1-remember-verify-or-ask-cross-family-evaluation-of-memory-commitment-in-llm-agents",
+      "section": "deep",
+      "title_en": "Remember, Verify, or Ask? Cross-Family Evaluation of Memory Commitment in LLM Agents",
+      "authors": "Baichuan Li, Junyi Yao, Zihao Zheng",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.19564v1",
+      "score": "9.0",
+      "evidence": "评估LLM智能体中信息应持久化还是仅用于当前上下文的记忆承诺边界",
+      "tldr": "LLM智能体的持久记忆若更新不当会悄然扭曲后续行为。为此构建MCB基准，含140个主场景及70项对比集，评估动作标签与结构化工件调用选择。结果显示模型验证事实比主动询问更可靠：Qwen在澄清项上0/12询问，却验证12/18新近性项；few-shot提示将准确率从0.557提至0.771，但澄清召回仅0.333，且标签-工具一致性低。记忆评测须同时覆盖显式决策与工具调用选择。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Persistent memory can personalize an LLM agent, but an incorrect durable update can silently distort future behavior. We study the memory-clarification boundary: whether interaction-derived information should be persisted, used only in the current context, re-verified, or clarified with the user. MCB contains 140 primary scenarios, split into 70 development and 70 held-out items, plus a separate 70-item contrast set. It evaluates both action labels and structured tool-call selection. Two non-authors independently label the 70 held-out primary and 70 contrast items (97.1% agreement, Cohen's kappa = 0.962); a blind third resolves four disagreements, replacing eight author labels by non-author majority. Across Claude and Qwen, models verify changing facts more reliably than they ask users to resolve ambiguity. Bare Qwen asks on 0/12 clarification items while verifying 12/18 freshness items. Few-shot prompting raises accuracy from 0.557 to 0.771 (paired delta = +0.214, Holm-adjusted exact McNemar p_H = 0.002), yet clarification recall remains 0.333. The policy prompt reduces erroneous persistence from 0.243 to 0.100 (p_H = 0.038), although its accuracy gain is not significant. Label-tool agreement is 57% for each Claude model and 23% for Qwen; Qwen accuracy falls from 0.557 to 0.343 (p_H = 0.047). Memory evaluation must test both stated decisions and tool-call choices.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/22/2608.19662v1-recache-efficient-kv-cache-reuse-and-compression-for-tool-augmented-llm-agents",
+      "section": "deep",
+      "title_en": "ReCache: Efficient KV Cache Reuse and Compression for Tool-Augmented LLM Agents",
+      "authors": "Yichu Fang, Sitong Wei, Haozhe Hu, Xiaoyu Shen",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.19662v1",
+      "score": "8.0",
+      "evidence": "面向工具增强LLM智能体，通过KV缓存复用与压缩降低推理时上下文内存开销",
+      "tldr": "工具增强的LLM代理反复编码工具和技能模式，标准前缀缓存难以重用其KV状态。ReCache提出独立缓存资源表示，采用资源级注意力生成组合不变的KV块，并通过限制可见性、剪枝非关键字段降低开销。实验表明，其性能与密集调用相当，同时减少92.43% KV内存并加速注意力1.423倍，显著降低推理成本。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Agentic language models repeatedly encode tool and skill schemas that recur across requests in different combinations and orders, preventing standard prefix caching from reusing their key--value (KV) states. We introduce \\textbf{ReCache}, a framework for independently caching resource representations while reducing their inference-time computational and memory overhead. Resource-wise attention removes cross-resource interactions and assigns resource-local positions, producing composition-invariant KV blocks. ReCache then restricts resource visibility to contribution-selected layer--KV-head-group routes and retains only invocation-critical fields through structural and semantic pruning. We evaluate ReCache on a benchmark assembled from seven public tool- and skill-use datasets, including resource-disjoint tests. Resource-wise attention matches dense invocation performance (82.3\\% versus 82.4\\% Inv-F1) while providing a 3.655$\\times$ time-to-first-token speedup. The complete framework reduces allocated KV-tensor memory by 92.43\\% and accelerates attention by 1.423$\\times$. These results show that separating reusable schema encoding from selective resource access substantially reduces agentic inference costs with limited effectiveness loss. The code is available at https://github.com/EIT-NLP/ReCache.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/22/2608.15241v1-local-enabling-learning-on-device-contiguously-for-agent-llms",
+      "section": "quick",
+      "title_en": "LOCAL: Enabling Learning On-device Contiguously for Agent LLMs",
+      "authors": "Xinxin Liu, Jiaxin Li, Zibo Wang, Yun Ji, Zhangqi Zhu, Qing Hu, Zhibin Wang, Rong Gu, Sheng Zhong, Chen Tian",
+      "date": "2026-08-15",
+      "pdf": "https://arxiv.org/pdf/2608.15241v1",
+      "score": "6.0",
+      "evidence": "面向设备端智能体LLM的KV缓存有效性管理，处理适配器更新导致的上下文缓存失效",
+      "tldr": "设备端LLM代理需要从每次交互中持续学习，但现有推理运行时假设权重固定，强化学习系统又要求资源分离，难以在不中断服务的情况下学习。LOCAL提出首个单GPU连续学习运行时，将适配器版本、任务优先级和缓存状态共享给协作调度器、版本感知缓存管理器与多代理模型运行时，从而保证更新后的推理一致性。在24GB GPU上，该方案使前台排队等待p95降低3.1倍，p95首字延迟降低1.55倍，同时压缩缓存预算下后台学习仍能推进。这一设计首次实现了设备端代理的边推理边学习，显著提升了实时性和适应性。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "On-device LLM agents interact repeatedly with users on local hardware, producing private traces that are valuable for adaptation but should not be sent to a remote trainer. Ideally, such agents would learn contiguously---adapting from every interaction without pausing or suspending user-facing inference---yet existing inference runtimes assume stable weights and existing RL systems assume separated resources, so neither can support this continuity. We present LOCAL, the first single-GPU runtime that enables contiguous on-device learning for LLM agents. The key insight is that GPU scheduling, adapter version management, and KV-cache validity cannot be handled by independent subsystems: adapter updates invalidate cached KV tensors from older versions, and cache retention affects the memory available for training. LOCAL makes adapter version, task priority, and cache state visible to three cooperating components---a cooperative scheduler, a version-aware KV-cache manager, and a multi-agent model runtime---that share this state to keep scheduling, execution, and cache maintenance mutually consistent. On a single 24 GB GPU with 7B-class models, LOCAL lowers foreground queue-wait p95 by 3.1x over FIFO, lowers p95 time-to-first-token (TTFT) by 1.55x versus non-preemptible training, cuts post-publish first-hit prefill p99 by 25.6% and cross-agent TTFT p99 by 21.9%, and keeps background learning progressing under tight KV budgets.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
