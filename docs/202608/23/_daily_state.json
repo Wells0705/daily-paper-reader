@@ -1,0 +1,57 @@
+{
+  "date": "20260823",
+  "date_label": "",
+  "generated_at": "2026-08-23 20:21:15 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.19857v1",
+      "route": "202608/23/2608.19857v1-inadvertent-context-leakage-in-language-models",
+      "title": "Inadvertent Context Leakage in Language Models",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "关注上下文窗口中的秘密信息如何影响模型输出，涉及上下文窗口处理与信息泄漏问题。",
+      "first_seen_at": "2026-08-23 20:21:15 UTC",
+      "updated_at": "2026-08-23 20:21:15 UTC"
+    },
+    {
+      "paper_id": "2608.20274v1",
+      "route": "202608/23/2608.20274v1-break-it-down-pass-it-on-cross-task-skill-transfer-in-llm-agents",
+      "title": "Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "系统比较技能归纳粒度与格式，为跨任务技能记忆与上下文复用提供实证依据",
+      "first_seen_at": "2026-08-23 20:21:15 UTC",
+      "updated_at": "2026-08-23 20:21:15 UTC"
+    },
+    {
+      "paper_id": "2608.15949v2",
+      "route": "202608/23/2608.15949v2-ask-to-be-sure-informative-interactions-for-confident-multi-turn-llm-recommendation",
+      "title": "Ask to Be Sure: Informative Interactions for Confident Multi-Turn LLM Recommendation",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "利用推荐熵减衡量交互信息增益，并以此指导多轮对话中的上下文提问",
+      "first_seen_at": "2026-08-23 20:21:15 UTC",
+      "updated_at": "2026-08-23 20:21:15 UTC"
+    }
+  ]
+}

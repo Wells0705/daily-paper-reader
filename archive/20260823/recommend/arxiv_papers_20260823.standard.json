@@ -1,0 +1,142 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-23T20:19:41.011849+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.19857v1",
+      "source": "arxiv",
+      "title": "Inadvertent Context Leakage in Language Models",
+      "abstract": "For AI agents to be useful beyond simple chat, they must hold sensitive user context such as calendars, credentials, health records, and financial data. We study whether the mere presence of such secrets in a model's context window introduces hidden correlations into the model's benign outputs, allowing reconstruction even when the model correctly refuses direct extraction. We further study whether an adversary can actively engineer prompts that amplify this effect, using the model as a covert carrier to transmit secrets through seemingly innocuous text. In both cases, this limited leakage is exploited using a novel adaptive attack that assumes black-box access to the underlying model.   In controlled experiments across eight proprietary models, we find that 2-digit in-context secrets are reconstructed with near-perfect accuracy and 4-digit secrets at 82\\% exact match, all from outputs the model produces in response to ordinary, non-adversarial requests. We observe that more capable models leak more: stronger instruction-following amplifies sensitivity to in-context secrets, suggesting leakage is a byproduct of capability as opposed to a patchable bug. We show this leakage enables two practical attacks: (1) a trained classifier that infers semantic predicates about user memories (e.g., health conditions, financial events) from routine natural-language outputs, and (2) an RL-trained adversary that extracts full Social Security Numbers from a production-style agent.",
+      "authors": [
+        "Jaiden Fairoze",
+        "Neal Mangaokar",
+        "Kamalika Chaudhuri",
+        "Sanjam Garg",
+        "Saeed Mahloujifar"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CR"
+      ],
+      "published": "2026-08-20T10:05:29+00:00",
+      "link": "https://arxiv.org/pdf/2608.19857v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Focuses on how secrets in the context window influence model outputs, addressing context window handling and information leakage.",
+      "llm_evidence_cn": "关注上下文窗口中的秘密信息如何影响模型输出，涉及上下文窗口处理与信息泄漏问题。",
+      "llm_evidence": "关注上下文窗口中的秘密信息如何影响模型输出，涉及上下文窗口处理与信息泄漏问题。",
+      "canonical_evidence": "关注上下文窗口中的秘密信息如何影响模型输出，涉及上下文窗口处理与信息泄漏问题。",
+      "llm_tldr_en": "Shows that sensitive data in a model context window can leak through benign outputs and that adversarial prompts amplify this effect, even when models refuse direct extraction.",
+      "llm_tldr_cn": "AI智能体需要持有日历、凭证等敏感用户上下文，但即使模型拒绝直接泄露，上下文窗口中的秘密也可能通过看似正常的输出被重建。作者提出一种自适应攻击，在八种专有模型上验证了两位数上下文秘密会被无意泄漏，且对抗提示可放大该效应。研究表明上下文窗口中的信息不仅用于生成，也可能成为隐蔽信道，对上下文工程与安全防护提出新要求。",
+      "llm_tldr": "AI智能体需要持有日历、凭证等敏感用户上下文，但即使模型拒绝直接泄露，上下文窗口中的秘密也可能通过看似正常的输出被重建。作者提出一种自适应攻击，在八种专有模型上验证了两位数上下文秘密会被无意泄漏，且对抗提示可放大该效应。研究表明上下文窗口中的信息不仅用于生成，也可能成为隐蔽信道，对上下文工程与安全防护提出新要求。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.15949v2",
+      "source": "arxiv",
+      "title": "Ask to Be Sure: Informative Interactions for Confident Multi-Turn LLM Recommendation",
+      "abstract": "Recent advances in large language models (LLMs) have enabled their use as conversational recommender systems (CRS), demonstrating strong recommendation accuracy and natural dialogue. However, guiding multi-turn interactions to elicit user preferences effectively remains challenging. Existing approaches either use separate reinforcement learning agents with templated interactions or optimize for interactivity judged by another LLM, without measuring how much useful information is actually gained. We propose a new approach that quantifies the effectiveness of each interaction by the reduction in the assistant's uncertainty, measured via entropy over recommendations. We apply this entropy reduction as a reward---without relying on ground-truth recommendations, which are often unavailable in real-world scenarios---to fine-tune the LLM, enabling strategic interaction generation. Empirical results with supervised fine-tuning (SFT) and direct preference optimization (DPO) on the INSPIRED and ReDial datasets show that our method improves both recommendation quality and conversational efficiency.",
+      "authors": [
+        "Cedar Site Bai",
+        "Zhenyu Liao",
+        "Duanshun Li",
+        "Sheikh Sarwar",
+        "Huiyuan Chen",
+        "Yuan Chen",
+        "Changhe Yuan",
+        "Haiyang Zhang",
+        "Qilin Qi"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-16T22:14:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.15949v2",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses entropy reduction over recommendation distributions to measure and optimize information gain in multi-turn dialogue",
+      "llm_evidence_cn": "利用推荐熵减衡量交互信息增益，并以此指导多轮对话中的上下文提问",
+      "llm_evidence": "利用推荐熵减衡量交互信息增益，并以此指导多轮对话中的上下文提问",
+      "canonical_evidence": "利用推荐熵减衡量交互信息增益，并以此指导多轮对话中的上下文提问",
+      "llm_tldr_en": "The paper quantifies each interaction's information gain via recommendation entropy reduction and uses it as reward to guide multi-turn LLM recommendation dialogues, improving confidence with fewer turns.",
+      "llm_tldr_cn": "面向多轮对话式推荐，现有方法难以衡量每轮提问真正获取了多少有用信息。本文提出用推荐熵减量化交互信息增益，并将其作为奖励信号引导对话策略，在不依赖真实偏好标签的情况下显著提升推荐置信度与对话效率，证明了基于信息增益的对话上下文理解与提问优化的有效性。",
+      "llm_tldr": "面向多轮对话式推荐，现有方法难以衡量每轮提问真正获取了多少有用信息。本文提出用推荐熵减量化交互信息增益，并将其作为奖励信号引导对话策略，在不依赖真实偏好标签的情况下显著提升推荐置信度与对话效率，证明了基于信息增益的对话上下文理解与提问优化的有效性。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.20274v1",
+      "source": "arxiv",
+      "title": "Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents",
+      "abstract": "Large language model (LLM) agents can induce skills from completed tasks and reuse them later to grow more capable with experience. In practice, induced skills may transfer unreliably and can even harm the agent that retrieves them. When agent-induced skills transfer reliably across tasks remains an open question. We conduct a comprehensive and controlled study of how the way skills are induced shapes their transfer across tasks. Specifically, we compare task-level with subtask-level skill induction and text with code skill formats, the two axes along which existing methods differ. Task-level skills mostly reduce the agent's performance below its no-memory baseline while subtask-level skills raise it above on average, and text skills transfer better than code skills. To further understand our findings, we examine two complementary properties of the induced skills: specificity, which measures how closely a skill matches real tasks, and abstractness, which measures how evenly its relevance spreads across tasks. Neither property alone predicts task success, but their combined effect does, which we propose as a skill utility score. The score correlates consistently with task success when skills are transferred, and subtask-level and text skills score higher. Computing skill utility only needs the skills and task descriptions but not any task execution, so our score serves as a practical diagnostic of a skill memory before any new task runs.",
+      "authors": [
+        "Yiyang Feng",
+        "Biddut Sarker Bijoy",
+        "Niranjan Balasubramanian",
+        "Jiawei Zhou"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-20T17:12:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.20274v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "systematically studies skill induction granularity and format for reliable cross-task memory transfer in LLM agents",
+      "llm_evidence_cn": "系统比较技能归纳粒度与格式，为跨任务技能记忆与上下文复用提供实证依据",
+      "llm_evidence": "系统比较技能归纳粒度与格式，为跨任务技能记忆与上下文复用提供实证依据",
+      "canonical_evidence": "系统比较技能归纳粒度与格式，为跨任务技能记忆与上下文复用提供实证依据",
+      "llm_tldr_en": "The paper empirically studies cross-task skill transfer in LLM agents, finding subtask-level and text-based skill induction improve transfer reliability while task-level skills can harm performance.",
+      "llm_tldr_cn": "针对智能体从已完成任务中提取技能并迁移的不可靠问题，本文系统比较了任务级与子任务级技能归纳、文本与代码技能格式对跨任务迁移的影响。结果表明任务级技能平均伤害性能，子任务级技能平均提升性能，文本格式比代码迁移更好，为LLM智能体的技能记忆与上下文复用提供了实证依据。",
+      "llm_tldr": "针对智能体从已完成任务中提取技能并迁移的不可靠问题，本文系统比较了任务级与子任务级技能归纳、文本与代码技能格式对跨任务迁移的影响。结果表明任务级技能平均伤害性能，子任务级技能平均提升性能，文本格式比代码迁移更好，为LLM智能体的技能记忆与上下文复用提供了实证依据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-22</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-23</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
     <strong class="dpr-home-dashboard-count">共 3 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>1</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>0</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>3</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-22 19:30:00 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-23 20:21:15 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,7 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日精读2篇高分论文，聚焦LLM Agent的记忆承诺与KV缓存效率。最值得看的是9.0分的跨家族记忆评估方法，以及8.0分的ReCache缓存复用压缩方案。建议优先精读前者理解记忆机制，再关注ReCache的工程优化思路。</p>
+<p>今日速读3篇论文，聚焦语言模型隐私泄露与多轮推荐交互优化。最值得关注《Inadvertent Context Leakage in Language Models》揭示上下文意外泄露风险，及《Break It Down, Pass It On》中的跨任务技能迁移机制。建议普通读者优先了解LLM隐私泄露的潜在场景，并关注多轮对话中的信息确认策略。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +71,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">0 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Remember, Verify, or Ask? Cross-Family Evaluation of Memory Commitment in LLM Agents">Remember, Verify, or Ask? Cross-Family Evaluation of Memory Commitment in LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="ReCache: Efficient KV Cache Reuse and Compression for Tool-Augmented LLM Agents">ReCache: Efficient KV Cache Reuse and Compression for Tool-Augmented LLM Agents</span></li></ul>
+<p class="dpr-home-dashboard-empty">今日暂无推荐。</p>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -84,12 +84,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">1 篇</strong>
+    <strong class="dpr-home-dashboard-count">3 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="LOCAL: Enabling Learning On-device Contiguously for Agent LLMs">LOCAL: Enabling Learning On-device Contiguously for Agent LLMs</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Inadvertent Context Leakage in Language Models">Inadvertent Context Leakage in Language Models</span></li><li><span class="dpr-home-dashboard-paper-title" title="Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents">Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Ask to Be Sure: Informative Interactions for Confident Multi-Turn LLM Recommendation">Ask to Be Sure: Informative Interactions for Confident Multi-Turn LLM Recommendation</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
 </section>
 </div>
 

@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-23",
+  "date": "2026-08-23",
+  "generated_at": "2026-08-23T20:21:17",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/23/2608.19857v1-inadvertent-context-leakage-in-language-models",
+      "section": "quick",
+      "title_en": "Inadvertent Context Leakage in Language Models",
+      "authors": "Jaiden Fairoze, Neal Mangaokar, Kamalika Chaudhuri, Sanjam Garg, Saeed Mahloujifar",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.19857v1",
+      "score": "7.0",
+      "evidence": "关注上下文窗口中的秘密信息如何影响模型输出，涉及上下文窗口处理与信息泄漏问题。",
+      "tldr": "语言模型处理敏感上下文时，即使拒绝直接提取，其良性输出也可能因隐藏关联而泄露秘密。我们提出黑盒自适应攻击，利用模型作为隐蔽载体，通过看似无害的提示放大泄漏。在八个专有模型上，两位数字秘密近完美重建，四位数字精确匹配率82%，且更强模型泄露更多。该泄漏可训练分类器推断用户记忆语义，或经强化学习提取完整社保号，表明这是能力副产品而非可修补缺陷。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "For AI agents to be useful beyond simple chat, they must hold sensitive user context such as calendars, credentials, health records, and financial data. We study whether the mere presence of such secrets in a model's context window introduces hidden correlations into the model's benign outputs, allowing reconstruction even when the model correctly refuses direct extraction. We further study whether an adversary can actively engineer prompts that amplify this effect, using the model as a covert carrier to transmit secrets through seemingly innocuous text. In both cases, this limited leakage is exploited using a novel adaptive attack that assumes black-box access to the underlying model.   In controlled experiments across eight proprietary models, we find that 2-digit in-context secrets are reconstructed with near-perfect accuracy and 4-digit secrets at 82\\% exact match, all from outputs the model produces in response to ordinary, non-adversarial requests. We observe that more capable models leak more: stronger instruction-following amplifies sensitivity to in-context secrets, suggesting leakage is a byproduct of capability as opposed to a patchable bug. We show this leakage enables two practical attacks: (1) a trained classifier that infers semantic predicates about user memories (e.g., health conditions, financial events) from routine natural-language outputs, and (2) an RL-trained adversary that extracts full Social Security Numbers from a production-style agent.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/23/2608.20274v1-break-it-down-pass-it-on-cross-task-skill-transfer-in-llm-agents",
+      "section": "quick",
+      "title_en": "Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents",
+      "authors": "Yiyang Feng, Biddut Sarker Bijoy, Niranjan Balasubramanian, Jiawei Zhou",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.20274v1",
+      "score": "7.0",
+      "evidence": "系统比较技能归纳粒度与格式，为跨任务技能记忆与上下文复用提供实证依据",
+      "tldr": "LLM智能体可从完成任务中诱导技能并复用，但技能迁移可靠性未知。本研究系统比较任务级与子任务级技能诱导、文本与代码技能格式，发现任务级技能多损害性能，子任务级技能提升性能且文本技能优于代码。进一步提出结合特异性和抽象性的技能效用分数，可预测迁移成功率，无需执行任务即可诊断技能记忆质量。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Large language model (LLM) agents can induce skills from completed tasks and reuse them later to grow more capable with experience. In practice, induced skills may transfer unreliably and can even harm the agent that retrieves them. When agent-induced skills transfer reliably across tasks remains an open question. We conduct a comprehensive and controlled study of how the way skills are induced shapes their transfer across tasks. Specifically, we compare task-level with subtask-level skill induction and text with code skill formats, the two axes along which existing methods differ. Task-level skills mostly reduce the agent's performance below its no-memory baseline while subtask-level skills raise it above on average, and text skills transfer better than code skills. To further understand our findings, we examine two complementary properties of the induced skills: specificity, which measures how closely a skill matches real tasks, and abstractness, which measures how evenly its relevance spreads across tasks. Neither property alone predicts task success, but their combined effect does, which we propose as a skill utility score. The score correlates consistently with task success when skills are transferred, and subtask-level and text skills score higher. Computing skill utility only needs the skills and task descriptions but not any task execution, so our score serves as a practical diagnostic of a skill memory before any new task runs.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/23/2608.15949v2-ask-to-be-sure-informative-interactions-for-confident-multi-turn-llm-recommendation",
+      "section": "quick",
+      "title_en": "Ask to Be Sure: Informative Interactions for Confident Multi-Turn LLM Recommendation",
+      "authors": "Cedar Site Bai, Zhenyu Liao, Duanshun Li, Sheikh Sarwar, Huiyuan Chen, Yuan Chen, Changhe Yuan, Haiyang Zhang, Qilin Qi",
+      "date": "2026-08-16",
+      "pdf": "https://arxiv.org/pdf/2608.15949v2",
+      "score": "6.0",
+      "evidence": "利用推荐熵减衡量交互信息增益，并以此指导多轮对话中的上下文提问",
+      "tldr": "大型语言模型在对话式推荐中表现优异，但如何引导多轮交互以高效获取用户偏好仍是挑战。现有方法或依赖模板化交互，或仅以交互性为优化目标，未度量信息增益。本文提出以推荐熵减量化每次交互的有效性，并以此作为奖励微调模型，无需真实推荐标签。在INSPIRED和ReDial数据集上的实验表明，该方法提升了推荐质量与对话效率。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Recent advances in large language models (LLMs) have enabled their use as conversational recommender systems (CRS), demonstrating strong recommendation accuracy and natural dialogue. However, guiding multi-turn interactions to elicit user preferences effectively remains challenging. Existing approaches either use separate reinforcement learning agents with templated interactions or optimize for interactivity judged by another LLM, without measuring how much useful information is actually gained. We propose a new approach that quantifies the effectiveness of each interaction by the reduction in the assistant's uncertainty, measured via entropy over recommendations. We apply this entropy reduction as a reward---without relying on ground-truth recommendations, which are often unavailable in real-world scenarios---to fine-tune the LLM, enabling strategic interaction generation. Empirical results with supervised fine-tuning (SFT) and direct preference optimization (DPO) on the INSPIRED and ReDial datasets show that our method improves both recommendation quality and conversational efficiency.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
