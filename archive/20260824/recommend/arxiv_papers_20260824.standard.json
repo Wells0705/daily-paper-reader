@@ -1,0 +1,252 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-24T19:44:42.979768+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2608.17534v1",
+      "source": "arxiv",
+      "title": "ArborMem: Navigating Interaction States with Memory Forests",
+      "abstract": "Large language models increasingly serve as persistent conversational assistants, requiring memory that preserves relevant experience and maintains continuity across interactions. Existing methods improve access to conversational history through long-context processing, selective retrieval, and structured memory organization. However, most systems treat memory access as retrieving relevant past information without first determining which prior interaction state the current turn resumes. This limitation becomes particularly important when conversations interleave multiple tasks, people, and plans that may be interrupted and later revisited. We introduce ArborMem, an online memory framework that represents a long-running conversation as a navigable forest of interaction states. Each branch preserves a locally coherent trajectory, while the forest maintains multiple trajectories that may later be resumed. For each new input, ArborMem localizes the relevant state, restores its branch-local context, and augments it with reusable evidence retrieved across branches, preserving interaction continuity without conflating semantically related but structurally distinct trajectories. Existing long-term memory benchmarks cover diverse memory and reasoning capabilities but do not explicitly isolate branch-structured challenges. We therefore introduce BranchMemEval, a controlled diagnostic benchmark for interleaved and resumable interaction trajectories. Experiments on LongMemEval, LoCoMo, BEAM 100K, and BranchMemEval show that ArborMem outperforms the strongest baselines by 3.36 to 10.31 percentage points on the three established benchmarks and by 5.0 points on BranchMemEval. Its advantage grows under constrained read budgets, while complete memory queries remain below half a second.",
+      "authors": [
+        "Zongwei Lv",
+        "Yuemeng Xu",
+        "Yilun Yao",
+        "Siyi Ding",
+        "Xinyu Tan",
+        "Yaoming Li",
+        "Guangxiang Zhao",
+        "Weihong Lin",
+        "Lin Sun",
+        "Xiangzheng Zhang",
+        "Tong Yang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-18T08:54:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.17534v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "online memory framework representing long-running conversation as navigable forest of interaction states",
+      "llm_evidence_cn": "在线记忆框架将长对话建模为可导航的交互状态森林",
+      "llm_evidence": "在线记忆框架将长对话建模为可导航的交互状态森林",
+      "canonical_evidence": "在线记忆框架将长对话建模为可导航的交互状态森林",
+      "llm_tldr_en": "Introduces ArborMem, an online memory framework that models long-running conversations as navigable forests of interaction states, enabling agents to determine which prior state a turn resumes and thus improve continuity in interleaved tasks.",
+      "llm_tldr_cn": "面向持久化对话助手的记忆管理，现有方法大多直接检索历史文本，而忽略了先确定当前回合恢复的是哪个交互状态。该文提出ArborMem在线记忆框架，将长对话建模为可导航的交互状态森林，从而支持多任务、多人、多计划交错场景下的状态定位与回溯。实验表明该框架能有效提升跨会话的连续性。该方法对智能体上下文与状态管理具有直接价值。",
+      "llm_tldr": "面向持久化对话助手的记忆管理，现有方法大多直接检索历史文本，而忽略了先确定当前回合恢复的是哪个交互状态。该文提出ArborMem在线记忆框架，将长对话建模为可导航的交互状态森林，从而支持多任务、多人、多计划交错场景下的状态定位与回溯。实验表明该框架能有效提升跨会话的连续性。该方法对智能体上下文与状态管理具有直接价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.20631v1",
+      "source": "arxiv",
+      "title": "Weighted Memory Tree: Remembering What Matters for Long-Horizon LLM Agents",
+      "abstract": "Large language model (LLM) agents have demonstrated the ability to solve multi-step tasks requiring planning, tool use, and external information access, yet growing execution histories increase inference cost and expose reasoning to outdated, irrelevant, or misleading information, potentially degrading reasoning quality. Existing memory approaches organize or compress execution histories but provide limited mechanisms for deciding which memories remain active. We introduce the, a hierarchical memory system that organizes execution into tasks, subtasks, and actions while assigning each memory a dynamic retention score. Event-based updates and selection-based decay revise these scores, allowing WMT to preserve useful information, fold completed trajectories, suppress low-utility content, and retain access to folded context. We evaluate WMT on GAIA-Text using Qwen3-8B, Gemma 4 E4B, and Llama-3.1-8B, with ablations and memory-poisoning experiments. Relative to linear memory, WMT improves accuracy by an average of 9.97 percentage points while reducing prompt-token usage by 32.8%. Memory-poisoning experiments show that WMT limits the persistence and propagation of unreliable information. Our results suggest that effective long-horizon agent memory depends less on storing more information than on deciding which information should remain active.",
+      "authors": [
+        "Quang Dao",
+        "Purvi Kathalkar",
+        "Kenneth Eaton"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-21T00:14:38+00:00",
+      "link": "https://arxiv.org/pdf/2608.20631v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Weighted Memory Tree provides hierarchical memory with dynamic retention scores for long-horizon LLM agents",
+      "llm_evidence_cn": "提出带动态保留分数的层次化记忆树来管理长程LLM智能体的执行上下文",
+      "llm_evidence": "提出带动态保留分数的层次化记忆树来管理长程LLM智能体的执行上下文",
+      "canonical_evidence": "提出带动态保留分数的层次化记忆树来管理长程LLM智能体的执行上下文",
+      "llm_tldr_en": "Weighted Memory Tree organizes LLM agent execution history into tasks, subtasks, and actions with dynamic retention scores, improving long-horizon reasoning quality while reducing inference cost.",
+      "llm_tldr_cn": "本文针对长程LLM智能体执行历史过长、含噪声并导致推理质量下降的问题，提出加权记忆树（WMT）这一层次化记忆系统，将执行过程组织为任务、子任务和动作，并为每条记忆赋予动态保留分数。通过事件更新和选择衰减机制，WMT能保留有用信息并折叠已完成轨迹。实验表明该方法能有效改善长程任务推理质量并降低开销。",
+      "llm_tldr": "本文针对长程LLM智能体执行历史过长、含噪声并导致推理质量下降的问题，提出加权记忆树（WMT）这一层次化记忆系统，将执行过程组织为任务、子任务和动作，并为每条记忆赋予动态保留分数。通过事件更新和选择衰减机制，WMT能保留有用信息并折叠已完成轨迹。实验表明该方法能有效改善长程任务推理质量并降低开销。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.21156v1",
+      "source": "arxiv",
+      "title": "Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence",
+      "abstract": "LLMs have evolved from language generators to autonomous agents capable of complex, long-horizon tasks. This evolution has produced paradigms including Prompt Engineering to elicit model capabilities, Context Engineering to manage information access, Harness Engineering to organize external tools and resources, and Loop Engineering to support continual reflection and self-improvement. Yet as tasks grow more complex, individual intelligence faces a fundamental limit: many tasks require heterogeneous expertise, interdependent subtasks, parallel execution, independent verification, and persistent state, exceeding any single agent's organizational capacity. Augmenting one agent's capabilities or context cannot resolve this architectural mismatch; intelligence must instead be distributed across specialized agents and organized at the system level. We call this System Intelligence: an agent system's ability to organize and coordinate multiple intelligent components into a coherent, adaptive whole pursuing a shared objective. Achieving it requires more than adding agents; it demands explicit structures to organize work, coordinate heterogeneous agents, and maintain evolving execution states. We introduce Graph Engineering, an emerging paradigm for next-generation agent systems. Unlike prior paradigms that mainly optimize individual interactions or agent-level behavior, Graph Engineering constructs explicit, dynamic, evolving graph structures representing tasks, agents, and system states. These abstractions provide a unified foundation for organizing complex objectives, orchestrating heterogeneous agents, modeling system dynamics, and enabling scalable agent evolution. We systematically review the principles, methodologies, and applications of Graph Engineering for LLM agents. Related papers, open-source data, and projects are collected at https://github.com/DEEP-JLU/Awesome-Graph-Engineering.",
+      "authors": [
+        "Yuyuan Feng",
+        "Zhishang Xiang",
+        "Chaobin Yang",
+        "Qichao Ma",
+        "Zerui Chen",
+        "Yujing Zhang",
+        "Ke Huang",
+        "Chuanjie Wu",
+        "Zhaoxu Liu",
+        "Yili Wang",
+        "Xin He",
+        "Jiapu Wang",
+        "Zijin Hong",
+        "Hao Chen",
+        "Yuanchen Bei",
+        "Kun Wang",
+        "Shengyuan Chen",
+        "Ningyu Zhang",
+        "Enyan Dai",
+        "Linhao Luo",
+        "Qingyi Pan",
+        "Qi Wang",
+        "Wenqi Fan",
+        "Guangjing Wang",
+        "Na Zou",
+        "Yangqiu Song",
+        "Xin Wang",
+        "Zechao Li",
+        "Xia Hu",
+        "Qing Li",
+        "Xiao Huang",
+        "Zhihong Zhang",
+        "Jinsong Su",
+        "Qinggang Zhang",
+        "Yi Chang"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.ET"
+      ],
+      "published": "2026-08-21T14:27:57+00:00",
+      "link": "https://arxiv.org/pdf/2608.21156v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "explicitly discusses Context Engineering paradigm for managing information access in LLM agents",
+      "llm_evidence_cn": "明确将上下文工程列为核心范式以管理智能体信息访问",
+      "llm_evidence": "明确将上下文工程列为核心范式以管理智能体信息访问",
+      "canonical_evidence": "明确将上下文工程列为核心范式以管理智能体信息访问",
+      "llm_tldr_en": "Positions Context Engineering alongside prompt, harness, and loop engineering as core paradigms for LLM agents, then argues for graph-based system intelligence to handle multi-agent, persistent-state tasks beyond individual context.",
+      "llm_tldr_cn": "面向LLM从生成器演化为自主智能体的趋势，本文将上下文工程（Context Engineering）明确列为管理与组织信息访问的关键范式。文章进一步指出单智能体在长时、多智能体任务中面临组织性极限，仅扩展单智能体上下文无法解决架构性问题。由此提出以图工程为核心，将个体智能上升为系统智能，协调异构专家、并行执行与持久状态。该工作对智能体上下文工程与整体架构设计具有直接的纲领性价值。",
+      "llm_tldr": "面向LLM从生成器演化为自主智能体的趋势，本文将上下文工程（Context Engineering）明确列为管理与组织信息访问的关键范式。文章进一步指出单智能体在长时、多智能体任务中面临组织性极限，仅扩展单智能体上下文无法解决架构性问题。由此提出以图工程为核心，将个体智能上升为系统智能，协调异构专家、并行执行与持久状态。该工作对智能体上下文工程与整体架构设计具有直接的纲领性价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.20707v1",
+      "source": "arxiv",
+      "title": "Towards Faithful Simulation of Human Shopping Behavior",
+      "abstract": "Simulating realistic user shopping behavior underpins offline evaluation and reinforcement learning in e-commerce scenarios. While recent LLM- and VLM-based simulators have made encouraging progress, reproducing a real browsing session remains difficult for two reasons. (i) Memory Challenge: a shopping session spans dozens of pages, yet existing agents either discard long-range observation histories, losing the evolving user state, or naively concatenate them, overwhelming the context window and even degrading simulation quality. (ii) Optimization Challenge: current user simulators are typically supervised to match each logged action via imitation or step-level rewards; the resulting sessions often display unrealistic patterns, such as over-exploration or excessive passivity, which per-step supervision can neither detect nor correct.   To address the above challenges, we present RecVerse, a GUI-grounded simulation agent that perceives pages through screenshots and produces faithful multi-turn trajectories. For the memory challenge, RecVerse adopts a cognitive-inspired hierarchical memory: Working Memory for short-term focus, Episodic Memory for in-session traces, and Preference Memory for high-level intent, with memory updates treated as actions so that the agent adaptively learns when and what to memorize. For the optimization challenge, RecVerse is optimized with a trajectory-level RL objective that scores entire sessions, aligning both macro-level action-type distributions and micro-level shopping intent with real users. We further release USB (User Simulation Benchmark), an interactive e-commerce GUI trajectory dataset for multi-turn user simulation. Experiments show that RecVerse significantly outperforms existing baselines in both behavioral fidelity and intent consistency.",
+      "authors": [
+        "Jiakai Tang",
+        "Yan Mi",
+        "Jing Yu",
+        "Yang Zhang",
+        "See-Kiong Ng",
+        "Qi Cao",
+        "Fei Sun",
+        "Xu Chen",
+        "Wen Chen",
+        "Jian Wu",
+        "Han Zhu",
+        "Bo Zheng"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-08-21T03:24:32+00:00",
+      "link": "https://arxiv.org/pdf/2608.20707v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Directly tackles context-window overflow and long-range observation memory in LLM-based agents",
+      "llm_evidence_cn": "直接处理LLM智能体长会话中的上下文窗口过载与长程观察记忆问题",
+      "llm_evidence": "直接处理LLM智能体长会话中的上下文窗口过载与长程观察记忆问题",
+      "canonical_evidence": "直接处理LLM智能体长会话中的上下文窗口过载与长程观察记忆问题",
+      "llm_tldr_en": "Shopping-session simulation is hindered by memory issues: agents discard long-range histories or concatenate them, overwhelming the context window. This work targets long-session context handling and training objectives for more realistic browsing, informing LLM agent context management.",
+      "llm_tldr_cn": "基于LLM/VLM的用户购物仿真难以复现真实浏览会话，主要原因是长会话中的记忆挑战：智能体要么丢弃长距离观察历史导致用户状态丢失，要么朴素拼接全部历史导致上下文窗口过载并降低仿真质量。论文围绕该问题研究如何在有限上下文内保持用户状态的演化，同时改进模仿/步骤奖励造成的过度探索等不真实行为模式，从而提升长会话仿真的忠实度。这对智能体上下文管理与窗口优化具有直接的参考价值。",
+      "llm_tldr": "基于LLM/VLM的用户购物仿真难以复现真实浏览会话，主要原因是长会话中的记忆挑战：智能体要么丢弃长距离观察历史导致用户状态丢失，要么朴素拼接全部历史导致上下文窗口过载并降低仿真质量。论文围绕该问题研究如何在有限上下文内保持用户状态的演化，同时改进模仿/步骤奖励造成的过度探索等不真实行为模式，从而提升长会话仿真的忠实度。这对智能体上下文管理与窗口优化具有直接的参考价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.21265v1",
+      "source": "arxiv",
+      "title": "Memory Augmentation Unlocks Efficient Chain-of-Thought Reasoning",
+      "abstract": "Large language models often rely on Chain-of-Thought (CoT) reasoning to solve complex tasks, but verbose reasoning traces introduce substantial inference overhead. CoT compression shortens generation, yet aggressive compression may disrupt logical coherence and degrade performance. We formalize this trade-off as the \\textit{Context-Generation Substitution Law}, where explicit reasoning context substitutes for part of decode-time generation. Based on this principle, we propose \\textit{Memory-Augmented Compression}, a training-free framework that constructs reusable reasoning memories from historical traces and retrieves them as prefill-side scaffolds. Rather than using raw demonstrations, these memories summarize reusable reasoning patterns, key constraints, and critical operations to compensate for information lost during compression. Experiments show that Memory consistently improves prompt-based Chain-of-Draft (CoD) compression across mathematical reasoning, complex reasoning, and science question answering tasks, yielding accuracy gains of 21.4, 28.0, 29.5, and 6.61 points over CoD on GSM8K, MATH, BBH, and MMLU-Sci, while achieving a 1.14--1.49$\\times$ latency speedup over standard CoT. Memory is also compatible with token-level, reasoning-trace-level, and inference-state compression mechanisms. Further analyzes show that the gains come from relevant reasoning memories rather than simply increasing context length.",
+      "authors": [
+        "Simeng Zhang",
+        "Yilong Chen",
+        "Wenyuan Zhang",
+        "Zhenyu Zhang",
+        "Yao Chen",
+        "Junyuan Shang",
+        "Tingwen Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-21T16:22:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.21265v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Memory-Augmented Compression treats memory as prefill-side scaffolds to substitute reasoning context, formalizing a context-generation trade-off",
+      "llm_evidence_cn": "记忆增强压缩将记忆作为prefill端支架来替代推理上下文，刻画上下文-生成的替代关系",
+      "llm_evidence": "记忆增强压缩将记忆作为prefill端支架来替代推理上下文，刻画上下文-生成的替代关系",
+      "canonical_evidence": "记忆增强压缩将记忆作为prefill端支架来替代推理上下文，刻画上下文-生成的替代关系",
+      "llm_tldr_en": "This paper proposes Memory-Augmented Compression, a training-free framework that constructs reusable reasoning memories from historical traces as prefill-side scaffolds, reducing inference overhead while preserving Chain-of-Thought coherence.",
+      "llm_tldr_cn": "本文指出冗长思维链推理带来大量推理开销，而压缩可能破坏逻辑连贯。基于上下文-生成替代律，提出记忆增强压缩这一训练无关框架，从历史轨迹中构建可复用推理记忆并作为prefill端脚手架检索，以显式推理上下文替代部分解码生成。该方法在保持推理性能的同时显著缩短生成长度、降低开销。",
+      "llm_tldr": "本文指出冗长思维链推理带来大量推理开销，而压缩可能破坏逻辑连贯。基于上下文-生成替代律，提出记忆增强压缩这一训练无关框架，从历史轨迹中构建可复用推理记忆并作为prefill端脚手架检索，以显式推理上下文替代部分解码生成。该方法在保持推理性能的同时显著缩短生成长度、降低开销。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

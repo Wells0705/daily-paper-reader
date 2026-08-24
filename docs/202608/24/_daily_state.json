@@ -1,0 +1,89 @@
+{
+  "date": "20260824",
+  "date_label": "",
+  "generated_at": "2026-08-24 19:48:01 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.17534v1",
+      "route": "202608/24/2608.17534v1-arbormem-navigating-interaction-states-with-memory-forests",
+      "title": "ArborMem: Navigating Interaction States with Memory Forests",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "在线记忆框架将长对话建模为可导航的交互状态森林",
+      "first_seen_at": "2026-08-24 19:48:01 UTC",
+      "updated_at": "2026-08-24 19:48:01 UTC"
+    },
+    {
+      "paper_id": "2608.20631v1",
+      "route": "202608/24/2608.20631v1-weighted-memory-tree-remembering-what-matters-for-long-horizon-llm-agents",
+      "title": "Weighted Memory Tree: Remembering What Matters for Long-Horizon LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "提出带动态保留分数的层次化记忆树来管理长程LLM智能体的执行上下文",
+      "first_seen_at": "2026-08-24 19:48:01 UTC",
+      "updated_at": "2026-08-24 19:48:01 UTC"
+    },
+    {
+      "paper_id": "2608.21156v1",
+      "route": "202608/24/2608.21156v1-graph-engineering-in-the-era-of-llm-agents-from-individual-intelligence-to-system-intelligence",
+      "title": "Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "明确将上下文工程列为核心范式以管理智能体信息访问",
+      "first_seen_at": "2026-08-24 19:48:01 UTC",
+      "updated_at": "2026-08-24 19:48:01 UTC"
+    },
+    {
+      "paper_id": "2608.20707v1",
+      "route": "202608/24/2608.20707v1-towards-faithful-simulation-of-human-shopping-behavior",
+      "title": "Towards Faithful Simulation of Human Shopping Behavior",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "直接处理LLM智能体长会话中的上下文窗口过载与长程观察记忆问题",
+      "first_seen_at": "2026-08-24 19:48:01 UTC",
+      "updated_at": "2026-08-24 19:48:01 UTC"
+    },
+    {
+      "paper_id": "2608.21265v1",
+      "route": "202608/24/2608.21265v1-memory-augmentation-unlocks-efficient-chain-of-thought-reasoning",
+      "title": "Memory Augmentation Unlocks Efficient Chain-of-Thought Reasoning",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "记忆增强压缩将记忆作为prefill端支架来替代推理上下文，刻画上下文-生成的替代关系",
+      "first_seen_at": "2026-08-24 19:48:01 UTC",
+      "updated_at": "2026-08-24 19:48:01 UTC"
+    }
+  ]
+}
