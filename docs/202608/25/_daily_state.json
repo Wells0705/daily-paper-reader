@@ -1,0 +1,265 @@
+{
+  "date": "20260825",
+  "date_label": "",
+  "generated_at": "2026-08-25 20:35:37 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.22963v1",
+      "route": "202608/25/2608.22963v1-buried-in-textual-debt-context-pruning-with-visual-evidence-preservation-for-mllm-agents",
+      "title": "Buried in Textual Debt: Context Pruning with Visual Evidence Preservation for MLLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 10.0,
+      "evidence": "面向多模态LLM智能体的上下文剪枝，同时保留视觉证据",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.21690v1",
+      "route": "202608/25/2608.21690v1-context-as-an-environment-programmatic-context-management-for-long-horizon-agents",
+      "title": "Context as an Environment: Programmatic Context Management for Long-Horizon Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向长时程代理的程序化上下文管理",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.21867v1",
+      "route": "202608/25/2608.21867v1-memguard-persisting-verifier-signals-for-llm-agent-memory-governance",
+      "title": "MemGuard: Persisting Verifier Signals for LLM-Agent Memory Governance",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向智能体记忆治理的验证信号持久化，解决记忆准入与漂移问题",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22215v1",
+      "route": "202608/25/2608.22215v1-dual-layer-agentic-memory-with-fast-write-routing-and-slow-consolidation",
+      "title": "Dual-Layer Agentic Memory with Fast Write Routing and Slow Consolidation",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "将记忆管理前移到写入阶段，通过代价感知认知路由与周期性参数化整合管理知识生命周期",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22237v1",
+      "route": "202608/25/2608.22237v1-read-less-solve-more-token-efficient-sparse-reading-for-ai-agents",
+      "title": "Read Less, Solve More: Token-Efficient Sparse Reading for AI Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "SparseRead在无关证据进入模型上下文之前控制内容准入，降低令牌与延迟开销",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22310v1",
+      "route": "202608/25/2608.22310v1-hero-human-profile-enhanced-retrieval-optimization-framework-for-long-term-agent-memory",
+      "title": "HERO: Human-profile Enhanced Retrieval Optimization Framework for Long-term Agent Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向智能体长期记忆的检索优化框架，直接提升上下文组织与利用",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22752v1",
+      "route": "202608/25/2608.22752v1-the-compaction-cliff-in-long-running-ai-agent-memory",
+      "title": "The Compaction Cliff in Long-Running AI Agent Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "提出知识分类以管理智能体上下文压缩与保留，针对上下文预算丢失问题",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22767v1",
+      "route": "202608/25/2608.22767v1-the-retriever-should-remember-experience-amortized-reranking-for-long-term-agent-memory",
+      "title": "The Retriever Should Remember: Experience-Amortized Reranking for Long-Term Agent Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向长程智能体记忆的基于经验摊销的重排序框架，直接改善智能体对累积记忆的相关上下文检索",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.23268v1",
+      "route": "202608/25/2608.23268v1-dual-grained-agent-memory-and-shapley-context-attribution-for-multimodal-agentic-learner",
+      "title": "Dual-Grained Agent Memory and Shapley Context Attribution for Multimodal Agentic Learner",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向多模态智能体的双粒度记忆（实例记忆+模式记忆）及Shapley上下文归因，直接贡献于智能体记忆架构",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.23552v1",
+      "route": "202608/25/2608.23552v1-prime-agent-a-self-improving-rlm-harness",
+      "title": "Prime Agent: A Self-Improving RLM Harness",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "跨轨迹保存历史、记忆、技能和提示，用于LLM智能体上下文管理",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.16181v1",
+      "route": "202608/25/2608.16181v1-muse-an-interactive-meta-agent-for-understanding-and-steering-llm-powered-data-science-systems",
+      "title": "MUSE: An Interactive Meta-Agent for Understanding and Steering LLM-powered Data Science Systems",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "将底层执行迹动态重构为多个语义层级以导航和操控智能体流程，属于面向智能体的上下文工程技术",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.21939v1",
+      "route": "202608/25/2608.21939v1-enhancing-group-recommendation-with-memory-augmented-reasoning-in-llm-agent",
+      "title": "Enhancing Group Recommendation with Memory-Augmented Reasoning in LLM Agent",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "使用基于令牌哈希表的记忆模块对群体与用户交互历史进行插入、更新、检索与遗忘等动态管理",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22339v1",
+      "route": "202608/25/2608.22339v1-when-not-to-imitate-boundary-aware-skill-memory-for-reliable-tool-use-llm-agents",
+      "title": "When Not to Imitate: Boundary-Aware Skill Memory for Reliable Tool-Use LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "边界感知技能记忆对工具使用智能体的技能存储与检索进行边界管理，避免技能模仿陷阱",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.21431v1",
+      "route": "202608/25/2608.21431v1-boosting-knowledge-based-visual-question-answering-with-structured-context-reasoning",
+      "title": "Boosting Knowledge-based Visual Question Answering with Structured Context Reasoning",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "提出结构化上下文推理，改进多模态上下文的组织与筛选",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.22974v1",
+      "route": "202608/25/2608.22974v1-toward-effective-and-reliable-llm-agents-via-dynamic-ontology",
+      "title": "Toward Effective and Reliable LLM Agents via Dynamic Ontology",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "动态本体构建将非结构化上下文组织为机器可解释的语义关系，增强LLM智能体的证据利用与决策可靠性",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    },
+    {
+      "paper_id": "2608.23078v1",
+      "route": "202608/25/2608.23078v1-agentweave-routing-before-reasoning-for-efficient-function-calling-in-tool-rich-language-models",
+      "title": "AgentWeave: Routing Before Reasoning for Efficient Function Calling in Tool-Rich Language Models",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "推理前路由缩减候选工具集，降低上下文token消耗，优化上下文窗口利用",
+      "first_seen_at": "2026-08-25 20:35:37 UTC",
+      "updated_at": "2026-08-25 20:35:37 UTC"
+    }
+  ]
+}

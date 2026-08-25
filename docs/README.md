@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-24</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-25</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 5 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 16 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>5</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>0</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>10</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-24 19:48:01 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-25 20:35:37 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日精读5篇，聚焦LLM智能体长程任务中的记忆管理，核心为两篇高分解法。最值得关注的是记忆树/森林结构，通过加权与导航交互状态显著提升长期任务表现。建议进一步关注记忆权重的动态取舍与自适应遗忘策略。</p>
+<p>今日16篇论文扫描完成，精读10篇，重点聚焦多模态智能体上下文管理与长期记忆机制。</p>
+<p>最值得看的两篇满分论文：一篇主张用视觉证据保留来解决文本上下文债，另一篇提出程序化上下文管理支撑长程智能体。</p>
+<p>速读中可顺带关注记忆增强组推荐与工具使用边界控制，适合对应用落地感兴趣的读者。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">5 篇</strong>
+    <strong class="dpr-home-dashboard-count">10 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="ArborMem: Navigating Interaction States with Memory Forests">ArborMem: Navigating Interaction States with Memory Forests</span></li><li><span class="dpr-home-dashboard-paper-title" title="Weighted Memory Tree: Remembering What Matters for Long-Horizon LLM Agents">Weighted Memory Tree: Remembering What Matters for Long-Horizon LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence">Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Buried in Textual Debt: Context Pruning with Visual Evidence Preservation for MLLM Agents">Buried in Textual Debt: Context Pruning with Visual Evidence Preservation for MLLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Context as an Environment: Programmatic Context Management for Long-Horizon Agents">Context as an Environment: Programmatic Context Management for Long-Horizon Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="MemGuard: Persisting Verifier Signals for LLM-Agent Memory Governance">MemGuard: Persisting Verifier Signals for LLM-Agent Memory Governance</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>5</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>10</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -84,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">0 篇</strong>
+    <strong class="dpr-home-dashboard-count">6 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p class="dpr-home-dashboard-empty">今日暂无推荐。</p>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="MUSE: An Interactive Meta-Agent for Understanding and Steering LLM-powered Data Science Systems">MUSE: An Interactive Meta-Agent for Understanding and Steering LLM-powered Data Science Systems</span></li><li><span class="dpr-home-dashboard-paper-title" title="Enhancing Group Recommendation with Memory-Augmented Reasoning in LLM Agent">Enhancing Group Recommendation with Memory-Augmented Reasoning in LLM Agent</span></li><li><span class="dpr-home-dashboard-paper-title" title="When Not to Imitate: Boundary-Aware Skill Memory for Reliable Tool-Use LLM Agents">When Not to Imitate: Boundary-Aware Skill Memory for Reliable Tool-Use LLM Agents</span></li></ul>
   </div>
-
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
 </section>
 </div>
 
