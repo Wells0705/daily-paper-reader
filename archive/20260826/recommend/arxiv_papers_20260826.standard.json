@@ -1,0 +1,213 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-26T21:38:37.705454+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.22137v1",
+      "source": "arxiv",
+      "title": "MegaMem: A Retrieval Solution for Ultra-Large Context Windows",
+      "abstract": "Modern language models and agents increasingly require persistent memory for complete codebases, long interaction histories, and heterogeneous enterprise records. The key challenge is to keep hundreds of millions of tokens searchable while passing only bounded source evidence to the answer model. We introduce MegaMem, a source-resolved dual-view retrieval system that separates semantic access from generation evidence. Distilled records and detailed evidence are searched with original and transformed queries; every distilled hit resolves to an immutable source ID before reciprocal-rank fusion, deduplication, and cross-encoder reranking; and only the highest-ranked detailed evidence within a fixed budget supports generation. Post-answer attribution then identifies which loaded sources support the fixed answer. We evaluate MegaMem on EnterpriseRAG-Bench, which contains more than 500,000 heterogeneous enterprise documents and approximately 650M tokens. MegaMem improves Overall from 68.22 to 82.26 and reaches 86.50 Correctness. These results show that MegaMem supports ultra-large persistent memory while preserving strong answer accuracy under a bounded generation context. By separating searchable memory scale from answer-context size, MegaMem provides a practical path toward accurate retrieval over memories ranging from hundreds of millions to one billion tokens. Our code is available at https://github.com/ xfab-xinyuansong/MegaMem.git.",
+      "authors": [
+        "Xinyuan Song",
+        "Bowen Zhu",
+        "Hasibul Haque",
+        "Liang Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-22T23:37:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.22137v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes source-resolved dual-view retrieval to keep hundreds of millions of tokens searchable with bounded evidence, directly handling ultra-large context windows and persistent memory.",
+      "llm_evidence_cn": "提出源解析双视图检索，使数亿token可搜索并以有界证据支持生成，直接解决超大上下文窗口与持久记忆。",
+      "llm_evidence": "提出源解析双视图检索，使数亿token可搜索并以有界证据支持生成，直接解决超大上下文窗口与持久记忆。",
+      "canonical_evidence": "提出源解析双视图检索，使数亿token可搜索并以有界证据支持生成，直接解决超大上下文窗口与持久记忆。",
+      "llm_tldr_en": "MegaMem is a source-resolved dual-view retrieval system that separates semantic access from generation evidence, enabling persistent memory for hundreds of millions of tokens while passing only bounded evidence to the answer model.",
+      "llm_tldr_cn": "现代语言模型与智能体需要持久记忆来管理完整代码库、长期交互历史和异构企业记录，挑战在于保持数亿token可搜索并仅向生成模型传递有界源证据。MegaMem提出源解析双视图检索系统，将语义访问与生成证据分离：蒸馏记录与详细证据通过原始和变换查询检索，每个蒸馏命中在倒数第二融合前解析为不可变源ID，再经交叉编码器重排序，仅将预算内的最高排名证据传给生成阶段。这为实现超长上下文窗口的高效记忆检索提供了新方案。",
+      "llm_tldr": "现代语言模型与智能体需要持久记忆来管理完整代码库、长期交互历史和异构企业记录，挑战在于保持数亿token可搜索并仅向生成模型传递有界源证据。MegaMem提出源解析双视图检索系统，将语义访问与生成证据分离：蒸馏记录与详细证据通过原始和变换查询检索，每个蒸馏命中在倒数第二融合前解析为不可变源ID，再经交叉编码器重排序，仅将预算内的最高排名证据传给生成阶段。这为实现超长上下文窗口的高效记忆检索提供了新方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.24569v1",
+      "source": "arxiv",
+      "title": "When \"Must\" Becomes \"Maybe\": Constraint Weakening in LLM Agent Workflows",
+      "abstract": "Large language model (LLM) agents coordinate complex tasks through multi-role and multi-stage workflows. Upstream state is repeatedly transformed into intermediate language artifacts, such as summaries, plans, tickets, memories, and handoff notes, from which downstream components act. For action-constraining state, topical retention is insufficient: an artifact may mention an unresolved condition while changing it from a requirement that must be resolved before execution into information that may merely inform the next action. We study this action-binding role as operational state preservation. Safety blockers provide a controlled instance because each source state has an explicit prerequisite, authority, fallback, and execution consequence. We condition on correct upstream identification, vary the handoff transformation, and evaluate an executor restricted to the resulting artifact. Across 1,296 controlled synthetic episodes, direct-handoff controls preserve every blocker, whereas compression, plan assimilation, convergence, ownership deferral, and precedent substitution repeatedly turn binding state into caveats or non-binding considerations. Normal handoff compression produces 100.0% deactivation and 54.2% forbidden action. Restoring all four state fields raises preservation to 100.0% and reduces forbidden action to 0.0%. Fixed-artifact interventions further separate preservation from containment: downstream verification eliminates forbidden action while artifact deactivation remains 95.3%. These results identify a state-transmission failure between information extraction and action. Handoff transformations can retain state content while weakening its constraints on downstream action. Semantic availability does not guarantee operational preservation.",
+      "authors": [
+        "Yiheng Sun",
+        "Huifei Wang",
+        "Yancheng Zhu",
+        "Zhenyu Li",
+        "Zebin Zhao",
+        "Yifan Yuan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-25T13:51:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.24569v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Examines how intermediate artifacts like summaries, memories, and handoff notes preserve or weaken action constraints, directly addressing context management in LLM agents",
+      "llm_evidence_cn": "研究摘要、记忆、交接笔记等中间工件如何保留或弱化行动约束，直接涉及LLM智能体的上下文管理",
+      "llm_evidence": "研究摘要、记忆、交接笔记等中间工件如何保留或弱化行动约束，直接涉及LLM智能体的上下文管理",
+      "canonical_evidence": "研究摘要、记忆、交接笔记等中间工件如何保留或弱化行动约束，直接涉及LLM智能体的上下文管理",
+      "llm_tldr_en": "LLM agents transform state into intermediate language artifacts; this paper studies how such artifacts can change action-constraining requirements into mere informational cues, using safety blockers to analyze operational state preservation.",
+      "llm_tldr_cn": "LLM智能体通过多角色、多阶段工作流协调任务，上游状态被反复转化为摘要、计划、票据、记忆和交接笔记等中间语言工件。该论文指出，仅保留主题信息不足，工件可能在提及未解决条件的同时，将其从执行前必须满足的要求弱化为仅用于参考的信息。作者以安全拦截器为受控场景，研究这种行动绑定状态的保持机制，揭示约束弱化导致的操作状态丢失问题。该工作为智能体工作流中的上下文保真度与安全关键决策提供了新的分析视角。",
+      "llm_tldr": "LLM智能体通过多角色、多阶段工作流协调任务，上游状态被反复转化为摘要、计划、票据、记忆和交接笔记等中间语言工件。该论文指出，仅保留主题信息不足，工件可能在提及未解决条件的同时，将其从执行前必须满足的要求弱化为仅用于参考的信息。作者以安全拦截器为受控场景，研究这种行动绑定状态的保持机制，揭示约束弱化导致的操作状态丢失问题。该工作为智能体工作流中的上下文保真度与安全关键决策提供了新的分析视角。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.23471v1",
+      "source": "arxiv",
+      "title": "InjecMEM: Memory Injection Attack on LLM Agent Memory Systems",
+      "abstract": "Memory is becoming a default subsystem in deployed LLM agents to provide persistent personalization and continuity. This naturally prompts a question: will memory system introduce new vulnerabilities into agents? Thus we propose InjecMEM, a novel memory injection attack paradigm that requires only a single interaction (no read/edit access to memory store) to steer later responses of related queries toward a pre-specified output. Guided by the retrieval-then-generate mechanism of memory systems, we craft the injection with a retriever-agnostic anchor and an adversarial command. The anchor contains high-recall topical cues so that downstream retrieval consistently associates the record with the target topic. The command is a short sequence optimized to remain effective under uncertain fused contexts, variable placements, and long prompts so that it reliably steers outputs once retrieved. We learn the command via gradient-based coordinate search, averaging over synthetic prompt templates and insertion positions, and extend it to joint optimization across backbones to study transfer. Evaluated across multiple memory systems and backbone models, InjecMEM achieves reliable topic-conditioned retrieval and targeted generation, remains effective under memory drift, and leaves non-target queries unaffected. Our results underscore the need to harden memory systems and provide a reproducible framework for studying agent memory.",
+      "authors": [
+        "Hanling Tian",
+        "Gengyu Zhang",
+        "Zeyang Sha",
+        "Jingying Wang",
+        "Yuhang Liu",
+        "Zhehao Huang",
+        "Kun Yang",
+        "Xiaolin Huang"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-08-24T16:37:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.23471v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Analyzes vulnerability in retrieval-then-generate memory subsystems of LLM agents, directly relevant to memory architecture and context management.",
+      "llm_evidence_cn": "分析LLM智能体记忆系统检索-生成机制的漏洞，直接涉及记忆架构与上下文管理。",
+      "llm_evidence": "分析LLM智能体记忆系统检索-生成机制的漏洞，直接涉及记忆架构与上下文管理。",
+      "canonical_evidence": "分析LLM智能体记忆系统检索-生成机制的漏洞，直接涉及记忆架构与上下文管理。",
+      "llm_tldr_en": "InjecMEM is a memory injection attack requiring a single interaction to steer later responses, exploiting the retrieval-then-generate memory mechanism of LLM agents via retriever-agnostic anchors and adversarial commands.",
+      "llm_tldr_cn": "记忆正成为已部署LLM智能体提供持久个性化与连续性的默认子系统，但也可能引入新的安全漏洞。作者提出InjecMEM攻击范式，仅需一次交互（无需读写记忆存储）即可将后续相关查询的响应引向预设目标。攻击利用记忆系统的检索-生成机制，构造具有高召回主题提示的检索器无关锚点和对抗性命令，使下游检索持续将该记录与目标主题关联。这揭示了记忆架构在上下文注入攻击面前的脆弱性，为安全记忆系统设计提出警示。",
+      "llm_tldr": "记忆正成为已部署LLM智能体提供持久个性化与连续性的默认子系统，但也可能引入新的安全漏洞。作者提出InjecMEM攻击范式，仅需一次交互（无需读写记忆存储）即可将后续相关查询的响应引向预设目标。攻击利用记忆系统的检索-生成机制，构造具有高召回主题提示的检索器无关锚点和对抗性命令，使下游检索持续将该记录与目标主题关联。这揭示了记忆架构在上下文注入攻击面前的脆弱性，为安全记忆系统设计提出警示。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.21884v1",
+      "source": "arxiv",
+      "title": "Loop Engineering: Building Blocks, Adoption, and Impact",
+      "abstract": "Over the past months, the way developers direct agentic AI coding tools has moved up several levels of abstraction, from phrasing prompts to engineering context to configuring the harness around the model. In June 2026, practitioners began to describe a further level called loop engineering: Instead of prompting an agent interactively, developers design systems that prompt agents for them. These systems start agent runs on a schedule or on repository events and stop them when a machine-checkable condition holds. The term spread rapidly, accompanied by bold claims and vocal skepticism, but its adoption in software projects has not been measured. We present an exploratory review of the emerging gray literature, which largely agrees on what a well-engineered loop contains: triggered agent runs bounded by machine-checkable stop conditions, persistent state files, verifier sub-agents, token budgets, and defined points of escalation to humans. From this review, we derive a research agenda for the empirical study of loop engineering in open-source projects, analyze which of its aspects are traceable from repository data, and report an exploratory mining study of 36,710 software repositories. We confirmed the operation of autonomous agent loops in 217 of the 256 repositories our heuristics matched. The repositories commit the configuration around these loops, but almost none commits the state files the discourse prescribes, and the loops' runtime state remains outside version control. We conclude by outlining a planned controlled study of agent autonomy levels and their effect on effort and outcomes.",
+      "authors": [
+        "Jai Lal Lulla",
+        "Vahram Nersesyan",
+        "Seyedmoein Mohsenimofidi",
+        "Christoph Treude",
+        "Sebastian Baltes"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE"
+      ],
+      "published": "2026-08-22T09:52:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.21884v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "context engineering levels and loop engineering practices for agentic AI",
+      "llm_evidence_cn": "智能体上下文工程与循环工程实践",
+      "llm_evidence": "智能体上下文工程与循环工程实践",
+      "canonical_evidence": "智能体上下文工程与循环工程实践",
+      "llm_tldr_en": "A review of loop engineering, where developers design systems that prompt agents automatically. It identifies common building blocks of well-engineered loops and measures adoption in software projects, extending context engineering to a higher abstraction level.",
+      "llm_tldr_cn": "智能体编程工具的开发者抽象层级从提示词、上下文工程逐步升至循环工程，即在无需人工交互下设计系统自动提示并执行智能体。该探索性综述梳理了新兴灰色文献，总结了良好循环的构建模块，并评估了其在软件项目中的采用与影响。这为上下文工程与循环工程结合提供了实践层面的系统认识。",
+      "llm_tldr": "智能体编程工具的开发者抽象层级从提示词、上下文工程逐步升至循环工程，即在无需人工交互下设计系统自动提示并执行智能体。该探索性综述梳理了新兴灰色文献，总结了良好循环的构建模块，并评估了其在软件项目中的采用与影响。这为上下文工程与循环工程结合提供了实践层面的系统认识。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.24644v1",
+      "source": "arxiv",
+      "title": "A Literate Programming Environment for Human and Machine Agents",
+      "abstract": "This paper introduces an environment for constructing literate programs in concert with language-aware machine agents. This environment includes a grammar for executable program essays, a parser that treats names as first-class objects, an internal name-graph which relates prose, names and executable artifacts, and a binding mechanism for existing languages and testing toolsets. This supports co-location of code with its most relevant natural language and structured data context, making better use of Large Language Model (LLM) context windows. It also provides LLM coding agents with a toolset more analogous to the symbol-aware search and usage information available in human programmer-facing Integrated Development Environments (IDEs). We describe a working implementation with bindings to three established programming languages, and several example programs.",
+      "authors": [
+        "Adam T. Burke"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.PL"
+      ],
+      "published": "2026-08-25T14:54:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.24644v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "co-locating code with natural language and structured data context to make better use of LLM context windows",
+      "llm_evidence_cn": "将代码与自然语言和结构化数据上下文共置，以更好利用LLM上下文窗口",
+      "llm_evidence": "将代码与自然语言和结构化数据上下文共置，以更好利用LLM上下文窗口",
+      "canonical_evidence": "将代码与自然语言和结构化数据上下文共置，以更好利用LLM上下文窗口",
+      "llm_tldr_en": "The paper introduces a literate programming environment for human and machine agents, with a grammar, name-graph, and binding mechanisms to co-locate code and context. This improves LLM context window usage and provides coding agents with symbol-aware search akin to IDEs.",
+      "llm_tldr_cn": "论文提出一种面向人类与机器智能体的文学编程环境，通过语法、名称图和绑定机制将程序文本与自然语言、结构化数据上下文置于一处。该环境可更充分地利用LLM上下文窗口，并为智能体提供类似IDE的符号感知搜索工具。作者实现了原型并描述其工作机制。这项工作为LLM智能体的上下文工程提供了新的编程范式。",
+      "llm_tldr": "论文提出一种面向人类与机器智能体的文学编程环境，通过语法、名称图和绑定机制将程序文本与自然语言、结构化数据上下文置于一处。该环境可更充分地利用LLM上下文窗口，并为智能体提供类似IDE的符号感知搜索工具。作者实现了原型并描述其工作机制。这项工作为LLM智能体的上下文工程提供了新的编程范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "date": "20260826",
+  "date_label": "",
+  "generated_at": "2026-08-26 21:43:45 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.22137v1",
+      "route": "202608/26/2608.22137v1-megamem-a-retrieval-solution-for-ultra-large-context-windows",
+      "title": "MegaMem: A Retrieval Solution for Ultra-Large Context Windows",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "提出源解析双视图检索，使数亿token可搜索并以有界证据支持生成，直接解决超大上下文窗口与持久记忆。",
+      "first_seen_at": "2026-08-26 21:43:45 UTC",
+      "updated_at": "2026-08-26 21:43:45 UTC"
+    },
+    {
+      "paper_id": "2608.24569v1",
+      "route": "202608/26/2608.24569v1-when-must-becomes-maybe-constraint-weakening-in-llm-agent-workflows",
+      "title": "When \"Must\" Becomes \"Maybe\": Constraint Weakening in LLM Agent Workflows",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "研究摘要、记忆、交接笔记等中间工件如何保留或弱化行动约束，直接涉及LLM智能体的上下文管理",
+      "first_seen_at": "2026-08-26 21:43:45 UTC",
+      "updated_at": "2026-08-26 21:43:45 UTC"
+    },
+    {
+      "paper_id": "2608.23471v1",
+      "route": "202608/26/2608.23471v1-injecmem-memory-injection-attack-on-llm-agent-memory-systems",
+      "title": "InjecMEM: Memory Injection Attack on LLM Agent Memory Systems",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "分析LLM智能体记忆系统检索-生成机制的漏洞，直接涉及记忆架构与上下文管理。",
+      "first_seen_at": "2026-08-26 21:43:45 UTC",
+      "updated_at": "2026-08-26 21:43:45 UTC"
+    },
+    {
+      "paper_id": "2608.21884v1",
+      "route": "202608/26/2608.21884v1-loop-engineering-building-blocks-adoption-and-impact",
+      "title": "Loop Engineering: Building Blocks, Adoption, and Impact",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "智能体上下文工程与循环工程实践",
+      "first_seen_at": "2026-08-26 21:43:45 UTC",
+      "updated_at": "2026-08-26 21:43:45 UTC"
+    },
+    {
+      "paper_id": "2608.24644v1",
+      "route": "202608/26/2608.24644v1-a-literate-programming-environment-for-human-and-machine-agents",
+      "title": "A Literate Programming Environment for Human and Machine Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "将代码与自然语言和结构化数据上下文共置，以更好利用LLM上下文窗口",
+      "first_seen_at": "2026-08-26 21:43:45 UTC",
+      "updated_at": "2026-08-26 21:43:45 UTC"
+    }
+  ]
+}

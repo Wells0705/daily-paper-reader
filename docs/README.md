@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-25</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-26</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 16 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 5 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>10</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>3</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-25 20:35:37 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-26 21:43:45 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,7 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日16篇论文扫描完成，精读10篇，重点聚焦多模态智能体上下文管理与长期记忆机制。</p>
-<p>最值得看的两篇满分论文：一篇主张用视觉证据保留来解决文本上下文债，另一篇提出程序化上下文管理支撑长程智能体。</p>
-<p>速读中可顺带关注记忆增强组推荐与工具使用边界控制，适合对应用落地感兴趣的读者。</p>
+<p>今日聚焦超长上下文检索与LLM Agent约束机制，两篇高分精读值得关注。最值得看：MegaMem以检索方案突破超长上下文窗口，约束弱化研究揭示Agent执行中“必须”变“可能”的风险。建议优先精读这两篇9分论文，速读可稍后浏览循环工程与编程环境主题。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -73,12 +71,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">10 篇</strong>
+    <strong class="dpr-home-dashboard-count">3 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Buried in Textual Debt: Context Pruning with Visual Evidence Preservation for MLLM Agents">Buried in Textual Debt: Context Pruning with Visual Evidence Preservation for MLLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Context as an Environment: Programmatic Context Management for Long-Horizon Agents">Context as an Environment: Programmatic Context Management for Long-Horizon Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="MemGuard: Persisting Verifier Signals for LLM-Agent Memory Governance">MemGuard: Persisting Verifier Signals for LLM-Agent Memory Governance</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="MegaMem: A Retrieval Solution for Ultra-Large Context Windows">MegaMem: A Retrieval Solution for Ultra-Large Context Windows</span></li><li><span class="dpr-home-dashboard-paper-title" title="When &quot;Must&quot; Becomes &quot;Maybe&quot;: Constraint Weakening in LLM Agent Workflows">When &quot;Must&quot; Becomes &quot;Maybe&quot;: Constraint Weakening in LLM Agent Workflows</span></li><li><span class="dpr-home-dashboard-paper-title" title="InjecMEM: Memory Injection Attack on LLM Agent Memory Systems">InjecMEM: Memory Injection Attack on LLM Agent Memory Systems</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>10</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -86,12 +84,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">6 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="MUSE: An Interactive Meta-Agent for Understanding and Steering LLM-powered Data Science Systems">MUSE: An Interactive Meta-Agent for Understanding and Steering LLM-powered Data Science Systems</span></li><li><span class="dpr-home-dashboard-paper-title" title="Enhancing Group Recommendation with Memory-Augmented Reasoning in LLM Agent">Enhancing Group Recommendation with Memory-Augmented Reasoning in LLM Agent</span></li><li><span class="dpr-home-dashboard-paper-title" title="When Not to Imitate: Boundary-Aware Skill Memory for Reliable Tool-Use LLM Agents">When Not to Imitate: Boundary-Aware Skill Memory for Reliable Tool-Use LLM Agents</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Loop Engineering: Building Blocks, Adoption, and Impact">Loop Engineering: Building Blocks, Adoption, and Impact</span></li><li><span class="dpr-home-dashboard-paper-title" title="A Literate Programming Environment for Human and Machine Agents">A Literate Programming Environment for Human and Machine Agents</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 </div>
 
