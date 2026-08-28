@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-28",
+  "date": "2026-08-28",
+  "generated_at": "2026-08-28T03:34:17",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/28/2608.25577v1-polymemdb-a-polyglot-database-system-for-ai-memory-management",
+      "section": "deep",
+      "title_en": "PolyMemDB: A Polyglot Database System for AI Memory Management",
+      "authors": "Yu Wang, Jiaheng Lu",
+      "date": "2026-08-26",
+      "pdf": "https://arxiv.org/pdf/2608.25577v1",
+      "score": "9.0",
+      "evidence": "面向AI智能体记忆的多存储引擎数据库系统，支持图、向量、概率与时空数据",
+      "tldr": "个人智能代理长期交互产生海量异构数据，现有记忆系统采用单一存储割裂多维数据且缺乏溯源，导致事实冲突与幻觉。PolyMemDB提出多语言存储架构，统一管理图、向量、概率和时空数据。其概率推理引擎融合时间衰减与半环聚合，解决长期事实冲突并提供数据溯源。该系统支持可解释的推理链，提升事实一致性。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "With the widespread adoption of personal intelligent agents, users generate massive, heterogeneous data during long-term interactions. Leveraging this data as long-term memory helps reduce token overhead and deliver personalized experiences. However, existing memory systems face two primary limitations: they rely on single-storage paradigms that fragment multi-dimensional data, and they lack fine-grained data provenance to resolve long-term factual conflicts, thereby worsening LLM hallucinations.   In this demonstration, we introduce PolyMemDB, a novel system tailored for managing agent memory. PolyMemDB has a polyglot storage architecture designed to track and manage various memory types, including graph, vector, probability and spatial-temporal data. To ensure factual consistency and reduce hallucinations, it features a probabilistic inference engine that integrates temporal decay with semiring aggregation, resolving long-term factual conflicts, providing detailed data provenance, and enabling users to trace reasoning chains transparently.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/28/2608.26263v1-skillstate-scalable-long-horizon-agent-skills",
+      "section": "deep",
+      "title_en": "SKILL.state: Scalable Long-Horizon Agent Skills",
+      "authors": "Sanket Badhe, Priyanka Tiwari, Jonghyun Chung",
+      "date": "2026-08-26",
+      "pdf": "https://arxiv.org/pdf/2608.26263v1",
+      "score": "9.0",
+      "evidence": "用可变执行状态取代追加式对话历史，防止上下文膨胀与中毒",
+      "tldr": "大型语言模型作为自主代理执行长期任务时，传统追加式对话历史会导致延迟增长和上下文污染。SKILL.state提出运行时架构，以显式可变执行状态替代历史记录，每步仅输入技能规范、当前状态和最新观察，并立即丢弃中间推理。实验表明该方法在多个数据集、模型和环境中提升任务准确率，并大幅降低累积token消耗，为可扩展长时程技能提供架构无关的解决方案。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Large Language Models (LLMs) increasingly act as autonomous agents executing complex, long-running procedural skills. Existing agent runtimes maintain execution by continually appending observations, actions, and intermediate reasoning traces to an ever-growing conversation history, causing latency degradation and context-poisoning failures over long horizons. We present SKILL.state, a runtime architecture that replaces append-only conversational history with an explicit, mutable execution state. At each execution step, the model receives only the immutable skill specification, the current structured execution state, and the latest observation. Intermediate reasoning is discarded immediately after producing a validated state update, preventing prompt growth with execution history. Across diverse datasets, models, and execution environments, SKILL.state improves task accuracy while substantially reducing cumulative token consumption. Our results demonstrate that explicit execution state is an effective and architecture-agnostic abstraction for scalable long-horizon agent skills.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/28/2608.26895v1-when-memory-takes-gradients-collaborative-vector-memory-for-agentic-recommender-systems",
+      "section": "deep",
+      "title_en": "When Memory Takes Gradients: Collaborative Vector Memory for Agentic Recommender Systems",
+      "authors": "Hanchong Chen, Xing Tang, Lingjie Li, Xiongfeng Shan, Xiuqiang He",
+      "date": "2026-08-27",
+      "pdf": "https://arxiv.org/pdf/2608.26895v1",
+      "score": "8.0",
+      "evidence": "为智能体提供协作向量记忆架构的持久记忆方案",
+      "tldr": "Agentic推荐系统依赖LLM维护文本记忆，但逐次重写成本高且无法利用全目录上的协作相似度。CoVeMem将记忆的协作核心向量化：用冻结LightGCN的用户/物品状态构成记忆库，决策时由候选集检索相关历史状态作为软token注入上下文，并辅以轻量文本画像。通过对比对齐和掩码候选列表协同训练，模型学会读取并排序这些状态。在4个指令基准的20项指标中，CoVeMem在19项上匹配或超过最强文本记忆agent，且记忆维护零额外LLM调用——完整交互历史首次可参与梯度训练。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Agentic recommender systems ground each decision of a large language model (LLM) in a persistent memory of the user, and in existing agents that memory is text: a narrative written and maintained by further LLM calls. Text limits this memory in two ways. It is updated one rewrite at a time, so exploiting the full interaction history is prohibitively expensive; and collaborative evidence, graded similarity over an entire catalog, does not survive translation into sentences. We propose CoVeMem (Collaborative Vector Memory), which vectorizes the collaborative core of the agent's memory. Frozen LightGCN user and item states form the memory bank; at each decision, the candidate set itself retrieves the most relevant historical states, which enter the LLM's context as soft tokens alongside a light textual profile. Contrastive alignment to item-semantic anchors, followed by listwise co-training with masked candidates, teaches the model to read these states and to rank through them; a pointwise yes/no readout scores each candidate. Across four instruction-grounded recommendation benchmarks, CoVeMem matches or exceeds the strongest collaborative text-memory agent on 19 of 20 metric cells while requiring zero additional LLM calls for memory maintenance beyond the shared static profile, against per-interaction calls for text memory. The memory now takes gradients: the full interaction history, out of reach for text, becomes available as training data for what the agent remembers and for how it reads what it remembers.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

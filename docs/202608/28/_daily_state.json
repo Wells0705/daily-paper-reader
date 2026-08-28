@@ -1,0 +1,57 @@
+{
+  "date": "20260828",
+  "date_label": "",
+  "generated_at": "2026-08-28 03:34:14 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2608.25577v1",
+      "route": "202608/28/2608.25577v1-polymemdb-a-polyglot-database-system-for-ai-memory-management",
+      "title": "PolyMemDB: A Polyglot Database System for AI Memory Management",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向AI智能体记忆的多存储引擎数据库系统，支持图、向量、概率与时空数据",
+      "first_seen_at": "2026-08-28 03:34:14 UTC",
+      "updated_at": "2026-08-28 03:34:14 UTC"
+    },
+    {
+      "paper_id": "2608.26263v1",
+      "route": "202608/28/2608.26263v1-skillstate-scalable-long-horizon-agent-skills",
+      "title": "SKILL.state: Scalable Long-Horizon Agent Skills",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "用可变执行状态取代追加式对话历史，防止上下文膨胀与中毒",
+      "first_seen_at": "2026-08-28 03:34:14 UTC",
+      "updated_at": "2026-08-28 03:34:14 UTC"
+    },
+    {
+      "paper_id": "2608.26895v1",
+      "route": "202608/28/2608.26895v1-when-memory-takes-gradients-collaborative-vector-memory-for-agentic-recommender-systems",
+      "title": "When Memory Takes Gradients: Collaborative Vector Memory for Agentic Recommender Systems",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "为智能体提供协作向量记忆架构的持久记忆方案",
+      "first_seen_at": "2026-08-28 03:34:14 UTC",
+      "updated_at": "2026-08-28 03:34:14 UTC"
+    }
+  ]
+}

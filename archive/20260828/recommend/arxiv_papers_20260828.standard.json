@@ -1,0 +1,129 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-28T03:32:38.192954+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2608.25577v1",
+      "source": "arxiv",
+      "title": "PolyMemDB: A Polyglot Database System for AI Memory Management",
+      "abstract": "With the widespread adoption of personal intelligent agents, users generate massive, heterogeneous data during long-term interactions. Leveraging this data as long-term memory helps reduce token overhead and deliver personalized experiences. However, existing memory systems face two primary limitations: they rely on single-storage paradigms that fragment multi-dimensional data, and they lack fine-grained data provenance to resolve long-term factual conflicts, thereby worsening LLM hallucinations.   In this demonstration, we introduce PolyMemDB, a novel system tailored for managing agent memory. PolyMemDB has a polyglot storage architecture designed to track and manage various memory types, including graph, vector, probability and spatial-temporal data. To ensure factual consistency and reduce hallucinations, it features a probabilistic inference engine that integrates temporal decay with semiring aggregation, resolving long-term factual conflicts, providing detailed data provenance, and enabling users to trace reasoning chains transparently.",
+      "authors": [
+        "Yu Wang",
+        "Jiaheng Lu"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI"
+      ],
+      "published": "2026-08-26T09:38:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.25577v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "polyglot storage system for AI agent memory with provenance and multiple memory types",
+      "llm_evidence_cn": "面向AI智能体记忆的多存储引擎数据库系统，支持图、向量、概率与时空数据",
+      "llm_evidence": "面向AI智能体记忆的多存储引擎数据库系统，支持图、向量、概率与时空数据",
+      "canonical_evidence": "面向AI智能体记忆的多存储引擎数据库系统，支持图、向量、概率与时空数据",
+      "llm_tldr_en": "Presents PolyMemDB, a polyglot storage system for AI agent memory that manages graph, vector, probabilistic and spatio-temporal memory types with fine-grained provenance to reduce token overhead and resolve factual conflicts.",
+      "llm_tldr_cn": "面向个人智能体长期交互产生的海量异构数据，现有记忆系统依赖单一存储且缺乏数据溯源，难以解决长期事实冲突。PolyMemDB提出多存储引擎架构，统一管理图、向量、概率和时空数据，并通过细粒度溯源提升记忆可信度。系统展示表明其能降低令牌开销、支持个性化体验并缓解幻觉，为智能体记忆管理提供了系统化基础设施。",
+      "llm_tldr": "面向个人智能体长期交互产生的海量异构数据，现有记忆系统依赖单一存储且缺乏数据溯源，难以解决长期事实冲突。PolyMemDB提出多存储引擎架构，统一管理图、向量、概率和时空数据，并通过细粒度溯源提升记忆可信度。系统展示表明其能降低令牌开销、支持个性化体验并缓解幻觉，为智能体记忆管理提供了系统化基础设施。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.26263v1",
+      "source": "arxiv",
+      "title": "SKILL.state: Scalable Long-Horizon Agent Skills",
+      "abstract": "Large Language Models (LLMs) increasingly act as autonomous agents executing complex, long-running procedural skills. Existing agent runtimes maintain execution by continually appending observations, actions, and intermediate reasoning traces to an ever-growing conversation history, causing latency degradation and context-poisoning failures over long horizons. We present SKILL.state, a runtime architecture that replaces append-only conversational history with an explicit, mutable execution state. At each execution step, the model receives only the immutable skill specification, the current structured execution state, and the latest observation. Intermediate reasoning is discarded immediately after producing a validated state update, preventing prompt growth with execution history. Across diverse datasets, models, and execution environments, SKILL.state improves task accuracy while substantially reducing cumulative token consumption. Our results demonstrate that explicit execution state is an effective and architecture-agnostic abstraction for scalable long-horizon agent skills.",
+      "authors": [
+        "Sanket Badhe",
+        "Priyanka Tiwari",
+        "Jonghyun Chung"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-26T18:00:06+00:00",
+      "link": "https://arxiv.org/pdf/2608.26263v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Replaces append-only conversation history with explicit mutable execution state, preventing context growth and poisoning",
+      "llm_evidence_cn": "用可变执行状态取代追加式对话历史，防止上下文膨胀与中毒",
+      "llm_evidence": "用可变执行状态取代追加式对话历史，防止上下文膨胀与中毒",
+      "canonical_evidence": "用可变执行状态取代追加式对话历史，防止上下文膨胀与中毒",
+      "llm_tldr_en": "SKILL.state is a runtime architecture that discards intermediate reasoning and maintains a compact mutable execution state, preventing context growth and poisoning in long-horizon LLM agents.",
+      "llm_tldr_cn": "长时程智能体运行时往往把观测、动作和推理轨迹不断追加到对话历史中，导致延迟退化和上下文中毒。SKILL.state提出以显式可变执行状态取代追加式历史，每一步仅保留技能规范、当前状态和最新观测，并在验证后立即丢弃中间推理。该方法有效控制提示词长度稳定，显著提升长时程任务的可靠性和可扩展性，为核心上下文管理提供了通用架构。",
+      "llm_tldr": "长时程智能体运行时往往把观测、动作和推理轨迹不断追加到对话历史中，导致延迟退化和上下文中毒。SKILL.state提出以显式可变执行状态取代追加式历史，每一步仅保留技能规范、当前状态和最新观测，并在验证后立即丢弃中间推理。该方法有效控制提示词长度稳定，显著提升长时程任务的可靠性和可扩展性，为核心上下文管理提供了通用架构。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.26895v1",
+      "source": "arxiv",
+      "title": "When Memory Takes Gradients: Collaborative Vector Memory for Agentic Recommender Systems",
+      "abstract": "Agentic recommender systems ground each decision of a large language model (LLM) in a persistent memory of the user, and in existing agents that memory is text: a narrative written and maintained by further LLM calls. Text limits this memory in two ways. It is updated one rewrite at a time, so exploiting the full interaction history is prohibitively expensive; and collaborative evidence, graded similarity over an entire catalog, does not survive translation into sentences. We propose CoVeMem (Collaborative Vector Memory), which vectorizes the collaborative core of the agent's memory. Frozen LightGCN user and item states form the memory bank; at each decision, the candidate set itself retrieves the most relevant historical states, which enter the LLM's context as soft tokens alongside a light textual profile. Contrastive alignment to item-semantic anchors, followed by listwise co-training with masked candidates, teaches the model to read these states and to rank through them; a pointwise yes/no readout scores each candidate. Across four instruction-grounded recommendation benchmarks, CoVeMem matches or exceeds the strongest collaborative text-memory agent on 19 of 20 metric cells while requiring zero additional LLM calls for memory maintenance beyond the shared static profile, against per-interaction calls for text memory. The memory now takes gradients: the full interaction history, out of reach for text, becomes available as training data for what the agent remembers and for how it reads what it remembers.",
+      "authors": [
+        "Hanchong Chen",
+        "Xing Tang",
+        "Lingjie Li",
+        "Xiongfeng Shan",
+        "Xiuqiang He"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T09:51:18+00:00",
+      "link": "https://arxiv.org/pdf/2608.26895v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "collaborative vector memory architecture for persistent agent memory",
+      "llm_evidence_cn": "为智能体提供协作向量记忆架构的持久记忆方案",
+      "llm_evidence": "为智能体提供协作向量记忆架构的持久记忆方案",
+      "canonical_evidence": "为智能体提供协作向量记忆架构的持久记忆方案",
+      "llm_tldr_en": "Identifies limits of text-based memory in LLM agents and proposes CoVeMem, a collaborative vector memory using frozen LightGCN states to retrieve relevant history at each decision, enabling efficient persistent grounding for agentic recommenders.",
+      "llm_tldr_cn": "现有智能体推荐系统把用户记忆写成文本，逐次改写开销大且难以保留跨目录的协作信息。论文提出CoVeMem协作向量记忆，用冻结的LightGCN用户和物品状态构成记忆库，在每次决策时由候选集检索相关历史状态。该方法让智能体可以利用完整的交互历史和协作证据进行决策。这为LLM智能体的内存架构设计提供了向量化新范式。",
+      "llm_tldr": "现有智能体推荐系统把用户记忆写成文本，逐次改写开销大且难以保留跨目录的协作信息。论文提出CoVeMem协作向量记忆，用冻结的LightGCN用户和物品状态构成记忆库，在每次决策时由候选集检索相关历史状态。该方法让智能体可以利用完整的交互历史和协作证据进行决策。这为LLM智能体的内存架构设计提供了向量化新范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}
