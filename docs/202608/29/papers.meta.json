@@ -1,9 +1,39 @@
 {
   "label": "2026-08-29",
   "date": "2026-08-29",
-  "generated_at": "2026-08-29T02:18:23",
-  "count": 2,
+  "generated_at": "2026-08-29T22:29:48",
+  "count": 4,
   "papers": [
+    {
+      "paper_id": "202608/29/2608.26983v1-graphmemix-query-aware-evidence-forests-for-long-term-multimodal-agent-memory",
+      "section": "deep",
+      "title_en": "GraphMemix: Query-Aware Evidence Forests for Long-Term Multimodal Agent Memory",
+      "authors": "Geng Li, Yuhao Wang, Dong Li, Jianye Hao, Yuxin Peng",
+      "date": "2026-08-27",
+      "pdf": "https://arxiv.org/pdf/2608.26983v1",
+      "score": "9.0",
+      "evidence": "面向智能体长期记忆的查询感知证据森林组织",
+      "tldr": "多模态智能体长期记忆面临离线摘要成本高、嵌入匹配冗余不完整的问题。GraphMemix将记忆组织建模为查询感知证据森林构建，通过候选图扩展、效用与激活成本解耦及森林优化，在预算下联合选择记忆与关系结构。在四个长期多模态基准上显著提升不同基础模型性能，并建立准确率与生命周期成本的新帕累托前沿。该方法以更低的生命周期成本恢复低相似度互补证据，为长期记忆提供可靠范式。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Organizing long-term memory for multimodal agents remains challenging because existing methods either suffer from expensive question-agnostic offline summaries or naive embedding similarity matching that introduces incomplete and redundant context. To address these issues, we propose GraphMemix, a combinatorial-optimization graph memory framework that models memory organization as query-aware evidence-forest construction. Specifically, our method consists of three key components:(1) candidate graph construction, which expands multi-view seed memories through schema and semantic relations to acquire query-aware original context; (2) evidence utility and activation costs, which decouples direct memory support from anchor-conditioned relation verification to suppress redundant or conflicting information; and (3) forest optimization, which jointly selects a forest-format memory context under a maximum evidence budget and its reliable relational structure. By organizing memory into a query-relevant subgraph, the method avoids substantial lifecycle cost and recovers low-similarity complementary evidence. Experimental results across four long-term multimodal memory benchmarks demonstrate significant improvements with different foundation models and establish a new Pareto frontier between accuracy and lifecycle cost.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/29/2608.25100v1-towards-reliable-generalizable-and-specific-in-context-knowledge-editing-via-multi-objective-reinforcement-learning",
+      "section": "deep",
+      "title_en": "Towards Reliable, Generalizable, and Specific In-Context Knowledge Editing via Multi-Objective Reinforcement Learning",
+      "authors": "Xuzhong Wang, Maiqi Jiang, Tejal Nair, Girija Bhusal, Yanfu Zhang, Haipeng Chen",
+      "date": "2026-08-25",
+      "pdf": "https://arxiv.org/pdf/2608.25100v1",
+      "score": "8.0",
+      "evidence": "基于强化学习的提示构建用于上下文知识编辑，属于上下文工程技术",
+      "tldr": "大模型参数知识静态过时，知识编辑可更新事实。上下文知识编辑免训练但需平衡可靠性、泛化性与特异性。现有RL方法仅优化单一目标且未全局组织提示示例。我们提出MO-IKE，用多目标RL将提示构建建模为约束马尔可夫决策过程，动态检索器平衡竞争目标，在Llama-3.2上提升编辑成功率、释义一致性并显著提高保留率。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Large Language Models (LLMs) are powerful but limited by static parametric knowledge that becomes outdated once pretraining ends. Knowledge editing addresses this problem by updating model behavior on target facts without full retraining. In particular, in-context knowledge editing has gained attention because it is training-free and readily applicable to black-box LLMs. Recent reinforcement learning (RL)-based approaches improve over fixed retrieval strategies by adapting prompt construction to the quantity-quality trade-off. Despite initial success, they fail to model the prompt as a structured entity under the distinct and often competing objectives of reliability, generality, and specificity. Previous methods largely optimize a single objective and make decisions over only part of the prompt construction process, thereby overlooking both the balance of different objectives and the global organization of demonstrations. We propose Multi-Objective In-context Knowledge Editing (MO-IKE), a multi-objective RL algorithm that formulates prompt construction for in-context knowledge editing as a Constrained Markov Decision Process. MO-IKE trains a dynamic retriever to optimize competing objectives in knowledge editing, enabling more balanced and globally coherent prompt construction. On Llama-3.2, MO-IKE improves edit success (reliability) from 85.0% to 92.0%, paraphrase consistency (generality) from 77% to 79%, while increasing retention rate (specificity) by 23.0% compared to prior RL-based methods.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
     {
       "paper_id": "202608/29/2608.25992v1-progrouter-online-progress-guided-orchestration-for-multi-agent-llm-workflows-under-quality-cost-tradeoffs",
       "section": "deep",
@@ -15,7 +45,7 @@
       "evidence": "针对多智能体LLM工作流中的长程上下文累积，以在线路由方式管理上下文相关成本",
       "tldr": "多智能体LLM工作流虽能解决复杂任务，但反复调用和长上下文导致成本高。现有级联路由仅做一次性查询级决策，无法适应多步工作流中状态依赖的智能体选择。ProgRouter提出在线进度引导路由框架，通过多视角进度评分与双路径进度预测器，逐步选择LLM代理，在预算下保持求解质量。实验证明其能降低运行成本并维持性能。",
       "tags": "query:context-mgmt",
-      "abstract_en": "Multi-agent large language model (LLM) workflows have emerged as a powerful paradigm for solving complex, open-ended tasks through collaborative reasoning among specialized LLM agents, but they incur substantial operating costs due to repeated LLM invocations and long-horizon context accumulation. Existing cascade routing methods make one-shot, query-level decisions and cannot adapt to the dynamic, state-dependent nature of multi-step workflows, in which the right LLM at each step depends on evolving task progress, remaining task difficulty, and cost-efficiency requirements. We present ProgRouter, an online progress-guided routing framework that adaptively selects LLM agents across workflow steps to preserve task-solving quality while adhering to time and cost budgets. ProgRouter introduces a multi-view task progress scorer that combines coarse workflow outcome regimes with fine-grained signals on subtask completion, progress trends, and workflow state quality. Then, a dual-path task progress predictor and an adaptive meta-gating mechanism estimate the progress gain for each candidate routed LLM. ProgRouter makes online step-wise routing decisions that balance progress gain, task time budgets, and long-term operating cost efficiency. Experiments on HumanEval Plus, MBPP, MATH-500, and ASQA, spanning agentic code generation, mathematical reasoning, and retrieval-augmented long-form question answering, demonstrate that ProgRouter reduces the operating cost relative to key baselines while maintaining strong task-solving performance.",
+      "abstract_en": "Multi-agent large language model (LLM) workflows have emerged as a powerful paradigm for solving complex, open-ended tasks through collaborative reasoning among specialized LLM agents, but they incur substantial operating costs due to repeated LLM invocations and long-horizon context accumulation. Existing cascade routing methods make one-shot, query-level decisions and cannot adapt to the dynamic, state-dependent nature of multi-step workflows, in which the right LLM at each step depends on evolving task progress, remaining task difficulty, and cost-efficiency requirements. We present ProgRouter, an online progress-guided routing framework that adaptively selects LLM agents across workflow steps to preserve task-solving quality while adhering to time and cost budgets. ProgRouter introduces a multi-view task progress scorer that combines coarse workflow outcome regimes with fine-grained signals on subtask completion, progress trends, and workflow state quality. Then, a dual-path task progress predictor and an adaptive meta-gating mechanism estimate the progress gain for each candidate routed LLM. ProgRouter makes online step-wise routing decisions that balance progress gain, task time budgets, and long-term operating cost efficiency. Experiments on HumanEval Plus, MBPP, MATH-500, and ASQA, spanning agentic code generation, mathematical reasoning, and retrieval-augmented long-form question answering, demonstrate that ProgRouter reduces the operating cost relative to key baselines while maintaining strong task-solving performance.\n\n---",
       "source": "arxiv",
       "selection_source": "fresh_fetch"
     },
@@ -30,7 +60,7 @@
       "evidence": "通过将多种角色能力合成单一导向向量，避免多轮交互带来的上下文长度膨胀",
       "tldr": "大型语言模型的特化能力对个性化助手与多智能体系统至关重要，但单智能体范式依赖固定角色或引导向量，难以适应多样化查询；多智能体系统虽能动态融合多视角，却需多轮交互导致推理成本高昂。为此提出混合角色方法MoRe，通过学习编码潜在角色的导向向量码本，并由查询感知路由器动态融合为单一向量，在冻结骨干模型下以单轮推理实现多角色协同。在推理与人格基准上，MoRe平均超越单智能体基线2.2%，性能媲美多智能体且推理词元成本降低20倍，为高效多视角LLM特化提供了新思路。",
       "tags": "query:context-mgmt",
-      "abstract_en": "Specializing Large Language Models (LLMs) toward distinct abilities underpins successes ranging from personalized assistants to multi-agent systems (MAS). Single-agent paradigms rely on pre-defined personas or steering vectors to induce specialization, yet they impose a single fixed specialization that fails to adapt to diverse queries. Conversely, MAS achieves dynamic multi-perspective problem solving by orchestrating agents with distinct text-based roles, but fusing these specializations requires multi-turn interactions that inflate context length and inference cost. To address these limitations, we propose Mixture of Roles (MoRe), which adaptively composes multiple specializations into a single steering vector for single-turn inference. Specifically, MoRe learns a diversified codeboox of steering vectors, each of which encodes a latent role. A query-aware router dynamically fuses the codebook into a steering vector that encompasses multiple roles. By steering the backbone LLM with the composed vector, MoRe enables multi-perspective specialization in a single-agent, single-turn inference process. The proposed MoRe can be efficiently trained via a three-stage SFT curriculum and GRPO post-training, while the backbone LLM remains frozen. Experiments across reasoning and personality benchmarks show that MoRe outperforms single-agent baselines by 2.2% on average, and achieves performance on par with MAS while reducing token cost by 20x.",
+      "abstract_en": "Specializing Large Language Models (LLMs) toward distinct abilities underpins successes ranging from personalized assistants to multi-agent systems (MAS). Single-agent paradigms rely on pre-defined personas or steering vectors to induce specialization, yet they impose a single fixed specialization that fails to adapt to diverse queries. Conversely, MAS achieves dynamic multi-perspective problem solving by orchestrating agents with distinct text-based roles, but fusing these specializations requires multi-turn interactions that inflate context length and inference cost. To address these limitations, we propose Mixture of Roles (MoRe), which adaptively composes multiple specializations into a single steering vector for single-turn inference. Specifically, MoRe learns a diversified codeboox of steering vectors, each of which encodes a latent role. A query-aware router dynamically fuses the codebook into a steering vector that encompasses multiple roles. By steering the backbone LLM with the composed vector, MoRe enables multi-perspective specialization in a single-agent, single-turn inference process. The proposed MoRe can be efficiently trained via a three-stage SFT curriculum and GRPO post-training, while the backbone LLM remains frozen. Experiments across reasoning and personality benchmarks show that MoRe outperforms single-agent baselines by 2.2% on average, and achieves performance on par with MAS while reducing token cost by 20x.\n\n---",
       "source": "arxiv",
       "selection_source": "fresh_fetch"
     }

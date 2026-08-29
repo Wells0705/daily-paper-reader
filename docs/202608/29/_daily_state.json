@@ -1,10 +1,42 @@
 {
   "date": "20260829",
   "date_label": "",
-  "generated_at": "2026-08-29 02:18:21 UTC",
+  "generated_at": "2026-08-29 22:29:45 UTC",
   "recommend_exists": true,
-  "run_count": 1,
+  "run_count": 2,
   "papers": [
+    {
+      "paper_id": "2608.26983v1",
+      "route": "202608/29/2608.26983v1-graphmemix-query-aware-evidence-forests-for-long-term-multimodal-agent-memory",
+      "title": "GraphMemix: Query-Aware Evidence Forests for Long-Term Multimodal Agent Memory",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向智能体长期记忆的查询感知证据森林组织",
+      "first_seen_at": "2026-08-29 22:29:45 UTC",
+      "updated_at": "2026-08-29 22:29:45 UTC"
+    },
+    {
+      "paper_id": "2608.25100v1",
+      "route": "202608/29/2608.25100v1-towards-reliable-generalizable-and-specific-in-context-knowledge-editing-via-multi-objective-reinforcement-learning",
+      "title": "Towards Reliable, Generalizable, and Specific In-Context Knowledge Editing via Multi-Objective Reinforcement Learning",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "基于强化学习的提示构建用于上下文知识编辑，属于上下文工程技术",
+      "first_seen_at": "2026-08-29 22:29:45 UTC",
+      "updated_at": "2026-08-29 22:29:45 UTC"
+    },
     {
       "paper_id": "2608.25992v1",
       "route": "202608/29/2608.25992v1-progrouter-online-progress-guided-orchestration-for-multi-agent-llm-workflows-under-quality-cost-tradeoffs",
