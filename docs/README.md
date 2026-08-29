@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-28</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-29</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 3 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 2 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>3</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
     <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>0</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-28 03:34:14 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-29 02:18:21 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日精读两篇高分论文，聚焦AI记忆管理与智能体长期技能。最值得关注的是《PolyMemDB》构建多语言数据库支持AI记忆，以及《SKILL.state》实现可扩展的长时程智能体技能。建议从AI记忆架构与技能抽象两个方向入手，结合各自原型系统继续追踪后续工作。</p>
+<p>今日精读两篇多智能体LLM工作流论文，均获8.0分，聚焦编排优化与协同机制。</p>
+<p>最值得关注：ProgRouter以进度引导权衡质量与成本，One Model Many Minds用单模型多角色混合释放协同潜力。</p>
+<p>建议读者延伸思考两者结合，探索更轻量、可调的智能体编排策略。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">3 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="PolyMemDB: A Polyglot Database System for AI Memory Management">PolyMemDB: A Polyglot Database System for AI Memory Management</span></li><li><span class="dpr-home-dashboard-paper-title" title="SKILL.state: Scalable Long-Horizon Agent Skills">SKILL.state: Scalable Long-Horizon Agent Skills</span></li><li><span class="dpr-home-dashboard-paper-title" title="When Memory Takes Gradients: Collaborative Vector Memory for Agentic Recommender Systems">When Memory Takes Gradients: Collaborative Vector Memory for Agentic Recommender Systems</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="ProgRouter: Online Progress-Guided Orchestration for Multi-Agent LLM Workflows under Quality-Cost Tradeoffs">ProgRouter: Online Progress-Guided Orchestration for Multi-Agent LLM Workflows under Quality-Cost Tradeoffs</span></li><li><span class="dpr-home-dashboard-paper-title" title="One Model, Many Minds: Unlocking Multi-Agent Synergy in a Single Agent via Mixture of Roles">One Model, Many Minds: Unlocking Multi-Agent Synergy in a Single Agent via Mixture of Roles</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">

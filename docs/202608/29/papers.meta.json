@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-29",
+  "date": "2026-08-29",
+  "generated_at": "2026-08-29T02:18:23",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/29/2608.25992v1-progrouter-online-progress-guided-orchestration-for-multi-agent-llm-workflows-under-quality-cost-tradeoffs",
+      "section": "deep",
+      "title_en": "ProgRouter: Online Progress-Guided Orchestration for Multi-Agent LLM Workflows under Quality-Cost Tradeoffs",
+      "authors": "Songyuan Li, Ahmed M. Abdelmoniem, Shiqiang Wang",
+      "date": "2026-08-26",
+      "pdf": "https://arxiv.org/pdf/2608.25992v1",
+      "score": "8.0",
+      "evidence": "针对多智能体LLM工作流中的长程上下文累积，以在线路由方式管理上下文相关成本",
+      "tldr": "多智能体LLM工作流虽能解决复杂任务，但反复调用和长上下文导致成本高。现有级联路由仅做一次性查询级决策，无法适应多步工作流中状态依赖的智能体选择。ProgRouter提出在线进度引导路由框架，通过多视角进度评分与双路径进度预测器，逐步选择LLM代理，在预算下保持求解质量。实验证明其能降低运行成本并维持性能。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Multi-agent large language model (LLM) workflows have emerged as a powerful paradigm for solving complex, open-ended tasks through collaborative reasoning among specialized LLM agents, but they incur substantial operating costs due to repeated LLM invocations and long-horizon context accumulation. Existing cascade routing methods make one-shot, query-level decisions and cannot adapt to the dynamic, state-dependent nature of multi-step workflows, in which the right LLM at each step depends on evolving task progress, remaining task difficulty, and cost-efficiency requirements. We present ProgRouter, an online progress-guided routing framework that adaptively selects LLM agents across workflow steps to preserve task-solving quality while adhering to time and cost budgets. ProgRouter introduces a multi-view task progress scorer that combines coarse workflow outcome regimes with fine-grained signals on subtask completion, progress trends, and workflow state quality. Then, a dual-path task progress predictor and an adaptive meta-gating mechanism estimate the progress gain for each candidate routed LLM. ProgRouter makes online step-wise routing decisions that balance progress gain, task time budgets, and long-term operating cost efficiency. Experiments on HumanEval Plus, MBPP, MATH-500, and ASQA, spanning agentic code generation, mathematical reasoning, and retrieval-augmented long-form question answering, demonstrate that ProgRouter reduces the operating cost relative to key baselines while maintaining strong task-solving performance.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/29/2608.27338v1-one-model-many-minds-unlocking-multi-agent-synergy-in-a-single-agent-via-mixture-of-roles",
+      "section": "deep",
+      "title_en": "One Model, Many Minds: Unlocking Multi-Agent Synergy in a Single Agent via Mixture of Roles",
+      "authors": "Zhichen Zeng, Huiyuan Chen, Jingru Cheng, Juan Zha, Ming Liu, Ying Chen, Xiyuan Yang, Chaosheng Dong, Haiyang Zhang, Hanghang Tong",
+      "date": "2026-08-27",
+      "pdf": "https://arxiv.org/pdf/2608.27338v1",
+      "score": "8.0",
+      "evidence": "通过将多种角色能力合成单一导向向量，避免多轮交互带来的上下文长度膨胀",
+      "tldr": "大型语言模型的特化能力对个性化助手与多智能体系统至关重要，但单智能体范式依赖固定角色或引导向量，难以适应多样化查询；多智能体系统虽能动态融合多视角，却需多轮交互导致推理成本高昂。为此提出混合角色方法MoRe，通过学习编码潜在角色的导向向量码本，并由查询感知路由器动态融合为单一向量，在冻结骨干模型下以单轮推理实现多角色协同。在推理与人格基准上，MoRe平均超越单智能体基线2.2%，性能媲美多智能体且推理词元成本降低20倍，为高效多视角LLM特化提供了新思路。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Specializing Large Language Models (LLMs) toward distinct abilities underpins successes ranging from personalized assistants to multi-agent systems (MAS). Single-agent paradigms rely on pre-defined personas or steering vectors to induce specialization, yet they impose a single fixed specialization that fails to adapt to diverse queries. Conversely, MAS achieves dynamic multi-perspective problem solving by orchestrating agents with distinct text-based roles, but fusing these specializations requires multi-turn interactions that inflate context length and inference cost. To address these limitations, we propose Mixture of Roles (MoRe), which adaptively composes multiple specializations into a single steering vector for single-turn inference. Specifically, MoRe learns a diversified codeboox of steering vectors, each of which encodes a latent role. A query-aware router dynamically fuses the codebook into a steering vector that encompasses multiple roles. By steering the backbone LLM with the composed vector, MoRe enables multi-perspective specialization in a single-agent, single-turn inference process. The proposed MoRe can be efficiently trained via a three-stage SFT curriculum and GRPO post-training, while the backbone LLM remains frozen. Experiments across reasoning and personality benchmarks show that MoRe outperforms single-agent baselines by 2.2% on average, and achieves performance on par with MAS while reducing token cost by 20x.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
