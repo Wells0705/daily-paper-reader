@@ -1,0 +1,214 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-30T22:35:24.702182+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2608.22101v1",
+      "source": "arxiv",
+      "title": "Beyond Fresh Starts: Stateful Inference for Streaming ASR in Conversational Voice Agents",
+      "abstract": "Modern voice-agent systems rely on streaming speech recognition models that operate under stringent latency constraints. This study shows that, due to the limited memory constraints of real-time processing, these systems are adversely impacted by conversational phenomena such as long silences and backchannels. While many agentic pipelines mitigate this by resetting state at each turn, this approach discards vital context and impairs performance at turn onsets. We propose two state-management strategies that preserve cross-utterance context to reduce onset errors. In experiments with two state-of-the-art streaming models on two spoken dialogue benchmarks, our best method yields an average of 15-21% relative WER reduction at utterance onsets.",
+      "authors": [
+        "Sameep Chattopadhyay",
+        "Alexander Erdmann",
+        "Mari Ostendorf"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-22T20:46:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.22101v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "preserving cross-utterance context in conversational agents",
+      "llm_evidence_cn": "在会话智能体中保留跨语句上下文",
+      "llm_evidence": "在会话智能体中保留跨语句上下文",
+      "canonical_evidence": "在会话智能体中保留跨语句上下文",
+      "llm_tldr_en": "Streaming ASR in voice agents loses context due to resetting at turns. Stateful inference strategies preserve cross-utterance context, cutting onset word error rates by 15-21% on spoken dialogue benchmarks.",
+      "llm_tldr_cn": "语音智能体的流式语音识别常因在线处理的内存限制而丢失会话上下文，尤其长静音和反馈词会加剧句首错误。本文提出在说话轮之间保持状态而非重置的策略，以保留跨语句上下文。在两个对话基准上，该方案平均将句首词错误率相对降低15-21%。这表明对话系统需要显式的上下文状态管理，而非简单重置，为语音智能体上下文工程提供了实证支撑。",
+      "llm_tldr": "语音智能体的流式语音识别常因在线处理的内存限制而丢失会话上下文，尤其长静音和反馈词会加剧句首错误。本文提出在说话轮之间保持状态而非重置的策略，以保留跨语句上下文。在两个对话基准上，该方案平均将句首词错误率相对降低15-21%。这表明对话系统需要显式的上下文状态管理，而非简单重置，为语音智能体上下文工程提供了实证支撑。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.25500v1",
+      "source": "arxiv",
+      "title": "CaSKG: Counterfactual-Causal Skill Graphs for Scalable Agent Skill Retrieval",
+      "abstract": "Reusable skill libraries allow large language model (LLM) agents to reuse procedural knowledge across tasks, but they also turn memory access into a challenging retrieval problem. Full-library prompting preserves coverage at high context cost, vector retrieval returns compact neighborhoods but treats skills as independent text, and graph-based retrieval can recover workflow context only when the edges that carry relevance are reliable. We propose CaSKG, a counterfactual-causal skill graph framework that calibrates procedural relations before retrieval. CaSKG first builds a high-recall directed candidate graph from semantic, lexical, input/output, and structural evidence, with repair evidence and an optional LLM judge further refining candidate scores. It then applies direction-conditioned textual counterfactual probes that remove, substitute, and reorder skill pairs, aggregates the evidence with Bayesian smoothing, and publishes a state-filtered weighted graph for task-conditioned expansion. The graph is constructed offline and used without changing the downstream agent policy or task interface. Across six LLM backbones on ALFWorld ID-140 and ScienceWorld U211, CaSKG achieves the highest task score in all twelve combinations of model and benchmark. Relative to Graph-of-Skills (GoS), it improves the six-model macro-average ScienceWorld score from 72.62 to 80.50 and ALFWorld success from 80.01\\% to 86.79\\%, while reducing mean environment steps on both benchmarks. Qualitative and ablation analyses further show that calibrated edges help retrieval preserve prerequisites, state-changing actions, verification routines, and final completion steps. These results position edge-confidence calibration as an effective route to compact and executable skill retrieval at scale\\footnote{Code is available at: https://github.com/ZhiyuanLi218/Caskg }.",
+      "authors": [
+        "Zhiyuan Li",
+        "Linyuan Gao",
+        "Xuechun Ding",
+        "Hongwei Chen",
+        "Yuan Wu",
+        "Yi Chang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-26T08:12:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.25500v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "scalable agent skill retrieval to manage memory access and context cost",
+      "llm_evidence_cn": "通过可扩展的技能图检索来管理智能体记忆访问与上下文成本",
+      "llm_evidence": "通过可扩展的技能图检索来管理智能体记忆访问与上下文成本",
+      "canonical_evidence": "通过可扩展的技能图检索来管理智能体记忆访问与上下文成本",
+      "llm_tldr_en": "CaSKG builds counterfactual-causal skill graphs to calibrate procedural relations before retrieval, enabling scalable agent skill retrieval while avoiding high context cost of full-library prompting.",
+      "llm_tldr_cn": "可复用技能库让LLM智能体能够跨任务复用过程性知识，但完整的库提示会带来高上下文开销。CaSKG 提出反事实-因果技能图框架，在检索前校准技能间程序性关系，整合语义、词汇、输入输出等多源证据构建候选图，并用修复证据与LLM裁判进一步精炼。该方法在保持工作流上下文关系的同时实现了可扩展的技能检索，显著降低了智能体的上下文成本。",
+      "llm_tldr": "可复用技能库让LLM智能体能够跨任务复用过程性知识，但完整的库提示会带来高上下文开销。CaSKG 提出反事实-因果技能图框架，在检索前校准技能间程序性关系，整合语义、词汇、输入输出等多源证据构建候选图，并用修复证据与LLM裁判进一步精炼。该方法在保持工作流上下文关系的同时实现了可扩展的技能检索，显著降低了智能体的上下文成本。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.27338v1",
+      "source": "arxiv",
+      "title": "One Model, Many Minds: Unlocking Multi-Agent Synergy in a Single Agent via Mixture of Roles",
+      "abstract": "Specializing Large Language Models (LLMs) toward distinct abilities underpins successes ranging from personalized assistants to multi-agent systems (MAS). Single-agent paradigms rely on pre-defined personas or steering vectors to induce specialization, yet they impose a single fixed specialization that fails to adapt to diverse queries. Conversely, MAS achieves dynamic multi-perspective problem solving by orchestrating agents with distinct text-based roles, but fusing these specializations requires multi-turn interactions that inflate context length and inference cost. To address these limitations, we propose Mixture of Roles (MoRe), which adaptively composes multiple specializations into a single steering vector for single-turn inference. Specifically, MoRe learns a diversified codeboox of steering vectors, each of which encodes a latent role. A query-aware router dynamically fuses the codebook into a steering vector that encompasses multiple roles. By steering the backbone LLM with the composed vector, MoRe enables multi-perspective specialization in a single-agent, single-turn inference process. The proposed MoRe can be efficiently trained via a three-stage SFT curriculum and GRPO post-training, while the backbone LLM remains frozen. Experiments across reasoning and personality benchmarks show that MoRe outperforms single-agent baselines by 2.2% on average, and achieves performance on par with MAS while reducing token cost by 20x.",
+      "authors": [
+        "Zhichen Zeng",
+        "Huiyuan Chen",
+        "Jingru Cheng",
+        "Juan Zha",
+        "Ming Liu",
+        "Ying Chen",
+        "Xiyuan Yang",
+        "Chaosheng Dong",
+        "Haiyang Zhang",
+        "Hanghang Tong"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-08-27T16:40:28+00:00",
+      "link": "https://arxiv.org/pdf/2608.27338v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "composes role specializations into a single steering vector to avoid multi-turn context inflation",
+      "llm_evidence_cn": "将多种角色特化组合成单一引导向量，避免多轮交互带来的上下文膨胀",
+      "llm_evidence": "将多种角色特化组合成单一引导向量，避免多轮交互带来的上下文膨胀",
+      "canonical_evidence": "将多种角色特化组合成单一引导向量，避免多轮交互带来的上下文膨胀",
+      "llm_tldr_en": "Multi-agent systems achieve diverse problem solving but role fusion through multi-turn interaction inflates context length and cost. Mixture of Roles composes multiple specializations into a single steering vector for one-turn inference, letting one model act as many minds without explicit multi-agent conversation and reducing context overhead.",
+      "llm_tldr_cn": "多智能体系统通过编排不同角色实现多视角问题求解，但角色融合需要多轮交互，会显著增加上下文长度和推理成本。Mixture of Roles（MoRe）将多个角色特化自适应组合成单个引导向量，实现单轮推理中的多角色协同，从而避免多轮交互带来的上下文膨胀。该方法让一个模型在保持角色多样性的同时大幅降低上下文开销，为智能体的上下文高效编排提供了新思路。",
+      "llm_tldr": "多智能体系统通过编排不同角色实现多视角问题求解，但角色融合需要多轮交互，会显著增加上下文长度和推理成本。Mixture of Roles（MoRe）将多个角色特化自适应组合成单个引导向量，实现单轮推理中的多角色协同，从而避免多轮交互带来的上下文膨胀。该方法让一个模型在保持角色多样性的同时大幅降低上下文开销，为智能体的上下文高效编排提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.24048v1",
+      "source": "arxiv",
+      "title": "Don't Just Listen, Try Planning: Graph-based Retrieval-Generation Agent for Long-form Audio Meeting Understanding",
+      "abstract": "While long-form audio meeting understanding (LAMU) is garnering growing attention, task-specific question answering (QA) datasets remain scarce. Existing speech QA paradigms and state-of-the-art Speech LLMs suffer from acoustic information loss and poor long-term context memory. To address these issues, we construct the LongAudioQA dataset and propose the GRGA model, which models heterogeneous audio features into a multi-dimensional graph and leverages agent planning for retrieval and answer generation.",
+      "authors": [
+        "Quanwei Tang",
+        "Dong Zhang",
+        "Shoushan Li",
+        "Guodong Zhou"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI"
+      ],
+      "published": "2026-08-25T04:16:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.24048v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "long-term context memory and retrieval-generation agent",
+      "llm_evidence_cn": "长期上下文记忆与检索-生成智能体",
+      "llm_evidence": "长期上下文记忆与检索-生成智能体",
+      "canonical_evidence": "长期上下文记忆与检索-生成智能体",
+      "llm_tldr_en": "Long-form audio meeting understanding suffers from poor long-term context memory. The paper constructs LongAudioQA and proposes GRGA, a graph-based retrieval-generation agent that uses planning to retrieve and answer. Experiments show effectiveness in handling long audio context.",
+      "llm_tldr_cn": "长音频会议理解面临声学信息丢失和长期上下文记忆不足的挑战。作者构建了LongAudioQA数据集并提出GRGA模型，将异构音频特征组织成多维图，借助智能体规划进行检索与回答生成。实验验证了该方法在长音频问答上的有效性，表明图结构记忆和规划式检索能显著改善对长时对话的理解。该工作为音频领域的上下文管理提供了可迁移的技术路径。",
+      "llm_tldr": "长音频会议理解面临声学信息丢失和长期上下文记忆不足的挑战。作者构建了LongAudioQA数据集并提出GRGA模型，将异构音频特征组织成多维图，借助智能体规划进行检索与回答生成。实验验证了该方法在长音频问答上的有效性，表明图结构记忆和规划式检索能显著改善对长时对话的理解。该工作为音频领域的上下文管理提供了可迁移的技术路径。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.24764v1",
+      "source": "arxiv",
+      "title": "Evidence Blindness in Direct Corpus Interaction: Persistent Navigation with AtlasNav",
+      "abstract": "Large language model agents are moving beyond conventional retrieval-augmented generation toward direct interaction with external corpora. Direct Corpus Interaction (DCI) keeps the full corpus accessible, yet reachable evidence can remain unusable under finite interaction budgets. Required evidence may fail to surface, a surfaced supporting document may remain unopened, or an opened document may fail to expose its decisive fragment. We call this progressive silent loss Evidence Blindness and quantify it through stage-wise evidence realization. Within the DCI paradigm, raw interaction adds little reusable corpus organization, while dynamic-workspace methods reconstruct a query-conditioned interaction space from each query and trajectory. In both cases, useful structure is recovered largely online. We instead formulate large-scale agentic search as finite-budget navigation over reusable corpus structure. We introduce AtlasNav, a persistent multi-view corpus-navigation framework that retains direct corpus interaction but organizes the corpus once into a Corpus Atlas, allowing each query to navigate adaptively rather than reconstruct shared structure. On BrowseComp-Plus, AtlasNav achieves 92.05% strict accuracy while reducing recorded online inference cost by 30.21% relative to the prior dynamic-workspace state of the art. Under matched budgets, it realizes the complete required evidence earlier and approaches the same model's evidence-supplied empirical reference more rapidly. The same representation principle remains effective under PhantomWiki's distinct corpus organization and controlled 10K-1M scaling, and transfers competitively to heterogeneous enterprise knowledge. These results show that agentic search depends not only on accessible evidence, but also on how the corpus is represented so that limited interaction becomes effective navigation.",
+      "authors": [
+        "Hongyu Guo",
+        "Zhiyu Zheng",
+        "Zhao Cao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-25T16:03:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.24764v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Persistent navigation structures to address evidence blindness in agent-corpus interaction",
+      "llm_evidence_cn": "用持久导航结构缓解智能体与语料交互中的证据盲区",
+      "llm_evidence": "用持久导航结构缓解智能体与语料交互中的证据盲区",
+      "canonical_evidence": "用持久导航结构缓解智能体与语料交互中的证据盲区",
+      "llm_tldr_en": "AtlasNav addresses Evidence Blindness in direct corpus interaction by providing persistent navigation structures, enabling agents to better surface, open, and expose decisive evidence.",
+      "llm_tldr_cn": "直接访问外部语料库的LLM智能体在有限交互预算下常出现“证据盲区”：关键证据未被发现、文档未被打开或片段未被暴露。现有动态工作区方法需要为每个查询重建交互空间，复用性差。AtlasNav引入持久化导航机制，跨查询累积语料组织，帮助智能体更有效地定位和利用决定性证据，提升了直接语料交互的证据实现率。",
+      "llm_tldr": "直接访问外部语料库的LLM智能体在有限交互预算下常出现“证据盲区”：关键证据未被发现、文档未被打开或片段未被暴露。现有动态工作区方法需要为每个查询重建交互空间，复用性差。AtlasNav引入持久化导航机制，跨查询累积语料组织，帮助智能体更有效地定位和利用决定性证据，提升了直接语料交互的证据实现率。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
