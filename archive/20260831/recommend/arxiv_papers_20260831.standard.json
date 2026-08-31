@@ -1,0 +1,254 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-31T23:07:34.295374+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2608.28476v1",
+      "source": "arxiv",
+      "title": "ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL",
+      "abstract": "Long-horizon agentic tasks require large language models (LLMs) to iteratively retrieve, integrate, and maintain dispersed information across multi-turn interactions, but preserving all interaction histories leads to a continuously growing working context. Recent proactive context management methods allow models to edit their own working context with specialized tools, yet they still face three key limitations: (1) a limited toolset restricted to search, deletion, and summarization, with no support for global planning, long-term memory, and adaptive compression; (2) inefficient exploration that treats context management actions uniformly despite their heterogeneous impacts on final outcomes; and (3) coarse-grained credit assignment that assigns the final trajectory-level reward to all intermediate context editing actions during RL. To bridge these gaps, we introduce ContextPilot, a proactive context management framework for long-horizon agentic reasoning. Our approach systematically augments the toolset with planning, long-term memory, and soft context offloading tools. We further propose an RL method tailored for context management, which uses context and entropy variation to identify critical editing decisions for branch sampling and estimates action-level advantages from all branched trajectories that pass through the corresponding context editing action. Experiments on long-context QA and deep search tasks show that ContextPilot achieves stronger performance with a more compact working context, consistently outperforming existing baselines across various base models and benchmarks. Code is available at https://github.com/Tencent/ContextPilot.",
+      "authors": [
+        "Zhuoshi Pan",
+        "Qizhi Pei",
+        "Junru Lu",
+        "Honglin Lin",
+        "H. Vicky Zhao",
+        "Di Yin",
+        "Xing Sun"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-28T16:01:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.28476v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "directly trains agents for proactive context management via fine-grained RL",
+      "llm_evidence_cn": "用细粒度强化学习训练智能体主动管理工作上下文",
+      "llm_evidence": "用细粒度强化学习训练智能体主动管理工作上下文",
+      "canonical_evidence": "用细粒度强化学习训练智能体主动管理工作上下文",
+      "llm_tldr_en": "ContextPilot trains LLM agents via fine-grained reinforcement learning to proactively manage their working context, overcoming limited toolsets, inefficient exploration, and coarse credit assignment for long-horizon tasks.",
+      "llm_tldr_cn": "论文提出ContextPilot，面向长时程智能体任务的主动上下文管理方法。针对现有方法工具集仅限搜索、删除和摘要，缺乏全局规划、长期记忆与自适应压缩，且探索低效、信用分配粗糙的问题，该方法通过细粒度强化学习训练智能体更灵活地编辑自身工作上下文。实验表明，主动上下文管理能有效抑制交互历史持续增长带来的上下文膨胀，提升长时程任务的表现。该工作为设计可学习的上下文管理策略提供了新思路。",
+      "llm_tldr": "论文提出ContextPilot，面向长时程智能体任务的主动上下文管理方法。针对现有方法工具集仅限搜索、删除和摘要，缺乏全局规划、长期记忆与自适应压缩，且探索低效、信用分配粗糙的问题，该方法通过细粒度强化学习训练智能体更灵活地编辑自身工作上下文。实验表明，主动上下文管理能有效抑制交互历史持续增长带来的上下文膨胀，提升长时程任务的表现。该工作为设计可学习的上下文管理策略提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.23992v1",
+      "source": "arxiv",
+      "title": "Hybrid Semantic Tool Discovery for Enterprise MCP Gateway: Architecture and Implementation",
+      "abstract": "Large language model (LLM) agents invoke external tools to retrieve and reason over information beyond pretrained knowledge. The Model Context Protocol (MCP) standardizes how such tools are surfaced, and a proxy MCP server aggregates many backend servers behind a single endpoint providing a secure, governable chokepoint for authentication, policy enforcement, and observability. This architecture creates two compounding challenges: a context-engineering bottleneck where full tool schemas saturate the model context window before any user query, and a tool discoverability barrier where users and agents cannot identify the best tool among 2,000+ indexed tools across 200+ MCP servers. Prompt caching reduces reprocessing cost but neither frees context capacity nor improves accuracy. We present SCOUT (Selective Context Optimization for Universal Tooling), which reframes tool exposure as a context-selection problem, injecting only tools relevant to the current step. SCOUT surfaces two MCP meta-tools -- tool_search and execute_tool -- where tool_search performs hybrid retrieval, fusing BM25 sparse matching with dense vector search via Reciprocal Rank Fusion to return the top-k relevant tools. Backed by zero-downtime catalog update pipelines, SCOUT resolves both context saturation and tool discovery challenges. In production at PayPal, SCOUT reduces MCP tool-token consumption from 140.2k tokens (70.1% of context) to 1.3k tokens (0.8%), a 99% reduction, cutting per-query inference cost at enterprise scale. Because SCOUT is surfaced as standard MCP tools, it is model-agnostic and requires no client-side modifications.",
+      "authors": [
+        "Olympia Saha",
+        "Amy Wang",
+        "Srinivasan Manoharan"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-08-25T02:33:44+00:00",
+      "link": "https://arxiv.org/pdf/2608.23992v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "addresses context-engineering bottleneck where full tool schemas saturate the context window",
+      "llm_evidence_cn": "解决完整工具模式塞满上下文窗口造成的上下文工程瓶颈",
+      "llm_evidence": "解决完整工具模式塞满上下文窗口造成的上下文工程瓶颈",
+      "canonical_evidence": "解决完整工具模式塞满上下文窗口造成的上下文工程瓶颈",
+      "llm_tldr_en": "This paper identifies the context-engineering bottleneck where full tool schemas saturate the context window, and proposes hybrid semantic tool discovery to surface the best tool while managing context usage.",
+      "llm_tldr_cn": "在企业MCP网关中，海量工具模式会塞满模型上下文窗口，形成上下文工程瓶颈。为此提出混合语义工具发现机制，结合语义检索与网关架构在用户查询前精准发现最相关工具，避免加载全部工具模式。该方案有效缓解上下文饱和问题，并为大规模工具调用场景下的上下文工程设计提供了可行路径。",
+      "llm_tldr": "在企业MCP网关中，海量工具模式会塞满模型上下文窗口，形成上下文工程瓶颈。为此提出混合语义工具发现机制，结合语义检索与网关架构在用户查询前精准发现最相关工具，避免加载全部工具模式。该方案有效缓解上下文饱和问题，并为大规模工具调用场景下的上下文工程设计提供了可行路径。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.24115v1",
+      "source": "arxiv",
+      "title": "PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control",
+      "abstract": "Multimodal large language models (MLLMs) can integrate long visual histories, reason under partial observability, and infer behavior from a few examples. Yet vision-language-action (VLA) models generally inherit pretrained representations without using this contextual capacity as episode memory. Memory-dependent policies address this gap through purpose-built history mechanisms. PonderPounce instead reuses an MLLM's native causal context as robot memory. Ponder, a System2 MLLM, accumulates episode observations, demonstrations, and prior cognition in its native causal context and can generate subgoal text and demonstration reasoning for internal use. Pounce, a System1 VLA, receives the current observation, instruction, and proprioception directly; through the Ponder--Pounce interface, it asynchronously receives only the newest continuous cognition token and its age. Both are jointly trained end to end without a purpose-built memory module or separate bridge pretraining. Optimized serving achieves p50 latencies of 78ms for cognition refresh and 25ms for action-model invocation, supporting 20Hz action playback. On RoboMME with base-scale training data, PonderPounce reaches 60.83% with 9B and 50.04% with 0.8B under the same Pounce architecture and interface, versus 44.51% for FrameSamp+Modul and 17.93% for the current-observation π_{0.5}. With 9x data, it reaches 75.54% versus 57.88% for FrameSamp+Modul. On RoboCasa-DC, the same interface learns from action supervision alone and reaches 12.5% versus 11.6% for the strongest published demonstration-conditioned baseline, falling to 8.6% when cognition is replaced by a learned null state.",
+      "authors": [
+        "Suhwan Choi",
+        "Jaeyoon Jung",
+        "Sungkyung Kim",
+        "Yunsung Lee",
+        "Youngjae Yu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-25T06:24:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.24115v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "reuses an MLLM's native causal context as episode memory for robot control, addressing context-based memory for agents",
+      "llm_evidence_cn": "复用多模态大模型的原生因果上下文作为机器人的情节记忆，实现智能体上下文记忆管理",
+      "llm_evidence": "复用多模态大模型的原生因果上下文作为机器人的情节记忆，实现智能体上下文记忆管理",
+      "canonical_evidence": "复用多模态大模型的原生因果上下文作为机器人的情节记忆，实现智能体上下文记忆管理",
+      "llm_tldr_en": "PonderPounce reuses an MLLM's native causal context as episode memory, with Ponder accumulating observations and reasoning, and Pounce receiving current observation for control, avoiding purpose-built history mechanisms.",
+      "llm_tldr_cn": "视觉-语言-动作模型通常没有利用预训练多模态大模型的情境容量作为情节记忆，长时程部分可观测任务性能受限。PonderPounce将多模态大模型的原生因果上下文直接用作机器人记忆：Ponder系统2模块在上下文中累积观察、示范和推理，Pounce系统1模块仅接收当前观察与指令来输出动作。实验表明，在部分可观测的长时程控制任务中，该方法无需专门的历史机制即可有效利用长视觉历史，提升任务成功率。这一思路为智能体上下文记忆提供了一种极简复用方案。",
+      "llm_tldr": "视觉-语言-动作模型通常没有利用预训练多模态大模型的情境容量作为情节记忆，长时程部分可观测任务性能受限。PonderPounce将多模态大模型的原生因果上下文直接用作机器人记忆：Ponder系统2模块在上下文中累积观察、示范和推理，Pounce系统1模块仅接收当前观察与指令来输出动作。实验表明，在部分可观测的长时程控制任务中，该方法无需专门的历史机制即可有效利用长视觉历史，提升任务成功率。这一思路为智能体上下文记忆提供了一种极简复用方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.25523v1",
+      "source": "arxiv",
+      "title": "TOPAS: Workflow-Aware Prefix-State Scheduling for Multi-Agent LLM Serving",
+      "abstract": "Prefix caching introduces a fundamental tradeoff in multi-agent large language model (LLM) serving: retaining a long system-prompt key-value (KV) cache for an agent accelerates future calls, yet it reduces the GPU memory available for batching concurrent requests. In multi-stage workflows, existing schedulers tend to prioritize either immediate prefix locality or overall workflow progress. However, under a shared KV cache budget, optimizing either objective in isolation can prolong tasklevel job completion time (JCT) through downstream delays or frequent prefix replacement. To strike a balance, we here propose TOPAS, a Task-Oriented Prefix-Aware Scheduler that jointly decides which agent prefixes to keep in the cache and which requests to schedule for execution. TOPAS scores candidate post-decision states by trading off the expected reduction in each task's longest remaining service path against the near-term benefit of downstream prefix reuse, accounting for the costs of prefix movement and preemption. A task-level aging mechanism is also incorporated to prevent starvation. We implement TOPAS within the SGLang framework and assess its performance on three synthetic DAGs and two MetaGPT software-development workflows. Compared with the best performing baseline for each workload and metric, TOPAS reduces the mean/p99 JCT by up to 39.8%/49.4% on the synthetic workloads, while lowering mean JCT by 9.8% on MetaGPT-SOP and mean/p99 JCT by 22.0%/26.6% on MetaGPT-TL.",
+      "authors": [
+        "Hongqiu Ni",
+        "Han Tian",
+        "Chi Zhang",
+        "Guopeng Li",
+        "Haisheng Tan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-26T08:33:10+00:00",
+      "link": "https://arxiv.org/pdf/2608.25523v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "jointly manages agent prefix KV caches and request scheduling in multi-agent LLM serving",
+      "llm_evidence_cn": "在多智能体LLM服务中联合管理智能体前缀KV缓存与请求调度",
+      "llm_evidence": "在多智能体LLM服务中联合管理智能体前缀KV缓存与请求调度",
+      "canonical_evidence": "在多智能体LLM服务中联合管理智能体前缀KV缓存与请求调度",
+      "llm_tldr_en": "TOPAS, a task-oriented prefix-aware scheduler, jointly decides which agent prefixes to keep in cache and which requests to schedule, balancing prefix locality and workflow progress to reduce job completion time in multi-agent LLM serving.",
+      "llm_tldr_cn": "在多智能体大语言模型服务中，保留长系统提示的KV缓存会减少批处理可用内存，带来前缀缓存与整体流程进度的两难。TOPAS提出任务导向的前缀感知调度，联合决策哪些智能体前缀保留、哪些请求调度，在共享缓存预算下平衡前缀局部性与流程进度。实验表明该方法能有效降低任务级作业完成时间，为多智能体服务的上下文状态管理提供了系统级优化方案。",
+      "llm_tldr": "在多智能体大语言模型服务中，保留长系统提示的KV缓存会减少批处理可用内存，带来前缀缓存与整体流程进度的两难。TOPAS提出任务导向的前缀感知调度，联合决策哪些智能体前缀保留、哪些请求调度，在共享缓存预算下平衡前缀局部性与流程进度。实验表明该方法能有效降低任务级作业完成时间，为多智能体服务的上下文状态管理提供了系统级优化方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.25570v1",
+      "source": "arxiv",
+      "title": "Beyond Scaling: Self-Evolving LLM Agents for Hardware Kernel Optimization via an Experience-Driven Workflow and Experience Graph Memory",
+      "abstract": "Hardware kernel optimization requires repeated compilation, correctness testing, profiling, and revision. LLM agents can automate parts of this process, and stronger foundation models, longer context windows, and longer execution horizons have improved optimization within individual tasks. These advances alone do not enable an agent to learn from completed optimization runs. Existing kernel-optimization agents seldom preserve a decision, its observed execution feedback, and the later decisions that use that evidence. Retaining every prior trajectory is also impractical because an expanding history competes with the current task for context. We present KOPE, an experience-driven framework for hardware kernel optimization. KOPE records optimization trajectories with correctness and performance feedback in Experience Graph Memory, then uses Active Context Management and Injection to retrieve relevant experience under a fixed token budget. The graph retains decision order, observed outcomes, and alternative branches, allowing evidence collected on the target hardware to inform later optimization steps and tasks. Under the same GLM-5.2 setting, the geometric mean of KOPE's per-operator speedups is $1.54\\times$ that of CANNBot, the strongest competing baseline. In a complete 53-operator ablation, Active Context Management and Injection raises pass rate from 60.0\\% to 84.6\\%, increases the evaluator-reported positive-field geometric mean from 0.0382 to 0.0661, and reduces optimization token consumption from 15.9B to 1.113B tokens relative to passive agent-led context construction. Enabling Experience Graph Memory raises full-suite pass rate from 55.2\\% to 84.6\\% and yields a $1.43\\times$ geometric-mean speedup on valid timing comparisons. These results support continual optimization through external experience while the foundation model remains fixed.",
+      "authors": [
+        "Siyuan Chen",
+        "Runlin Hou",
+        "Shenxiu Wu",
+        "Yansong Sun",
+        "Junming Cao",
+        "Yiyu Zhang",
+        "Shudi Shao",
+        "Junhao Qiu",
+        "Zhichao Lu",
+        "Qingfu Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-08-26T09:27:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.25570v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "presents an experience graph memory for self-evolving LLM agents, explicitly addressing context competition between expanding history and current task",
+      "llm_evidence_cn": "提出经验图记忆以支持自进化LLM智能体，明确处理扩展历史与当前任务竞争上下文的问题",
+      "llm_evidence": "提出经验图记忆以支持自进化LLM智能体，明确处理扩展历史与当前任务竞争上下文的问题",
+      "canonical_evidence": "提出经验图记忆以支持自进化LLM智能体，明确处理扩展历史与当前任务竞争上下文的问题",
+      "llm_tldr_en": "KOPE uses an experience graph memory to preserve decisions, execution feedback, and later decisions in hardware kernel optimization, preventing expanding history from competing with current task context.",
+      "llm_tldr_cn": "硬件内核优化中LLM智能体难以从历史优化中学习，而保留全部轨迹又会让历史与当前任务争夺上下文。KOPE提出经验驱动框架，用经验图记忆保存决策、执行反馈及其后续影响，使智能体能在不膨胀上下文的情况下积累经验。通过结构化记忆组织历史，模型只加载相关知识，从而缓解上下文压力。实验表明该方法能有效提升优化效果并规避上下文竞争问题，为资源受限场景中的智能体持续学习提供可行路径。",
+      "llm_tldr": "硬件内核优化中LLM智能体难以从历史优化中学习，而保留全部轨迹又会让历史与当前任务争夺上下文。KOPE提出经验驱动框架，用经验图记忆保存决策、执行反馈及其后续影响，使智能体能在不膨胀上下文的情况下积累经验。通过结构化记忆组织历史，模型只加载相关知识，从而缓解上下文压力。实验表明该方法能有效提升优化效果并规避上下文竞争问题，为资源受限场景中的智能体持续学习提供可行路径。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.27924v1",
+      "source": "arxiv",
+      "title": "What Makes Agent Memory Useful for Reliable Unanswerable Question Handling?",
+      "abstract": "Reliable handling of unanswerable questions (UAQs) is critical for trustworthy LLM-based agents. Although memory is widely used in agent systems, its role in reliable UAQ handling remains unclear. We present a systematic study of agent memory for UAQ handling under a unified agentic RAG framework, evaluating four representative memory methods across three UAQ-related datasets and two base models.   We find that memory can improve UAQ performance in some settings, but such gains are selective rather than universal and remain fragile under dataset shift. Interestingly, cross-model memory reuse is often more feasible than cross-dataset transfer, suggesting that shifts in answerability patterns pose a greater challenge to memory reuse than changes in the base model itself. We further find that UAQ gains are more strongly preserved through decision guidance than through trajectory shaping, and that memory effectiveness depends strongly on representation. In particular, procedural and rule-based memories often provide the most reliable support for UAQ handling, while memory composition is most effective when procedural guidance is combined with complementary behavioral signals. Overall, our findings suggest that reliable UAQ memory depends less on storing larger amounts of experience and more on preserving transferable behavioral guidance.",
+      "authors": [
+        "Chuanyuan Tan",
+        "Junjie Yu",
+        "Yuxin Wang",
+        "Yining Zheng",
+        "Xipeng Qiu",
+        "Wenliang Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-28T05:00:28+00:00",
+      "link": "https://arxiv.org/pdf/2608.27924v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "systematic study of agent memory methods under an agentic RAG framework",
+      "llm_evidence_cn": "在智能体RAG框架下系统评估多种记忆方法",
+      "llm_evidence": "在智能体RAG框架下系统评估多种记忆方法",
+      "canonical_evidence": "在智能体RAG框架下系统评估多种记忆方法",
+      "llm_tldr_en": "This paper systematically studies agent memory for unanswerable question handling in a unified agentic RAG framework, finding that memory gains are selective and fragile under dataset shift, while cross-model reuse often beats cross-dataset transfer.",
+      "llm_tldr_cn": "论文在统一智能体RAG框架下系统研究记忆方法对不可回答问题处理的作用，跨三个数据集和两个基座模型评估四种代表性记忆方法。结果显示记忆在部分场景能改善性能，但增益不具普适性且随数据集迁移变得脆弱；跨模型记忆复用通常比跨数据集转移更可行。这表明可回答性模式的变化是记忆复用的主要障碍，提示记忆架构需要针对分布偏移进行专门设计。",
+      "llm_tldr": "论文在统一智能体RAG框架下系统研究记忆方法对不可回答问题处理的作用，跨三个数据集和两个基座模型评估四种代表性记忆方法。结果显示记忆在部分场景能改善性能，但增益不具普适性且随数据集迁移变得脆弱；跨模型记忆复用通常比跨数据集转移更可行。这表明可回答性模式的变化是记忆复用的主要障碍，提示记忆架构需要针对分布偏移进行专门设计。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

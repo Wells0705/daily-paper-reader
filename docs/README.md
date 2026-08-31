@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-30</span>
+      <span class="dpr-home-dashboard-kicker">2026-08-31</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 5 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 6 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>3</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>5</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>1</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-30 22:39:26 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-08-31 23:12:02 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日共读5篇论文，精读2篇、速读3篇，覆盖语音对话、智能体检索、多智能体协同等领域。最值得关注两篇8分精读：流式ASR的“非新鲜起点”状态推理方案，以及反事实-因果技能图谱CaSKG用于可扩展的智能体技能检索。建议普通读者优先从这两篇入手，把握语音交互与技能编排的前沿方向。</p>
+<p>今日精读6篇论文，重点聚焦智能体上下文管理与工具发现，其中《ContextPilot》以9.0分居首，值得重点关注。</p>
+<p>最优看点：基于细粒度强化学习的主动上下文管理（ContextPilot），以及混合语义工具发现方案（8.0分），后者可支撑企业级MCP网关实践。</p>
+<p>下一步建议：普通读者可优先消化ContextPilot的思想，再结合速读文章《Agent记忆可靠性》理解上下文与记忆的边界。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">5 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Beyond Fresh Starts: Stateful Inference for Streaming ASR in Conversational Voice Agents">Beyond Fresh Starts: Stateful Inference for Streaming ASR in Conversational Voice Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="CaSKG: Counterfactual-Causal Skill Graphs for Scalable Agent Skill Retrieval">CaSKG: Counterfactual-Causal Skill Graphs for Scalable Agent Skill Retrieval</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL">ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL</span></li><li><span class="dpr-home-dashboard-paper-title" title="Hybrid Semantic Tool Discovery for Enterprise MCP Gateway: Architecture and Implementation">Hybrid Semantic Tool Discovery for Enterprise MCP Gateway: Architecture and Implementation</span></li><li><span class="dpr-home-dashboard-paper-title" title="PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control">PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>5</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -84,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">3 篇</strong>
+    <strong class="dpr-home-dashboard-count">1 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="One Model, Many Minds: Unlocking Multi-Agent Synergy in a Single Agent via Mixture of Roles">One Model, Many Minds: Unlocking Multi-Agent Synergy in a Single Agent via Mixture of Roles</span></li><li><span class="dpr-home-dashboard-paper-title" title="Don&#x27;t Just Listen, Try Planning: Graph-based Retrieval-Generation Agent for Long-form Audio Meeting Understanding">Don&#x27;t Just Listen, Try Planning: Graph-based Retrieval-Generation Agent for Long-form Audio Meeting Understanding</span></li><li><span class="dpr-home-dashboard-paper-title" title="Evidence Blindness in Direct Corpus Interaction: Persistent Navigation with AtlasNav">Evidence Blindness in Direct Corpus Interaction: Persistent Navigation with AtlasNav</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="What Makes Agent Memory Useful for Reliable Unanswerable Question Handling?">What Makes Agent Memory Useful for Reliable Unanswerable Question Handling?</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
 </section>
 </div>
 
