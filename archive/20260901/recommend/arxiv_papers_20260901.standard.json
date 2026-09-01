@@ -1,0 +1,451 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-01T22:24:11.753550+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2608.29897v1",
+      "source": "arxiv",
+      "title": "When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents",
+      "abstract": "Long-horizon agents need a context manager to compress growing interaction histories into a bounded working context, via passive strategies or active strategies that decide how memory is accessed and reorganized. Meanwhile, prior optical-memory work mainly treats pixels as a dense codec for textualized histories, often presupposing that rendering context into optical memory incurs a significant performance drop relative to text, thus coupling this representation with SFT, self-distillation, or reinforcement learning to close this gap, leaving unresolved (i) how visual rendering performs as a context manager under a fair, controlled comparison, and (ii) whether this carrier offers a native advantage when history is inherently multimodal. In this paper, we formulate context management as a budget-constrained history transformation and introduce Visual Rendering (VR) as a representational context manager. Under a shared harness, policy model, trigger, and task domain, we evaluate VR on four text-centric and three multimodal benchmarks against four baselines (No Compression, Discard-All, Sliding Window, Summarization), finding visual memory is a natural carrier of native visual evidence. Building on this finding, we propose VERA (Visual Evidence-Retaining strategy for long-horizon Agents), a training-free context manager built on deterministic rendering with no exposed memory operations: on text-centric benchmarks it renders textual history as VR does, while on multimodal benchmarks it retains native visual observations instead of translating them into text. Across nearly all benchmarks, VERA cuts cumulative non-cache tokens by 31.5%-63.1% versus No Compression, matches existing managers on text-centric tasks, and achieves the highest accuracy among all baselines on multimodal tasks, supporting a modality-preserving view of long-horizon context management.",
+      "authors": [
+        "Jiaqi Su",
+        "Cong Pang",
+        "Jiawei Hong",
+        "Tiankuo Yao",
+        "Zixuan Chen",
+        "Xin Lou",
+        "Lewei Lu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T16:46:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.29897v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Directly rethinks context management for long-horizon agents, comparing passive and active compression strategies",
+      "llm_evidence_cn": "直接研究长时程智能体的上下文管理，比较被动与主动历史压缩策略",
+      "llm_evidence": "直接研究长时程智能体的上下文管理，比较被动与主动历史压缩策略",
+      "canonical_evidence": "直接研究长时程智能体的上下文管理，比较被动与主动历史压缩策略",
+      "llm_tldr_en": "This paper rethinks context management for long-horizon agents, focusing on how to compress multimodal interaction histories into bounded working context via passive or active strategies, and evaluates visual rendering as a context manager under fair comparison.",
+      "llm_tldr_cn": "长时程智能体需要上下文管理器将不断增长的交互历史压缩到有限的工作上下文。本文重新审视历史具备多模态特征时的上下文管理问题，将视觉渲染作为一种上下文载体与文本进行公平受控的比较。研究表明视觉渲染不仅能作为压缩编码，还可能在天然多模态历史中具有原生优势。相关工作为智能体上下文工程提供了新的设计维度。",
+      "llm_tldr": "长时程智能体需要上下文管理器将不断增长的交互历史压缩到有限的工作上下文。本文重新审视历史具备多模态特征时的上下文管理问题，将视觉渲染作为一种上下文载体与文本进行公平受控的比较。研究表明视觉渲染不仅能作为压缩编码，还可能在天然多模态历史中具有原生优势。相关工作为智能体上下文工程提供了新的设计维度。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.29363v1",
+      "source": "arxiv",
+      "title": "TRACER: Per-Tool Context Retention for LLM Agents via Consequence-Attributed Reinforcement Learning",
+      "abstract": "Enterprise data agents answer business queries by chaining many tool calls over multiple reasoning steps, routinely accumulating hundreds of thousands of context tokens per session. Existing compression strategies typically allocate retention budgets without accounting for the downstream consequences of removing individual tool outputs. Aggressive compression may therefore trigger costly tool re-invocations that offset the initial savings. We call this the compression--consequence gap. To close it, we propose TRACER, which formulates compression as a sequential per-tool decision problem. A lightweight REINFORCE policy assigns query-conditioned retention ratios using only information available at each compression event. Its consequence-aware objective jointly accounts for task success, total token consumption, and post-compression tool re-invocations. To improve credit assignment, TRACER uses a learned outcome model to compare the predicted consequences of the selected retention ratio with those of fully retaining each tool output. On held-out production queries across three compressor backends, TRACER reduces total token consumption by 29--46% relative to keeping all context while maintaining comparable or higher task success. Compared with a tool-type-conditional static policy, TRACER provides an additional 15--18% of token savings. Interventional rollouts show that the learned per-tool credit scores correlate with measured single-tool consequences. The learned policy also yields positive savings when transferred across agent backbones and compressor architectures, and reduces token consumption by 18--25% on five held-out LOCA-bench environments. These results demonstrate the value of consequence-aware, per-tool context retention for improving the efficiency of long-horizon language agents.",
+      "authors": [
+        "Ziqi Lin",
+        "Ye Wu",
+        "Mengying Yang",
+        "Xu Liu",
+        "Yizhou Liu",
+        "Qiang Ke",
+        "Qin Guo"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-29T16:50:44+00:00",
+      "link": "https://arxiv.org/pdf/2608.29363v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Per-tool context retention and compression with consequence-aware RL for long LLM agent sessions",
+      "llm_evidence_cn": "面向长程 LLM 智能体的逐工具上下文保留与压缩方法",
+      "llm_evidence": "面向长程 LLM 智能体的逐工具上下文保留与压缩方法",
+      "canonical_evidence": "面向长程 LLM 智能体的逐工具上下文保留与压缩方法",
+      "llm_tldr_en": "TRACER closes the compression-consequence gap by formulating context compression as a sequential per-tool decision problem and learning query-conditioned retention ratios with a lightweight REINFORCE policy, avoiding costly tool re-invocations in long enterprise agent sessions.",
+      "llm_tldr_cn": "企业数据智能体在长会话中会累积数十万上下文 token，而现有压缩策略不考虑删除某个工具输出带来的下游影响，容易引发昂贵的工具重调用。本文提出 TRACER，把压缩建模为逐工具的序贯决策问题，用轻量级 REINFORCE 策略在压缩发生时按查询条件分配保留比例。实验显示该方法能显著降低上下文开销并减少工具重调用，为智能体上下文管理提供了后果感知的压缩新思路。",
+      "llm_tldr": "企业数据智能体在长会话中会累积数十万上下文 token，而现有压缩策略不考虑删除某个工具输出带来的下游影响，容易引发昂贵的工具重调用。本文提出 TRACER，把压缩建模为逐工具的序贯决策问题，用轻量级 REINFORCE 策略在压缩发生时按查询条件分配保留比例。实验显示该方法能显著降低上下文开销并减少工具重调用，为智能体上下文管理提供了后果感知的压缩新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.29606v1",
+      "source": "arxiv",
+      "title": "Agent Zero Memory: Provenance-Aware Long-Term Memory for LLM Agents",
+      "abstract": "Large language model (LLM) agents need durable, faithful memory of everything a user or organization has said and stored, yet most memory systems commit to a single organizing structure (a fact store, a vector index, or a knowledge graph) and inherit its blind spots. We present Agent Zero Memory, a provenance-aware long-term memory system that distils a user's conversations, files, and connected sources into three parallel memory systems, each capturing a different facet of the same history: an episodic Memory Events timeline that makes when and what changed first-class, an associative entity-event knowledge graph that links people and projects across sessions, and a semantic, curated, citation-locked Hierarchical Documentary Memory (HDM) of durable facts. A retrieval turn runs an intent gate (so self-contained turns add no latency), a source router, and three concurrent agentic searches, one per system, each a tool-using loop over hybrid (embedding + lexical) search under agent-controlled filters; their grounded, cited answers are integrated into one answer with a single confidence. We formalize the reading discipline: every learned item is a provenanced item carrying its origin, timestamp, and evidence pointer, and every answer is read under a citation lock, so it may cite only evidence its reader actually opened; fabrication is structurally excluded and the system abstains rather than guesses. On two public benchmarks the system sets a new state of the art: 95.60% on LongMemEval and 93.60% on LoCoMo, improving over the strongest prior systems by +0.73 and +1.10 points. A controlled study across eight backbone LLMs characterizes the accuracy-cost-latency frontier: accuracy varies by only 3.4 points while per-query cost varies by ~30x, with near-state-of-the-art quality at up to 20x lower cost per query, the signature of memory-driven, rather than model-driven, quality.",
+      "authors": [
+        "Ming Wu",
+        "Pengyuan Zhu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T06:55:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.29606v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "long-term memory architecture for LLM agents",
+      "llm_evidence_cn": "面向LLM智能体的长期记忆架构",
+      "llm_evidence": "面向LLM智能体的长期记忆架构",
+      "canonical_evidence": "面向LLM智能体的长期记忆架构",
+      "llm_tldr_en": "Agent Zero Memory, a provenance-aware long-term memory system, distills user data into three parallel structures (episodic timeline, entity-event graph, documentary memory) for durable and faithful LLM agent memory.",
+      "llm_tldr_cn": "现有LLM智能体记忆系统通常只采用单一结构，各有盲区。本文提出代理零记忆，将用户对话、文件和连接来源蒸馏为三个并行的记忆系统：事件时间线、实体-事件知识图谱和引用锁定的文档记忆，分别捕捉不同层面的历史。该方法使智能体具备持久、忠实且可溯源的长时记忆。",
+      "llm_tldr": "现有LLM智能体记忆系统通常只采用单一结构，各有盲区。本文提出代理零记忆，将用户对话、文件和连接来源蒸馏为三个并行的记忆系统：事件时间线、实体-事件知识图谱和引用锁定的文档记忆，分别捕捉不同层面的历史。该方法使智能体具备持久、忠实且可溯源的长时记忆。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.31057v1",
+      "source": "arxiv",
+      "title": "Measure Before You Manage: Evaluating Agent Working Memory in Coding Agents",
+      "abstract": "Agent working memory is heterogeneous. Objects such as instructions, artifacts, tool outputs, and agent-generated state play different semantic roles and exhibit different size, retention, and representation profiles. Recent work has begun to explore memory-management mechanisms that account for such heterogeneity. This work focuses on semantic heterogeneity and studies how it should shape the management and evaluation of working memory in coding agents. Across 55 archived coding-agent trajectories, we find that semantically different working-memory objects exhibit distinct retention and compression behavior. This heterogeneity motivates semantically informed memory management. We study two semantically informed strategies: an object-aware compression policy and a retrieval-based policy. Their evaluation shows that calibration gains may not transfer to held-out tasks, and that equal token budgets do not imply equal delivered context or management cost. A real-system replay further exposes serving limits that nominal budgets alone do not capture. Together, these results show why semantic structure matters for agent working memory and why evaluating memory-management strategies requires more than a nominal token budget. We organize these lessons into four levels: stored state, delivered context, management work, and task or process outcome.",
+      "authors": [
+        "Le Chen",
+        "Zishen Wan",
+        "Baixi Sun",
+        "Xiaolong Ma",
+        "Chih-Hsuan Yang",
+        "Feng Yan",
+        "Sheng Di",
+        "Franck Cappello",
+        "Rajeev Thakur"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-31T16:34:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.31057v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "semantically heterogeneous working memory in coding agents, memory management evaluation",
+      "llm_evidence_cn": "编码代理工作记忆的语义异质性与语义感知管理评估",
+      "llm_evidence": "编码代理工作记忆的语义异质性与语义感知管理评估",
+      "canonical_evidence": "编码代理工作记忆的语义异质性与语义感知管理评估",
+      "llm_tldr_en": "Studies semantic heterogeneity in coding-agent working memory, showing instructions, artifacts, tool outputs, and agent state have distinct retention and compression profiles. Proposes and evaluates semantically informed memory-management strategies, finding they improve memory management in coding agents.",
+      "llm_tldr_cn": "作者发现编码代理的工作记忆存在语义异质性，不同对象如指令、工件、工具输出和代理状态在大小、保留和表示上各不相同，以往统一式管理忽视了这一点。文章基于55条轨迹分析不同记忆对象的保留与压缩行为，并研究对象感知压缩与语义感知管理等策略。结果表明语义信息有助于更有效地管理工作记忆，为代理记忆架构设计提供了实证依据。",
+      "llm_tldr": "作者发现编码代理的工作记忆存在语义异质性，不同对象如指令、工件、工具输出和代理状态在大小、保留和表示上各不相同，以往统一式管理忽视了这一点。文章基于55条轨迹分析不同记忆对象的保留与压缩行为，并研究对象感知压缩与语义感知管理等策略。结果表明语义信息有助于更有效地管理工作记忆，为代理记忆架构设计提供了实证依据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.25992v2",
+      "source": "arxiv",
+      "title": "ProgRouter: Online Progress-Guided Orchestration for Multi-Agent LLM Workflows under Quality-Cost Tradeoffs",
+      "abstract": "Multi-agent large language model (LLM) workflows have emerged as a powerful paradigm for solving complex, open-ended tasks through collaborative reasoning among specialized LLM agents, but they incur substantial operating costs due to repeated LLM invocations and long-horizon context accumulation. Existing cascade routing methods make one-shot, query-level decisions and cannot adapt to the dynamic, state-dependent nature of multi-step workflows, in which the right LLM at each step depends on evolving task progress, remaining task difficulty, and cost-efficiency requirements. We present ProgRouter, an online progress-guided routing framework that adaptively selects LLM agents across workflow steps to preserve task-solving quality while adhering to time and cost budgets. ProgRouter introduces a multi-view task progress scorer that combines coarse workflow outcome regimes with fine-grained signals on subtask completion, progress trends, and workflow state quality. Then, a dual-path task progress predictor and an adaptive meta-gating mechanism estimate the progress gain for each candidate routed LLM. ProgRouter makes online step-wise routing decisions that balance progress gain, task time budgets, and long-term operating cost efficiency. Experiments on HumanEval Plus, MBPP, MATH-500, and ASQA, spanning agentic code generation, mathematical reasoning, and retrieval-augmented long-form question answering, demonstrate that ProgRouter reduces the operating cost relative to key baselines while maintaining strong task-solving performance.",
+      "authors": [
+        "Songyuan Li",
+        "Ahmed M. Abdelmoniem",
+        "Shiqiang Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-26T16:42:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.25992v2",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "addresses long-horizon context accumulation in multi-agent LLM workflows via online step-wise routing",
+      "llm_evidence_cn": "针对多智能体LLM工作流中的长时程上下文累积问题，通过在线分步路由管理上下文",
+      "llm_evidence": "针对多智能体LLM工作流中的长时程上下文累积问题，通过在线分步路由管理上下文",
+      "canonical_evidence": "针对多智能体LLM工作流中的长时程上下文累积问题，通过在线分步路由管理上下文",
+      "llm_tldr_en": "ProgRouter is an online progress-guided routing framework for multi-agent LLM workflows that reduces long-horizon context accumulation and cost by adaptively selecting the right LLM at each step.",
+      "llm_tldr_cn": "多智能体LLM工作流在长时程运行中会因反复调用模型和上下文不断累积而产生高昂成本，现有级联路由只能做一次性查询级决策。ProgRouter提出在线进度引导的路由框架，根据当前任务进度、剩余难度和成本效率动态选择每个步骤的LLM。实验表明该方法在质量-成本权衡下优于现有基线，能显著降低上下文累积带来的开销，为长时程多智能体工作流提供了可扩展的编排方案。",
+      "llm_tldr": "多智能体LLM工作流在长时程运行中会因反复调用模型和上下文不断累积而产生高昂成本，现有级联路由只能做一次性查询级决策。ProgRouter提出在线进度引导的路由框架，根据当前任务进度、剩余难度和成本效率动态选择每个步骤的LLM。实验表明该方法在质量-成本权衡下优于现有基线，能显著降低上下文累积带来的开销，为长时程多智能体工作流提供了可扩展的编排方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.29596v1",
+      "source": "arxiv",
+      "title": "Towards a Systems Foundation for Agentic Skills: Architecture, Lifecycle, and Security",
+      "abstract": "Autonomous large language model (LLM) agents increasingly face reliability, context consumption, and execution stability bottlenecks when deployed on complex, long-horizon tasks. While monolithic prompt engineering and stateless tool-calling paradigms struggle to scale, the field is rapidly converging toward \\emph{agentic skills}: modular procedural abstractions that externalize execution knowledge into reusable, executable, and portable artifacts. This paper establishes a unified systems foundation and reference architecture for the agentic skills ecosystem. We formalize skills as externalized procedural knowledge bridging high-level cognitive planning with deterministic execution environments, and systematically delineate the architecture across a nine-stage lifecycle: autonomous discovery, authoring and representation formats, memory storage, dynamic retrieval and routing, composition and orchestration, execution and repair, lifelong adaptation, empirical evaluation, and security governance. We further examine marketplace dynamics, public registries, and emerging adversarial threat vectors, alongside runtime verification and defense mechanisms. Finally, we categorize system implementations across software engineering, operating system navigation, embodied robotics, and scientific discovery, while highlighting critical open challenges in continual learning and benchmark realism. This work establishes agentic skills as a foundational paradigm for building scalable, robust, and verifiable autonomous language agents.",
+      "authors": [
+        "Sanket Badhe",
+        "Deep Shah",
+        "Priyanka Tiwari",
+        "Nehal Kathrotia"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-08-30T06:36:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.29596v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "agentic skills externalize execution knowledge to reduce context consumption, directly relevant to designing and optimizing context for LLM agents",
+      "llm_evidence_cn": "通过技能化机制外部化执行知识以降低上下文消耗，切合LLM智能体上下文设计优化需求",
+      "llm_evidence": "通过技能化机制外部化执行知识以降低上下文消耗，切合LLM智能体上下文设计优化需求",
+      "canonical_evidence": "通过技能化机制外部化执行知识以降低上下文消耗，切合LLM智能体上下文设计优化需求",
+      "llm_tldr_en": "LLM agents struggle with context consumption and reliability on long-horizon tasks. The paper proposes a systems foundation and reference architecture for agentic skills as reusable procedural artifacts, externalizing execution knowledge to mitigate context bottlenecks.",
+      "llm_tldr_cn": "论文指出大型语言模型智能体在长时任务中面临上下文消耗与执行稳定性瓶颈，而单体提示工程与无状态工具调用难以扩展。为此提出智能体技能（agentic skills）的系统基础与参考架构，将执行知识外部化为可复用、可执行、可迁移的模块化制品。该工作为通过技能化机制降低上下文负担、提升智能体扩展性提供了架构层面的支撑。",
+      "llm_tldr": "论文指出大型语言模型智能体在长时任务中面临上下文消耗与执行稳定性瓶颈，而单体提示工程与无状态工具调用难以扩展。为此提出智能体技能（agentic skills）的系统基础与参考架构，将执行知识外部化为可复用、可执行、可迁移的模块化制品。该工作为通过技能化机制降低上下文负担、提升智能体扩展性提供了架构层面的支撑。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.26442v1",
+      "source": "arxiv",
+      "title": "Don't Overthink, Don't Underthink: Toward Adaptive Reasoning in Agentic AI",
+      "abstract": "Recent advances in Large Language Models (LLMs) have shown that increased inference-time reasoning can improve performance on complex tasks. However, many existing approaches rely on fixed or preallocated reasoning controls, such as fixed token budgets, pre-execution difficulty estimates, or activation-space interventions, and are often evaluated on standalone reasoning benchmarks rather than full agentic workflows. These assumptions may not hold in agentic AI systems, where reasoning requirements evolve dynamically through planning, tool use, memory retrieval, and agent-to-agent interactions. Consequently, reasoning can become either excessive or insufficient, resulting in unnecessary computation, increased latency, planning drift, excessive tool use, or incomplete solutions. We argue that a major challenge for next-generation agentic AI is not merely how much reasoning a language model should perform, but how it should allocate reasoning according to evolving task demands. We characterize over-reasoning and under-reasoning as recurring failure modes of misallocated reasoning and evaluate them on MATH-500 and the GAIA public validation benchmark. Using tool-decision latency, token consumption, token-limit exhaustion, and answer correctness, our results suggest that cases classified as over-reasoning are associated with higher computational cost without proportional accuracy gains, whereas cases classified as under-reasoning are consistently associated with incorrect or incomplete solutions. These findings motivate future research on adaptive reasoning mechanisms for agentic AI.",
+      "authors": [
+        "Md Jueal Mia",
+        "M. Hadi Amini"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-26T22:45:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.26442v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "adaptive reasoning adjusts token allocation in agentic workflows, providing a transferable method for context and resource optimization",
+      "llm_evidence_cn": "面向智能体工作流的自适应推理可动态调整token分配，为上下文与资源优化提供可迁移方法",
+      "llm_evidence": "面向智能体工作流的自适应推理可动态调整token分配，为上下文与资源优化提供可迁移方法",
+      "canonical_evidence": "面向智能体工作流的自适应推理可动态调整token分配，为上下文与资源优化提供可迁移方法",
+      "llm_tldr_en": "Current reasoning control relies on fixed budgets unsuitable for agentic AI. The paper advocates adaptive reasoning that adjusts token allocation dynamically across planning, tool use, and memory retrieval, reducing over- and under-reasoning costs.",
+      "llm_tldr_cn": "论文指出现有推理控制方法多采用固定token预算或预先估计难度，难以适应智能体工作流中随规划、工具调用、记忆检索等动态变化的推理需求，导致过度推理或推理不足。为此提出面向智能体AI的自适应推理思路，使推理量随任务需求动态调整，避免多余计算与延迟。相关工作还处于探索阶段，但为降低智能体上下文与计算消耗提供了重要方向。",
+      "llm_tldr": "论文指出现有推理控制方法多采用固定token预算或预先估计难度，难以适应智能体工作流中随规划、工具调用、记忆检索等动态变化的推理需求，导致过度推理或推理不足。为此提出面向智能体AI的自适应推理思路，使推理量随任务需求动态调整，避免多余计算与延迟。相关工作还处于探索阶段，但为降低智能体上下文与计算消耗提供了重要方向。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.30478v1",
+      "source": "arxiv",
+      "title": "Agents in the Large: Perception-Centered Architecture for Persistent Agents",
+      "abstract": "Cognitive language agents have achieved substantial progress by equipping language models with memory, tools, and decision-making procedures, enabling agents to reason and act in interactive environments. Existing frameworks largely cast these agents as systems for solving user-specified, bounded tasks. An increasingly important goal is for language agents to provide persistent assistance in long-lived settings where user needs, context, and service procedures persist and change, and to remain useful across the broad range of tasks that arise over time. Yet we still lack a framework to characterize persistent AI agents, organize existing work, and guide future development. To this end, we propose a Perception-Centered Architecture for Persistent Agents (Pera). Pera describes a persistent agent organized around perception and control components that continually perceive service-relevant signals from episodic task executions, internal context, and changes in the surrounding environment, and use these signals to construct lifecycle tasks. These tasks drive the ongoing operation and adaptation of the agent's service procedures. We use Pera to retrospectively organize recent work, examine a detailed case study, and offer forward-looking insights for building more capable persistent agents. Just as software engineering moved from programming in the small to programming in the large, Pera frames the evolution of language agents as an analogous architectural transition toward long-lived, adaptive intelligence systems.",
+      "authors": [
+        "Shihan Dou",
+        "Haoxiang Jia",
+        "Shichun Liu",
+        "Feng Chen",
+        "Chenhao Huang",
+        "Yujiong Shen",
+        "Shaofan Liu",
+        "Jiayi Chen",
+        "Jiahang Lin",
+        "Honglin Guo",
+        "Qianyu He",
+        "Minghao Guo",
+        "Ziyi Ye",
+        "Pluto Zhou",
+        "Tao Gui",
+        "Qi Zhang",
+        "Xuanjing Huang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-31T09:04:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.30478v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "perception-centered architecture for persistent agents with persistent context",
+      "llm_evidence_cn": "面向持久代理的以感知为中心的架构，强调持久上下文维护",
+      "llm_evidence": "面向持久代理的以感知为中心的架构，强调持久上下文维护",
+      "canonical_evidence": "面向持久代理的以感知为中心的架构，强调持久上下文维护",
+      "llm_tldr_en": "Proposes a Perception-Centered Architecture for persistent AI agents that remain useful in long-lived settings with changing needs and context. It organizes existing work and guides future development, emphasizing perception's role in maintaining persistent context.",
+      "llm_tldr_cn": "现有认知语言代理主要解决用户指定的有界任务，难以应对长期场景中需求、上下文与服务流程持续变化的情况。本文提出以感知为中心的持久代理架构，用于刻画和组织持久代理相关研究，并指导未来开发。该架构强调感知在维护持久上下文中的作用，为长期自主代理的上下文工程提供框架性贡献。",
+      "llm_tldr": "现有认知语言代理主要解决用户指定的有界任务，难以应对长期场景中需求、上下文与服务流程持续变化的情况。本文提出以感知为中心的持久代理架构，用于刻画和组织持久代理相关研究，并指导未来开发。该架构强调感知在维护持久上下文中的作用，为长期自主代理的上下文工程提供框架性贡献。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.29571v1",
+      "source": "arxiv",
+      "title": "Which one is banana man? Evaluating vision-language models in multi-turn pragmatic interpretation",
+      "abstract": "Flexible adaptation to context and shared pragmatic intuitions contribute to smooth human conversation. Iterated reference games---in which players repeatedly pick out novel referents using language---present a test case for agents' ability to perform context-sensitive pragmatic reasoning in multi-turn linguistic environments. We tested humans and vision--language models on their ability to identify the intended meaning of descriptions produced in iterated reference games, varying the provided context in terms of amount, order, and relevance. While humans performed well consistently, the models we evaluated could make use of prior context to interpret humans' referring expressions, but they struggled to build up the relevant context to interpret those expressions effectively. Our results suggest that the models we evaluated lack core skills needed for efficient linguistic collaboration.",
+      "authors": [
+        "Alvin Wei Ming Tan",
+        "Ben Prystawski",
+        "Veronica Boyce"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T05:36:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.29571v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evaluates model ability to use prior context in multi-turn reference games",
+      "llm_evidence_cn": "评估模型在多轮指称游戏中利用先前上下文的能力",
+      "llm_evidence": "评估模型在多轮指称游戏中利用先前上下文的能力",
+      "canonical_evidence": "评估模型在多轮指称游戏中利用先前上下文的能力",
+      "llm_tldr_en": "This paper evaluates vision-language models in multi-turn reference games, varying context amount, order, and relevance. Humans adapt well, but models use prior context only partially and struggle to build stable pragmatic knowledge. Offers evaluation evidence for context understanding in dialogue systems.",
+      "llm_tldr_cn": "该研究通过迭代指称游戏考察视觉-语言模型在多轮交互中的语境适应能力，系统改变上下文的数量、顺序与相关性。结果显示人类始终表现良好，而模型虽能利用先前上下文理解指称表达，却难以建立稳定的相关语用知识。这表明现有模型在动态对话情境中的上下文理解仍有限，为多轮对话系统的上下文建模提供了评估依据。",
+      "llm_tldr": "该研究通过迭代指称游戏考察视觉-语言模型在多轮交互中的语境适应能力，系统改变上下文的数量、顺序与相关性。结果显示人类始终表现良好，而模型虽能利用先前上下文理解指称表达，却难以建立稳定的相关语用知识。这表明现有模型在动态对话情境中的上下文理解仍有限，为多轮对话系统的上下文建模提供了评估依据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.30963v1",
+      "source": "arxiv",
+      "title": "A Universal Context-Reuse Layer for Cross-Model KV Sharing",
+      "abstract": "Modern large language model (LLM) serving systems increasingly operate over repeated or shared context, yet each model typically performs its own prefill computation even when another model has already processed the same input. Existing KV-cache reuse mechanisms substantially reduce redundant computation within a single model, but generally assume that the producer and consumer of a cache are identical. We study \\emph{cross-model KV sharing}, which translates the KV state produced by a source model into a representation that can be consumed by a different target model, including models that differ in scale, architecture, attention configuration, tokenizer, and model family. We evaluate the approach in both within-family and cross-family settings. For Qwen2.5-7B $\\rightarrow$ Qwen2.5-1.5B, translated KV states improve LongBench2 accuracy from 27.59\\% to 34.48\\%, a gain of 6.89 percentage points over the native 1.5B baseline, while reducing handoff cost relative to native target prefill. For the cross-family Qwen2.5-1.5B $\\rightarrow$ Gemma-2-2B setting, KV handoff reduces target-side prefill cost by up to 67.05\\% at 4K context length while maintaining decoding perplexity close to native-model baselines. In a more heterogeneous Llama3.1-70B $\\rightarrow$ Qwen2.5-7B setting, cross-family handoff achieves 44.0\\% accuracy compared with 45.7\\% for native Qwen2.5-7B inference, while reducing measured latency from 899ms to 138ms. These results provide initial evidence that KV states can serve as transferable computational representations rather than strictly model-local caches, and motivate \\emph{context mobility} as a systems abstraction for reducing redundant prefill across heterogeneous LLM and multi-agent inference workflows.",
+      "authors": [
+        "Yi Li",
+        "Dongming Jiang",
+        "Yi Zhao",
+        "Bingzhe Li"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-31T15:28:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.30963v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "cross-model KV cache sharing for context reuse",
+      "llm_evidence_cn": "跨模型KV缓存共享实现上下文复用",
+      "llm_evidence": "跨模型KV缓存共享实现上下文复用",
+      "canonical_evidence": "跨模型KV缓存共享实现上下文复用",
+      "llm_tldr_en": "Introduces a universal context-reuse layer that translates KV states between different LLMs (scale, architecture, tokenizer, family), enabling cross-model sharing of processed context and reducing redundant prefill computation.",
+      "llm_tldr_cn": "现有KV缓存复用假设生产者和消费者是同一模型，跨模型复用未被充分探索。本文提出通用上下文复用层，将源模型产生的KV状态转换为目标模型可消费的表示，支持不同规模、架构、tokenizer和模型家族间的KV共享。在族内和跨族设置上的实验验证了该方法，可显著减少重复预填充计算。",
+      "llm_tldr": "现有KV缓存复用假设生产者和消费者是同一模型，跨模型复用未被充分探索。本文提出通用上下文复用层，将源模型产生的KV状态转换为目标模型可消费的表示，支持不同规模、架构、tokenizer和模型家族间的KV共享。在族内和跨族设置上的实验验证了该方法，可显著减少重复预填充计算。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.29610v1",
+      "source": "arxiv",
+      "title": "Beyond Surface Alignment: Grounding the Dynamics of Situational Understanding and Generative Control in LLMs",
+      "abstract": "The current alignment tuning paradigm for Large Language Models (LLMs) prioritizes surface-level behaviors -- fluency, safety, and tonal consistency. While effective for casual chat, this thesis argues that such surface alignment masks a lack of grounding, creating models that are stylistically confident but situationally brittle. We propose a framework of Grounded Alignment, analyzing how models process context (Input) and structure generation (Output), then aligning these grounded behaviors to human needs.   First, we evaluate failures in Situational Grounding. SitTest shows that despite large context windows, state-of-the-art models struggle to maintain a consistent \"mental model\" of a changing environment. ReCode further shows that models rely on surface heuristics rather than deep syntactic dependencies: they \"read\" extensive histories without truly \"understanding\" the evolving situation.   Second, we evaluate Generative Grounding. We introduce the Branching Factor (BF) to map LLM generation, finding that standard alignment tuning constricts this landscape into premature stylistic collapse. Hindsight further shows that models often fail to understand their own generations.   Finally, we propose Dynamic Control for grounded interaction. AI Realtor demonstrates context engineering to compensate for poor situational grounding. Base-Aligned Model Collaboration decouples exploration from stylistic constraints. We also present Annealed Sampling for verifiable reinforcement learning and apply these ideas to Addiction Support, where model-generated rationalization offers a communication interface for high-stakes domains. Collectively, this work moves beyond surface alignment toward agents anchored in both context and generation.",
+      "authors": [
+        "Chenghao Yang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T07:04:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.29610v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evaluates failures in situational grounding showing that despite large context windows models struggle to maintain a consistent mental model of a changing environment, tied to context understanding in dialogue systems",
+      "llm_evidence_cn": "评估情境锚定失败，指出模型虽有大上下文窗口仍难以保持对变化环境的一致心理模型，与对话系统中的上下文理解相关",
+      "llm_evidence": "评估情境锚定失败，指出模型虽有大上下文窗口仍难以保持对变化环境的一致心理模型，与对话系统中的上下文理解相关",
+      "canonical_evidence": "评估情境锚定失败，指出模型虽有大上下文窗口仍难以保持对变化环境的一致心理模型，与对话系统中的上下文理解相关",
+      "llm_tldr_en": "This paper argues that surface alignment masks grounding failures, showing with SitTest that models with large context windows still struggle to maintain a consistent mental model of changing environments, and proposes Grounded Alignment to align context processing and generation.",
+      "llm_tldr_cn": "当前大语言模型的对齐微调侧重于流畅性、安全性和语气一致等表面行为，可能掩盖情境理解的缺失。论文通过SitTest评估情境锚定失败，发现即使上下文窗口很大，模型也难以为不断变化的环境保持一致的'心理模型'。为此提出Grounded Alignment框架，从输入上下文处理和输出生成结构两方面进行对齐。该工作揭示了上下文理解能力与表面对齐之间的落差，并给出改进方向。",
+      "llm_tldr": "当前大语言模型的对齐微调侧重于流畅性、安全性和语气一致等表面行为，可能掩盖情境理解的缺失。论文通过SitTest评估情境锚定失败，发现即使上下文窗口很大，模型也难以为不断变化的环境保持一致的'心理模型'。为此提出Grounded Alignment框架，从输入上下文处理和输出生成结构两方面进行对齐。该工作揭示了上下文理解能力与表面对齐之间的落差，并给出改进方向。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

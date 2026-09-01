@@ -1,0 +1,496 @@
+Title: When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents
+
+URL Source: https://arxiv.org/pdf/2608.29897v1
+
+Published Time: Tue, 01 Sep 2026 01:32:31 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# WHEN HISTORY IS MULTIMODAL : R ETHINKING CONTEXT 
+
+# MANAGEMENT FOR LONG -H ORIZON AGENTS 
+
+Jiaqi Su 1,3∗
+
+, Cong Pang 2,3∗, Jiawei Hong 3, Tiankuo Yao 3, Zixuan Chen 3, Xin Lou 2, Lewei Lu 3†
+
+> 1
+
+National University of Singapore 2ShanghaiTech University 3SenseTime Research 
+
+jiaqisu@u.nus.edu , lulewei@sensetime.com 
+
+# ABSTRACT 
+
+Long-horizon agents need a context manager to compress growing interaction histories into a bounded working context, via passive strategies or active strategies that decide how memory is accessed and reorganized. Meanwhile, prior optical-memory work mainly treats pixels as a dense codec for textualized histories, often presupposing that rendering context into optical memory incurs a significant performance drop relative to text, thus coupling this representation with SFT, self-distillation, or reinforcement learning to close this gap, leaving unresolved (i) how visual rendering performs as a context manager under a fair, controlled comparison , and (ii) whether this carrier offers a native advantage when history is inherently multimodal. In this paper, we formulate context management as a budget-constrained history transformation and introduce Visual Rendering (VR) as a representational context manager. Under a shared harness, policy model, trigger, and task domain, we evaluate VR on four text-centric and three multimodal benchmarks against four baselines (No Compression, Discard-All, Sliding Window, Summarization), finding visual memory is a natural carrier of native visual evidence. Building on this finding, we propose VERA (Visual 
+
+Evidence-Retaining strategy for long-horizon Agents), a training-free context manager built on deterministic rendering with no exposed memory operations: on text-centric benchmarks it renders textual history as VR does, while on multimodal benchmarks it retains native visual observations instead of translating them into text. Across nearly all benchmarks, VERA cuts cumulative non-cache tokens by 31.5%–63.1% versus No Compression, matches existing managers on text-centric tasks, and achieves the highest accuracy among all baselines on multimodal tasks, supporting a modality-preserving view of long-horizon context management. 
+
+# 1 Introduction 
+
+The ReAct paradigm [1] and recent agentic models [2, 3] enable agents to execute open-ended tasks through extended loops of reasoning, tool use, and observation. In deep research, GUI operation, and software engineering, a trajectory can span dozens or hundreds of turns. Retaining the complete trajectory increases inference cost, eventually exceeds the usable context window, and can impair access to evidence buried in long prompts [4]. Long-horizon agents therefore require an explicit mechanism for converting an ever-growing history into a bounded working context. Context managers make different choices about what to retain, how to encode it, and whether memory access is fixed or policy-controlled. Our controlled comparison uses four experimental baselines spanning full retention, full removal, and alternative fixed context managers. No Compression retains the full history, while Discard-All removes the history selected for management without constructing a replacement memory. We treat these as boundary controls rather than context managers. Sliding Window discards tool responses outside its retained window, Summarization converts the managed interaction history into a structured textual summary, and Visual Rendering re-encodes that history as pixels. Section 3.1 formalizes this distinction. Active managers additionally decide when and how memory is accessed. Retrieval-based managers [5, 6, 7] determine when to query external memory, which records to recall, and how to integrate them, while policy-level orchestration methods [8, 9, 10] expose or learn context operations. Optical-context methods [11, 12, 13, 14, 15, 16] instead change the representation by rendering long text or agent histories as images. 
+
+> ∗
+
+Equal contribution, work done during internship at SenseTime Research. †Corresponding author. arXiv:2608.29897v1 [cs.CL] 30 Aug 2026 Running Title for Header However, they primarily treat pixels as a dense codec or index for textualized history and commonly couple the carrier with learned construction or specialized access, leaving unclear how untrained Visual Rendering compares with standard fixed managers and whether it offers an additional advantage for evidence that is natively visual. This comparison exposes a second, complementary question. Optical-context research has largely studied how textualized history should be rendered , through choices such as layout, resolution, compression rate, and learned construction or access policies. We ask what domain-specific information should survive rendering when the history itself is multimodal . Image-search trajectories contain retrieved images and localized crop or zoom evidence; data-analysis trajectories contain tables, charts, document pages, and database outputs whose spatial structure can be weakened when flattened into prose. Other domains may expose different useful structures, such as module and dependency relations in code [17]. Treating pixels only as a dense carrier for text leaves these signals unused. We therefore study Visual Rendering as a domain-aware context interface that can preserve both textual trajectories and the multimodal or structured evidence produced by the task environment. We define context management as a budget-constrained transformation of interaction history. This formulation separates what history is retained from how it is represented and accessed. Visual Rendering intervenes specifically on representation: it converts the managed history into an explicit visual memory, which the VLM encodes into visual tokens, while leaving the management trigger, retained recent context, and downstream policy unchanged. This controlled view makes VR directly comparable with other fixed managers and isolates the visual carrier from learned construction and memory-access policies. 
+
+VERA , a Visual Evidence-Retaining for long-horizon Agents, is our training-free, harness-level implementation of Visual Rendering. Using a deterministic renderer, VERA arranges historical text and native visual observations on a chronological canvas while retaining recent interactions in their original form. It requires no learned rendering policy, separately trained reader, or agent-exposed memory action, allowing the representational contribution of VR to be studied before introducing additional optimization. We evaluate VERA against No Compression, Discard-All, Sliding Window, and Summarization under a shared agent harness, policy model, management trigger, and task protocol. Across four text-centric search benchmarks, two multimodal search benchmarks, and one multimodal data-analysis benchmark, we ask three questions: how VR compares with the four baselines; whether preserving native visual evidence is more effective than replacing it with text-only descriptions; and how the availability and rendering fidelity of older visual history affect accuracy and search cost. In summary, our main contributions are as follows: • A Unified Definition of Context Management. We define a context manager as constructing a nonempty, budgeted representation of interaction history, separating fixed and active managers from full-retention and reset controls. This definition places Visual Rendering in the same functional design space as textual context managers while preserving their representational differences. • A Controlled Comparison and Mechanistic Analysis. Under a shared policy and agent protocol, we compare plain Visual Rendering with No Compression, Discard-All, Sliding Window, and Summarization on four text-centric benchmarks. Beyond reporting rankings, we analyze why reset can benefit from repeated attempts and show that training-free Visual Rendering remains competitive while using the fewest cumulative non-cache tokens. • A Domain-Aware, Modality-Preserving Context Manager. We propose VERA, a training-free manager that preserves native images and structured analytical artifacts alongside rendered text. It consistently outperforms text-only rendering on multimodal search and data analysis, showing that domain-native evidence adds value beyond text packing. 
+
+# 2 Related Work 
+
+Long-Horizon and Multimodal Agents. Modern agent systems pair capable policy models [2, 3, 18] with execution frameworks [19, 20, 21, 22] for long-horizon tool use, evaluated via SWE-bench [23] and ClawEval [24]. Multimodal search benchmarks [25, 26, 27] require integrating retrieved images and localized crops, and data-analysis agents [28, 29] reason over tables and charts whose structure weakens once flattened into prose [11, 12]. This literature establishes that native visual and structured evidence matters for long-horizon tasks; we instead ask how a context manager should represent such evidence under a compression budget, treating image search and data analysis as two concrete test domains rather than pursuing a benchmark contribution in its own right. 
+
+Context Management for Long-Horizon Agents. Context managers differ along four coupled decisions: what history is retained, how it is encoded, how memory is updated, and how it is accessed. Fixed managers apply 2Running Title for Header predetermined transformations: Sliding Window evicts tool responses outside its window, Summarization abstracts managed history into text, and Visual Rendering encodes it as pixels, with No Compression and Discard-All serving as full-retention and reset references. Other systems instead condition transformation or access on the current state: MemGPT [5] moves content across memory tiers, A-MEM [6] organizes memory as an evolving linked structure, Mem0 [7] extracts and retrieves from an external store, LongSeeker [8] exposes context operations during search, and AgentFold [10]/FoldAgent [9] train agents to fold trajectories into compact states. These active systems also vary in policy training, external storage, and inference cost, which confounds direct comparison; we instead hold harness, policy, and trigger fixed and isolate representation alone, asking what a training-free visual carrier already contributes before any such policy-level machinery is introduced. 
+
+Visual Rendering as Context Management. Much of the optical-context literature treats visual representation as an OCR-style codec: text is rasterized to exploit the density of visual tokens and then recovered as linguistic content. DeepSeek-OCR [11] shows a vision encoder can map dense pages to comparatively few visual tokens, and Glyph [12] trains models on rendered long text. Agent-oriented follow-ups optimize how such textualized history is rendered or accessed: MemOCR [13] allocates layout density via budget-aware RL, AgentOCR [14] selects a compression rate via compression-aware RL, VizoMem [15] trains a retriever over structured visual notes, OCR-Memory [16] deterministically transcribes text at located visual anchors, LensVLM [30] selectively expands compressed pages, and LongCodeOCR [17] identifies a coverage-fidelity trade-off for long-context code. These systems establish the feasibility of optical packing but couple it with learned construction or access, and focus mainly on already-textualized histories. We instead ask two questions that this construction-focused literature leaves jointly untested: whether deterministic, training-free Visual Rendering is already competitive with standard managers, and whether its value changes once the rendered history itself carries native visual evidence. 
+
+# 3 Method 
+
+3.1 Context Management as Budget-Constrained History Transformation 
+
+Let Ht be the interaction history before action at, and B the working-context budget. A context manager is a transformation eHt = M (Ht; B), (1) producing a working context eHt that, together with the current observation ot, respects the budget: κ( eHt, o t) ≤ B,where κ measures the combined textual and visual input cost. The policy then selects actions via 
+
+at = π Φ( eHt), Φ( ot), (2) with Φ denoting a modality-appropriate encoder; the shared system prompt and task instructions are omitted from the notation for brevity. To qualify as a genuine manager rather than a trivial pass-through or reset, M must yield a non-empty representation strictly cheaper than the raw history: 
+
+eHt̸ = ∅, 0 < κ ( eHt) < κ (Ht). (3) This definition explicitly excludes our two boundary controls: 
+
+MNC (Ht; B) = Ht, MDA (Ht; B) = ∅. (4) No Compression supplies the raw history unchanged, whereas Discard-All supplies nothing. Neither satisfies Eq. (3); thus, both serve as full-retention and reset baselines rather than context managers. Within this budget, Sliding Window retains a selected suffix of Ht, Summarization replaces it with a textual abstraction, and Visual Rendering re-encodes it as an image sequence. All three are fixed managers: M follows a predetermined rule executed without agent-issued edits. An active manager, by contrast, allows the agent or a learned controller to dynamically determine how M operates at each trigger (e.g., selecting, dropping, rewriting, or summarizing spans of Ht in place). This mechanism still conforms to Eq. (1), as the transformation rule generating eHt simply becomes input-dependent. An orthogonal design dimension concerns where the evicted content resides: persistent-memory architectures route discarded history into an external, tool-addressable memory store Dt = {d1 
+
+> t
+
+, d 2 
+
+> t
+
+, . . . }. At any subsequent step t′ > t , the agent may selectively query or modify Dt:
+
+ρt′ = Read( Dt′−1, q t′ ) ⊆ D t′−1, Dt′ = Write( Dt′−1, w t′ ), (5) where qt′ represents a query retrieving a relevant subset of entries, and wt′ is a localized edit (adding, updating, or deleting entries) rather than a global rewrite. The retrieved subset ρt′ is subsequently integrated into eHt′ prior to the policy execution. 3Running Title for Header Image search 
+
+Table 
+
+Crop Zoom in 
+
+Chart  Database 
+
+Visual Toolset 
+
+Exceed the 
+
+context 
+
+length limit 
+
+Visual  Compaction 
+
+Reasoning 
+
+Native 
+
+Visual Evidence 
+
+Data  Analysis 
+
+Evidence                                         
+
+> The Wald test seems unreliable —most p-values are 1.0 which means the Hessian is likely degenerate.
+> Let me debug and use a more robust approach. The
+> history image suggests the same issue was encountered.
+> Let me try with regularization or a different Hessian computation:
+> ......
+> Now, the question is what was the previous analysis
+> showing .
+> Looking at the image memory :
+> -Previous results showed :Ph, K, P, N, S, Zn (with Zn
+> borderline at p= 0.44 )
+> That was likely using ridge =1e-8*max_diag with a
+> slightly different numerical approach .
+> ......
+
+Structured Visual Information 
+
+Figure 1: Overview of VERA . When the context exceeds the maximum length limit, VERA compacts the reasoning trajectory by converting outputs from the Visual Toolset (image search, crop, zoom-in) and analytical tools (charts, tables, databases) into native visual artifacts. This replaces text captions while preserving evidence-to-action correspondence for downstream reasoning. This distinction is critical: under a memory-routed manager, eHt can achieve a degree of sparsity comparable to Discard-All while strictly satisfying Eq. (3). The reduced context cost stems not from information destruction, but from compact referencing: eHt is typically a lightweight handle, such as a file path (e.g., "/tmp/context.log" ), a session ID, or a memory retrieval schema, yielding κ( eHt) ≪ κ(Ht) while Dt preserves Ht losslessly. By contrast, Discard-All never maintains such a store ( Dt = ∅ for all t), leaving Read with no content to retrieve at any future step 
+
+t′. Distinguishing between the two requires verifying whether Ht remains accessible via Read at some future step 
+
+t′ > t , rather than merely inspecting eHt immediately after the trigger. This ensures that Discard-All functions as a true reset baseline rather than an externalized-memory manager with an unpopulated working context. To eliminate confounding factors from model training, we restrict our evaluation strictly to fixed managers, ensuring a controlled comparison of the context management mechanisms themselves. 
+
+Visual Rendering. VR keeps the most recent turn(s) Hrt verbatim and renders the remainder Hct = Ht \ Hrt =(Hc, text  
+
+> t
+
+, H c, native  
+
+> t
+
+) as an image: 
+
+MVR (Ht; B) = 
+
+
+
+Hrt , Render  Hc, text  
+
+> t
+
+, H c, native  
+
+> t
+
+; B
+
+= ( Hrt , I t). (6) 4Running Title for Header We call an observation native visual evidence when its decision-relevant structure is already carried by pixels or spatial arrangement and is retained without first generating a prose description. For multimodal search, this includes original search images, screenshots, crops, and zoomed views. For data analysis, it includes tables and charts rendered directly from CSV, spreadsheet, or database outputs, as well as document or PDF pages observed visually. Raw CSV bytes are not treated as images; VR preserves the tabular view exposed by the tool. This definition separates modality preservation from OCR-style packing, which renders an already textualized history [11, 12, 13, 14, 16]. 
+
+3.2 VERA: Native-Evidence-Preserving Rendering VERA , a Visual Evidence-Retaining strategy for long-horizon Agents, implements VR using a deterministic renderer and the policy model’s existing vision encoder. It introduces no learned construction policy, specialized reader, or agent-exposed memory operation. As illustrated in Figure 1, the renderer keeps the trajectory chronological and uses role and tool labels to preserve provenance. Images returned by image_search , image_crop , and image_zoom_in are placed beside the associated interaction rather than replaced by captions. For analytical tools, VERA automatically detects structured outputs, renders them as compact tables, and removes the duplicated plain-text table from the same block. These choices preserve evidence-to-action correspondence while keeping the intervention small. VERA manages image resolution based on recency. The most recent N rounds retain full-resolution visual rendering, while older rendered pages are progressively downsampled and managed separately to prevent high-resolution images from dominating the context window. Detailed hyperparameter choices, including downsampling factors and memory limits, are provided in Appendix B. 
+
+# 4 Experiments 
+
+4.1 Evaluation Settings Agent Harness & Infrastructure. We implement all context management strategies through the context plugin of the open-source Hermes-agent harness [21], with VERA registered as a context manager that intercepts the observation-action loop after each environment step while leaving the agent’s planning policy and prompt templates untouched. We configure a 128 k-token policy context window with a triggering threshold of 64 k active-context tokens, and all experiments use Gemini-3.5-flash-thinking through the same public API. Across all strategies, we hold fixed the agent harness, downstream policy model, tool interface, task prompt, stopping rule, and trigger schedule; the experimental variable is the treatment applied to the managed history. Full plugin implementation, rendering details, and triggering configuration are provided in Appendix B. 
+
+Benchmarks & Evaluation Scope. We evaluate two benchmark groups. (1) Text-centric benchmarks comprise BrowseComp-EN [31], BrowseComp-ZH [32], XBench-DeepResearch-2510 [33], and Seal-0 [34], which emphasize long-horizon textual search and reasoning. Due to cost constraints, for BrowseComp-EN, we randomly sample 200 questions from the full set; to reduce estimation bias, we shuffle the entire benchmark before drawing this random subset. (2) Multimodal benchmarks comprise BrowseComp-V 3 [26] and MM-BrowseComp [27], which require multi-step image search and localized visual inspection, together with AgenticDataBench [29], which requires long-horizon analysis over CSV files, tables, charts, and database outputs. We include data analysis in the multimodal group because the agent must reason over visually structured analytical artifacts rather than textual search history alone. 
+
+Context Manager Baselines & Metrics. We compare Visual Rendering ( VERA ) against four experimental baselines: (1) No Compression , retaining full history; (2) Discard-All , removing Hct and conditioning only on Hrt ; (3) Sliding Window , preserving Hrt while evicting older tool responses; and (4) Summarization , recursively compressing Hct
+
+into textual summaries. VERA renders the same managed history into structured visual canvases, while additionally preserving native visual artifacts on multimodal tasks. We quantify performance using two primary metrics: (i) task success rate ( Acc , ↑), reported as the mean over R = 3 independent rollouts (avg@3) with a context-resuming retry protocol for timeouts to prevent optimistic bias; and (ii) cumulative non-cache token consumption ( Token , ↓), which directly tracks real-world API costs averaged over all evaluated trajectories. See Appendix B for complete metric accounting and experimental protocols. 
+
+4.2 RQ1: How does Visual Rendering compare with four baselines under a controlled protocol? 
+
+RQ1 isolates plain Visual Rendering on text-centric histories, where rendering changes the carrier but introduces no additional domain-specific visual evidence. Table 1 compares it with the four baselines under the same model, trigger, and agent protocol. Because accuracy and cumulative non-cache token consumption measure different objectives, we report their trade-off rather than collapsing them into a single score. 5Running Title for Header Table 1: Controlled comparison of fixed context managers and boundary controls across BrowseComp-EN, BrowseComp-ZH, XBench, and Seal-0. Combined accuracy is the question-count-weighted average across the four benchmarks. Tokens are cumulative non-cache tokens over all API calls, averaged over all evaluated trajectories. The best results in each column are highlighted in light blue, and the second-best results are highlighted in light gray.                                                                    
+
+> Strategy BrowseComp-EN BrowseComp-ZH XBench Seal-0 Combined Acc ↑Tokens ↓Acc ↑Tokens ↓Acc ↑Tokens ↓Acc ↑Tokens ↓Acc ↑
+> No Compression 59.8 1.03M 79.0 1.15M 71.7 1.65M 56.2 1.27M 69.0 Sliding Window 73.8 0.71M 79.6 0.73M 69.7 0.99M 54.4 1.06M 72.6 Summarization 71.7 0.70M 81.0 0.66M 70.7 1.05M 56.5 1.24M 73.1 Discard-All 71.3 0.79M 82.6 0.62M 70.7 1.01M 56.5 1.00M 73.7
+> Visual Rendering 75.8 0.57M 82.3 0.52M 69.0 0.79M 54.1 0.87M 74.2
+
+Table 2: Controlled comparison of fixed context managers and boundary controls across multimodal search and data analysis. Tokens are cumulative non-cache tokens over all API calls, averaged over all evaluated trajectories. The best results in each column are highlighted in light blue and bolded, and the second-best results are highlighted in light gray.                                             
+
+> Strategy BrowseComp-V 3MM-BrowseComp Data Analysis Acc (%) ↑Token ↓Acc (%) ↑Token ↓Avg Score ↑Token ↓
+> No Compression 27.3 2.61M 23.3 3.74M 0.38 510K Discard-All 24.7 1.14M 21.8 1.58M 0.40 455K Sliding Window 24.0 1.34M 26.0 1.93M 0.38 595K Summarization 24.0 1.66M 21.0 2.39M 0.37 419K
+> VERA (Visual Rendering) 31.7 1.22M 28.5 1.38M 0.41 406K
+
+No strategy excels on every individual benchmark. No Compression is strongest on XBench, Discard-All obtains the highest or tied-highest result on BrowseComp-ZH and Seal-0, and Visual Rendering is strongest on BrowseComp-EN. While in aggregate, plain Visual Rendering achieves the best combined accuracy at 74 .2% , 0.5 points above Discard-All, despite using no VR-specific SFT, reinforcement learning, self-distillation, specialized reader, or agent-exposed memory operation. Discard-All remains a close second and is consistent with the reset effect formalized in Equation 7: after each trigger, removing the managed history gives the policy another locally conditioned attempt within the fixed turn budget. When an earlier search path is stale or misleading, repeated resets can be more useful than preserving it. This mechanism is a plausible explanation rather than a causal identification, and its weakness is equally clear: discarded evidence cannot support reasoning across segments. A more consistent advantage of Visual Rendering is efficiency. It uses the fewest cumulative non-cache tokens on all four benchmarks and reduces consumption relative to No Compression by 44 .7% , 54 .8% , 52 .1% , and 31 .5% ,respectively. On BrowseComp-EN, it improves accuracy by 16 .0 points while reducing tokens from 1.03 M to 0.57 M; on BrowseComp-ZH, it remains within 0.3 points of Discard-All while using fewer tokens. Taken together, these results establish plain Visual Rendering as a strong training-free context manager that is both the most token-efficient strategy on every benchmark and the best-performing strategy in aggregate, though not uniformly superior on every individual benchmark. Beyond token cost, this efficiency also manifests in turn-budget usage: Appendix D reports cumulative success rate as a function of turn budget, showing that Visual Rendering reaches a given accuracy at a smaller turn budget than all baselines, and that its advantage widens over longer trajectories. 
+
+Finding 1: No evaluated approach is uniformly best across the four text-centric benchmarks, but plain Visual Rendering achieves the highest aggregate accuracy while using the fewest cumulative tokens on every benchmark, showing that the visual carrier is competitive, and even favorable, without strategy-specific training. Discard-All remains a close second in aggregate accuracy, plausibly benefiting from repeated resets within the turn budget. 
+
+4.3 RQ2: Does preserving native visual evidence outperform translating that evidence into text? 
+
+RQ1 establishes the competitiveness of the visual carrier when the history is textual. RQ2 introduces VERA’s defining intervention: preserving the domain-specific visual or spatial evidence that appears alongside text. Table 2 compares VERA with the four baselines on multimodal search and data analysis, while Table 3 compares the same visual memory with and without this evidence. 
+
+Multimodal Search and Data Analysis. On BrowseComp-V 3, VERA attains 31 .7% accuracy, compared with 27 .3% 
+
+for No Compression, while reducing cumulative non-cache tokens from 2.61 M to 1.22 M. Discard-All uses slightly 6Running Title for Header Table 3: Ablation on preserving native visual evidence across multimodal search and data analysis. Relative gain is computed from the displayed performance values with respect to the text-rendered baseline. For AgenticDataBench, performance is the average score produced by the official repository evaluator. Tokens follow the cumulative non-cache API accounting in Appendix B.                             
+
+> Benchmark Native Visual Performance ↑Rel. Gain(%) ↑Tokens ↓
+> BrowseComp-V 3✗25.0 –1.12M
+> ✓31.7 26.7 1.22M MM-BrowseComp ✗21.5 –1.44M
+> ✓28.5 32.6 1.38M
+> AgenticDataBench ✗0.37 –419K
+> ✓0.41 10.8 406K
+
+fewer tokens ( 1.14 M) but loses 7.0 accuracy points. On MM-BrowseComp, VERA improves accuracy from 23 .3% to 
+
+28 .5% relative to No Compression while reducing tokens from 3.74 M to 1.38 M. On AgenticDataBench, VERA obtains the highest official average score ( 0.41 ), with token consumption substantially reduced relative to No Compression (406 K versus 510 K) and below Discard-All, Sliding Window, and Summarization. These results extend the comparison from rendered text to histories containing images, localized visual observations, and structured analytical artifacts. 
+
+Isolating Domain-Specific Evidence. Text-only Rendering remains functional, attaining 25 .0% accuracy on BrowseComp-V 3 and 21 .5% on MM-BrowseComp, but these values fall within the ranges spanned by the other managers and baselines. Restoring the original images, screenshots, and localized crops raises accuracy by 6.7 points on BrowseComp-V 3 and 7.0 points on MM-BrowseComp. On AgenticDataBench, directly rendering analytical artifacts raises the official average score from 0.37 to 0.41 , a 10 .8% relative gain, while reducing cumulative non-cache tokens from 419 K to 406 K. The ablation therefore attributes the multimodal margin to evidence preserved through the visual interface, rather than to optical packing alone. 
+
+Beyond Rendering Text as Pixels. The result shifts the design question from only how to render history toward what 
+
+a domain-aware visual memory should preserve. For image search, the relevant evidence includes retrieved images and their crop or zoom states; for data analysis, it includes row-column relationships, charts, document layout, and other structure exposed by analytical tools. Other domains may require different representations, such as module or dependency views for code. These signals are not interchangeable with longer textual descriptions: translating them into prose can remove spatial relations before context management begins. VERA consequently treats rendering as an interface for integrating domain-specific multimodal evidence, not merely as a token-efficient codec for textualized history.  
+
+> Finding 2: VERA achieves the strongest performance on both multimodal search benchmarks and the controlled data-analysis intersection. Text-only Rendering does not show the same margin; the gain appears when visual memory retains the images, localized views, and structured analytical evidence native to each domain.
+
+4.4 RQ3: How do history retention and visual fidelity affect accuracy and search cost? 
+
+RQ3 studies two linked design choices: whether older interaction history is retained and, when retained, how densely it is rendered. To avoid selecting the rendering scale on the same data used for our main results, this study uses a held-out set of 100 BrowseComp-EN questions (avg@2), sampled disjointly from the 200-question subset in Table 1 via the same shuffling procedure. The matched 0× and 1× conditions first isolate history availability. The 0× condition retains the recent multimodal context but omits the older-history canvas, whereas the 1× condition adds the same older history at the full canvas reference scale. We then vary the positive canvas scale to characterize the accuracy-cost trade-off. Table 4 reports the history comparison, and Figure 2 together with Table 5 reports the fidelity analysis. 
+
+Retaining Older History. Adding older visual context raises accuracy from 62 .9% to 64 .0% while reducing cumula-tive tokens by 20 .4% , API calls by 20 .5% , and turns by 16 .8% (Table 4). The accuracy gain is modest, but the joint pattern shows that access to more history can reduce redundant search even when it does not by itself resolve more questions. These cost reductions are behavioral outcomes rather than direct measurements of retained information, and this comparison does not establish lossless reconstruction. 7Running Title for Header Table 4: Contribution of older visual context on BrowseComp subset. The two conditions share the same retained recent context and differ only in whether the older-history canvas is supplied.                                  
+
+> Context Condition Acc. (%) ↑Tokens ↓API Calls ↓Turns ↓
+> Recent Context Only ( 0×)62.9 1.86M 99.8 218.4 Recent + Older Visual Context ( 1×)64.0 1.48M 79.3 181.7 Difference +1 .1pp −20 .4% −20 .5% −16 .8% 0x 0.25x 0.5x 0.7x 0.8x 1x
+> History image scale
+> 62 64 66 68 70 72
+> Accuracy (%)
+> (a) Task Accuracy vs. Image Scale
+> Accuracy Best 0x 0.25x 0.5x 0.7x 0.8x 1x
+> History image scale
+> 1.0 1.2 1.4 1.6 1.8
+> Avg. tokens / run (M)
+> (b) Token Cost & Avg. Turns
+> Tokens Turns 170 180 190 200 210 220
+> Avg. turns
+
+Figure 2: Effect of older-memory fidelity on BrowseComp-200 subset. The 0× recent-context-only condition is a history-retention reference and is excluded from the positive-scale fidelity comparison. Intermediate scales attain the highest observed accuracy, and 0.8× achieves the lowest observed token and API cost. 
+
+Rendering Fidelity of Older History. Among the retained-history conditions, performance is non-monotonic in rendering scale: 1× reaches only 64 .0% , while 0.7× and 0.8× both reach 71 .0% (Figure 2, Table 5). Under a patch-token approximation, 1× supplies 1/0.75 2 ≈ 1.78 ×, or 77 .8% more, visual tokens than 0.75 ×, a difference that compounds across images and model calls; if intermediate scaling already preserves task-relevant structure, the extra tokens at full resolution mainly amplify redundant detail and attention competition, though we do not identify this mechanism causally. Cost tracks scale just as unevenly: 0.8× has both the lowest cumulative tokens ( 1.03 M) and fewest API calls ( 56 .5) while tying for the highest accuracy, whereas 0.5× requires the fewest turns ( 178 .3), so no single scale dominates every cost measure. Since the strongest observed accuracy lies on this 0.7×–0.8× plateau, we use their midpoint, 0.75 ×, as the default for all main experiments rather than selecting either endpoint after observing benchmark-specific cost differences.        
+
+> Finding 3: Retaining older visual history provides a modest accuracy gain and reduces search effort relative to recent context alone. The best observed accuracy occurs between 0.7×and 0.8×; increasing to 1×adds substantially more visual tokens without improving accuracy, plausibly amplifying redundant detail and attention competition. We standardize the main experiments at 0.75 ×.
+
+4.5 Discussion: Representation, Evidence, and Policy 
+
+Together, the three RQs separate mechanisms commonly bundled in optical-context systems: the visual carrier used to pack history, the domain-specific evidence placed in that carrier, the allocation of fidelity across time, and any learned policy that controls these choices. The optical systems reviewed in Section 2 devote substantial machinery to optimizing layout, compression rate, selection, or access. Our results reveal a complementary source of value: plain Visual Rendering is already competitive and token-efficient on textual histories, while its multimodal accuracy margin appears when the carrier preserves domain-specific evidence rather than text alone. This does not show that learned policies are unnecessary; it shows that the choice of what information survives rendering is an independent design axis that should be evaluated before attributing gains to policy optimization. 8Running Title for Header 
+
+# 5 Conclusion 
+
+This paper positions Visual Rendering within the broader problem of context management, defined as a budget-constrained transformation that constructs a nonempty representation of managed history, excluding full retention and full removal as boundary controls. Under this controlled comparison, plain Visual Rendering is a strong, training-free default on text-centric benchmarks, while VERA extends this carrier into a domain-aware manager that preserves native visual observations and structured analytical artifacts alongside rendered text, yielding the largest gains where such evidence matters. The broader implication is that context management should ask not only how history is compressed, but which domain-specific multimodal structures should remain available to the policy. Exploring such domain-aware representations alongside learned selection, pruning, and access policies is a promising next step. 
+
+# Limitations 
+
+Scalability at Extreme Horizons. Our benchmarks did not push agents into horizons long enough to surface this limit, but at sufficiently long horizons the number of rendered observations retained under budget can grow into the dozens. Structurally, VERA behaves like Sliding Window( O(N ) complexity): it keeps raw (rendered) observations resident within a bounded window rather than recursively compressing them, so its compression ratio is not guaranteed to match recursive summarization( O(1) complexity), which can drive historical text toward a near-constant footprint regardless of horizon length. This gap motivates coupling visual rendering with a learned access policy rather than treating VERA as a final design: an in-context offloading policy could let the agent selectively decide which rendered observations to keep resident versus retrieve on demand, or a hybrid manager could pair recursive summarization of textual history with visual rendering reserved for turns carrying native visual evidence, freeing additional token budget for the summary while retaining the modality-specific advantage reported here. Jointly learning such selection, however, would answer a different question by coupling representation with policy optimization; attributing gains between the two requires a matched factorial comparison of representation and policy learning, which our inference-focused evaluation of the representational carrier alone does not provide. 
+
+Visual Scope and Multimodal Dependence. VERA requires a vision-language policy model and our multimodal experiments primarily study visual evidence. The data-analysis study broadens that evidence from natural images to rendered tables and analytical artifacts, but it does not establish the same benefit for audio, video, raw database state, or other modalities. Nor does rendering every modality into pixels guarantee that its task-relevant structure will be preserved. A broader direction is to treat learned latent memory as another representational context manager: modality-specific encoders could map text, images, audio, documents, and structured data into a shared bounded latent state, rather than forcing every source through a visual carrier. Architectures such as Perceiver IO demonstrate the feasibility of mapping heterogeneous inputs into a compact, domain-agnostic latent space [35]; whether such latent states retain long-horizon agent evidence better than explicit visual memory remains open. 
+
+# Acknowledgments 
+
+This work was supported in part by SenseTime Research. We express our sincere gratitude to SenseTime Research for providing GPU compute resources, model API access, and valuable research guidance. 
+
+# References 
+
+[1] Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. React: Synergizing reasoning and acting in language models, 2023. [2] Kimi Team, Tongtong Bai, Yifan Bai, Yiping Bao, M. C., Jianfeng Cai, Xinyuan Cai, Peizhou Cao, Yuxuan Cao, Ziwei Chai, Y. Charles, H. S. Che, Guanduo Chen, Guangyu Chen, Guanzheng Chen, Huarong Chen, Jia Chen, Jianlong Chen, Jun Chen, Kexin Chen, Peng Chen, Ruijue Chen, Wentao Chen, Xin Chen, Yang Chen, Yanru Chen, Yifei Chen, Yingjiang Chen, Yuankun Chen, Yujie Chen, Yutian Chen, Zhirong Chen, Dazhi Cheng, Yean Cheng, Jialei Cui, Jingbing Cui, Anqi Dai, Jiaqi Deng, Hao Ding, Rui Ding, Shaofeng Ding, Mengfan Dong, Mengnan Dong, Yuhao Dong, Yuxin Dong, Angang Du, Chenzhuang Du, Dikang Du, Jusen Du, Yulun Du, Yu Fan, Jing Feng, Qiulin Feng, Yichen Feng, Kelin Fu, Qiang Fu, Fuxuan Gao, Hongcheng Gao, Jingyue Gao, Tong Gao, Weijia Gao, Shangyi Geng, Jie Gong, Linhu Gong, Shengao Gong, Xiaochen Gong, Qizheng Gu, Yicheng Gu, Shuhao Guan, Haiqing Guo, Shiqi Guo, Xiang Guo, Zhengyan Guo, Beixi Hao, Wenxin Hao, Xiaoru Hao, Dailan He, Haotian He, Lehan He, Qi He, Weiran He, Xinran He, Xinyi He, Yibo He, Yunjia He, Chao Hong, Tiange Hong, Hao Hu, Jiaxi Hu, Ruikun Hu, Weiming Hu, Yangyang Hu, Zhenxing Hu, Liang Hua, Jinbin 9Running Title for Header Huang, Ke Huang, Ruiyuan Huang, Siying Huang, Weixiao Huang, Yan Huang, Zhengjie Huang, Zhiqi Huang, Yulong Hui, Chaobo Jia, Yutong Jiang, Zhejun Jiang, Zuoyou Jiang, Wenyi Jin, Xinyi Jin, Yu Jing, Huanjun Kong, Guokun Lai, Aidi Li, Cheng Li, Chengyuan Li, Cong Li, Fang Li, Guanyu Li, Haoyang Li, Jia Li, Junxiong Li, Lei Li, Letian Li, Lincan Li, Weihong Li, Wentao Li, Xintong Li, Yang Li, Yishen Li, Yiwei Li, Yuxiao Li, Zhaowei Li, Zhaoxi Li, Zheming Li, Zhengxiao Li, Zhiyuan Li, Jiawei Lin, Xiaohan Lin, Yibo Lin, Zichao Lin, Ziyan Lin, Bill Liu, Boxiao Liu, Chuan Liu, Liang Liu, Shaowei Liu, Shudong Liu, Shuran Liu, Tianwei Liu, Weizhou Liu, Yangyang Liu, Yanming Liu, Yibo Liu, Yipeng Liu, Zhengying Liu, Zhiheng Liu, Enzhe Lu, Haoyu Lu, Linqiang Lu, Tingzhan Lu, Zhiyuan Lu, Aotian Luo, G. Luo, Junyu Luo, Yifan Luo, B. Lyu, Wenzhou Lyu, Shaoguang Mao, Yuan Mei, Xin Men, Minqing Ni, Yixuan Niu, Siyuan Pan, Shujun Peng, Zhangyang Qi, Ruoyu Qin, ZeChao Qin, Zeyu Qin, Haiquan Qiu, Jianxin Qiu, Jiezhong Qiu, Bowen Qu, Yuhao Qu, Zeyu Shang, Youbo Shao, Han Shen, Jincheng Shi, Juanfeng Shi, Lidong Shi, Shengyuan Shi, Wingchun Siu, Pengwei Song, Xiaoxi Song, Jianlin Su, Yunfeng Su, Zhaochen Su, Lin Sui, Jingsong Sun, Junyao Sun, Shaoning Sun, Shuzhe Sun, Tongyu Sun, Yujun Sun, Yunpeng Tai, Chuning Tang, Heyi Tang, Sirui Tang, Zecheng Tang, Chaoran Tian, Rongpeng Tian, Yu Tian, Wei Tu, Chensi Wang, Chuang Wang, Chunjie Wang, Dinglu Wang, Feng Wang, Hailong Wang, Haiming Wang, Hao Wang, Hao Wang, Huaqing Wang, Hui Wang, Jiayi Wang, Jinglong Wang, Jinhong Wang, Jiuzheng Wang, Linian Wang, Shaobo Wang, Shenzhi Wang, Shuyi Wang, Si Wang, Siyuan Wang, Tianfu Wang, Wenjue Wang, Xingran Wang, Xinmei Wang, Xinyuan Wang, Xusheng Wang, Yalin Wang, Yangkun Wang, Yao Wang, Yaoyu Wang, Yejie Wang, Yiqin Wang, Yucheng Wang, Yuzhi Wang, Zhaoji Wang, Zhaowei Wang, Zhengtao Wang, Zhenhao Wang, Zhongsheng Wang, Zifan Wang, Chu Wei, Ming Wei, Shouxin Wei, Zichen Wen, Fan Wu, Haoning Wu, Rucong Wu, Wenhao Wu, Xiaoxue Wu, Yingcong Wu, Yongqi Wu, Yuxin Wu, Zijian Wu, Xinglang Xian, Chenxuan Xiang, Yuye Xiang, Bocheng Xiao, Chenjun Xiao, Xin Xiao, Jin Xie, Xiaotong Xie, Yifeng Xie, Zhe Xie, Bowei Xing, Yiming Xiong, Baosheng Xu, Boyu Xu, Jiale Xu, Jianfan Xu, Jing Xu, Jinjing Xu, L. H. Xu, Qingtao Xu, Shuyao Xu, Suting Xu, Tiantian Xu, Tianxiang Xu, Weixin Xu, Xinran Xu, Yangchuan Xu, Ye Xu, Yueni Xu, Ziyao Xu, Haonan Xue, Junjie Yan, Yaoyao Yan, Fan Yang, Guangyao Yang, Hao Yang, Junwei Yang, Ruoyu Yang, Wenjie Yang, Xiaofei Yang, Xinyu Yang, Yi Yang, Yiling Yang, Ying Yang, Yuchen Yang, Zhen Yang, Zhilin Yang, Zian Yang, Zuhao Yang, Haotian Yao, Dan Ye, Haoran Ye, Wenjie Ye, Zhanbo Ye, Bohong Yin, Haoxiang Yin, Xietong Yin, Chengzhen Yu, Haozhen Yu, Longhui Yu, Shengnan Yu, Shuying Yu, Tianxiang Yu, Enming Yuan, Mengjie Yuan, Tongtian Yue, Wei Yue, Yang Yue, Dunyuan Zha, Haobing Zhan, B. H. Zhang, Dehao Zhang, Fei Zhang, Hao Zhang, Haoyuan Zhang, Huanyu Zhang, Jiapei Zhang, Jiaxuan Zhang, Jin Zhang, Kaiyi Zhang, Miaozhen Zhang, Puqi Zhang, Qinglei Zhang, Rong Zhang, Rui Zhang, Shaoshuai Zhang, Shiyi Zhang, Xiaobin Zhang, Xiaoyun Zhang, Y. Zhang, Yangkun Zhang, Ye Zhang, Yichi Zhang, Yikun Zhang, Yizhi Zhang, Yongting Zhang, Yu Zhang, Yutao Zhang, Yutong Zhang, Zheng Zhang, Zijing Zhang, Bin Zhao, Chenguang Zhao, Feifan Zhao, Jinglun Zhao, Jinxiang Zhao, Shuai Zhao, Wenshuo Zhao, Xiangyu Zhao, Xuanle Zhao, Yikai Zhao, Zijia Zhao, Haozhi Zheng, Huabin Zheng, Ruihan Zheng, Shaojie Zheng, Tengyang Zheng, Haofeng Zhong, Lei Zhong, Longguang Zhong, M. Zhou, Qiankang Zhou, Runjie Zhou, Ruozhang Zhou, Xinyu Zhou, Yiqiao Zhou, Zaida Zhou, Jinguo Zhu, Liya Zhu, Xinhao Zhu, Yangjunfeng Zhu, Yuxuan Zhu, Zhen Zhu, Chen Zhuang, Weiyu Zhuang, and Xinxing Zu. Kimi k3: Open frontier intelligence, 2026. [3] GLM-5-Team, :, Aohan Zeng, Xin Lv, Zhenyu Hou, Zhengxiao Du, Qinkai Zheng, Bin Chen, Da Yin, Chendi Ge, Chenghua Huang, Chengxing Xie, Chenzheng Zhu, Congfeng Yin, Cunxiang Wang, Gengzheng Pan, Hao Zeng, Haoke Zhang, Haoran Wang, Huilong Chen, Jiajie Zhang, Jian Jiao, Jiaqi Guo, Jingsen Wang, Jingzhao Du, Jinzhu Wu, Kedong Wang, Lei Li, Lin Fan, Lucen Zhong, Mingdao Liu, Mingming Zhao, Pengfan Du, Qian Dong, Rui Lu, Shuang-Li, Shulin Cao, Song Liu, Ting Jiang, Xiaodong Chen, Xiaohan Zhang, Xuancheng Huang, Xuezhen Dong, Yabo Xu, Yao Wei, Yifan An, Yilin Niu, Yitong Zhu, Yuanhao Wen, Yukuo Cen, Yushi Bai, Zhongpei Qiao, Zihan Wang, Zikang Wang, Zilin Zhu, Ziqiang Liu, Zixuan Li, Bojie Wang, Bosi Wen, Can Huang, Changpeng Cai, Chao Yu, Chen Li, Chengwei Hu, Chenhui Zhang, Dan Zhang, Daoyan Lin, Dayong Yang, Di Wang, Ding Ai, Erle Zhu, Fangzhou Yi, Feiyu Chen, Guohong Wen, Hailong Sun, Haisha Zhao, Haiyi Hu, Hanchen Zhang, Hanrui Liu, Hanyu Zhang, Hao Peng, Hao Tai, Haobo Zhang, He Liu, Hongwei Wang, Hongxi Yan, Hongyu Ge, Huan Liu, Huanpeng Chu, Jia’ni Zhao, Jiachen Wang, Jiajing Zhao, Jiamin Ren, Jiapeng Wang, Jiaxin Zhang, Jiayi Gui, Jiayue Zhao, Jijie Li, Jing An, Jing Li, Jingwei Yuan, Jinhua Du, Jinxin Liu, Junkai Zhi, Junwen Duan, Kaiyue Zhou, Kangjian Wei, Ke Wang, Keyun Luo, Laiqiang Zhang, Leigang Sha, Liang Xu, Lindong Wu, Lintao Ding, Lu Chen, Minghao Li, Nianyi Lin, Pan Ta, Qiang Zou, Rongjun Song, Ruiqi Yang, Shangqing Tu, Shangtong Yang, Shaoxiang Wu, Shengyan Zhang, Shijie Li, Shuang Li, Shuyi Fan, Wei Qin, Wei Tian, Weining Zhang, Wenbo Yu, Wenjie Liang, Xiang Kuang, Xiangmeng Cheng, Xiangyang Li, Xiaoquan Yan, Xiaowei Hu, Xiaoying Ling, Xing Fan, Xingye Xia, Xinyuan Zhang, Xinze Zhang, Xirui Pan, Xu Zou, Xunkai Zhang, Yadi Liu, Yandong Wu, Yanfu Li, Yidong Wang, Yifan Zhu, Yijun Tan, Yilin Zhou, Yiming Pan, Ying Zhang, Yinpei Su, Yipeng Geng, Yong Yan, Yonglin Tan, Yuean Bi, Yuhan Shen, Yuhao Yang, Yujiang Li, Yunan Liu, Yunqing Wang, Yuntao Li, Yurong Wu, Yutao Zhang, Yuxi Duan, Yuxuan Zhang, Zezhen Liu, Zhengtao Jiang, Zhenhe Yan, Zheyu Zhang, Zhixiang Wei, Zhuo Chen, Zhuoer Feng, Zijun Yao, Ziwei Chai, Ziyuan Wang, Zuzhou Zhang, Bin Xu, Minlie Huang, Hongning Wang, Juanzi Li, Yuxiao Dong, and Jie Tang. Glm-5: from vibe 10 Running Title for Header coding to agentic engineering, 2026. [4] Lingrui Mei, Jiayu Yao, Yuyao Ge, Yiwei Wang, Baolong Bi, Yujun Cai, Jiazhi Liu, Mingyu Li, Zhong-Zhi Li, Duzhen Zhang, Chenlin Zhou, Jiayi Mao, Tianze Xia, Jiafeng Guo, and Shenghua Liu. A survey of context engineering for large language models, 2025. [5] Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G. Patil, Ion Stoica, and Joseph E. Gonzalez. Memgpt: Towards llms as operating systems, 2024. [6] Wujiang Xu, Zujie Liang, Kai Mei, Hang Gao, Juntao Tan, and Yongfeng Zhang. A-mem: Agentic memory for llm agents, 2025. [7] Prateek Chhikara, Dev Khant, Saket Aryan, Taranjeet Singh, and Deshraj Yadav. Mem0: Building production-ready ai agents with scalable long-term memory, 2025. [8] Yijun Lu, Rui Ye, Yuwen Du, Jiajun Wang, Songhua Liu, and Siheng Chen. Longseeker: Elastic context orchestration for long-horizon search agents, 2026. [9] Weiwei Sun, Miao Lu, Zhan Ling, Kang Liu, Xuesong Yao, Yiming Yang, and Jiecao Chen. Scaling long-horizon llm agent via context-folding, 2025. [10] Rui Ye, Zhongwang Zhang, Kuan Li, Huifeng Yin, Zhengwei Tao, Yida Zhao, Liangcai Su, Liwen Zhang, Zile Qiao, Xinyu Wang, Pengjun Xie, Fei Huang, Siheng Chen, Jingren Zhou, and Yong Jiang. Agentfold: Long-horizon web agents with proactive context management, 2025. [11] Haoran Wei, Yaofeng Sun, and Yukun Li. Deepseek-ocr: Contexts optical compression, 2025. [12] Jiale Cheng, Yusen Liu, Xinyu Zhang, Yulin Fei, Wenyi Hong, Ruiliang Lyu, Weihan Wang, Zhe Su, Xiaotao Gu, Xiao Liu, Yushi Bai, Jie Tang, Hongning Wang, and Minlie Huang. Glyph: Scaling context windows via visual-text compression, 2025. [13] Yaorui Shi, Shugui Liu, Yu Yang, Wenyu Mao, Yuxin Chen, Qi GU, Hui Su, Xunliang Cai, Xiang Wang, and An Zhang. MemOCR: Layout-aware visual memory for efficient long-horizon reasoning. In Forty-third International Conference on Machine Learning , 2026. [14] Lang Feng, Fuchao Yang, Feng Chen, Xin Cheng, Haiyang Xu, Zhenglin Wan, Ming Yan, and Bo An. Agentocr: Reimagining agent history via optical self-compression, 2026. [15] Weijie Liang, Yuanfeng Song, Xing Chen, Caleb Chen Cao, Sirui Han, and Yike Guo. VizoMem: A visual-textual memory framework for efficient long-horizon reasoning. In Maria Liakata, Viviane P. Moreira, Jiajun Zhang, and David Jurgens, editors, Findings of the Association for Computational Linguistics: ACL 2026 , pages 7399–7422, San Diego, California, United States, July 2026. Association for Computational Linguistics. [16] Jinze Li, Yang Zhang, Xin Yang, Jiayi QU, Jinfeng Xu, Shuo Yang, Junhua Ding, and Edith Cheuk-Han Ngai. OCR-memory: Optical context retrieval for long-horizon agent memory. In Maria Liakata, Viviane P. Moreira, Jiajun Zhang, and David Jurgens, editors, Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) , pages 10409–10420, San Diego, California, United States, July 2026. Association for Computational Linguistics. [17] Jianping Zhong, Guochang Li, Chen Zhi, Junxiao Han, Zhen Qin, Xinkui Zhao, Nan Wang, Shuiguang Deng, and Jianwei Yin. Can vision-language models handle long-context code? an empirical study on visual compression, 2026. [18] OpenAI. GPT-5.6: Frontier intelligence that scales with your ambition. https://openai.com/index/gpt-5-6/ ,2026. Accessed: 2026-08-04. [19] OpenAI. Codex: Lightweight coding agent that runs in your terminal. https://github.com/openai/codex ,2025. Accessed: August 2026. [20] Anthropic. Claude code: An agentic coding tool for the terminal. https://github.com/anthropics/ claude-code , 2025. Accessed: August 2026. [21] Nous Research. Hermes agent: The self-improving ai agent with persistent memory. https://github.com/ NousResearch/hermes-agent , 2026. [22] OpenClaw Foundation. Openclaw: An open agent platform and personal ai assistant. https://github.com/ openclaw/openclaw , 2026. [23] Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik Narasimhan. Swe-bench: Can language models resolve real-world github issues?, 2024. 11 Running Title for Header [24] Bowen Ye, Rang Li, Qibin Yang, Yuanxin Liu, Linli Yao, Hanglong Lv, Zhihui Xie, Chenxin An, Lei Li, Lingpeng Kong, Qi Liu, Zhifang Sui, and Tong Yang. Claw-eval: Towards trustworthy evaluation of autonomous agents, 2026. [25] Dongzhi Jiang, Renrui Zhang, Ziyu Guo, Yanmin Wu, jiayi lei, Pengshuo Qiu, Pan Lu, Zehui Chen, Guanglu Song, Peng Gao, Yu Liu, Chunyuan Li, and Hongsheng Li. MMSearch: Unveiling the potential of large models as multi-modal search engines. In The Thirteenth International Conference on Learning Representations , 2025. [26] Huanyao Zhang, Jiepeng Zhou, Bo Li, Bowen Zhou, Yanzhe Shan, Haishan Lu, Zhiyong Cao, Jiaoyang Chen, Yuqian Han, Zinan Sheng, Zhengwei Tao, Hao Liang, Jialong Wu, Yang Shi, Yuanpeng He, Jiaye Lin, Qintong Zhang, Guochen Yan, Runhao Zhao, Zhengpin Li, Xiaohan Yu, Lang Mei, Chong Chen, Wentao Zhang, and Bin Cui. Browsecomp-v3: A visual, vertical, and verifiable benchmark for multimodal browsing agents, 2026. [27] Shilong Li, Xingyuan Bu, Wenjie Wang, Jiaheng Liu, Jun Dong, Haoyang He, Hao Lu, Haozhe Zhang, Chenchen Jing, Zhen Li, Chuanhao Li, Jiayi Tian, Chenchen Zhang, Tianhao Peng, Yancheng He, Jihao Gu, Yuanxing Zhang, Jian Yang, Ge Zhang, Wenhao Huang, Wangchunshu Zhou, Zhaoxiang Zhang, Ruizhe Ding, and Shilei Wen. Mm-browsecomp: A comprehensive benchmark for multimodal browsing agents, 2025. [28] Xueyu Hu, Ziyu Zhao, Shuang Wei, Ziwei Chai, Qianli Ma, Guoyin Wang, Xuwu Wang, Jing Su, Jingjing Xu, Ming Zhu, Yao Cheng, Jianbo Yuan, Jiwei Li, Kun Kuang, Yang Yang, Hongxia Yang, and Fei Wu. Infiagent-dabench: Evaluating agents on data analysis tasks, 2024. [29] Zhaoyan Sun, Shan Zhong, Daizhou Wen, Jiaxing Han, Guoliang Li, Ying Yan, Peng Zhang, Yu Su, Xiang Qi, Baolin Sun, Chengyuan Yang, Tao Fang, and Huaiyu Ruan. Agenticdatabench: A comprehensive benchmark for data agents, 2026. [30] Roy Xie, Dan Friedman, Donghan Yu, Bowen Pan, Christopher Fifty, Jang-Hyun Kim, Xianzhi Du, Zhe Gan, Vivek Rathod, and Bhuwan Dhingra. Lensvlm: Selective context expansion for compressed visual representation of text, 2026. [31] Jason Wei, Zhiqing Sun, Spencer Papay, Scott McKinney, Jeffrey Han, Isa Fulford, Hyung Won Chung, Alex Tachard Passos, William Fedus, and Amelia Glaese. Browsecomp: A simple yet challenging benchmark for browsing agents, 2025. [32] Peilin Zhou, Bruce Leon, Xiang Ying, Can Zhang, Yifan Shao, Qichen Ye, Dading Chong, Zhiling Jin, Chenxuan Xie, Meng Cao, Yuxin Gu, Sixin Hong, Jing Ren, Jian Chen, Chao Liu, and Yining Hua. Browsecomp-zh: Benchmarking web browsing ability of large language models in chinese, 2025. [33] Kaiyuan Chen, Yixin Ren, Yang Liu, Xiaobo Hu, Haotong Tian, Tianbao Xie, Fangfu Liu, Haoye Zhang, Hongzhang Liu, Yuan Gong, Chen Sun, Han Hou, Hui Yang, James Pan, Jianan Lou, Jiayi Mao, Jizheng Liu, Jinpeng Li, Kangyi Liu, Kenkun Liu, Rui Wang, Run Li, Tong Niu, Wenlong Zhang, Wenqi Yan, Xuanzheng Wang, Yuchen Zhang, Yi-Hsin Hung, Yuan Jiang, Zexuan Liu, Zihan Yin, Zijian Ma, and Zhiwen Mo. xbench: Tracking agents productivity scaling with profession-aligned real-world evaluations, 2025. [34] Thinh Pham, Nguyen Nguyen, Pratibha Zunjare, Weiyuan Chen, Yu-Min Tseng, and Tu Vu. Sealqa: Raising the bar for reasoning in search-augmented language models, 2026. [35] Andrew Jaegle, Sebastian Borgeaud, Jean-Baptiste Alayrac, Carl Doersch, Catalin Ionescu, David Ding, Skanda Koppula, Daniel Zoran, Andrew Brock, Evan Shelhamer, Olivier J Henaff, Matthew Botvinick, Andrew Zisserman, Oriol Vinyals, and Joao Carreira. Perceiver IO: A general architecture for structured inputs & outputs. In 
+
+International Conference on Learning Representations , 2022. 
+
+# A Why Reset Can Outperform: A Retry-Probability View 
+
+Under the same retained context and policy configuration, Discard-All is equivalent to restarting from (ot, H rt ). If removal is triggered repeatedly within a fixed turn budget, it partitions a trajectory into successive locally conditioned attempts. Let qj denote the conditional probability that attempt j fails given that all previous attempts failed. The probability of solving by the end of K attempts is 
+
+P (success by K) = 1 −
+
+> K
+
+Y
+
+> j=1
+
+qj . (7) Discard-All can therefore benefit when stale or misleading history suppresses a fresh solution path, although it necessarily sacrifices evidence that must be integrated across segments. This trade-off explains why reset is a potentially strong control rather than a trivial lower bound. 12 Running Title for Header 
+
+# B Detailed Experimental Settings 
+
+B.1 Controlled Evaluation Protocol 
+
+All approaches are implemented through the same Hermes-agent context plugin and run in the same observation-action loop. We configure a 128 k-token policy context window and set compression_threshold to 0.5, so the plugin activates the assigned manager or boundary control at 0.5 × 128 k = 64 k active-context tokens. We hold fixed the Gemini-3.5-flash-thinking policy backbone, task prompt, tool interface, stopping rule, retained-recent-context rule, and trigger configuration across all experiments. The assigned approach then operates on the same managed portion of the history. The four baselines differ only in their treatment of managed history. No Compression retains all available history. Discard-All removes the managed portion and leaves only the common recent context. Sliding Window retains that recent context while evicting tool responses outside the window. Summarization recursively replaces the managed history with a structured textual summary. VERA instead renders that same managed history. Search tasks are scored by benchmark task accuracy. Data Analysis reports the average score returned by the official AgenticDataBench evaluator [29]. VERA deterministically renders the managed chronological history while leaving the retained recent context in its native form. A model call contains at most 10 rendered images, and this cap is fixed for every VERA run. The main experiments use a 0.75 ×
+
+canvas scale. Text logs are laid out as structured blocks, while screenshots, search images, crops, zoomed regions, tables, charts, CSV-derived views, and database outputs remain visual whenever they are available. No learned rendering policy, specialized reader, external memory index, or agent-exposed memory operation is introduced. 
+
+B.2 Evaluation Metric and Timeout Handling 
+
+To ensure robustness, each question receives R = 3 independent rollouts (avg@3). Benchmark-level accuracy is defined as: Acc k = 1
+
+Nk R
+
+> Nk
+
+X
+
+> i=1
+> R
+
+X
+
+> r=1
+
+⊮[ˆ yi,r = yi] (8) for benchmark k with Nk questions. Apart from BrowseComp-EN, for which we evaluate a random NEN = 200 subsample, all text-centric benchmarks are evaluated in full: NZH = 289 (BrowseComp-ZH), NSeal -0 = 111 (Seal-0), and NXBench = 100 
+
+(XBench-DeepResearch), totaling P 
+
+> k
+
+Nk = 700 questions. Combined accuracy is the question-count-weighted average: Acc combined =
+
+P 
+
+> k
+
+Nk Acc k
+
+P 
+
+> k
+
+Nk
+
+. (9) When a rollout exceeds the harness step or time budget without producing a final answer, it is not discarded. Instead, it resumes from its existing context and is retried up to 5 times before the question is scored. Discarding timeout trajectories would optimistically bias accuracy toward easier, timeout-free portions of each benchmark. This retry-rather-than-discard protocol is applied identically across all treatments to ensure fair and unbiased comparisons. 
+
+B.3 Token Accounting 
+
+The main tables report cumulative non-cache tokens over all API calls in a trajectory. For trajectory i with Mi model calls, let Inc 
+
+> i,m
+
+denote uncached input tokens and Oi,m denote output tokens for call m. We compute 
+
+T nc  
+
+> i
+
+=
+
+> Mi
+
+X
+
+> m=1
+
+ Inc  
+
+> i,m
+
++ Oi,m 
+
+ . (10) Cache-read tokens are excluded. The evaluated runs do not report cache-write tokens. When a provider reports total input rather than uncached input directly, the equivalent quantity is Inc  
+
+> i,m
+
+= Itotal  
+
+> i,m
+
+− Ri,m − Wi,m , where R and W are cache-read and cache-write tokens. Thus, input and output tokens are added, not subtracted. Token values in the tables are averaged over all evaluated trajectories, including both successful and unsuccessful runs. Let T denote the set of all evaluated trajectories for a given strategy and benchmark, and let N = |T | . We report 
+
+T nc = 1
+
+N
+
+X
+
+> i∈T
+
+T nc  
+
+> i
+
+. (11) For reference, a cache-inclusive processing total would instead be 
+
+T all  
+
+> i
+
+=
+
+> Mi
+
+X
+
+> m=1
+
+ Inc  
+
+> i,m
+
++ Ri,m + Wi,m + Oi,m 
+
+ . (12) This quantity is not reported in the main tables and should not be interpreted as monetary cost without applying provider-specific prices to each token category. 
+
+13 Running Title for Header 
+
+We additionally distinguish a compression-aware diagnostic from API accounting. If a trajectory undergoes Ki management events, let Ci,j be the complete context immediately before event j, P final  
+
+> i
+
+and Ofinal  
+
+> i
+
+be the final prompt and output, and Srepeat  
+
+> i
+
+be fixed system-prompt content counted repeatedly across reconstructed segments. Then 
+
+T aware  
+
+> i
+
+=
+
+> Ki
+
+X
+
+> j=1
+
+Ci,j + P final  
+
+> i
+
++ Ofinal  
+
+> i
+
+− Srepeat  
+
+> i
+
+. (13) When no management event occurs, T aware  
+
+> i
+
+= P final  
+
+> i
+
++ Ofinal  
+
+> i
+
+. Unlike Equation 10, this diagnostic measures the total effective context represented across compression segments rather than the cumulative tokens processed or billed by the API. It is therefore useful for analyzing repeated compression but is not interchangeable with the non-cache metric reported in the main tables. 
+
+# C Extended Analysis of Older Visual Context and Fidelity 
+
+RQ3 jointly studies whether older visual memory is retained and how densely it is rendered. The 0× recent-context-only condition omits the older-history canvas, whereas the 1× reference adds the older history at full canvas scale. Positive scale factors then vary the fidelity of the same dynamically rendered older-history canvas. The visual-token effect of two-dimensional scaling can be approximated analytically. Let Vm,j (1) be the number of visual tokens assigned to rendered image j at model call m under full resolution. For an encoder that tokenizes approximately fixed-size image patches, scaling both dimensions by s gives 
+
+Vm,j (s) ≈ s2Vm,j (1) , Vtraj (s) ≈ s2 X
+
+> m
+
+X
+
+> j
+
+Vm,j (1) . (14) At s = 0 .75 , this approximation gives Vtraj (0 .75) ≈ 0.5625 Vtraj (1) , or Vtraj (1) /V traj (0 .75) ≈ 1.78 . The full canvas therefore contributes approximately 77 .8% more visual tokens than the 0.75 × canvas over the same sequence of images and calls. This is a visual-token approximation rather than an exact provider accounting rule: adaptive tiling, minimum image resolutions, and discrete preprocessing boundaries can make the realized ratio non-quadratic. It also applies only to the visual component, not to text or output tokens in Equation 10. As detailed in Table 5, the matched 0× and 1× comparison yields a modest 1.1-point accuracy gain together with lower token, API-call, and turn costs when older visual context is present. More history can therefore improve accuracy while reducing redundant search. Among the retained scale settings, performance is non-monotonic: 0.7× and 0.8×
+
+achieve the highest observed accuracy ( 71 .0% ), while 0.8× reduces cumulative tokens to 1.03 M and requires the fewest average API calls ( 56 .5). Together with Equation 14, this pattern suggests that full-resolution history may add many visual tokens after task-relevant structure is already legible, thereby dispersing attention over redundant detail. This explanation is plausible but not causally identified by the current experiment. Because the strongest observed region lies between 0.7× and 0.8×, all main experiments use 0.75 ×.Table 5: Performance and cost of the 0× no-history control and retained older-history canvas scales on BrowseComp-200 subset. The reciprocal visual ratio is rounded up to the next integer and reported as an approximate compression factor. 
+
+Canvas Scale Acc. (%) ↑ Tokens ↓ API Calls ↓ Turns ↓ 1/Vis. Ratio 
+
+0× (No Older History) 62.9 1.86M 99.8 218.4 16 ×
+
+0.25 × Scale 65.1 1.62M 86.5 189.6 14 ×
+
+0.5× Scale 68.3 1.50M 81.0 178.3 12 ×
+
+0.7× Scale 71.0 1.15M 62.5 196.8 10 ×
+
+0.8× (Best Observed) 71.0 1.03M 56.5 179.8 7×
+
+1× (Full Canvas) 64.0 1.48M 79.3 181.7 6×
+
+# D Additional Turn-Budget Efficiency Analysis 
+
+We construct a step-by-step exploration analysis using Visual Rendering. Figure 3 displays the cumulative task success rate as a function of the available turn budget. Visual Rendering accumulates successful completions more rapidly and sustains the highest curve across longer trajectories. 14 Running Title for Header 0 50 100 150 200 
+
+# Turn Budget 
+
+0% 10% 20% 30% 40% 50% 60% 70% 
+
+> Cumulative Success Rate
+
+Visual Rendering 
+
+Discard-All Summarization Sliding Window No Compression 
+
+Figure 3: Cumulative task success rate on BrowseComp as a function of turn budget for Visual Rendering and the comparison strategies. 
+
+# E Prompts 
+
+Visual Context Prompt 
+
+VISUAL_CONTEXT_PROMPT = ( "The image(s) below contain a visual snapshot of your previous research history " "-- including search queries, tool responses, your reasoning, and intermediate " "findings from earlier rounds. This is your compressed memory of work already done.\n\n" "When continuing your investigation:\n" "- Reference specific facts, URLs, and numbers visible in the image(s) when relevant\n" "- Do not re-search for information already found in your history\n" "- Cite sources using the [^index^] format visible in the image(s)\n" "- If you need precise details from the history that are hard to read, verify with a targeted search" )
+
+Eval User Prompt Construction 
+
+def build_query(spec: RunSpec, enable_delegate: bool = False) -> str: base = ( "You are running one browse-comparison evaluation task.\n" "Use only the tools made available in this Hermes session.\n" "Do not use or mention the reference answer. It is reserved for offline evaluation.\n" "If the task asks you to create a file, save it in the current working directory.\n\n" )delegate_prompt = ( "STRATEGY:\n" "This task requires tracing a chain of connections. You should use the delegate_task " 
+
+15 Running Title for Header 
+
+"tool to parallelize independent research subtasks. For example, if the question " "describes a multi-step chain (A->B->C->D->E), delegate parallel searches for " "different segments of the chain to subagents, then synthesize their findings.\n" "Each delegate receives its own context and tools -- use batch mode (the 'tasks' " "array) to spawn multiple subagents simultaneously when segments are independent.\n\n" )task = ( f"Task type: {spec.item.type}\n" f"{format_images_for_prompt(spec.item.image)}" f"Question:\n{spec.item.question}\n\n" "Return the final answer clearly." )return base + (delegate_prompt if enable_delegate else "") + task 
+
+16

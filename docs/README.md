@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-08-31</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-01</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 6 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 11 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
     <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>5</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>1</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-08-31 23:12:02 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-01 22:36:56 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日精读6篇论文，重点聚焦智能体上下文管理与工具发现，其中《ContextPilot》以9.0分居首，值得重点关注。</p>
-<p>最优看点：基于细粒度强化学习的主动上下文管理（ContextPilot），以及混合语义工具发现方案（8.0分），后者可支撑企业级MCP网关实践。</p>
-<p>下一步建议：普通读者可优先消化ContextPilot的思想，再结合速读文章《Agent记忆可靠性》理解上下文与记忆的边界。</p>
+<p>今日11篇论文聚焦智能体长时程上下文管理，精读5篇、速读6篇，多模态历史与工具保留成核心议题。</p>
+<p>最值得关注的是满分论文《When History Is Multimodal》提出的多模态上下文重思，以及9分的TRACER用后果归因强化学习实现按工具保留上下文。</p>
+<p>下一步建议优先精读这两篇，重点理解长时程智能体如何兼顾历史信息与工具记忆的高效管理。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -76,7 +76,7 @@
     <strong class="dpr-home-dashboard-count">5 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL">ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL</span></li><li><span class="dpr-home-dashboard-paper-title" title="Hybrid Semantic Tool Discovery for Enterprise MCP Gateway: Architecture and Implementation">Hybrid Semantic Tool Discovery for Enterprise MCP Gateway: Architecture and Implementation</span></li><li><span class="dpr-home-dashboard-paper-title" title="PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control">PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents">When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="TRACER: Per-Tool Context Retention for LLM Agents via Consequence-Attributed Reinforcement Learning">TRACER: Per-Tool Context Retention for LLM Agents via Consequence-Attributed Reinforcement Learning</span></li><li><span class="dpr-home-dashboard-paper-title" title="Agent Zero Memory: Provenance-Aware Long-Term Memory for LLM Agents">Agent Zero Memory: Provenance-Aware Long-Term Memory for LLM Agents</span></li></ul>
   </div>
   <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>5</strong></span></div>
 </section>
@@ -86,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">1 篇</strong>
+    <strong class="dpr-home-dashboard-count">6 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="What Makes Agent Memory Useful for Reliable Unanswerable Question Handling?">What Makes Agent Memory Useful for Reliable Unanswerable Question Handling?</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Towards a Systems Foundation for Agentic Skills: Architecture, Lifecycle, and Security">Towards a Systems Foundation for Agentic Skills: Architecture, Lifecycle, and Security</span></li><li><span class="dpr-home-dashboard-paper-title" title="Agents in the Large: Perception-Centered Architecture for Persistent Agents">Agents in the Large: Perception-Centered Architecture for Persistent Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="A Universal Context-Reuse Layer for Cross-Model KV Sharing">A Universal Context-Reuse Layer for Cross-Model KV Sharing</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
 </section>
 </div>
 
