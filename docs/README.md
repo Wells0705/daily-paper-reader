@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-01</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-02</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 11 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 5 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>5</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>3</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-01 22:36:56 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-02 22:03:00 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日11篇论文聚焦智能体长时程上下文管理，精读5篇、速读6篇，多模态历史与工具保留成核心议题。</p>
-<p>最值得关注的是满分论文《When History Is Multimodal》提出的多模态上下文重思，以及9分的TRACER用后果归因强化学习实现按工具保留上下文。</p>
-<p>下一步建议优先精读这两篇，重点理解长时程智能体如何兼顾历史信息与工具记忆的高效管理。</p>
+<p>今日聚焦长时程智能体与多智能体协作，精读两篇高分论文，速读两篇应用探索。</p>
+<p>最值得关注的是满分论文《ContextPipe》（数据库启发的上下文组装）与《Learning What to Retain》（门控记忆路由），均瞄准长程记忆与效率。</p>
+<p>建议优先精读《ContextPipe》理解上下文工程思路，再结合速读中的验证式医学代码生成，思考如何落地到实际Agent场景。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -73,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">5 篇</strong>
+    <strong class="dpr-home-dashboard-count">3 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents">When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="TRACER: Per-Tool Context Retention for LLM Agents via Consequence-Attributed Reinforcement Learning">TRACER: Per-Tool Context Retention for LLM Agents via Consequence-Attributed Reinforcement Learning</span></li><li><span class="dpr-home-dashboard-paper-title" title="Agent Zero Memory: Provenance-Aware Long-Term Memory for LLM Agents">Agent Zero Memory: Provenance-Aware Long-Term Memory for LLM Agents</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="ContextPipe: Database-Inspired Context Assembly for Long-Horizon Agents">ContextPipe: Database-Inspired Context Assembly for Long-Horizon Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Learning What to Retain: Gated-Memory Routing for Efficient Collaboration in Multi-Agent LLM Systems">Learning What to Retain: Gated-Memory Routing for Efficient Collaboration in Multi-Agent LLM Systems</span></li><li><span class="dpr-home-dashboard-paper-title" title="Compile, Don&#x27;t Memorize: A Context Compilation Architecture (CCA) for In-Context Learning">Compile, Don&#x27;t Memorize: A Context Compilation Architecture (CCA) for In-Context Learning</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>5</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -86,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">6 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Towards a Systems Foundation for Agentic Skills: Architecture, Lifecycle, and Security">Towards a Systems Foundation for Agentic Skills: Architecture, Lifecycle, and Security</span></li><li><span class="dpr-home-dashboard-paper-title" title="Agents in the Large: Perception-Centered Architecture for Persistent Agents">Agents in the Large: Perception-Centered Architecture for Persistent Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="A Universal Context-Reuse Layer for Cross-Model KV Sharing">A Universal Context-Reuse Layer for Cross-Model KV Sharing</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Towards Fully Automated Medical Imaging Code Generation via Validation-based Context Engineering">Towards Fully Automated Medical Imaging Code Generation via Validation-based Context Engineering</span></li><li><span class="dpr-home-dashboard-paper-title" title="Exploring Collaboration between a language and a non-language agent">Exploring Collaboration between a language and a non-language agent</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 </div>
 

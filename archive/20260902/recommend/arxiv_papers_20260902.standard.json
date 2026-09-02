@@ -1,0 +1,218 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-02T21:56:15.535340+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2609.00749v1",
+      "source": "arxiv",
+      "title": "ContextPipe: Database-Inspired Context Assembly for Long-Horizon Agents",
+      "abstract": "Long-horizon large language model (LLM) agents require context assembly: the runtime must decide what to include in each prompt, in what order, and when to compact history under a hard context-window budget and a byte-sensitive prompt cache. In production agentic systems, this logic is scattered across prompt builders, ad hoc compaction routines, cache-break workarounds, and per-provider shims. We argue that context assembly is structurally isomorphic to query execution in a relational database: both execute under a hard budget, exploit a tiered cache, and leverage statistics. We adopt this discipline in ContextPipe: a five-phase pipeline (Plan Bind Optimize Execute Feedback) backed by a structured data-source catalog, a deterministic cache-aware optimizer, and an EXPLAIN ANALYZE trace. We show that context in ContextPipe is auditable, replayable, and failure-isolated. A preliminary evaluation using the SWE-bench Pro Qutebrowser subset shows that, compared with the append-only context construction policy, ContextPipe reduces total token volume by 31%, LLM calls by 23%, and response time by 9%, at the cost of a lower KV cache-hit ratio.",
+      "authors": [
+        "Peng Xu",
+        "Zuyu Zhang",
+        "Yuze Sun",
+        "Feng Tian",
+        "Long Wang",
+        "Chen Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.DB"
+      ],
+      "published": "2026-09-01T05:27:38+00:00",
+      "link": "https://arxiv.org/pdf/2609.00749v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Database-inspired context assembly for long-horizon agents under context-window and cache constraints",
+      "llm_evidence_cn": "面向长周期智能体的上下文组装，解决提示内容、顺序与压缩时机等上下文工程设计问题",
+      "llm_evidence": "面向长周期智能体的上下文组装，解决提示内容、顺序与压缩时机等上下文工程设计问题",
+      "canonical_evidence": "面向长周期智能体的上下文组装，解决提示内容、顺序与压缩时机等上下文工程设计问题",
+      "llm_tldr_en": "ContextPipe treats long-horizon agent context assembly like database query execution, using a five-phase pipeline and cache-aware optimizer to decide prompt content, order, and compaction under a context-window budget.",
+      "llm_tldr_cn": "长周期LLM智能体构造提示时需要决定写入什么内容、以什么顺序写入以及何时压缩历史，同时又受硬性上下文窗口预算和字节级提示缓存的限制。ContextPipe把这种上下文组装视为类似关系数据库查询执行的问题，通过结构化数据源目录和缓存感知优化统一处理，并采用规划-绑定-优化-执行-反馈五阶段流水线。实验显示该方法能在硬预算下为长期智能体高效组装上下文，减少生产系统中的临时补丁和缓存失效。这种数据库式抽象为智能体上下文工程提供了系统化基础设施。",
+      "llm_tldr": "长周期LLM智能体构造提示时需要决定写入什么内容、以什么顺序写入以及何时压缩历史，同时又受硬性上下文窗口预算和字节级提示缓存的限制。ContextPipe把这种上下文组装视为类似关系数据库查询执行的问题，通过结构化数据源目录和缓存感知优化统一处理，并采用规划-绑定-优化-执行-反馈五阶段流水线。实验显示该方法能在硬预算下为长期智能体高效组装上下文，减少生产系统中的临时补丁和缓存失效。这种数据库式抽象为智能体上下文工程提供了系统化基础设施。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.00237v1",
+      "source": "arxiv",
+      "title": "Learning What to Retain: Gated-Memory Routing for Efficient Collaboration in Multi-Agent LLM Systems",
+      "abstract": "Large language model (LLM)-based multi-agent systems tackle complex reasoning by orchestrating how multiple agents are configured and how they collaborate. A central challenge is to adapt orchestration to the evolving collaboration state. Routing from the query alone cannot adapt to intermediate progress or errors, which hurts accuracy. Routing from the complete execution history supplies this missing context, but forces later decisions to process every prior step, including redundant or low-utility ones. This creates an execution-history overload that inflates cost. Effective orchestration instead requires a compact state that captures useful progress without accumulating redundant context. We propose Gated-Memory Routing, which conditions each decision on the query and a learned execution memory. A learned Memory Write Gate commits only non-redundant reasoning steps, and a learned Retrieval Gate supplies each agent a compact, relevant subset, so every decision conditions on a clean, informative state. At each step, the system selects the next role and backbone from this memory, while an Adaptive Halting Controller stops execution once the memory contains sufficient evidence for answering. Across five reasoning and code-generation benchmarks, our framework is both effective and efficient: it attains the best average accuracy, exceeding the strongest baseline by 2.44 points, while reducing HumanEval inference cost by 31.9% relative to that baseline. Code is available at https://github.com/rajibrhasan/gated-memory-routing",
+      "authors": [
+        "Rakibul Hasan Rajib",
+        "Mengxing Zheng",
+        "Qian Lou"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-31T18:42:57+00:00",
+      "link": "https://arxiv.org/pdf/2609.00237v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "gated-memory routing learns compact collaboration state to avoid context overload in multi-agent LLM systems",
+      "llm_evidence_cn": "门控记忆路由压缩冗余执行历史，实现高效的多智能体上下文管理",
+      "llm_evidence": "门控记忆路由压缩冗余执行历史，实现高效的多智能体上下文管理",
+      "canonical_evidence": "门控记忆路由压缩冗余执行历史，实现高效的多智能体上下文管理",
+      "llm_tldr_en": "Proposes Gated-Memory Routing for multi-agent LLM systems that learns a compact collaboration state, retaining useful progress and discarding low-utility execution history to reduce context overload and cost.",
+      "llm_tldr_cn": "多智能体LLM协作中，仅依据初始查询路由无法适应中间错误，使用完整执行历史又会因冗余上下文导致成本膨胀。文章提出Gated-Memory Routing，学习一个紧凑的协作状态来保留有效进展并压缩低效用历史，供后续智能体决策使用。实验表明该方法在维持协作精度的同时显著缓解执行历史过载、降低推理成本，为多智能体系统的在线编排提供了一种面向上下文管理的通用策略。",
+      "llm_tldr": "多智能体LLM协作中，仅依据初始查询路由无法适应中间错误，使用完整执行历史又会因冗余上下文导致成本膨胀。文章提出Gated-Memory Routing，学习一个紧凑的协作状态来保留有效进展并压缩低效用历史，供后续智能体决策使用。实验表明该方法在维持协作精度的同时显著缓解执行历史过载、降低推理成本，为多智能体系统的在线编排提供了一种面向上下文管理的通用策略。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.00759v1",
+      "source": "arxiv",
+      "title": "Compile, Don't Memorize: A Context Compilation Architecture (CCA) for In-Context Learning",
+      "abstract": "Large language models (LLMs) increasingly handle in-context learning (ICL) tasks where a long, novel context defines the rules, knowledge, and output schema for a series of questions. On benchmarks that grade against every detail of the context, even strong open-weights models pass only 12-16% of tasks: a single overlooked rule fails the whole response. We argue this brittleness is structural: the dominant \"read-and-reason\" paradigm asks the model to extract, plan, generate, and self-verify in one forward pass. We therefore ask whether explicit context compilation can fix it, how it compares to existing long-context strategies (gist retrieval, multi-agent self-play), and where the resulting harness benefit holds across task structure and model scale. We propose the Context Compilation Architecture (CCA), whose central novelty is a typed intermediate representation (IR) with fixed slots (rules.{must_do, must_not, conditional}, output_spec, available_tools, data_profile) into which any prose context is compiled once; executable verifiers and a violation-gated correction loop follow as downstream consequences. On CL-bench (1,899 tasks across 4 open base models), CCA outperforms vanilla prompting and two long-context baselines (ReadAgent-P, Ctx2Skill) on every base model, lifting Kimi K2.5 from 15.4% to 21.4% with gains concentrated on rule-dense sub-categories. Code and cached completions are available at https://github.com/TonyQJH/cca-emnlp2026.",
+      "authors": [
+        "Jinhu Qi",
+        "Minda Hu",
+        "Wentao Zhang",
+        "Weiqiang Jin",
+        "Yanyu Chen",
+        "Junli Wang",
+        "Irwin King"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-01T05:42:38+00:00",
+      "link": "https://arxiv.org/pdf/2609.00759v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Explicit context compilation architecture for processing long novel in-context context",
+      "llm_evidence_cn": "提出显式上下文编译架构来工程化处理LLM的长上下文材料",
+      "llm_evidence": "提出显式上下文编译架构来工程化处理LLM的长上下文材料",
+      "canonical_evidence": "提出显式上下文编译架构来工程化处理LLM的长上下文材料",
+      "llm_tldr_en": "CCA proposes explicit context compilation before answer generation to fix brittle one-pass read-and-reason handling of long novel in-context contexts, comparing favorably with gist retrieval and multi-agent strategies.",
+      "llm_tldr_cn": "当长而新颖的上下文规定了后续问题的规则、知识和输出结构时，只读一次然后推理的范式会让模型漏掉细节，强开源模型在严格逐条评估的任务上通过率仅为12%至16%。论文将这种脆弱性归因于结构性问题，并提出显式上下文编译架构，让模型在生成前先把上下文整理成便于后续使用的形式，而不是在一次前向中同时完成抽取、计划、生成与自校验。实验显示该架构能在要求逐项遵守上下文的任务上显著提升成功率。这为LLM上下文工程提供了一条可行路径。",
+      "llm_tldr": "当长而新颖的上下文规定了后续问题的规则、知识和输出结构时，只读一次然后推理的范式会让模型漏掉细节，强开源模型在严格逐条评估的任务上通过率仅为12%至16%。论文将这种脆弱性归因于结构性问题，并提出显式上下文编译架构，让模型在生成前先把上下文整理成便于后续使用的形式，而不是在一次前向中同时完成抽取、计划、生成与自校验。实验显示该架构能在要求逐项遵守上下文的任务上显著提升成功率。这为LLM上下文工程提供了一条可行路径。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.29016v1",
+      "source": "arxiv",
+      "title": "Towards Fully Automated Medical Imaging Code Generation via Validation-based Context Engineering",
+      "abstract": "Large language models (LLMs) have demonstrated considerable promise in program generation for small-scale and conventional application development; however, they remain limited when applied to complex, domain-specific tasks such as medical image processing. General-purpose models lack explicit domain knowledge and robust validation mechanisms to ensure correctness, often requiring substantial human intervention to produce reliable processing pipelines. To address these limitations, we propose AutoMedImg, a multi-agent framework for fully automated medical image processing code generation. AutoMedImg orchestrates specialised agents across two phases: a Planning Phase that performs dataset analysis and architecture design with semantic and formal verification, and a Coding Phase that generates modules in parallel with static checking, execution testing, and assembly validation. This multi-stage validation mitigates error propagation throughout generation, while comprehensive auto-context engineering combining domain-specific knowledge bases, shared memory, and validation feedback automates context construction without manual prompting. A cross-project adaptive pipeline synthesis mechanism further accumulates validated pipelines and retrieves proven components for new tasks based on project similarity, enhancing generation efficiency through cross-project learning. Extensive evaluation across six diverse and well-established medical imaging datasets with five backbone LLMs demonstrates that AutoMedImg achieves zero human intervention, with Dice scores of up to 0.90 for segmentation tasks and 99% accuracy for classification.",
+      "authors": [
+        "Zixiao Zhao",
+        "Jing Sun",
+        "Zhe Hou",
+        "Cheng-Hao Cai",
+        "Qian Liu",
+        "Mengze Li",
+        "Zijian Zhang",
+        "Jin Song Dong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.SE"
+      ],
+      "published": "2026-08-29T03:10:00+00:00",
+      "link": "https://arxiv.org/pdf/2608.29016v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multi-agent LLM framework for code generation built around validation-based context engineering, an application of context engineering to domain agents",
+      "llm_evidence_cn": "面向医学影像代码生成的多智能体框架以验证式上下文工程为核心手段，属上下文工程的实际应用",
+      "llm_evidence": "面向医学影像代码生成的多智能体框架以验证式上下文工程为核心手段，属上下文工程的实际应用",
+      "canonical_evidence": "面向医学影像代码生成的多智能体框架以验证式上下文工程为核心手段，属上下文工程的实际应用",
+      "llm_tldr_en": "General LLMs lack domain knowledge and validation for medical imaging code. AutoMedImg orchestrates specialized agents and uses validation-based context engineering to automate generation of correct processing pipelines, showing a practical application of context engineering.",
+      "llm_tldr_cn": "大模型虽然善于生成通用代码，但在医学影像处理这类领域复杂任务中缺少领域知识和正确性校验机制，往往需要大量人工介入。论文提出AutoMedImg多智能体框架，规划阶段完成数据集分析与架构设计，并通过基于验证的上下文工程来指导后续代码生成与修复。该框架让医学影像代码生成从人工纠错走向自动验证闭环，也为上下文工程用于专业智能体任务提供了落地案例。",
+      "llm_tldr": "大模型虽然善于生成通用代码，但在医学影像处理这类领域复杂任务中缺少领域知识和正确性校验机制，往往需要大量人工介入。论文提出AutoMedImg多智能体框架，规划阶段完成数据集分析与架构设计，并通过基于验证的上下文工程来指导后续代码生成与修复。该框架让医学影像代码生成从人工纠错走向自动验证闭环，也为上下文工程用于专业智能体任务提供了落地案例。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.00474v1",
+      "source": "arxiv",
+      "title": "Exploring Collaboration between a language and a non-language agent",
+      "abstract": "LLMs are increasingly deployed as orchestrators that coordinate specialized subagents to solve complex tasks through natural language. However, in many important domains like game playing and robotics, the strongest available agents are not language models. Integrating non-language agents with LLMs would require \\emph{verbalization}: compressing their rich continuous representations into sparse textual summaries at each interaction step. To study whether verbalization constitutes a bottleneck, we introduce \\textsc{LLAMIA-Bench}, a suite of six diverse collaborative chess tasks spanning three facets: behavioral imitation, state assessment, and natural-language explanation. Each task instantiates a well-established chess problem that neither the LLM nor the chess engine can solve alone. To solve LLM collaboration with non-language agents, we introduce \\emph{latent state internalization}, which projects the subagent's continuous representations directly into the LLM's token stream as learned state tokens, with dynamic re-encoding as actions advance the environment state. Comparing internalization to verbalized integration, our experiments reveal a consistent \\emph{verbalization debt}: the performance gap widens throughout training and persists as the LLM scales from 4B to 14B parameters. A single 14B model, \\textsc{LLAMIA}, trained with latent state internalization, matches or exceeds task specialists and frontier models including GPT-5.1 with tool access across all benchmark tasks, and generalizes out-of-distribution where task-specific finetunes collapse",
+      "authors": [
+        "Harini S",
+        "Somesh Singh",
+        "Yaman K Singla",
+        "Rajiv Ratn Shah",
+        "David Doermann",
+        "Balaji Krishnamurthy"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-31T23:25:10+00:00",
+      "link": "https://arxiv.org/pdf/2609.00474v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "verbalization compresses continuous agent state into sparse textual summaries; relevant to context engineering/compression",
+      "llm_evidence_cn": "研究把连续智能体状态压缩为文本摘要的口头化过程，与跨智能体上下文工程或压缩相关",
+      "llm_evidence": "研究把连续智能体状态压缩为文本摘要的口头化过程，与跨智能体上下文工程或压缩相关",
+      "canonical_evidence": "研究把连续智能体状态压缩为文本摘要的口头化过程，与跨智能体上下文工程或压缩相关",
+      "llm_tldr_en": "LLAMIA-Bench uses collaborative chess tasks to test whether verbalization of continuous state into sparse text is a bottleneck for LLM-nonlanguage agent collaboration; informs context compression designs.",
+      "llm_tldr_cn": "针对LLM与非语言智能体协作需把连续表示压缩成稀疏文本摘要的问题，论文构建LLAMIA-Bench，覆盖行为模仿、状态评估和自然语言解释三类共六个国际象棋协作任务，以检验口头化是否为协作瓶颈。各任务实例化经典棋题，在不依赖单一模型的情况下测量信息压缩带来的损失。该基准为上下文摘要或压缩如何影响多智能体协作提供了系统化评测方法，是智能体上下文工程的重要参考。",
+      "llm_tldr": "针对LLM与非语言智能体协作需把连续表示压缩成稀疏文本摘要的问题，论文构建LLAMIA-Bench，覆盖行为模仿、状态评估和自然语言解释三类共六个国际象棋协作任务，以检验口头化是否为协作瓶颈。各任务实例化经典棋题，在不依赖单一模型的情况下测量信息压缩带来的损失。该基准为上下文摘要或压缩如何影响多智能体协作提供了系统化评测方法，是智能体上下文工程的重要参考。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

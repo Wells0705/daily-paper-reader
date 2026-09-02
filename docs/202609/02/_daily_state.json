@@ -1,0 +1,89 @@
+{
+  "date": "20260902",
+  "date_label": "",
+  "generated_at": "2026-09-02 22:03:00 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.00749v1",
+      "route": "202609/02/2609.00749v1-contextpipe-database-inspired-context-assembly-for-long-horizon-agents",
+      "title": "ContextPipe: Database-Inspired Context Assembly for Long-Horizon Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 10.0,
+      "evidence": "面向长周期智能体的上下文组装，解决提示内容、顺序与压缩时机等上下文工程设计问题",
+      "first_seen_at": "2026-09-02 22:03:00 UTC",
+      "updated_at": "2026-09-02 22:03:00 UTC"
+    },
+    {
+      "paper_id": "2609.00237v1",
+      "route": "202609/02/2609.00237v1-learning-what-to-retain-gated-memory-routing-for-efficient-collaboration-in-multi-agent-llm-systems",
+      "title": "Learning What to Retain: Gated-Memory Routing for Efficient Collaboration in Multi-Agent LLM Systems",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "门控记忆路由压缩冗余执行历史，实现高效的多智能体上下文管理",
+      "first_seen_at": "2026-09-02 22:03:00 UTC",
+      "updated_at": "2026-09-02 22:03:00 UTC"
+    },
+    {
+      "paper_id": "2609.00759v1",
+      "route": "202609/02/2609.00759v1-compile-dont-memorize-a-context-compilation-architecture-cca-for-in-context-learning",
+      "title": "Compile, Don't Memorize: A Context Compilation Architecture (CCA) for In-Context Learning",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "提出显式上下文编译架构来工程化处理LLM的长上下文材料",
+      "first_seen_at": "2026-09-02 22:03:00 UTC",
+      "updated_at": "2026-09-02 22:03:00 UTC"
+    },
+    {
+      "paper_id": "2608.29016v1",
+      "route": "202609/02/2608.29016v1-towards-fully-automated-medical-imaging-code-generation-via-validation-based-context-engineering",
+      "title": "Towards Fully Automated Medical Imaging Code Generation via Validation-based Context Engineering",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "面向医学影像代码生成的多智能体框架以验证式上下文工程为核心手段，属上下文工程的实际应用",
+      "first_seen_at": "2026-09-02 22:03:00 UTC",
+      "updated_at": "2026-09-02 22:03:00 UTC"
+    },
+    {
+      "paper_id": "2609.00474v1",
+      "route": "202609/02/2609.00474v1-exploring-collaboration-between-a-language-and-a-non-language-agent",
+      "title": "Exploring Collaboration between a language and a non-language agent",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "研究把连续智能体状态压缩为文本摘要的口头化过程，与跨智能体上下文工程或压缩相关",
+      "first_seen_at": "2026-09-02 22:03:00 UTC",
+      "updated_at": "2026-09-02 22:03:00 UTC"
+    }
+  ]
+}
