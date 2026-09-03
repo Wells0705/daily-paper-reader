@@ -1,0 +1,73 @@
+{
+  "date": "20260903",
+  "date_label": "",
+  "generated_at": "2026-09-03 23:01:45 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.02129v1",
+      "route": "202609/03/2609.02129v1-beyond-context-windows-persistent-discovery-context-for-data-centric-agents",
+      "title": "Beyond Context Windows: Persistent Discovery Context for Data-Centric Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "引入持久化发现上下文，作为存储并复用意图到对象映射的记忆层，突破上下文窗口对检索的限制。",
+      "first_seen_at": "2026-09-03 23:01:45 UTC",
+      "updated_at": "2026-09-03 23:01:45 UTC"
+    },
+    {
+      "paper_id": "2609.02265v1",
+      "route": "202609/03/2609.02265v1-capture-disentangling-preference-drift-from-memory-poisoning-in-personalized-llm-agents",
+      "title": "CAPTURE: Disentangling Preference Drift from Memory Poisoning in Personalized LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向个性化LLM智能体设计持久记忆账本与记忆审计等记忆架构",
+      "first_seen_at": "2026-09-03 23:01:45 UTC",
+      "updated_at": "2026-09-03 23:01:45 UTC"
+    },
+    {
+      "paper_id": "2608.30760v1",
+      "route": "202609/03/2608.30760v1-practice-from-experience-to-expertise-in-self-evolving-embodied-agents",
+      "title": "PRACTICE: From Experience to Expertise in Self-Evolving Embodied Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "从历史交互轨迹构建并维护持久技能库，可视为智能体的长期记忆架构",
+      "first_seen_at": "2026-09-03 23:01:45 UTC",
+      "updated_at": "2026-09-03 23:01:45 UTC"
+    },
+    {
+      "paper_id": "2609.01167v1",
+      "route": "202609/03/2609.01167v1-classic-ai-scaffolding-for-llm-social-agents",
+      "title": "Classic AI Scaffolding for LLM Social Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "通过自然语言控制状态维护共享现实、场景构建、义务与关闭条件，是社交对话智能体中的一种上下文管理形式。",
+      "first_seen_at": "2026-09-03 23:01:45 UTC",
+      "updated_at": "2026-09-03 23:01:45 UTC"
+    }
+  ]
+}

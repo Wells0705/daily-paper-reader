@@ -1,0 +1,69 @@
+{
+  "label": "2026-09-03",
+  "date": "2026-09-03",
+  "generated_at": "2026-09-03T23:01:49",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202609/03/2609.02129v1-beyond-context-windows-persistent-discovery-context-for-data-centric-agents",
+      "section": "deep",
+      "title_en": "Beyond Context Windows: Persistent Discovery Context for Data-Centric Agents",
+      "authors": "Jalal Mahmud",
+      "date": "2026-09-02",
+      "pdf": "https://arxiv.org/pdf/2609.02129v1",
+      "score": "8.0",
+      "evidence": "引入持久化发现上下文，作为存储并复用意图到对象映射的记忆层，突破上下文窗口对检索的限制。",
+      "tldr": "数据为中心的智能体在执行任务前常需重复识别相关数据对象，但成功的发现结果往往被丢弃。为此，本文提出持久发现上下文，这是一种轻量级记忆层，将先前意图到对象的映射保存下来并在未来检索时重用。在三个结构化数据环境中的实验表明，该方法比仅元数据搜索持续提高检索质量，使用自动生成的记忆时依然有效，且可复现干扰失败模式。尤其在词汇稀疏领域，仅依靠记忆的检索甚至能超越元数据基线。这项研究证明发现结果是一种有价值且可复用的上下文形式。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Data-centric agents repeatedly perform a discovery step before planning or execution: identifying the data objects relevant to a task. Yet successful discovery outcomes are typically discarded rather than reused. We introduce persistent discovery context, a lightweight memory layer that stores prior intent-to-object mappings and reuses them to augment future retrieval. Across three structured data environments, persistent discovery context consistently improves retrieval quality over metadata-only search, remains effective with automatically generated memories, and exposes a reproducible interference failure mode. In lexically sparse domains, memory-only retrieval can even outperform metadata-based retrieval. These findings suggest that discovery outcomes constitute a useful form of reusable context for data-centric agents.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/03/2609.02265v1-capture-disentangling-preference-drift-from-memory-poisoning-in-personalized-llm-agents",
+      "section": "deep",
+      "title_en": "CAPTURE: Disentangling Preference Drift from Memory Poisoning in Personalized LLM Agents",
+      "authors": "S M Asif Hossain, Ruksat Khan Shayoni, Md Kishor Morol",
+      "date": "2026-09-02",
+      "pdf": "https://arxiv.org/pdf/2609.02265v1",
+      "score": "8.0",
+      "evidence": "面向个性化LLM智能体设计持久记忆账本与记忆审计等记忆架构",
+      "tldr": "个性化语言代理依赖持久记忆来长期适应用户，然而新信息若与记忆冲突，系统难以区分真实偏好漂移、短时情境变化、歧义乃至恶意投毒。现有仅依赖时间和来源的规则无法稳健解决。CAPTURE 通过神经微分方程做信念追踪，结合多时间尺度记忆账本、不确定性触发澄清和反事实审计，在 480 个 episode 上取得 71.5% 胜率，将固定策略投毒成功率限制到 11.5% 且仍接受 83.5% 的真实更新。显式建模偏好真实性有望同时提升个性化与鲁棒性。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Personalized language agents use persistent memory to adapt to users over time, but the same mechanism creates an attack surface. When new information conflicts with stored preferences, an agent must distinguish genuine preference drift from temporary context shifts, ambiguity, or adversarial memory poisoning. We formulate this problem as a continuous-time partially observable decision process over a latent user state and show why rules based only on recency and provenance are insufficient. CAPTURE addresses this ambiguity with a neural differential-equation belief tracker, a multi-timescale memory ledger, uncertainty-triggered clarification, and counterfactual auditing of cited memories. On 480 held-out episodes from 96 users, CAPTURE achieves a 71.5% win rate, compared with 69.3% for an identically supervised baseline and 66.1% for the strongest heuristic baseline. It limits fixed-policy poisoning success to 11.5% while accepting 83.5% of genuine preference updates. Under an adaptive attacker with access to the released weights, attack success rises to 24.7%, exposing a real adaptation-security tradeoff. We further evaluate the frozen system zero-shot on an independently constructed benchmark and replay longitudinal interaction histories from 40 users collected over two to three weeks. These results suggest that modeling preference authenticity explicitly can improve both personalization and robustness in memory-augmented LLM agents.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/03/2608.30760v1-practice-from-experience-to-expertise-in-self-evolving-embodied-agents",
+      "section": "quick",
+      "title_en": "PRACTICE: From Experience to Expertise in Self-Evolving Embodied Agents",
+      "authors": "Ziyi Bai, Siqi Li, Tinglei Huang, Börje F. Karlsson",
+      "date": "2026-08-31",
+      "pdf": "https://arxiv.org/pdf/2608.30760v1",
+      "score": "6.0",
+      "evidence": "从历史交互轨迹构建并维护持久技能库，可视为智能体的长期记忆架构",
+      "tldr": "多模态大模型作为具身智能体已能执行指令，但难以持续从交互中改进。现有经验方法依赖人工设计固定流程提取技能，难以适应多样新经验。PRACTICE训练技能学习器从过去轨迹中产生结构化批量编辑，新增/精炼/合并/删除技能并分层整合，冻结任务执行器。两阶段课程先学基础生成，再对比成功失败轨迹学会修复；配合在线编辑蒸馏。实验在EB-ALFRED和EB-Habitat上持续提升多类冻结执行器性能，超越最强经验基线。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Recent studies have shown that multimodal large language models (MLLMs) can serve as embodied agents, translating language instructions and visual observations into executable plans. However, building agents that can continually improve through interaction and rapidly adapt to their environments remains challenging. Summing up experience from past interaction trajectories provides a promising solution, but existing experience-based methods often rely on manually designed prompting workflows to extract and update skills. Such fixed procedures may struggle to learn updated skills from new and diverse experiences. We introduce PRACTICE, which trains a skill learner to discover and maintain a persistent skill library from past interaction trajectories while keeping the task executor frozen. Given the historical accumulated skills and incoming trajectories, the skill learner produces structured batch-edits that add, refine, merge, or remove skills, and then hierarchical consolidate all collected edits into a consistent updated skill library. We train the learner with a two-stage curriculum. First, it learns basic skill generation and library maintenance from oracle trajectories. Then, by contrasting successful and failed trajectories from heterogeneous executors on the same tasks, it learn to identify invalid action patterns and recovery strategies. Finally, we apply online skill-edit distillation to align the skill learner with a stronger teacher on its current edit distribution to further improves the policy. Experiments demonstrate that a compact skill learner delivers consistent performance improvements across successive library-update rounds for multiple frozen executors. On EB-ALFRED and EB-Habitat, PRACTICE further outperforms the strongest experience-based baselines. Project resources are publicly available at: https://baai-agents.github.io/PRACTICE",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/03/2609.01167v1-classic-ai-scaffolding-for-llm-social-agents",
+      "section": "quick",
+      "title_en": "Classic AI Scaffolding for LLM Social Agents",
+      "authors": "Anatole Gershman",
+      "date": "2026-09-01",
+      "pdf": "https://arxiv.org/pdf/2609.01167v1",
+      "score": "6.0",
+      "evidence": "通过自然语言控制状态维护共享现实、场景构建、义务与关闭条件，是社交对话智能体中的一种上下文管理形式。",
+      "tldr": "大语言模型可生成局部合理的社交对话，但仅凭流利接话不足以支撑社会模拟。现实社交是受角色、脚本、义务与结束条件约束的有界片段。为此提出EpisodeSim混合架构，将经典AI结构表示为自然语言控制状态，由LLM解释执行。世界主控维护共享现实并裁决动作。定性实验表明，LLM提供局部纹理，而经典AI式持久脚手架对连贯社会模拟更有效。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Large language models can produce locally plausible social turns, but fluent next-turn generation is not enough for social simulation. Human encounters such as restaurant lunches and hotel check-ins are bounded social episodes with roles, scripts, material state, obligations, commitments, timing, and closure conditions. We present EpisodeSim, a hybrid LLM-agent architecture that represents classic-AI structures as natural-language control state interpreted by LLM calls. A World Master maintains shared reality, constructs scenes, adjudicates proposed actions, tracks effects and obligations, and controls closure. Experiments with small qualitative ablations on two held-out settings support a design claim: LLM fluency supplies local texture, but coherent social simulation benefits from persistent classic-AI-style scaffolding that organizes behavior over time.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
