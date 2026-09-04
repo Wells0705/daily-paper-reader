@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-03</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-04</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 4 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 8 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
     <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>6</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-03 23:01:45 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-04 22:50:41 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日精读聚焦数据为中心的智能体持久发现上下文及个性化LLM智能体的偏好漂移与记忆污染，另速读两篇具身智能与社交智能体论文。最值得关注的是两篇8分工作：如何突破上下文窗口限制构建数据智能体的持久发现机制，以及如何区分用户偏好漂移与恶意记忆污染对个性化智能体的影响。建议普通读者优先精读这两篇高分论文，重点关注持久记忆管理与用户偏好建模的实际设计取舍。</p>
+<p>今日共读8篇论文，精读2篇、速读3篇（列表不完整），重点关注对话记忆与长上下文推理加速。</p>
+<p>最值得看的是《When Users Don&#x27;t Ask》——对话体需主动检索上下文记忆，以及《CateKV》——用顺序一致性加速长上下文LLM推理。</p>
+<p>下一步可深入试跑这两个方向，但速读列表中语音记忆、Hydration代理和视觉导航也值得各花5分钟浏览。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -74,7 +76,7 @@
     <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Beyond Context Windows: Persistent Discovery Context for Data-Centric Agents">Beyond Context Windows: Persistent Discovery Context for Data-Centric Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="CAPTURE: Disentangling Preference Drift from Memory Poisoning in Personalized LLM Agents">CAPTURE: Disentangling Preference Drift from Memory Poisoning in Personalized LLM Agents</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="When Users Don&#x27;t Ask: Benchmarking Context-Driven Memory Retrieval in Conversational Agents">When Users Don&#x27;t Ask: Benchmarking Context-Driven Memory Retrieval in Conversational Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="CateKV: On Sequential Consistency for Long-Context LLM Inference Acceleration">CateKV: On Sequential Consistency for Long-Context LLM Inference Acceleration</span></li></ul>
   </div>
   <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
@@ -84,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">6 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="PRACTICE: From Experience to Expertise in Self-Evolving Embodied Agents">PRACTICE: From Experience to Expertise in Self-Evolving Embodied Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Classic AI Scaffolding for LLM Social Agents">Classic AI Scaffolding for LLM Social Agents</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="VoiceLongMemEval: Do Assistants Remember How You Sounded?">VoiceLongMemEval: Do Assistants Remember How You Sounded?</span></li><li><span class="dpr-home-dashboard-paper-title" title="Architecting Conversational Data Systems for Stateless LLM APIs: The Hydration Proxy Pattern">Architecting Conversational Data Systems for Stateless LLM APIs: The Hydration Proxy Pattern</span></li><li><span class="dpr-home-dashboard-paper-title" title="LookStep: Efficient Vision-Language Navigation with Linguistic Foresight and Event Driven Memory">LookStep: Efficient Vision-Language Navigation with Linguistic Foresight and Event Driven Memory</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
 </section>
 </div>
 

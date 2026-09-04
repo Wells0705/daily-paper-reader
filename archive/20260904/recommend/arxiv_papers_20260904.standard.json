@@ -1,0 +1,336 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-04T22:45:36.396301+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2609.03467v1",
+      "source": "arxiv",
+      "title": "When Users Don't Ask: Benchmarking Context-Driven Memory Retrieval in Conversational Agents",
+      "abstract": "Large language models (LLMs) are increas- ingly deployed as long-horizon conversational agents, motivating growing interest in mem- ory systems. However, existing benchmarks primarily evaluate memory through QA-style probing rather than in-situ conversational usage. We introduce LOCOMO-CONV, a conversa- tional memory benchmark derived from Lo- CoMo with four query styles: dialog, implicit, counterfactual, and composed. Across five rep- resentative memory systems, we evaluate both retrieval recall and end-to-end response qual- ity. Our experiments show that conversational framing exposes substantial retrieval gaps over- looked by QA benchmarks, especially on im- plicit and composed queries, which multi-facet query rewriting narrows for raw-turn mem- ory but not abstractive memory. We further find that strong retrieval does not fully trans- late into response quality, and that implicit queries exhibit silent grounding, where mem- ory improves contextual grounding without ex- plicitly surfacing the gold fact. These results point to reasoning-based memory elaboration as a promising direction, and we release aux- iliary supportive_memory annotations captur- ing conversationally useful context beyond the original gold evidence.",
+      "authors": [
+        "Wen-Yu Chang",
+        "Yun-Nung Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T07:24:33+00:00",
+      "link": "https://arxiv.org/pdf/2609.03467v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Evaluates memory systems for LLM-based conversational agents using an in-situ conversational benchmark, measuring context-driven retrieval recall and response quality.",
+      "llm_evidence_cn": "针对大语言模型对话代理的记忆系统进行基准评测，注重上下文驱动的检索召回与回复质量。",
+      "llm_evidence": "针对大语言模型对话代理的记忆系统进行基准评测，注重上下文驱动的检索召回与回复质量。",
+      "canonical_evidence": "针对大语言模型对话代理的记忆系统进行基准评测，注重上下文驱动的检索召回与回复质量。",
+      "llm_tldr_en": "Existing memory benchmarks probe QA-style rather than in-situ conversation. LOCOMO-CONV benchmarks conversational memory with dialog, implicit, counterfactual and composed queries, finding that five memory systems show large retrieval gaps under realistic conversational framing, which multi-facet query rewriting narrows.",
+      "llm_tldr_cn": "现有记忆基准多以问答式探针衡量大语言模型对话智能体的记忆能力，无法反映真实对话中的记忆使用。为此论文提出LOCOMO-CONV，从LoCoMo衍生出包含对话式、隐式、反事实和复合式四类查询的对话记忆基准，并评测五种代表性记忆系统的检索召回与端到端回复质量。实验表明，对话式框架暴露了问答基准忽视的明显检索缺口，尤其在隐式和复合式查询上，而多面查询改写能缩小该差距。该工作为长期对话中上下文记忆管理提供了更贴近实际使用的评测方式。",
+      "llm_tldr": "现有记忆基准多以问答式探针衡量大语言模型对话智能体的记忆能力，无法反映真实对话中的记忆使用。为此论文提出LOCOMO-CONV，从LoCoMo衍生出包含对话式、隐式、反事实和复合式四类查询的对话记忆基准，并评测五种代表性记忆系统的检索召回与端到端回复质量。实验表明，对话式框架暴露了问答基准忽视的明显检索缺口，尤其在隐式和复合式查询上，而多面查询改写能缩小该差距。该工作为长期对话中上下文记忆管理提供了更贴近实际使用的评测方式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.30295v1",
+      "source": "arxiv",
+      "title": "CateKV: On Sequential Consistency for Long-Context LLM Inference Acceleration",
+      "abstract": "Large language models (LLMs) have demonstrated strong capabilities in handling long-context tasks, but processing such long contexts remains challenging due to the substantial memory requirements and inference latency. In this work, we discover that certain attention heads exhibit sequential consistency in their attention patterns, which can be persistently identified using a coefficient-of-variation-based algorithm. Inspired by this observation, we propose CateKV, a hybrid KV cache method that retains only critical token information for consistent heads, thereby reducing KV cache size and computational overhead, while preserving the majority of KV pairs in adaptive heads to ensure high accuracy. We show the unique characteristics of our algorithm and its extension with existing acceleration methods. Comprehensive evaluations on long-context benchmarks show that, while maintaining accuracy comparable to full attention, CateKV reduces memory usage by up to $2.72\\times$ and accelerates decoding by $2.18\\times$ in single-sample inputs, and boosts throughput by $3.96\\times$ in batch scenarios.",
+      "authors": [
+        "Haoyun Jiang",
+        "Haolin Li",
+        "Jianwei Zhang",
+        "Fei Huang",
+        "Qiang Hu",
+        "Minmin Sun",
+        "Shuai Xiao",
+        "Yong Li",
+        "Junyang Lin",
+        "Jiangchao Yao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-31T06:02:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.30295v1",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "hybrid KV cache method to compress long-context memory and accelerate inference",
+      "llm_evidence_cn": "面向长上下文LLM的KV缓存压缩与推理加速，属于上下文窗口处理与内存优化",
+      "llm_evidence": "面向长上下文LLM的KV缓存压缩与推理加速，属于上下文窗口处理与内存优化",
+      "canonical_evidence": "面向长上下文LLM的KV缓存压缩与推理加速，属于上下文窗口处理与内存优化",
+      "llm_tldr_en": "CateKV identifies sequentially consistent attention heads and keeps only critical tokens in their KV cache, reducing long-context memory and computation for fast LLM inference while preserving accuracy.",
+      "llm_tldr_cn": "长上下文任务要求LLM保留海量KV缓存，由此带来高内存占用和推理延迟。论文发现部分注意力头在注意力模式上存在顺序一致性，可用变异系数算法持续识别这些头。基于此提出混合KV缓存方法CateKV：对一致性头仅保留关键token，对自适应头保留足够多KV对，从而减少缓存和计算开销而不牺牲精度。该方法适用于长上下文场景中的高性价比推理，也为利用注意力结构信息做上下文压缩提供了新思路。",
+      "llm_tldr": "长上下文任务要求LLM保留海量KV缓存，由此带来高内存占用和推理延迟。论文发现部分注意力头在注意力模式上存在顺序一致性，可用变异系数算法持续识别这些头。基于此提出混合KV缓存方法CateKV：对一致性头仅保留关键token，对自适应头保留足够多KV对，从而减少缓存和计算开销而不牺牲精度。该方法适用于长上下文场景中的高性价比推理，也为利用注意力结构信息做上下文压缩提供了新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.00570v2",
+      "source": "arxiv",
+      "title": "VoiceLongMemEval: Do Assistants Remember How You Sounded?",
+      "abstract": "With the growing scale of multi-agent architectures and large language models, deployed AI assistants are increasingly tasked with reasoning over long, continuous, multi-session conversation histories. Current benchmarks evaluate this dialogue history as information retrieval over long horizon, temporal reasoning, or knowledge updates, while crucially ignoring the fundamental dynamics of human-agent interaction, i.e. how they said it. To address this gap, we present VoiceLongMemEval (VLME) benchmark, where every answer depends on paralinguistic metadata (emotion labels, prosody descriptors, and voice events) attached to conversational turns, which is otherwise unrecoverable from the words alone. Every item passes a three-stage adversarial gate, ensuring that a strong language model fails when given only the transcript. Evaluating leading frontier and open-weight models reveals a pervasive affect gap; providing text-track paralinguistic metadata yields a 0.09 to 0.38 accuracy boost (0.61 to 0.69 when prompted with evidence hints), while standard ASR pipelines systematically discard this signal. Additionally, audio-native models successfully extract these cues directly from speech (0.354 to 0.412 vs. 0.325 blind). Code and dataset will be made available upon acceptance.",
+      "authors": [
+        "Ramit Pahwa",
+        "Parivesh Priye",
+        "Apoorva Beedu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-09-01T02:06:10+00:00",
+      "link": "https://arxiv.org/pdf/2609.00570v2",
+      "tags": [
+        "keyword:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "benchmark enforces that answers depend on paralinguistic metadata in multi-session dialogues",
+      "llm_evidence_cn": "通过副语言元数据评测长对话历史中的上下文理解",
+      "llm_evidence": "通过副语言元数据评测长对话历史中的上下文理解",
+      "canonical_evidence": "通过副语言元数据评测长对话历史中的上下文理解",
+      "llm_tldr_en": "As assistants reason over long multi-session histories, existing benchmarks ignore how users sounded; VoiceLongMemEval requires answers to depend on emotion labels, prosody descriptors, and voice events, which are impossible to recover from words alone.",
+      "llm_tldr_cn": "现有长期多会话对话评测多从信息检索、时序推理或知识更新入手，忽略了人类交互中如何说这一核心维度。本文构建VoiceLongMemEval基准，使每个问题的答案都依赖附加在话轮上的情感标签、韵律描述及语音事件等副语言元数据，并通过三阶段对抗过滤确保仅靠文字无法作答，从而更真实地评测助手的长期对话记忆。",
+      "llm_tldr": "现有长期多会话对话评测多从信息检索、时序推理或知识更新入手，忽略了人类交互中如何说这一核心维度。本文构建VoiceLongMemEval基准，使每个问题的答案都依赖附加在话轮上的情感标签、韵律描述及语音事件等副语言元数据，并通过三阶段对抗过滤确保仅靠文字无法作答，从而更真实地评测助手的长期对话记忆。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.01642v1",
+      "source": "arxiv",
+      "title": "Imagine Before Retrieval: Prospective Skill Retrieval for LLM Agents",
+      "abstract": "Skill retrieval has recently emerged as a promising paradigm for identifying the desirable execution guidelines from the skill gallery, thus equipping large language model (LLM) agents with the procedural knowledge to accomplish the specified task. To this end, most existing methods customize the retrieval model or reconfigure the retrieval pipeline to prioritize skills that are most semantically relevant to the task query. However, we empirically reveal that task queries and skills are naturally formulated from different perspectives, namely, objective-oriented and procedural-oriented, leading to an under-explored problem termed Query--Skill Misalignment (QSM). Clearly, it is daunting and even impossible to associate the desirable skills in the context of QSM, thus hindering the agent from correctly executing the task. As a remedy, inspired by human prospective cognition, we propose SkillDreamer, a novel framework to alleviate the negative impact of QSM problem. In brief, SkillDreamer first infers the capabilities necessary for task execution, then imagines how to realize these capabilities by generating pseudo skills, and finally leverages such prospective information to bridge the gap between objective-oriented task queries and execution-oriented skills. Extensive experiments on SkillRet and SkillUsage not only verify the effectiveness of SkillDreamer in both skill retrieval and end-to-end task execution, but also demonstrate its generalizability across diverse retrieval models and pipelines. The code will be released upon acceptance.",
+      "authors": [
+        "Shuo Liu",
+        "Yutong Yang",
+        "Haohao Xiao",
+        "Mouxing Yang",
+        "Xi Peng"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-08-28T13:19:50+00:00",
+      "link": "https://arxiv.org/pdf/2609.01642v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "skill retrieval grounds LLM agents with procedural context, offering context-engineering value",
+      "llm_evidence_cn": "通过技能检索为LLM智能体补充执行上下文，是智能体上下文构建与优化的相关技术",
+      "llm_evidence": "通过技能检索为LLM智能体补充执行上下文，是智能体上下文构建与优化的相关技术",
+      "canonical_evidence": "通过技能检索为LLM智能体补充执行上下文，是智能体上下文构建与优化的相关技术",
+      "llm_tldr_en": "Task queries and skills are misaligned; prospective skill retrieval imagines task scenarios before matching skills, improving procedural context supply and agent performance.",
+      "llm_tldr_cn": "基于技能库检索执行指南是让LLM智能体获得程序性上下文的重要范式，但任务查询（面向目标）与技能说明（面向过程）存在语义错位，导致检索到的技能未必有用。论文揭示这一查询-技能错位问题，并提出先想象后检索的预想式技能检索方法，先将任务目标具体化为潜在执行场景再去匹配技能。实验显示该方法能够明显提升技能选择的准确性并增强下游任务表现。这项工作从检索侧优化了智能体可获得的上下文知识，可为上下文工程的获取环节提供参考。",
+      "llm_tldr": "基于技能库检索执行指南是让LLM智能体获得程序性上下文的重要范式，但任务查询（面向目标）与技能说明（面向过程）存在语义错位，导致检索到的技能未必有用。论文揭示这一查询-技能错位问题，并提出先想象后检索的预想式技能检索方法，先将任务目标具体化为潜在执行场景再去匹配技能。实验显示该方法能够明显提升技能选择的准确性并增强下游任务表现。这项工作从检索侧优化了智能体可获得的上下文知识，可为上下文工程的获取环节提供参考。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.01834v1",
+      "source": "arxiv",
+      "title": "Architecting Conversational Data Systems for Stateless LLM APIs: The Hydration Proxy Pattern",
+      "abstract": "As enterprise platforms transition to conversational reasoning interfaces, the stateless nature of LLM APIs creates an architectural gap. While statelessness enables horizontal scalability for AI providers, it forces client applications to manage the entire burden of conversational state and semantic memory. The work identifies the Hydration Proxy Pattern, an architecture that decouples session persistence from the reasoning engine. The framework ensures platform sovereignty over conversational data while enabling secure, multi-stage semantic grounding. We further propose the Context Stabilization Mandate to resolve the tradeoff between sovereign state management and KV caching.",
+      "authors": [
+        "Joseph Axisa"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-09-01T20:08:04+00:00",
+      "link": "https://arxiv.org/pdf/2609.01834v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Hydration proxy pattern for session persistence and semantic memory in conversational systems",
+      "llm_evidence_cn": "面向对话系统的会话持久化与语义记忆管理代理模式",
+      "llm_evidence": "面向对话系统的会话持久化与语义记忆管理代理模式",
+      "canonical_evidence": "面向对话系统的会话持久化与语义记忆管理代理模式",
+      "llm_tldr_en": "This paper identifies the Hydration Proxy Pattern to decouple session persistence from reasoning engines so client applications manage conversational state and semantic memory around stateless LLM APIs, and proposes the Context Stabilization Mandate to balance state management with KV caching.",
+      "llm_tldr_cn": "无状态LLM API便于横向扩展，却把会话状态与语义记忆的维护负担全部抛给客户端应用。该文识别并提出水合代理模式，将会话持久化与推理引擎解耦，在保证平台对会话数据主权的同时实现安全的多阶段语义支撑；并进一步提出上下文稳定化规则来平衡状态管理与KV缓存。该架构模式为构建企业级对话系统提供了可落地的上下文管理方案。",
+      "llm_tldr": "无状态LLM API便于横向扩展，却把会话状态与语义记忆的维护负担全部抛给客户端应用。该文识别并提出水合代理模式，将会话持久化与推理引擎解耦，在保证平台对会话数据主权的同时实现安全的多阶段语义支撑；并进一步提出上下文稳定化规则来平衡状态管理与KV缓存。该架构模式为构建企业级对话系统提供了可落地的上下文管理方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.03619v1",
+      "source": "arxiv",
+      "title": "Remember and Reweight: Enhancing Multi-Agent Debate with Experience Memory and Confidence Estimation",
+      "abstract": "Multi-agent debate (MAD) improves the reasoning capabilities of large language models by having multiple agents iteratively refine their responses through discussion. However, MAD suffers from a critical vulnerability known as shared misconception: when a majority of agents initially converge on an incorrect answer, the debate process tends to amplify rather than correct the error. Existing methods primarily address peer skew but leave the agents' inherently biased concept priors unaddressed. To mitigate this systematic weakness, we propose R$^2$-MAD (Remember and Reweight for Multi-Agent Debate), a framework that equips agents with an experience memory accumulated from past debates. R$^2$-MAD intervenes on both failure modes through two complementary mechanisms: A debate-state-aware retrieval policy dynamically calibrates the concept prior by retrieving relevant historical evidence based on the current consensus level. Then these retrieved experiences provide a basis for estimating per-agent reliability, yielding confidence weights to modulate peer influence. Experiments on various benchmarks show that R$^2$-MAD achieves consistent improvements over existing single-agent and MAD baselines.",
+      "authors": [
+        "Xuanfa Jin",
+        "Zhijian Ma",
+        "Yongcheng Zeng",
+        "Xinyu Cui",
+        "Haifeng Zhang",
+        "Jun Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T10:05:01+00:00",
+      "link": "https://arxiv.org/pdf/2609.03619v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses experience memory accumulated from previous debates to guide current agent reasoning",
+      "llm_evidence_cn": "利用历次辩论积累的经验记忆辅助当前智能体推理",
+      "llm_evidence": "利用历次辩论积累的经验记忆辅助当前智能体推理",
+      "canonical_evidence": "利用历次辩论积累的经验记忆辅助当前智能体推理",
+      "llm_tldr_en": "Multi-agent debate can amplify shared misconceptions; R2-MAD gives agents experience memory from past debates and uses confidence estimation to intervene and reweight on failure modes.",
+      "llm_tldr_cn": "多智能体辩论在多数智能体共享错误时会放大而非修正误差。本文提出R2-MAD框架，为智能体引入历次辩论积累的经验记忆，并结合置信度估计在失败模式上进行干预和重新加权。该方法直接处理智能体的偏置先验而不只是同伴意见倾斜，能够降低共享误解带来的错误放大。",
+      "llm_tldr": "多智能体辩论在多数智能体共享错误时会放大而非修正误差。本文提出R2-MAD框架，为智能体引入历次辩论积累的经验记忆，并结合置信度估计在失败模式上进行干预和重新加权。该方法直接处理智能体的偏置先验而不只是同伴意见倾斜，能够降低共享误解带来的错误放大。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.02350v1",
+      "source": "arxiv",
+      "title": "LookStep: Efficient Vision-Language Navigation with Linguistic Foresight and Event Driven Memory",
+      "abstract": "Vision-Language Navigation (VLN) requires an embodied agent to follow natural-language instructions in unseen environments. Recent progress has been largely driven by Multimodal Large Language Models (MLLMs). Existing methods follow a next-step action prediction paradigm, supervising only the expert action, which requires a high quantity of data for training. They also rely on cognitive maps, accumulated historical frames, or external 3D tools to maintain states, leading to high computational and memory overhead. To realize resource efficiency VLN, we propose LookStep, a unified end-to-end framework that combines Language Centric Future State Modeling and Event Driven Rolling Memory that uses language labels to generate coarse-grained navigation progress and future states for each candidate action, while autonomously deciding whether to write each observation into a bounded rolling memory with a semantic role. We validate LookStep empirically. On VLN-CE tasks, LookStep outperforms existing methods under the same training settings, achieving a 49.7\\% success rate on R2R-CE Val-Unseen with better memory efficiency and less data usage. Code and model is available at https://github.com/kunyang-YU/LookStep.",
+      "authors": [
+        "Kun-Yang Yu",
+        "Yingzhe Li",
+        "Hongyu Xu",
+        "Shi-Yu Tian",
+        "Zhi Zhou",
+        "Yang Chen",
+        "Ming Yang",
+        "Sheng Wang",
+        "Qing Yu",
+        "Lan-Zhe Guo",
+        "Yu-Feng Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-09-02T09:24:08+00:00",
+      "link": "https://arxiv.org/pdf/2609.02350v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Event-driven rolling memory for state maintenance in multimodal LLM navigation agents",
+      "llm_evidence_cn": "面向多模态大模型导航智能体的事件驱动滚动记忆",
+      "llm_evidence": "面向多模态大模型导航智能体的事件驱动滚动记忆",
+      "canonical_evidence": "面向多模态大模型导航智能体的事件驱动滚动记忆",
+      "llm_tldr_en": "LookStep is an end-to-end VLN framework using language-centric future state modeling and event-driven rolling memory to avoid cognitive maps and historical frame accumulation, cutting memory and compute overhead for MLLM agents.",
+      "llm_tldr_cn": "视觉语言导航要求智能体在未知环境中遵循自然语言指令行动，已有方法常依赖认知地图或历史帧来维持状态，导致高计算与显存开销。LookStep提出端到端框架，结合语言中心未来状态建模与事件驱动滚动记忆，仅以事件形式保留关键状态而非累积全部历史帧。该设计使多模态大模型智能体在降低资源开销的同时完成状态维护，为具身智能体的上下文与记忆管理提供可迁移思路。",
+      "llm_tldr": "视觉语言导航要求智能体在未知环境中遵循自然语言指令行动，已有方法常依赖认知地图或历史帧来维持状态，导致高计算与显存开销。LookStep提出端到端框架，结合语言中心未来状态建模与事件驱动滚动记忆，仅以事件形式保留关键状态而非累积全部历史帧。该设计使多模态大模型智能体在降低资源开销的同时完成状态维护，为具身智能体的上下文与记忆管理提供可迁移思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.03141v1",
+      "source": "arxiv",
+      "title": "What Happens When the Model Eats the Stack? Rethinking the Research Agenda for Data Agents to Withstand the Bitter Lesson",
+      "abstract": "The bitter lesson poses an existential question for the data systems community, whereby large language models (LLMs) trained end-to-end are rapidly internalizing new capabilities that previously required carefully engineered data agents. Guided by empirical insights, we argue that as models continue to improve, many proposed system layers designed to compensate for model limitations on a given task will increasingly be subsumed by the model itself. We instead identify enduring research opportunities, which lie in supporting data agents across many queries with curated contextual information about the data environment, which we call persistent semantic context. We find that these context layers demonstrate strong promise for improving data agent performance, but they also raise significant system challenges. Thus, a key requirement for future data systems will lie in natively serving persistent semantic contexts as a first-class abstraction in order to enable capable data agents working over huge, complex knowledge corpora. Towards this vision, we outline exciting new research opportunities, including designing efficient context data structures, storage methods, compression techniques, and semantic consistency protocols, to ensure integrity and correctness of the stored contextual knowledge.",
+      "authors": [
+        "Liana Patel",
+        "Siddharth Jha",
+        "Negar Arabzadeh",
+        "Carlos Guestrin",
+        "Ion Stoica",
+        "Matei Zaharia"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB"
+      ],
+      "published": "2026-09-02T20:25:15+00:00",
+      "link": "https://arxiv.org/pdf/2609.03141v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes persistent semantic context as curated contextual information layers for data agents",
+      "llm_evidence_cn": "提出持久语义上下文作为数据智能体的上下文工程方向",
+      "llm_evidence": "提出持久语义上下文作为数据智能体的上下文工程方向",
+      "canonical_evidence": "提出持久语义上下文作为数据智能体的上下文工程方向",
+      "llm_tldr_en": "As LLMs internalize data-agent capabilities, this paper identifies persistent semantic context, curated contextual environment information reused across queries, as an enduring research opportunity and shows it works.",
+      "llm_tldr_cn": "作者认为随着模型能力增强，许多为弥补模型不足而设计的数据智能体系统层会被模型本身吸收。真正持久的研究机会是支持数据智能体跨多个查询的持久语义上下文，即围绕数据环境持续筛选并提供上下文信息。经验分析表明这类上下文层确实有效，为上下文工程提供了长期研究议程。",
+      "llm_tldr": "作者认为随着模型能力增强，许多为弥补模型不足而设计的数据智能体系统层会被模型本身吸收。真正持久的研究机会是支持数据智能体跨多个查询的持久语义上下文，即围绕数据环境持续筛选并提供上下文信息。经验分析表明这类上下文层确实有效，为上下文工程提供了长期研究议程。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

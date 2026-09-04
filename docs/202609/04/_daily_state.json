@@ -1,0 +1,137 @@
+{
+  "date": "20260904",
+  "date_label": "",
+  "generated_at": "2026-09-04 22:50:41 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.03467v1",
+      "route": "202609/04/2609.03467v1-when-users-dont-ask-benchmarking-context-driven-memory-retrieval-in-conversational-agents",
+      "title": "When Users Don't Ask: Benchmarking Context-Driven Memory Retrieval in Conversational Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "针对大语言模型对话代理的记忆系统进行基准评测，注重上下文驱动的检索召回与回复质量。",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2608.30295v1",
+      "route": "202609/04/2608.30295v1-catekv-on-sequential-consistency-for-long-context-llm-inference-acceleration",
+      "title": "CateKV: On Sequential Consistency for Long-Context LLM Inference Acceleration",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向长上下文LLM的KV缓存压缩与推理加速，属于上下文窗口处理与内存优化",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2609.00570v2",
+      "route": "202609/04/2609.00570v2-voicelongmemeval-do-assistants-remember-how-you-sounded",
+      "title": "VoiceLongMemEval: Do Assistants Remember How You Sounded?",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "通过副语言元数据评测长对话历史中的上下文理解",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2609.01834v1",
+      "route": "202609/04/2609.01834v1-architecting-conversational-data-systems-for-stateless-llm-apis-the-hydration-proxy-pattern",
+      "title": "Architecting Conversational Data Systems for Stateless LLM APIs: The Hydration Proxy Pattern",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "面向对话系统的会话持久化与语义记忆管理代理模式",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2609.02350v1",
+      "route": "202609/04/2609.02350v1-lookstep-efficient-vision-language-navigation-with-linguistic-foresight-and-event-driven-memory",
+      "title": "LookStep: Efficient Vision-Language Navigation with Linguistic Foresight and Event Driven Memory",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "面向多模态大模型导航智能体的事件驱动滚动记忆",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2609.03141v1",
+      "route": "202609/04/2609.03141v1-what-happens-when-the-model-eats-the-stack-rethinking-the-research-agenda-for-data-agents-to-withstand-the-bitter-lesson",
+      "title": "What Happens When the Model Eats the Stack? Rethinking the Research Agenda for Data Agents to Withstand the Bitter Lesson",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "提出持久语义上下文作为数据智能体的上下文工程方向",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2609.01642v1",
+      "route": "202609/04/2609.01642v1-imagine-before-retrieval-prospective-skill-retrieval-for-llm-agents",
+      "title": "Imagine Before Retrieval: Prospective Skill Retrieval for LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "通过技能检索为LLM智能体补充执行上下文，是智能体上下文构建与优化的相关技术",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    },
+    {
+      "paper_id": "2609.03619v1",
+      "route": "202609/04/2609.03619v1-remember-and-reweight-enhancing-multi-agent-debate-with-experience-memory-and-confidence-estimation",
+      "title": "Remember and Reweight: Enhancing Multi-Agent Debate with Experience Memory and Confidence Estimation",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "利用历次辩论积累的经验记忆辅助当前智能体推理",
+      "first_seen_at": "2026-09-04 22:50:41 UTC",
+      "updated_at": "2026-09-04 22:50:41 UTC"
+    }
+  ]
+}
