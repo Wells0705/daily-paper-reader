@@ -1,0 +1,57 @@
+{
+  "date": "20260905",
+  "date_label": "",
+  "generated_at": "2026-09-05 22:07:29 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.03201v1",
+      "route": "202609/05/2609.03201v1-memorylace-memory-lifecycle-aware-consolidation-and-evidence-retrieval",
+      "title": "MemoryLACE: Memory Lifecycle-Aware Consolidation and Evidence Retrieval",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "MemoryLACE显式建模长期LLM智能体中证据的生命周期关系。",
+      "first_seen_at": "2026-09-05 22:07:29 UTC",
+      "updated_at": "2026-09-05 22:07:29 UTC"
+    },
+    {
+      "paper_id": "2609.02253v1",
+      "route": "202609/05/2609.02253v1-apex-distillation-of-agent-procedural-experience-for-adaptive-deep-research-question-answering",
+      "title": "APEx: Distillation of Agent Procedural Experience for Adaptive Deep Research Question Answering",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向长程研究代理将交互历史组织为轨迹记忆与过程技能的分层利用方法",
+      "first_seen_at": "2026-09-05 22:07:29 UTC",
+      "updated_at": "2026-09-05 22:07:29 UTC"
+    },
+    {
+      "paper_id": "2609.00753v1",
+      "route": "202609/05/2609.00753v1-how-do-language-models-choose-between-context-and-memory",
+      "title": "How Do Language Models Choose Between Context and Memory?",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "通过反事实实验分析语言模型遵循上下文还是参数记忆，为大型语言模型的上下文与记忆协调提供参考。",
+      "first_seen_at": "2026-09-05 22:07:29 UTC",
+      "updated_at": "2026-09-05 22:07:29 UTC"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "label": "2026-09-05",
+  "date": "2026-09-05",
+  "generated_at": "2026-09-05T22:07:31",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202609/05/2609.03201v1-memorylace-memory-lifecycle-aware-consolidation-and-evidence-retrieval",
+      "section": "deep",
+      "title_en": "MemoryLACE: Memory Lifecycle-Aware Consolidation and Evidence Retrieval",
+      "authors": "Meriem Yacoubi, Pia Schmidt, Nenad Petrovic, Ahmed Frikha, Martin Kirchhoff, Alois Knoll",
+      "date": "2026-09-02",
+      "pdf": "https://arxiv.org/pdf/2609.03201v1",
+      "score": "9.0",
+      "evidence": "MemoryLACE显式建模长期LLM智能体中证据的生命周期关系。",
+      "tldr": "长期大语言模型智能体需在交互中保持信息连贯，同时区分证据的重复、历史、更新和矛盾。现有文本记忆检索只做语义相关但关系隐式，图或反思方法复杂。本文提出MemoryLACE，通过稀疏的合并、取代和矛盾关系显式建模证据生命周期，保留原子记忆及其来源，重构当前、历史与冲突证据。在BEAM和StructMemEval上与同骨干模型相比取得最佳性能，端到端运行时间较Hindsight降低66.6%。消融证明生命周期扩展与时间感知贡献最大，表明显式局部生命周期建模即可明显改进长时记忆推理，无需全局知识图谱。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Long-term LLM agents must preserve information across interactions while distinguishing repeated evidence, historical states, updates, and unresolved contradictions. Existing textual memory systems retrieve semantically relevant memories efficiently but often leave these relationships implicit, whereas richer structured approaches model them through global graphs, hierarchical abstractions, or reflection at greater complexity. We introduce MemoryLACE (MemLACE), a lightweight memory framework that explicitly models the lifecycle of textual evidence through sparse merge, supersession, and contradiction relations while preserving atomic natural-language memories and their provenance. Rather than retrieving memories independently, MemLACE reconstructs relation-aware evidence units that expose current, historical, supporting, and conflicting evidence for downstream reasoning. Across BEAM and StructMemEval, using open-weight and proprietary LLM backbones, MemLACE achieves the highest overall performance in same-backbone comparisons while reducing end-to-end runtime on BEAM by 66.6% relative to Hindsight, the strongest reported reflective-memory baseline. Ablation studies identify lifecycle expansion and temporal awareness as the principal contributors to these gains. Together, the results demonstrate that explicitly modeling the local lifecycle of textual evidence is sufficient to substantially improve long-term memory reasoning without requiring comprehensive knowledge graphs or global reflection.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/05/2609.02253v1-apex-distillation-of-agent-procedural-experience-for-adaptive-deep-research-question-answering",
+      "section": "deep",
+      "title_en": "APEx: Distillation of Agent Procedural Experience for Adaptive Deep Research Question Answering",
+      "authors": "Jie Ding, Rui Sun, Xinyuan Zhang, Zeyu Zhang, Xin Liu",
+      "date": "2026-09-02",
+      "pdf": "https://arxiv.org/pdf/2609.02253v1",
+      "score": "8.0",
+      "evidence": "面向长程研究代理将交互历史组织为轨迹记忆与过程技能的分层利用方法",
+      "tldr": "深度研究agent需借助工具多轮回答复杂问题，经验利用关键但现有检索或蒸馏方法存在负担且与策略适应脱节。APEx提出层次化经验利用框架，将轨迹记忆与程序技能耦合，经三阶段GRPO训练及测试时技能引导强化学习实现自适应。在7个基准上超越GPT-5.4达14.7分，优于强基线3.0分，实现免真值在线自改进。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Deep research agents augment large language models with external tools to answer complex, long-horizon questions through multi-turn reasoning. Learning from prior experience is crucial for continual improvement, yet existing methods either retrieve verbose task-specific traces that burden decision-making, or distill procedural skills that remain decoupled from downstream policy adaptation. We propose APEx, a hierarchical experience utilization framework that organizes interaction history into instance-level trajectory memories and category-level procedural skills, and couples them through a closed-loop architecture of Executor, Distiller, and Planner. The three modules are optimized via a three-stage alternating GRPO training paradigm, enabling reward-guided skill distillation rather than fixed-prompt generation. At test time, distilled skills serve as procedural priors for online Planner adaptation through skill-guided test-time reinforcement learning, allowing ground-truth-free self-improvement with skill-alignment regularization to prevent policy drift. Experiments on 7 benchmarks demonstrate that APEx achieves state-of-the-art performance, surpassing GPT-5.4 by 14.7 points and the strongest memory-augmented baseline by 3.0 points.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/05/2609.00753v1-how-do-language-models-choose-between-context-and-memory",
+      "section": "quick",
+      "title_en": "How Do Language Models Choose Between Context and Memory?",
+      "authors": "Benjamin Shih, John Winnicki, Arianna Cao",
+      "date": "2026-09-01",
+      "pdf": "https://arxiv.org/pdf/2609.00753v1",
+      "score": "6.0",
+      "evidence": "通过反事实实验分析语言模型遵循上下文还是参数记忆，为大型语言模型的上下文与记忆协调提供参考。",
+      "tldr": "当上下文与模型参数知识冲突时，存在可解码的激活方向来引导模型选择信息来源，但尚不清楚该方向是否被自然使用且可跨任务复用。通过反事实实验，在上下文与知识一致的提示上估计权威方向，并沿该方向在提示对间交换坐标。结果显示该方法能复现30-68%的权威引发转变，跨任务迁移仅复现9%，而任务内方向复现57%，表明权威计算具有任务依赖性。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "When contextual information conflicts with the knowledge stored in model parameters, activation directions can be used to decode and steer which source the model follows. However, steering along a direction does not establish causality: whether the unedited model would naturally use that direction or whether the direction is reusable across tasks. We test these distinctions through counterfactual experiments in unambiguous settings. First, we estimate authority directions from agreement prompts, in which the context and parametric knowledge support the same answer. We then interchange naturally occurring coordinates along these directions between matched prompts that direct the model to prioritize either the supplied context or its parametric knowledge. Across Qwen, Llama, and OLMo models, this intervention reproduces 30-68% of the authority-induced shift in source choice, whereas matched controls reproduce almost none. To test cross-task reuse, we learn authority directions on two tasks separately and see that cross-task transferability closes only 9% of the authority gap while the local direction learned on the given task closes 57%. These results distinguish authority representation, causal use, and cross-task causal reuse, and suggest that authority computations may be task-dependent, rather than reusable across tasks.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

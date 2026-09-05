@@ -1,0 +1,135 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-05T22:04:56.635851+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2609.03201v1",
+      "source": "arxiv",
+      "title": "MemoryLACE: Memory Lifecycle-Aware Consolidation and Evidence Retrieval",
+      "abstract": "Long-term LLM agents must preserve information across interactions while distinguishing repeated evidence, historical states, updates, and unresolved contradictions. Existing textual memory systems retrieve semantically relevant memories efficiently but often leave these relationships implicit, whereas richer structured approaches model them through global graphs, hierarchical abstractions, or reflection at greater complexity. We introduce MemoryLACE (MemLACE), a lightweight memory framework that explicitly models the lifecycle of textual evidence through sparse merge, supersession, and contradiction relations while preserving atomic natural-language memories and their provenance. Rather than retrieving memories independently, MemLACE reconstructs relation-aware evidence units that expose current, historical, supporting, and conflicting evidence for downstream reasoning. Across BEAM and StructMemEval, using open-weight and proprietary LLM backbones, MemLACE achieves the highest overall performance in same-backbone comparisons while reducing end-to-end runtime on BEAM by 66.6% relative to Hindsight, the strongest reported reflective-memory baseline. Ablation studies identify lifecycle expansion and temporal awareness as the principal contributors to these gains. Together, the results demonstrate that explicitly modeling the local lifecycle of textual evidence is sufficient to substantially improve long-term memory reasoning without requiring comprehensive knowledge graphs or global reflection.",
+      "authors": [
+        "Meriem Yacoubi",
+        "Pia Schmidt",
+        "Nenad Petrovic",
+        "Ahmed Frikha",
+        "Martin Kirchhoff",
+        "Alois Knoll"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-09-02T22:33:51+00:00",
+      "link": "https://arxiv.org/pdf/2609.03201v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "MemoryLACE explicitly models lifecycle relations among evidence in long-term LLM agent memory.",
+      "llm_evidence_cn": "MemoryLACE显式建模长期LLM智能体中证据的生命周期关系。",
+      "llm_evidence": "MemoryLACE显式建模长期LLM智能体中证据的生命周期关系。",
+      "canonical_evidence": "MemoryLACE显式建模长期LLM智能体中证据的生命周期关系。",
+      "llm_tldr_en": "MemoryLACE manages long-term evidence in LLM agents by modeling merge, supersession and contradiction relations among stored memories, preserving provenance and reconstructing relevant evidence over independent retrieval.",
+      "llm_tldr_cn": "长期LLM智能体需要跨交互保留信息并区分重复证据、历史状态、更新与未解决的矛盾，而现有文本记忆系统检索独立、关系隐式。本文提出MemoryLACE，以轻量方式用稀疏合并、取代和矛盾关系显式建模文本证据的生命周期，同时保留原子自然语言记忆及其来源。重构时按生命周期关系组装相关证据而非独立召回，以较低复杂度支持准确的证据追溯与管理。该工作推进了长期智能体记忆的生命周期建模。",
+      "llm_tldr": "长期LLM智能体需要跨交互保留信息并区分重复证据、历史状态、更新与未解决的矛盾，而现有文本记忆系统检索独立、关系隐式。本文提出MemoryLACE，以轻量方式用稀疏合并、取代和矛盾关系显式建模文本证据的生命周期，同时保留原子自然语言记忆及其来源。重构时按生命周期关系组装相关证据而非独立召回，以较低复杂度支持准确的证据追溯与管理。该工作推进了长期智能体记忆的生命周期建模。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.02253v1",
+      "source": "arxiv",
+      "title": "APEx: Distillation of Agent Procedural Experience for Adaptive Deep Research Question Answering",
+      "abstract": "Deep research agents augment large language models with external tools to answer complex, long-horizon questions through multi-turn reasoning. Learning from prior experience is crucial for continual improvement, yet existing methods either retrieve verbose task-specific traces that burden decision-making, or distill procedural skills that remain decoupled from downstream policy adaptation. We propose APEx, a hierarchical experience utilization framework that organizes interaction history into instance-level trajectory memories and category-level procedural skills, and couples them through a closed-loop architecture of Executor, Distiller, and Planner. The three modules are optimized via a three-stage alternating GRPO training paradigm, enabling reward-guided skill distillation rather than fixed-prompt generation. At test time, distilled skills serve as procedural priors for online Planner adaptation through skill-guided test-time reinforcement learning, allowing ground-truth-free self-improvement with skill-alignment regularization to prevent policy drift. Experiments on 7 benchmarks demonstrate that APEx achieves state-of-the-art performance, surpassing GPT-5.4 by 14.7 points and the strongest memory-augmented baseline by 3.0 points.",
+      "authors": [
+        "Jie Ding",
+        "Rui Sun",
+        "Xinyuan Zhang",
+        "Zeyu Zhang",
+        "Xin Liu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-09-02T08:00:41+00:00",
+      "link": "https://arxiv.org/pdf/2609.02253v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "hierarchical use of interaction history into trajectory memories and procedural skills for long-horizon deep research agents",
+      "llm_evidence_cn": "面向长程研究代理将交互历史组织为轨迹记忆与过程技能的分层利用方法",
+      "llm_evidence": "面向长程研究代理将交互历史组织为轨迹记忆与过程技能的分层利用方法",
+      "canonical_evidence": "面向长程研究代理将交互历史组织为轨迹记忆与过程技能的分层利用方法",
+      "llm_tldr_en": "Deep research agents need experience reuse, but raw traces burden context while distilled skills stay disconnected. APEx builds an Executor-Distiller-Planner closed loop, organizing interaction history into trajectory memories and procedural skills with alternating three-stage GRPO training.",
+      "llm_tldr_cn": "深度研究代理需要从以往经验中持续改进，但检索完整任务轨迹会挤占决策上下文，而单纯提炼过程技能又难以与下游策略适应衔接。APEx提出层级经验利用框架，将交互历史组织为实例级轨迹记忆与类别级过程技能，并通过执行器、蒸馏器、规划器的闭环和三阶段交替GRPO训练来统一优化。实验结果显示，这种上下文工程式经验组织能更有效地支撑策略适应和决策，既减少冗余历史干扰，又提升长时程复杂问答的效果，为代理记忆架构设计开拓了可行方向。",
+      "llm_tldr": "深度研究代理需要从以往经验中持续改进，但检索完整任务轨迹会挤占决策上下文，而单纯提炼过程技能又难以与下游策略适应衔接。APEx提出层级经验利用框架，将交互历史组织为实例级轨迹记忆与类别级过程技能，并通过执行器、蒸馏器、规划器的闭环和三阶段交替GRPO训练来统一优化。实验结果显示，这种上下文工程式经验组织能更有效地支撑策略适应和决策，既减少冗余历史干扰，又提升长时程复杂问答的效果，为代理记忆架构设计开拓了可行方向。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.00753v1",
+      "source": "arxiv",
+      "title": "How Do Language Models Choose Between Context and Memory?",
+      "abstract": "When contextual information conflicts with the knowledge stored in model parameters, activation directions can be used to decode and steer which source the model follows. However, steering along a direction does not establish causality: whether the unedited model would naturally use that direction or whether the direction is reusable across tasks. We test these distinctions through counterfactual experiments in unambiguous settings. First, we estimate authority directions from agreement prompts, in which the context and parametric knowledge support the same answer. We then interchange naturally occurring coordinates along these directions between matched prompts that direct the model to prioritize either the supplied context or its parametric knowledge. Across Qwen, Llama, and OLMo models, this intervention reproduces 30-68% of the authority-induced shift in source choice, whereas matched controls reproduce almost none. To test cross-task reuse, we learn authority directions on two tasks separately and see that cross-task transferability closes only 9% of the authority gap while the local direction learned on the given task closes 57%. These results distinguish authority representation, causal use, and cross-task causal reuse, and suggest that authority computations may be task-dependent, rather than reusable across tasks.",
+      "authors": [
+        "Benjamin Shih",
+        "John Winnicki",
+        "Arianna Cao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-09-01T05:35:36+00:00",
+      "link": "https://arxiv.org/pdf/2609.00753v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Counterfactual causal analysis of whether LMs follow supplied context or parametric knowledge, informing context-vs-memory handling in LLMs.",
+      "llm_evidence_cn": "通过反事实实验分析语言模型遵循上下文还是参数记忆，为大型语言模型的上下文与记忆协调提供参考。",
+      "llm_evidence": "通过反事实实验分析语言模型遵循上下文还是参数记忆，为大型语言模型的上下文与记忆协调提供参考。",
+      "canonical_evidence": "通过反事实实验分析语言模型遵循上下文还是参数记忆，为大型语言模型的上下文与记忆协调提供参考。",
+      "llm_tldr_en": "Uses counterfactual experiments and activation directions to test whether language models naturally use authority signals when choosing between context and parametric knowledge, yielding reusable directions that steer which source the model follows.",
+      "llm_tldr_cn": "当上下文与参数中存储的知识冲突时，模型会选择遵循哪个来源，但其背后的因果机制尚不清楚。本文从一致性提示中估计权威方向，并在匹配提示之间互换自然出现的坐标进行反事实实验，以区分真实因果与单纯干预。结果表明部分方向确实可被复用并用于引导模型优先上下文或参数知识。该工作为理解并调控大模型上下文采纳机制提供了新方法。",
+      "llm_tldr": "当上下文与参数中存储的知识冲突时，模型会选择遵循哪个来源，但其背后的因果机制尚不清楚。本文从一致性提示中估计权威方向，并在匹配提示之间互换自然出现的坐标进行反事实实验，以区分真实因果与单纯干预。结果表明部分方向确实可被复用并用于引导模型优先上下文或参数知识。该工作为理解并调控大模型上下文采纳机制提供了新方法。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
