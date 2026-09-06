@@ -1,0 +1,69 @@
+{
+  "label": "2026-09-06",
+  "date": "2026-09-06",
+  "generated_at": "2026-09-06T21:02:14",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202609/06/2609.01272v1-making-prospective-memory-slm-shaped-typed-intention-stores-for-small-model-agents",
+      "section": "deep",
+      "title_en": "Making Prospective Memory SLM-Shaped: Typed Intention Stores for Small-Model Agents",
+      "authors": "Jinqing Zhao, Chengcan Wu",
+      "date": "2026-09-01",
+      "pdf": "https://arxiv.org/pdf/2609.01272v1",
+      "score": "8.0",
+      "evidence": "为智能体构建类型化意图存储PIS，将前瞻记忆生命周期逻辑外置到代码中，以轻量状态跟踪支撑小模型智能体执行未来意图",
+      "tldr": "前瞻记忆即按提示在未来执行推迟的意图。现有LLM在PM-Bench上仍不足，最佳脚手架仅65.1% Set-F1。本文提出PIS方案，视其为有类型约束的状态追踪过程：生命周期逻辑全部放入代码，模型只完成限定语言操作，无需微调或蒸馏。在PM-Bench上，PIS使DeepSeek-Chat达82.9% Set-F1，使Gemma-E2B从无存储4.2%提升至66.2%，并让小型模型超越此前大型模型脚手架，创下新SOTA。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Prospective memory means carrying out a deferred intention at the right future cue while other work continues. Benchmarks now isolate it as an agent skill, yet frontier LLMs still struggle: the best published PM-Bench scaffold reaches only 65.1% Set-F1. We argue that this loop is schema-constrained state tracking rather than open-ended reasoning, and that small models can execute it when the action space is typed. We propose the Prospective Intention Store (PIS) that puts lifecycle logic in code and scoped language work on the model. The scaffold is agentic and training-free: no selector fine-tuning and no trajectory distillation. On PM-Bench, DeepSeek-Chat with PIS reaches 82.9% Set-F1. On Gemma-E2B, Set-F1 is only 4.2% without a store and at most 6.6% under seven retrospective memories, while PIS reaches 66.2%. PIS further reaches 70.1% Set-F1, where retrospective memory methods stay at most 54.4%. PIS sets a new state of the art on this benchmark and enables small models to surpass the published large-model scaffold.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/06/2608.29646v1-detect-before-you-attribute-cascade-failure-attribution-for-multi-agent-systems",
+      "section": "quick",
+      "title_en": "Detect Before You Attribute: Cascade Failure Attribution for Multi-Agent Systems",
+      "authors": "Jiayi Zhang, Zexin Wang, Degang Sun, Changhua Pei, Fei Sun, Gaogang Xie, Jingjing Li",
+      "date": "2026-08-30",
+      "pdf": "https://arxiv.org/pdf/2608.29646v1",
+      "score": "7.0",
+      "evidence": "针对智能体长轨迹导致的上下文衰减，先检测异常再用紧凑聚焦的上下文做归因",
+      "tldr": "多智能体系统执行失败归因面临语义缺失与长上下文退化挑战。提出DUOTRACE即插即用检测过滤器，采用先检测后归因范式，结合双视图语义-结构表示和Tree-LSTM编码器进行VAE异常检测，仅向下游LLM归因方法提供聚焦轨迹证据。在六个LLM归因基线上，智能体级与步骤级准确率分别提升8.7%和7.0%，显著增强归因可靠性与可扩展性。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Large language model (LLM)-based agents have shown strong potential in solving complex tasks through multi-step reasoning, yet they remain vulnerable to execution failures. Accurate failure attribution is therefore critical for improving agent reliability. Existing topology- and spectrum-based methods exploit trajectory structures but often overlook fine-grained semantics, while LLM-based attribution methods capture semantic cues but suffer from long-context degradation over lengthy trajectories. To address these challenges, we propose DUOTRACE, a plug-and-play detection filter for LLM-based failure attribution. DUOTRACE follows a detect-before-attribute paradigm: it first detects anomalous executions and then supplies focused trajectory evidence to downstream LLM-based attribution methods. For effective VAE-based anomaly detection on agent trajectories, DUOTRACE integrates dual-view semantic-structural node representations, a Tree-LSTM-based trajectory encoder, and prefix-chain- and LLM-based data augmentation to handle heterogeneous nodes, hierarchical execution structures, and limited failure data. Experiments with six LLM-based attribution baselines show that DUOTRACE improves agent-level and step-level attribution accuracy by 8.7% and 7.0%, respectively.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/06/2608.29305v1-learning-simple-test-time-environments-for-llm-web-agents",
+      "section": "quick",
+      "title_en": "Learning Simple Test-Time Environments for LLM Web Agents",
+      "authors": "Junxuan Li, Zijun Liu, Ziyi Huang, Peng Li, Yuzhou Liu, Ming Yan, Yang Liu",
+      "date": "2026-08-29",
+      "pdf": "https://arxiv.org/pdf/2608.29305v1",
+      "score": "6.0",
+      "evidence": "测试时将复杂观测分解为子模块，是一种针对智能体上下文的优化手段",
+      "tldr": "LLM代理在人工构建的简单环境中表现优秀，但转向真实世界的复杂环境时性能往往大幅下降，现有研究主要将其归因于组合泛化能力的不足。针对此问题，本文提出测试时环境分解(TTED)方法，引导代理通过试运行过程将复杂环境观察分解为多个简单子环境，并以无标签学习在推理阶段适应和调整行为。在合成与真实基准上的实验表明，从子环境获得的经验能够有效组合以提升完整环境的表现，且对子环境进行测试时训练可以显著增强代理在真实Web自动化任务中的组合泛化。这些结果验证了在测试时学习环境分解是实现复杂环境中可靠部署的重要途径，也为LLM代理在线适应提供了新思路。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Large language model (LLM) agents have demonstrated remarkable proficiency in manually constructed environments, yet their performance frequently collapses when transitioned to complex real-world settings. Existing research largely attribute this degradation to the compositional generalization gaps in LLMs on combinations of multiple simple, well-structured environments. In this work, we propose that LLM web agents can learn simple environment observations at test time. Specifically, we introduce trial steps for agents to decompose a complex environment observation into sub-modules, and implement a label-free learning method, Test-Time Environment Decomposition (TTED), to adapt agent behaviors with experience during inference. Our empirical evaluations demonstrate the framework's efficacy across both synthetic and realistic benchmarks, showing (1) experience gains acquired within simpler sub-environments can be effectively composed to improve performance in the full one, and (2) test-time training on sub-environments can significantly enhance the compositional generalization of agents in real-world web automation tasks. We also provide key insights in the design of the label-free learning algorithm. As more complex environments are accessed by LLM agents, we believe learning environment decomposition skills at test time will be critical for robust real-world deployment.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/06/2609.00434v1-sage-state-grounded-abstention-aware-evaluation-of-task-oriented-dialogue-agents",
+      "section": "quick",
+      "title_en": "SAGE: State-Grounded, Abstention-Aware Evaluation of Task-Oriented Dialogue Agents",
+      "authors": "Rayan Khoury, Shih-Yao Lin, Pratyush Mishra",
+      "date": "2026-08-31",
+      "pdf": "https://arxiv.org/pdf/2609.00434v1",
+      "score": "6.0",
+      "evidence": "用每轮状态差异与原子化判据评估对话是否在正确推进工作流上下文",
+      "tldr": "任务型对话评估需判断每轮是否推进工作流状态，而非仅凭文本流畅度。SAGE将工作流规范与每轮状态差异编译为原子标准，经符号与编码器/NLI级联验证并弃权，聚合为带证据的回合决策。SAGE-Core以零LLM成本决定81-91%标准，在多个基准上不逊于昂贵LLM裁判。实现低成本、高保真评估并揭示构造效度边界。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Evaluating task-oriented dialogue agents requires judging not merely whether a reply reads well but whether each turn advances the underlying workflow state correctly--a distinction conventional holistic LLM judges can miss because they evaluate the available context as a single unit and require one or more full-model calls per turn. We propose SAGE (State-Grounded Abstention-Aware Evaluation), which compiles a workflow specification and per-turn state diff into atomic, schema-grounded criteria and routes each through a cascade of symbolic and encoder/NLI verifiers that abstain rather than guess, aggregating criterion verdicts into a turn-level decision with an evidence trace. Its recommended operating point, SAGE-Core, decides 81--91% of criteria with only the compiler, symbolic rules, and on-device encoders--at zero paid LLM cost--while SAGE-LLM adds an optional focused-LLM fallback for open-class criteria. Across four slices spanning MultiWOZ, Schema-Guided Dialogue, and ABCD, no evaluated LLM-as-a-judge baseline--including a state-aware GPT-4.1 judge and cheaper GPT-4.1-mini variants--significantly exceeds SAGE-Core on any slice, even though the GPT-4.1 G-Eval judge costs $4.7--8.0 per 1,000 turns to SAGE-Core's $0. A two-annotator human audit (n=200, $κ$=0.94) confirms strong label fidelity on the transcript-visible failure classes--where, excluding the weak-salience IUV class, SAGE-Core is statistically tied with the strongest LLM judge--and honestly scopes ignored-user-value as a state-consistency signal with weak broad-human salience. We analyze construct-validity limits from injected failures and partial symbolic circularity.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

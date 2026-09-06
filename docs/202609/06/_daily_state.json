@@ -1,0 +1,73 @@
+{
+  "date": "20260906",
+  "date_label": "",
+  "generated_at": "2026-09-06 21:02:07 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.01272v1",
+      "route": "202609/06/2609.01272v1-making-prospective-memory-slm-shaped-typed-intention-stores-for-small-model-agents",
+      "title": "Making Prospective Memory SLM-Shaped: Typed Intention Stores for Small-Model Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "为智能体构建类型化意图存储PIS，将前瞻记忆生命周期逻辑外置到代码中，以轻量状态跟踪支撑小模型智能体执行未来意图",
+      "first_seen_at": "2026-09-06 21:02:07 UTC",
+      "updated_at": "2026-09-06 21:02:07 UTC"
+    },
+    {
+      "paper_id": "2608.29646v1",
+      "route": "202609/06/2608.29646v1-detect-before-you-attribute-cascade-failure-attribution-for-multi-agent-systems",
+      "title": "Detect Before You Attribute: Cascade Failure Attribution for Multi-Agent Systems",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "针对智能体长轨迹导致的上下文衰减，先检测异常再用紧凑聚焦的上下文做归因",
+      "first_seen_at": "2026-09-06 21:02:07 UTC",
+      "updated_at": "2026-09-06 21:02:07 UTC"
+    },
+    {
+      "paper_id": "2608.29305v1",
+      "route": "202609/06/2608.29305v1-learning-simple-test-time-environments-for-llm-web-agents",
+      "title": "Learning Simple Test-Time Environments for LLM Web Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "测试时将复杂观测分解为子模块，是一种针对智能体上下文的优化手段",
+      "first_seen_at": "2026-09-06 21:02:07 UTC",
+      "updated_at": "2026-09-06 21:02:07 UTC"
+    },
+    {
+      "paper_id": "2609.00434v1",
+      "route": "202609/06/2609.00434v1-sage-state-grounded-abstention-aware-evaluation-of-task-oriented-dialogue-agents",
+      "title": "SAGE: State-Grounded, Abstention-Aware Evaluation of Task-Oriented Dialogue Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "用每轮状态差异与原子化判据评估对话是否在正确推进工作流上下文",
+      "first_seen_at": "2026-09-06 21:02:07 UTC",
+      "updated_at": "2026-09-06 21:02:07 UTC"
+    }
+  ]
+}

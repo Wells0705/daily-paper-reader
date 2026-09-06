@@ -1,0 +1,177 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-06T20:57:22.473929+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2609.01272v1",
+      "source": "arxiv",
+      "title": "Making Prospective Memory SLM-Shaped: Typed Intention Stores for Small-Model Agents",
+      "abstract": "Prospective memory means carrying out a deferred intention at the right future cue while other work continues. Benchmarks now isolate it as an agent skill, yet frontier LLMs still struggle: the best published PM-Bench scaffold reaches only 65.1% Set-F1. We argue that this loop is schema-constrained state tracking rather than open-ended reasoning, and that small models can execute it when the action space is typed. We propose the Prospective Intention Store (PIS) that puts lifecycle logic in code and scoped language work on the model. The scaffold is agentic and training-free: no selector fine-tuning and no trajectory distillation. On PM-Bench, DeepSeek-Chat with PIS reaches 82.9% Set-F1. On Gemma-E2B, Set-F1 is only 4.2% without a store and at most 6.6% under seven retrospective memories, while PIS reaches 66.2%. PIS further reaches 70.1% Set-F1, where retrospective memory methods stay at most 54.4%. PIS sets a new state of the art on this benchmark and enables small models to surpass the published large-model scaffold.",
+      "authors": [
+        "Jinqing Zhao",
+        "Chengcan Wu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-01T14:04:27+00:00",
+      "link": "https://arxiv.org/pdf/2609.01272v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Designs a Prospective Intention Store (PIS) as memory architecture for agents to track deferred intentions and future cues, improving prospective memory in small LM agents",
+      "llm_evidence_cn": "为智能体构建类型化意图存储PIS，将前瞻记忆生命周期逻辑外置到代码中，以轻量状态跟踪支撑小模型智能体执行未来意图",
+      "llm_evidence": "为智能体构建类型化意图存储PIS，将前瞻记忆生命周期逻辑外置到代码中，以轻量状态跟踪支撑小模型智能体执行未来意图",
+      "canonical_evidence": "为智能体构建类型化意图存储PIS，将前瞻记忆生命周期逻辑外置到代码中，以轻量状态跟踪支撑小模型智能体执行未来意图",
+      "llm_tldr_en": "LLM agents underperform on deferred-intention prospective memory tasks; PIS puts lifecycle logic in code and scoped language work on model, making small models reach 82.9 Set-F1 on PM-Bench without fine-tuning",
+      "llm_tldr_cn": "前瞻记忆要求LLM智能体在继续当前工作的同时于正确时机执行延期意图，即便最强模型也仍在PM-Bench上受限，最佳脚手架仅达65.1 Set-F1。本文认为该循环本质上是受模式约束的状态跟踪，提出类型化意图存储PIS，将生命周期逻辑放入代码并把有界语言任务留给模型，形成无需微调的智能体脚手架。DeepSeek-Chat配合PIS在PM-Bench上达到82.9 Set-F1，而Gemma-E2B无存储时仅为4.2 Set-F1。结果表明借助外置存储，小模型也能可靠完成前瞻记忆类任务。",
+      "llm_tldr": "前瞻记忆要求LLM智能体在继续当前工作的同时于正确时机执行延期意图，即便最强模型也仍在PM-Bench上受限，最佳脚手架仅达65.1 Set-F1。本文认为该循环本质上是受模式约束的状态跟踪，提出类型化意图存储PIS，将生命周期逻辑放入代码并把有界语言任务留给模型，形成无需微调的智能体脚手架。DeepSeek-Chat配合PIS在PM-Bench上达到82.9 Set-F1，而Gemma-E2B无存储时仅为4.2 Set-F1。结果表明借助外置存储，小模型也能可靠完成前瞻记忆类任务。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.29646v1",
+      "source": "arxiv",
+      "title": "Detect Before You Attribute: Cascade Failure Attribution for Multi-Agent Systems",
+      "abstract": "Large language model (LLM)-based agents have shown strong potential in solving complex tasks through multi-step reasoning, yet they remain vulnerable to execution failures. Accurate failure attribution is therefore critical for improving agent reliability. Existing topology- and spectrum-based methods exploit trajectory structures but often overlook fine-grained semantics, while LLM-based attribution methods capture semantic cues but suffer from long-context degradation over lengthy trajectories. To address these challenges, we propose DUOTRACE, a plug-and-play detection filter for LLM-based failure attribution. DUOTRACE follows a detect-before-attribute paradigm: it first detects anomalous executions and then supplies focused trajectory evidence to downstream LLM-based attribution methods. For effective VAE-based anomaly detection on agent trajectories, DUOTRACE integrates dual-view semantic-structural node representations, a Tree-LSTM-based trajectory encoder, and prefix-chain- and LLM-based data augmentation to handle heterogeneous nodes, hierarchical execution structures, and limited failure data. Experiments with six LLM-based attribution baselines show that DUOTRACE improves agent-level and step-level attribution accuracy by 8.7% and 7.0%, respectively.",
+      "authors": [
+        "Jiayi Zhang",
+        "Zexin Wang",
+        "Degang Sun",
+        "Changhua Pei",
+        "Fei Sun",
+        "Gaogang Xie",
+        "Jingjing Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-30T08:17:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.29646v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "counters long-context degradation in agent trajectories by feeding a detector-filtered focused context to LLM attribution",
+      "llm_evidence_cn": "针对智能体长轨迹导致的上下文衰减，先检测异常再用紧凑聚焦的上下文做归因",
+      "llm_evidence": "针对智能体长轨迹导致的上下文衰减，先检测异常再用紧凑聚焦的上下文做归因",
+      "canonical_evidence": "针对智能体长轨迹导致的上下文衰减，先检测异常再用紧凑聚焦的上下文做归因",
+      "llm_tldr_en": "LLM-based failure attribution over long agent trajectories degrades due to long-context issues. DUOTRACE uses a detect-before-attribute paradigm: it first detects anomalous executions, then supplies focused trajectory evidence to the attribution model. This plug-and-play filter preserves semantic cues while mitigating context-window overload, improving failure localization in multi-agent systems.",
+      "llm_tldr_cn": "基于大模型的故障归因能捕捉语义线索，但在处理长执行轨迹时会出现长上下文衰减。为此DUOTRACE采用先检测后归因的即插即用方法：先对轨迹中的异常执行做识别，再将浓缩后的相关证据片段交给归因器，而不是让模型吞下整段历史。这种方法在保留语义信息的同时显著减少无关上下文的干扰，使归因结果在长程多智能体任务上更加准确。它为缓解长上下文瓶颈提供了一种与具体归因模型解耦的预处理方案。",
+      "llm_tldr": "基于大模型的故障归因能捕捉语义线索，但在处理长执行轨迹时会出现长上下文衰减。为此DUOTRACE采用先检测后归因的即插即用方法：先对轨迹中的异常执行做识别，再将浓缩后的相关证据片段交给归因器，而不是让模型吞下整段历史。这种方法在保留语义信息的同时显著减少无关上下文的干扰，使归因结果在长程多智能体任务上更加准确。它为缓解长上下文瓶颈提供了一种与具体归因模型解耦的预处理方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.29305v1",
+      "source": "arxiv",
+      "title": "Learning Simple Test-Time Environments for LLM Web Agents",
+      "abstract": "Large language model (LLM) agents have demonstrated remarkable proficiency in manually constructed environments, yet their performance frequently collapses when transitioned to complex real-world settings. Existing research largely attribute this degradation to the compositional generalization gaps in LLMs on combinations of multiple simple, well-structured environments. In this work, we propose that LLM web agents can learn simple environment observations at test time. Specifically, we introduce trial steps for agents to decompose a complex environment observation into sub-modules, and implement a label-free learning method, Test-Time Environment Decomposition (TTED), to adapt agent behaviors with experience during inference. Our empirical evaluations demonstrate the framework's efficacy across both synthetic and realistic benchmarks, showing (1) experience gains acquired within simpler sub-environments can be effectively composed to improve performance in the full one, and (2) test-time training on sub-environments can significantly enhance the compositional generalization of agents in real-world web automation tasks. We also provide key insights in the design of the label-free learning algorithm. As more complex environments are accessed by LLM agents, we believe learning environment decomposition skills at test time will be critical for robust real-world deployment.",
+      "authors": [
+        "Junxuan Li",
+        "Zijun Liu",
+        "Ziyi Huang",
+        "Peng Li",
+        "Yuzhou Liu",
+        "Ming Yan",
+        "Yang Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-29T14:45:09+00:00",
+      "link": "https://arxiv.org/pdf/2608.29305v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Test-time decomposition of complex observations into sub-modules is a context-optimization technique for web agents",
+      "llm_evidence_cn": "测试时将复杂观测分解为子模块，是一种针对智能体上下文的优化手段",
+      "llm_evidence": "测试时将复杂观测分解为子模块，是一种针对智能体上下文的优化手段",
+      "canonical_evidence": "测试时将复杂观测分解为子模块，是一种针对智能体上下文的优化手段",
+      "llm_tldr_en": "Proposes Test-Time Environment Decomposition (TTED), a label-free method for LLM web agents to decompose complex observations at test time and adapt behaviors, improving realism and robustness.",
+      "llm_tldr_cn": "LLM网络智能体在人工构造环境中表现较好，一遇到复杂真实环境性能便下降。论文提出让智能体在测试时学习简单环境观：先执行trial步把复杂观测分解为子模块，并使用无标签的TTED方法根据经验调整行为。该方法无需额外标注即可提升模型对真实复杂页面的适应性。实验结果支持测试时环境分解作为一种有效的上下文适配策略，可用于增强LLM智能体的真实场景泛化能力。",
+      "llm_tldr": "LLM网络智能体在人工构造环境中表现较好，一遇到复杂真实环境性能便下降。论文提出让智能体在测试时学习简单环境观：先执行trial步把复杂观测分解为子模块，并使用无标签的TTED方法根据经验调整行为。该方法无需额外标注即可提升模型对真实复杂页面的适应性。实验结果支持测试时环境分解作为一种有效的上下文适配策略，可用于增强LLM智能体的真实场景泛化能力。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.00434v1",
+      "source": "arxiv",
+      "title": "SAGE: State-Grounded, Abstention-Aware Evaluation of Task-Oriented Dialogue Agents",
+      "abstract": "Evaluating task-oriented dialogue agents requires judging not merely whether a reply reads well but whether each turn advances the underlying workflow state correctly--a distinction conventional holistic LLM judges can miss because they evaluate the available context as a single unit and require one or more full-model calls per turn. We propose SAGE (State-Grounded Abstention-Aware Evaluation), which compiles a workflow specification and per-turn state diff into atomic, schema-grounded criteria and routes each through a cascade of symbolic and encoder/NLI verifiers that abstain rather than guess, aggregating criterion verdicts into a turn-level decision with an evidence trace. Its recommended operating point, SAGE-Core, decides 81--91% of criteria with only the compiler, symbolic rules, and on-device encoders--at zero paid LLM cost--while SAGE-LLM adds an optional focused-LLM fallback for open-class criteria. Across four slices spanning MultiWOZ, Schema-Guided Dialogue, and ABCD, no evaluated LLM-as-a-judge baseline--including a state-aware GPT-4.1 judge and cheaper GPT-4.1-mini variants--significantly exceeds SAGE-Core on any slice, even though the GPT-4.1 G-Eval judge costs $4.7--8.0 per 1,000 turns to SAGE-Core's $0. A two-annotator human audit (n=200, $κ$=0.94) confirms strong label fidelity on the transcript-visible failure classes--where, excluding the weak-salience IUV class, SAGE-Core is statistically tied with the strongest LLM judge--and honestly scopes ignored-user-value as a state-consistency signal with weak broad-human salience. We analyze construct-validity limits from injected failures and partial symbolic circularity.",
+      "authors": [
+        "Rayan Khoury",
+        "Shih-Yao Lin",
+        "Pratyush Mishra"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-31T22:14:52+00:00",
+      "link": "https://arxiv.org/pdf/2609.00434v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses per-turn state diff and atomic grounded criteria to track whether dialogue context advances workflow state",
+      "llm_evidence_cn": "用每轮状态差异与原子化判据评估对话是否在正确推进工作流上下文",
+      "llm_evidence": "用每轮状态差异与原子化判据评估对话是否在正确推进工作流上下文",
+      "canonical_evidence": "用每轮状态差异与原子化判据评估对话是否在正确推进工作流上下文",
+      "llm_tldr_en": "Task-oriented dialogue agents must be judged by whether turns advance workflow state. SAGE compiles workflow specs and per-turn state diffs into atomic schema-grounded criteria, processes them with cascades of symbolic and NLI verifiers that can abstain, and aggregates verdicts with evidence traces. SAGE-Core reliably decides 81-91% of criteria.",
+      "llm_tldr_cn": "任务型对话智能体的评测不能只凭回复读起来是否通顺，更关键的是每一轮是否把工作流状态向前推进，而整体式LLM裁判常把上下文当一个整体难以做细粒度状态判断。SAGE将工作流规范与每轮状态变化编译成基于模式的原子判据，并用符号验证器与编码器NLI验证器组成级联，每个验证器拿不准时可以选择弃权而不是猜，最后聚合成带证据踪迹的回合结论。在推荐配置SAGE-Core下，81至91%的判据可被稳定裁决。这为评估对话智能体的上下文推进能力提供了更可信的低成本替代范式。",
+      "llm_tldr": "任务型对话智能体的评测不能只凭回复读起来是否通顺，更关键的是每一轮是否把工作流状态向前推进，而整体式LLM裁判常把上下文当一个整体难以做细粒度状态判断。SAGE将工作流规范与每轮状态变化编译成基于模式的原子判据，并用符号验证器与编码器NLI验证器组成级联，每个验证器拿不准时可以选择弃权而不是猜，最后聚合成带证据踪迹的回合结论。在推荐配置SAGE-Core下，81至91%的判据可被稳定裁决。这为评估对话智能体的上下文推进能力提供了更可信的低成本替代范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
