@@ -1,0 +1,137 @@
+{
+  "date": "20260907",
+  "date_label": "",
+  "generated_at": "2026-09-07 22:27:59 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.04852v1",
+      "route": "202609/07/2609.04852v1-kvmem-virtualizing-million-token-agent-workspaces-on-a-consumer-gpu",
+      "title": "KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 10.0,
+      "evidence": "用KV上下文虚拟化应对超出原生窗口的历史",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2608.29622v1",
+      "route": "202609/07/2608.29622v1-agenticrag-r1-agentic-reinforcement-learning-with-stack-memory-for-multi-step-reasoning-retrieval-and-memorizing",
+      "title": "AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "以栈式记忆整合推理检索记忆实现多步自主上下文维护",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2609.04915v1",
+      "route": "202609/07/2609.04915v1-compact-memory-llm-agents-via-online-max-member-clustering-and-atom-aware-packing",
+      "title": "Compact-Memory LLM Agents via Online Max-Member Clustering and Atom-Aware Packing",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向上下文受限场景的LLM智能体在线聚类记忆管线，兼顾质量与令牌开销",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2609.05232v1",
+      "route": "202609/07/2609.05232v1-substrate-aware-ai-agents-execution-context-as-a-first-class-input",
+      "title": "Substrate-Aware AI Agents: Execution Context as a First-Class Input",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "将执行上下文作为规划的一等输入以消除基底盲区",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2609.00618v2",
+      "route": "202609/07/2609.00618v2-towards-effective-structured-context-modeling-for-conversational-recommender-systems-via-dual-node-monte-carlo-tree-search",
+      "title": "Towards Effective Structured Context Modeling for Conversational Recommender Systems via Dual-node Monte Carlo Tree Search",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "在对话推荐中用双节点树形上下文建模追踪用户偏好演化",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2609.04288v1",
+      "route": "202609/07/2609.04288v1-scalable-context-orchestration-for-serving-llms-over-voice",
+      "title": "Scalable Context Orchestration for Serving LLMs Over Voice",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向语音LLM服务的上下文编排，可视为上下文工程的技术方案",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2609.04570v1",
+      "route": "202609/07/2609.04570v1-dynamic-adaptation-of-the-llm-context-for-generating-routines-with-coupled-semantics",
+      "title": "Dynamic Adaptation of the LLM Context for Generating Routines with Coupled Semantics",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向LLM代码生成的动态上下文调整与验证循环",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    },
+    {
+      "paper_id": "2609.02750v1",
+      "route": "202609/07/2609.02750v1-bilevel-coordinated-reflection-a-game-theoretic-approach-to-multi-agent-llm-systems",
+      "title": "Bilevel Coordinated Reflection: A Game-Theoretic Approach to Multi-Agent LLM Systems",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "对多智能体中的语义记忆状态与反思过程进行建模分析",
+      "first_seen_at": "2026-09-07 22:27:59 UTC",
+      "updated_at": "2026-09-07 22:27:59 UTC"
+    }
+  ]
+}

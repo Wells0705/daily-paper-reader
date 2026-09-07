@@ -1,0 +1,951 @@
+Title: Compact-Memory LLM Agents via Online Max-Member Clustering and Atom-Aware Packing
+
+URL Source: https://arxiv.org/pdf/2609.04915v1
+
+Published Time: Mon, 07 Sep 2026 00:44:37 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# Compact-Memory LLM Agents via Online Max-Member Clustering and Atom-Aware Packing 
+
+Jiahe Geng, Jinpeng Wang, Kun Yuan September 7, 2026 
+
+Abstract 
+
+Many practical long-horizon LLM deployments face tight prompt budgets because latency, cost, and context limits make full-context prompting impractical as interaction length grows. In that setting, the key question is not raw recall alone, but which memory design gives the best quality–token trade-off in the compact-memory regime. To answer this question, we present RSM-full , an online clustered-memory pipeline designed for a strong quality–token Pareto operating point. RSM-full combines two simple design choices: a cosine-gated max-member merge write rule and an atom-aware grouped context packer. On AMA-Bench, our primary compact-memory benchmark, it reaches 83% of Full-Context quality at 32% of the token cost at a 4k prompt budget; under matched four-seed averaging it outperforms the closest streaming-clustered baseline (Online K-Means) by +3 .5–
+
+6.0 pp ( p<. 001 ) across the entire ∼2.6k– ∼5k regime. Matched three-seed ablations show that most of this advantage comes from the merge rule ( +5 .7 pp over Online K-Means and matched-τ DP-means) and the grouped packer ( +5 .0 pp over flat concatenation). The same compact-memory pattern reproduces on RealMem, an independent long-horizon persona-memory benchmark: RSM-full improves on Budget-RAG ( +0 .69 pp, p=.006 ), is on par with BM25-RAG (paired ∆=+0 .27 pp, p=.47 , no significant difference; we do not claim BM25 equivalence in the equivalence-test sense), and significantly outperforms Streaming-Proto ( +2 .97 pp) and the closest reproduced 2025 agentic-memory baseline A-MEM ( +1 .65 pp, p<. 001 ). Across benchmarks, the main empirical message is consistent: under tight prompt budgets, compact-memory performance is driven mainly by how streaming memories are merged and how retrieved content is assembled. Overall, RSM-full is most useful when answer quality must be preserved under roughly 2k– 5k prompt tokens, where it defines a strong compact-memory Pareto point. Higher-token baselines remain stronger outside this regime. 
+
+# 1 Introduction 
+
+Many practical long-horizon LLM deployments must retain past interaction while meeting latency, cost, and context-window constraints. Full-context prompting preserves answer quality, but its token cost grows linearly with interaction length. Fixed-window or top-K retrieval controls prompt length, but often discards the latent structure that makes prior experience reusable [4, 11, 19]. The central question is therefore not raw recall in isolation, but which memory operating point yields the best quality–token trade-off in the compact-memory regime ( ≤ 5k prompt tokens)? 
+
+We answer this question with RSM-full , an online clustered-memory pipeline built around two simple design choices: a cosine-threshold max-member merge write rule and an atom-aware grouped context packer. The paper’s main claim is that these choices define a strong compact-memory Pareto point under tight prompt budgets. The empirical spine is two positive end-to-end benchmarks: AMA-Bench as the primary compact-memory benchmark, and RealMem as an independent replication on long-horizon persona memory. On AMA-Bench, RSM-full reaches 83% of Full-Context quality at 32% of the token cost at a 4k prompt budget and outperforms the closest compact-memory baselines in the ∼2.6k– ∼5k regime. Matched multi-seed ablations show that most of this advantage comes from the merge rule ( +5 .7 pp over Online K-Means and matched-τ DP-means) and the grouped packer ( +5 .02 ± 1.00 pp over flat concatenation). On RealMem, the same compact-memory pattern reproduces under matched evaluation. Throughout the paper, we treat 1arXiv:2609.04915v1 [cs.AI] 4 Sep 2026 the merge rule and grouped packer as the main explanation for AMA-Bench, and the v1 retrieval rule only as benchmark-conditional supporting evidence: on BGE-normalized AMA-Bench the retrieval contrast is null once clustering and packing are fixed (Table 3, A −D cell, p=0 .40 ), whereas on LoCoMo-Plus grouped Cognitive it improves results on 2/4 relation families. 
+
+Related work. Recent agent-memory systems attack long-horizon behavior through compression, selective context construction, or structured memory management [2, 6, 8, 17, 18, 22]. Related compact-memory systems such as ACON, Latent Context Compilation, Active Context Compression, and Memori focus mainly on what to compress or summarize [1, 9, 12, 16]. Our question is narrower: under a tight prompt budget, which design choices at the vector-index-and-assembly layer actually determine answer quality? This makes our closest neighbors online vector-index methods such as threshold-based clustering, Online K-Means, Streaming PCA, and FIFO prototype memories [3, 10, 14, 15]. RSM is complementary to higher-level prompt-management systems [7, 13, 21]; selective forgetting is outside scope. 
+
+Contributions. 
+
+1. A strong compact-memory operating point. On AMA-Bench, RSM-full reaches 83% of Full-Context quality at 32% of the token cost and, under matched four-seed averaging, beats Online K-Means by 
+
++3 .5–6.0 pp across the ∼2.6k– ∼5k regime (Table 2, Figure 1). 2. A mechanism account for that gain. On AMA-Bench, matched ablations attribute most of the improvement to the cosine-gated max-member merge rule ( +5 .7 pp over Online K-Means and matched-τ
+
+DP-means) and the atom-aware grouped packer ( +5 .02 ± 1.00 pp over flat concatenation; Tables 3, 4). 3. Replication on RealMem. The same compact-memory pattern reproduces on an independent long-horizon persona-memory benchmark: RSM-full improves on Budget-RAG, matches BM25-RAG within noise, and outperforms Streaming-Proto and A-MEM under matched evaluation (Table 6). We also delimit the scope of these claims. The v1 retrieval rule provides conditional evidence on LoCoMo-Plus grouped Cognitive, but it is null on BGE-normalized AMA-Bench once clustering and packing are fixed; similarly, raw LoCoMo and LongMemEval define boundary regimes in which the compact-memory advantage weakens or disappears. 
+
+# 2 Method 
+
+This section describes the part of RSM that is needed to explain its quality–token Pareto advantage in the compact-memory regime. The main text therefore focuses on the two components directly supported by the AMA ablations: the cosine-gated write rule that determines how streaming memories are merged, and the atom-aware grouped packer that determines how retrieved content is assembled at prompt time. Higher-rank storage machinery (stored basis Vm, coefficient summary cm, Grassmann merge, adaptive rank, int8/PQ quantisation) is retained as a deployment path and deferred to Appendix B.1. 
+
+Component 1 — Cosine-gated max-member merge. As trajectory chunks arrive one at a time, RSM incrementally routes each chunk h to an atom (cluster) or allocates a new atom. Let μm denote the running 
+
+ℓ2-normalised mean of atom m. The write gate is 
+
+m∗ = arg max  
+
+> m
+
+cos( h, μ m),
+
+action (h) = 
+
+(merge into m∗, if max 
+
+
+
+cos( h, μ m∗ ), max i cos( h, x m∗,i )
+
+
+
+≥ τ, 
+
+allocate a new atom , otherwise. (1) A single threshold τ is calibrated per embedding space on ≤50 unlabelled validation examples via τ ≈ Q0.70 
+
+of pairwise cosines (§3). The write cost is O(M d ) per chunk ( M = live atom count). The key structural choice is the max_mem check: a new chunk can merge when either the centroid or any existing member exceeds 
+
+τ . This makes the gate more permissive than pure centroid thresholding and is the axis tested directly against Online K-Means and matched-τ DP-means in Table 3. 2Component 2 — Atom-aware grouped context assembly. At prompt-construction time, RSM retrieves the top-K atoms, ranks members within each atom, and packs the selected chunks grouped by atom 
+
+(with atom headers and temporal ordering) rather than as a flat rank-ordered list. This grouped packer is the paper’s second core component: when clustering and retrieval are held fixed, replacing atom-aware grouping with flat concatenation costs 5.02 ± 1.00 percentage points on a matched three-seed AMA ablation (Table 4). 
+
+Retrieval rule and storage variants. Each atom m can be scored by 
+
+Score( q, m ) = |v⊤
+
+> 1,m
+
+q|, (2) where v1,m is the top singular vector of the atom’s member matrix. On ℓ2-normalised BGE embeddings, this score is equivalent, for retrieval purposes, to normalised-centroid cosine once the atom-aware packer is held fixed (Table 3, A −D). Higher-rank storage and quantised variants remain useful for cross-geometry deployment (ToolBench, MMLU) and are detailed in Appendix B.1. 
+
+Complexity. Per-query complexity is O(M d ), identical to centroid cosine at one inner product per atom. Storage extensions (int8, PQ, Grassmann merge, adaptive rank) are appendix material because the primary BGE AMA results are explained by clustering and packing rather than by deeper use of the stored basis. 
+
+# 3 Experimental Setup 
+
+Benchmark roles. The benchmarks are chosen to test different parts of the paper’s central claim. AMA-Bench (208 episodes) [20] is the primary compact-memory benchmark and provides the main evidence for the quality–token operating point and the matched ablations on merging and packing. RealMem is the second positive end-to-end benchmark and tests whether the same compact-memory advantage transfers to long-horizon persona memory under matched evaluation. LoCoMo-Plus grouped Cognitive relation-family slices then serve as conditional external evidence for the deployed full pipeline, especially for the benchmark-conditional v1 retrieval result. Raw LoCoMo [13] and LongMemEval define boundary regimes in which pure dense retrieval is expected to weaken and the compact-memory advantage may diminish. The MMLU sequential stream serves as an anti-forgetting stress test at matched bytes, and ToolBench (catbal N =2000 ,appendix) is a storage-compression reference. Dataset details and operating-point configurations are reported in Appendix B.3. 
+
+Methods. On AMA-Bench we compare against No-Memory, Full-Context, BM25-RAG, Full-RAG, Budget-RAG, a Streaming-Proto FIFO prototype, MemGPT, MemoryBank, A-MEM, Streaming-PCA (Oja), Online K-Means, and matched-τ online DP-means. On RealMem we compare against No-Memory, BM25-RAG, Full-RAG, Budget-RAG, Streaming-Proto, RSM-centroid, RSM-full-int8, and the reproduced A-MEM baseline; MemoryBank and MemGPT are omitted from the main table because under our harness both score at or below No-Memory (Appendix H). On LoCoMo-Plus grouped Cognitive we report No-Memory, Full-RAG, Budget-RAG, Streaming-Proto, A-MEM, RSM-cent-retr, and RSM-full. 
+
+Hyperparameters and selection protocol. All RSM hyperparameters ( τ , k, chunk_turns ) are selected on held-out validation splits that are strictly disjoint from the reported test sets. The cosine threshold τ varies with embedding geometry (calibration rule: τ ≈ Q0.70 of pairwise cosines from ≤ 50 unlabelled validation examples): MMLU (all-MiniLM) τ =0 .16 ; ToolBench (text-embedding-3-small) τ =0 .65 ; AMA-Bench/LoCoMo (BGE-large) τ =0 .85 .
+
+Evaluation protocol. AMA-Bench uses GPT-4o-mini as the agent (temperature 0, max-output 256 ) and a uniform llmmelon GPT-5.4 1 rejudge over all 2,496 QAs per method. RealMem uses GPT-4o-mini as the agent and llmmelon GPT-5.4 with the official single-hop judge template, pooled over three stream-permutation   
+
+> 1“llmmelon GPT-5.4” refers to a GPT-5 family model (version 5.4, accessed at temperature 0via an aggregator-mediated endpoint) used uniformly for all judge calls in this paper to ensure within-paper consistency. Judge-comparability against the AMA-Bench shipped GPT-4o judge, plus split-half and rerun-stability diagnostics, are reported in Appendix D.
+
+3seeds. LoCoMo-Plus grouped Cognitive uses GPT-4o-mini as the agent and the official LLM-as-judge protocol with llmmelon GPT-5.4, scored correct = 1 , partial = 0 .5, wrong = 0 . Raw LoCoMo and LongMemEval use reference token-F1. ToolBench uses GPT-4o as both agent and judge, and MMLU / LLaMA hidden-state experiments use dataset-native Recall@1. Judge-stability diagnostics are reported in Appendix D. 
+
+# 4 Main Results 
+
+Unified comparison protocol. The main results proceed from AMA-Bench, to RealMem, to conditional external evidence and boundary conditions. All within-table deltas are computed inside a single prompt pipeline on paired QA items, so absolute levels should be compared only within each table. AMA-Bench uses the production v20 pipeline with chunk_turns =5, retrieve_k =6, and τ =0 .85 . RealMem uses the same BGE stack with chunk_mode=session , retrieve_k =5, and τ =0 .85 at a 4k-token budget. LoCoMo-Plus grouped Cognitive uses the same BGE stack with benchmark-fixed settings, without test-set tuning. 
+
+4.1 AMA-Bench: compact-memory operating point 
+
+AMA-Bench is the paper’s primary benchmark because it most directly tests the compact-memory quality– token frontier. In the ∼2.6k– ∼5k regime, where practical systems must trade answer quality against prompt budget rather than optimize raw quality at any cost, RSM-full occupies a favorable Pareto operating point. 
+
+Main AMA result (Table 1). At the matched ∼4k token budget, RSM-full ( 0.311 ) outperforms Streaming-Proto ( 0.302 ) by +0 .9 pp and Budget-RAG ( 0.292 ) by +1 .9 pp, delivering 83 % of Full-Context quality at 
+
+32 % of the token cost. Higher-token references (Full-Context, Full-RAG, BM25-RAG) remain stronger in absolute quality, but they define the upper-quality region outside the compact-memory regime rather than the frontier at matched budgets. Paired bootstrap ( 10 ,000 resamples, per-QA, n=2 ,496 ) gives Streaming-Proto: ∆= + 1 .72 pp, 95% CI 
+
+[−0.24 , +3 .69] , p=0 .091 NS (single-seed); Budget-RAG: ∆= + 2 .76 pp, 95% CI [+0 .76 , +4 .69] , p=0 .004 .Under 4-seed averaging on the SP side (Table 2), the RSM-full vs. SP gap reaches +2 .68 pp ( p=0 .002 ). When published agentic-memory methods are run at the same ∼4k-token budget under the authors’ original algorithms, MemGPT [15], MemoryBank [21], and A-MEM [18] reach 0.246 , 0.267 , and 0.273 ± 0.003 ,respectively, all at least 3.8 pp below RSM-full-int8 ( 0.315 ). For fairness, all rows in this table are evaluated inside the same prompt pipeline, and all are single deterministic runs except A-MEM, which is reported as μ±σ over three stream-permutation seeds because note generation introduces server-side nondeterminism even at temperature 0. A-MEM, MemoryBank, and MemGPT also use the same snippet-expansion mechanism as RSM-full, keeping per-query prompt usage within ±5% of RSM-full’s 4,001 tokens. The RSM-centroid row should be read as a joint retrieval-and-packing control; the isolated retrieval contrast with the atom-aware packer held fixed appears in the A–D comparison of Table 3 and is null ( p=.40 ). Table 1 gives the full per-metric breakdown, while Tables 2 and 4 report the symmetric multi-seed analyses for RSM-full. Within Table 1, Streaming-Proto and Budget-RAG are reported at the matched ∼4k token budget (calibrated bt =4880 / bt =6240; raw data data/token_matched/ ). The token column reports prompt tokens plus amortized LLM-organization cost, so the Avg/kTok column uses the same total-cost denominator throughout. Under this accounting, RSM-full remains ahead of every compact-memory baseline at the matched ∼4k budget (Streaming-Proto 0.076 , Budget-RAG 0.070 ). For the reproduced 2025 agentic-memory baselines, we treat A-MEM as the closest harness-compatible comparator in AMA-Bench and RealMem. We keep MemGPT and MemoryBank in Table 1 only as same-pipeline reproduced references, not as method-level upper bounds: the same default-hyperparameter reproduction issues discussed for RealMem in Appendix H plausibly affect AMA-Bench too, though less severely because AMA-Bench episodes are shorter. 
+
+Multi-budget comparison (Table 2). Under the lean pipeline with four stream-permutation seeds, RSM-full outperforms Online K-Means at all three tested budgets ( +3 .7/+3 .5/+6 .0 pp at ∼2.6k/ ∼4k/ ∼5k, 4Table 1: AMA-Bench end-to-end comparison. Methods above the midline require more than 12 k tokens. 
+
+Method Avg (per-ep) Recall CausInf StaUpd StaAbs TotalTok ♡ Avg/kTok Full-Context 0.373 0.430 0.369 0.380 0.249 12,519 0.030 
+
+BM25-RAG 0.357 0.405 0.366 0.363 0.234 22,648 0.016 
+
+Full-RAG 0.355 0.415 0.373 0.340 0.234 20,642 0.017 
+
+RSM-full-int8 (ours, k=8 )∗ 0.315 0.373 0.337 0.295 0.196 4,003 0.079 
+
+RSM-full (ours, k=8 ) 0.311 0.361 0.342 0.308 0.169 4,001 0.078 
+
+Streaming-Proto 0.302 0.337 0.347 0.280 0.203 3,982 0.076 
+
+Budget-RAG 0.292 0.335 0.326 0.269 0.193 4,146 0.070 
+
+Online K-Means ( Kmax =16 )§ 0.281 — — — — 4,000 0.070 
+
+RSM-centroid (ours, centroid control) 0.268 0.302 0.305 0.250 0.172 3,583 0.075 
+
+Streaming-PCA (Oja, k=4 )§ 0.248 — — — — 4,000 0.062 
+
+A-MEM ‡ 0.273 ± 0.003 0.319 0.299 0.246 0.182 4,218+414 0.059 
+
+MemoryBank ‡ 0.267 0.315 0.299 0.250 0.150 3,802 0.070 
+
+MemGPT ‡ 0.246 0.274 0.285 0.232 0.152 3,803+193 0.062 
+
+No-Memory 0.169 0.168 0.242 0.127 0.130 388 0.436 
+
+> ∗
+
+Int8 vs float32 gap is within noise. 
+
+> §
+
+Oja/K-Means report the lean-pipeline 4-seed mean. 
+
+> ♡
+
+TotalTok = prompt tokens + amortized LLM-organization cost. 
+
+> ‡
+
+Reproduced with the authors’ original algorithms inside the same prompt pipeline; see the surrounding text and Appendix H for reproduction limitations. 0 5000 10000 15000 20000   
+
+> Total Prompt Tokens (incl. LLM-organize amortized for A-MEM / MemGPT)
+> 0.15 0.20 0.25 0.30 0.35 0.40
+> GPT-5.4 Judge Avg Correctness
+> 2k 4k 5k RSM-full-int8
+> Streaming-Proto Online K-Means RSM-centroid Budget-RAG Streaming-PCA (Oja) A-MEM MemoryBank MemGPT
+> Full-Context BM25-RAG Full-RAG
+> No-Memory
+> AMA-Bench Quality Token Pareto (208 episodes)
+> RSM-full (ours) RSM-full-int8 (ours) Compact-memory baselines Published agentic-memory methods High-tok references No-Memory Pareto frontier Compact-memory regime ( 5k tok)
+
+Figure 1: Quality–token trade-off on AMA-Bench. The shaded region marks the compact-memory regime (≤5k tokens). all p<. 001 ) and Oja by +4 .6–9.5 pp. The advantage is therefore consistent across the target compact-memory budget range, not confined to a single operating point. 
+
+4.2 Why it works: causal decomposition on AMA-Bench 
+
+2×3 factorial decomposition (Table 3). With the atom-aware packer held fixed, the main result is that the clustering gain comes from RSM’s max-member merge rule rather than from generic growing-K behavior or from the retrieval rule. In the six-cell design {RSM, K-Means, DP-means} × {|v⊤
+
+1 q|, centroid cosine}, RSM improves over K-Means by +5 .7 pp (A −B) and over matched-τ DP-means by +5 .5 pp (A −E), both 
+
+p<. 0001 . DP-means is indistinguishable from K-Means ( p=0 .38 ), while the retrieval-rule contrast on RSM clusters is null (A −D, p=0 .40 ). This is a matched clustering ablation: all six cells use the same atom-aware packer, the same per-episode stream permutation, and the same three-seed pooled evaluation ( n=7 ,488 ). DP-means uses the ℓ2 threshold equivalent to the cosine gate τ =0 .85 , namely λ=√2 − 2τ =√0.3≈0.5477 , with Kmax =16 matched to Online K-Means. Significance is computed with paired bootstrap over 10 ,000 resamples. 5Table 2: AMA-Bench multi-seed comparison against the closest vector-index baselines. 
+
+Multi-seed mean (per-QA) Mean gain vs. RSM-full ref. (percentage points) Method bt= 2048/4096/8192 Seeds ∼2.6k ∼4k ∼5k 
+
+RSM-full (ref.) .279 /. 316 /. 360 4/4/4 ref ref ref 
+
+Oja (k=4 ) .232 /. 248 /. 265 4/4/3 +4.64 +6.78 +9.46 
+
+Online K-Means .242 /. 281 /. 299 4/4/3 +3.65 +3.50 +6.04 
+
+Both baselines use flat assemblers; the assembler confound is controlled in Table 5. Entries in the right block report the mean quality gap relative to the RSM-full reference, in percentage points. 
+
+Table 3: 2×3 decomposition of RSM, Online K-Means, and matched-τ DP-means on BGE-normalized AMA-Bench. 
+
+|v⊤
+
+> 1,m
+
+q| retrieval Centroid cosine retrieval Retrieval contrast 
+
+RSM (cosine gate, no K cap) A: 0.3142 D: 0.3109 A−D = +0 .33 (NS, p=.40 )
+
+Online K-Means ( Kmax =16 ) B: 0.2568 C: 0.2652 B−C = −0.84 ∗ (p=.015 )
+
+DP-means ( λ=√0.3≈0.5477 , Kmax =16 ) E: 0.2597 F: 0.2628 E−F = −0.30 (NS, p=.38 )
+
+Clustering contrasts at v1 retrieval endpoint :RSM vs K-Means A−B = + 5.74 ∗∗∗ CI [+4 .65 , +6 .84] , p<. 0001 
+
+RSM vs DP-means A−E = + 5.45 ∗∗∗ CI [+4 .37 , +6 .53] , p<. 0001 
+
+DP-means vs K-Means E−B = +0 .29 CI [−0.35 , +0 .92] , p=.38 (NS) 
+
+Clustering contrasts at centroid retrieval endpoint :RSM vs K-Means D−C = + 4.57 ∗∗∗ CI [+3 .55 , +5 .62] , p<. 0001 
+
+RSM vs DP-means D−F = + 4.81 ∗∗∗ CI [+3 .79 , +5 .84] , p<. 0001 
+
+DP-means vs K-Means F−C = −0.25 CI [−0.87 , +0 .40] , p=.43 (NS)     
+
+> Combined A −C: +4 .90 pp ( p<. 0001 ). Interaction: +1 .17 pp ( p=.026 ).
+
+Atom-aware packer ablation (Table 4). With clustering and retrieval held fixed, the main result is that the atom-aware grouped packer adds +5 .02 ± 1.00 pp over flat concatenation across three seeds. This shows that prompt assembly is not a cosmetic implementation detail but a substantive part of the compact-memory Pareto gain. This is a matched packer ablation on the full 208-episode AMA test set: Table 4 uses the same RSM clusters, the same |v⊤ 
+
+> 1
+
+q| retrieval rule, and the same bt =4096 setup as cell A of Table 3; only the packer changes. Table 4: Three-seed atom-aware packer ablation on the lean AMA-Bench pipeline. 
+
+Seed Atom-aware ( k=8 ) Flat ( k=8 ) ∆ (pp) Note seed 43 0.3141 (784 /2496 ) 0.2600 (649 /2496 ) +5.41 Single-seed bootstrap CI [+3 .53 , +7 .29] , p<. 0001 
+
+seed 44 0.3189 (796 /2496 ) 0.2612 (652 /2496 ) +5.77 Matched-protocol replication seed 45 0.3097 (773 /2496 ) 0.2708 (676 /2496 ) +3.89 Matched-protocol replication 
+
+3-seed mean 0.3142 0.2640 +5.02 ± 1.00 t-CI [+2 .54 , +7 .50] ; p<. 0001 per seed 
+
+> Atom-aware numbers are the 3-seed RSM-full results reported in Table 2.
+
+Supporting bridge: K-Means with the same packer (Table 5). As a bridge check, giving K-Means the same atom-aware packer still leaves RSM-full ahead by +4 .90 pp ( p<. 0001 ). This is consistent with the cleaner clustering-only contrast in Table 3 and shows that the advantage is not eliminated by equalizing prompt assembly. 
+
+Mechanism check: compression behavior at longer horizon. We treat the following as a mechanism check only — not as a long-horizon quality claim — because at N =32 k AMA-Long Track-A accuracy sits at 6Table 5: K-Means + atom-aware packer ablation on AMA-Bench. 
+
+Method Seed 43 Seed 44 Seed 45 Pool. p
+
+RSM-full 
+
+(v1) 0.3141 0.3189 0.3097 0.3142 —K-Means (centroid) 0.2700 0.2580 0.2676 0.2652 —
+
+∆ (RSM − KM, pp) +4 .40 +6 .08 +4 .21 +4.90 < . 0001 
+
+95% CI [+2 .56 , +6 .29] [+4 .17 , +7 .93] [+2 .32 , +6 .09] [+3 .79 , +5 .98] 
+
+Domain breakdown (pooled; RSM − K-Means) 
+
+OPENWORLD-QA ( n=1080 ) +10 .27 < . 0001 
+
+WEB ( n=1116 ) +8.51 < . 0001 
+
+TEXT2SQL ( n=1836 ) +8.32 < . 0001 
+
+SOFTWARE ( n=1296 ) +4.18 .002 
+
+EMBODIED-AI ( n=1080 ) −2.68 .042 (α-low) Game ( n=1080 ) −1.58 .259 NS        
+
+> Three stream-permutation seeds {43 ,44 ,45 }, pooled n=7 ,488 paired QA. Both arms use the same atom-aware packer at a 4096-token budget. The observed +4 .90 pp is therefore a joint clustering-and-retrieval effect. The clustering-only contrast with retrieval held fixed is A −B in Table 3.
+
+the No-Memory ceiling for all methods, so any quality ∆ at this horizon speaks to bank-size compression rather than to end-to-end answer quality (Appendix G). Within that scope, on AMA-Long Track-A super-trajectories (AMA-Bench episodes stitched at N =16 k and N =32 k turns, 75 episodes per N ), removing the max-member fallback ( RSM-cent-merge ; a write-side ablation distinct from the retrieval-side “RSM-centroid” of Tables 1 and 6) inflates atom count by +8 .84% / +10 .56% (paired t> 21 , p< 10 −32 at each N ) at null paired quality cost (pooled ∆=+0 .22 pp, p=.70 NS). The merge rule’s compression behavior therefore extends beyond AMA-Bench’s per-episode horizon, even though the long-horizon quality envelope is unchanged. 
+
+4.3 A second positive compact-memory benchmark: RealMem 
+
+RealMem is a long-horizon persona-memory benchmark where the agent answers first-person questions about a character after streaming 135 –276 conversational sessions per persona ( ∼50k–100k tokens of dialogue). We evaluate on all 10 released personas (adeleke_okonjo , ethan_hunt , kenta_tanaka , kim_ji_young ,
+
+liam_o_connor , lin_wanyu , oliver_smith , pak_budi , sarah_miller , sophie_dubois ) with 114 –168 paper-released QA pairs per persona ( 1,415 unique QA total), at three stream-permutation seeds {43 , 44 , 45 } matching the AMA protocol (pooled n=4 ,243 ). RSM-full uses the same production settings as LoCoMo-Plus: τ =0 .85 ,
+
+k=8 , chunk_mode=session , retrieve_k=5 , budget 4k tokens, agent GPT-4o-mini, judge llmmelon GPT-5.4 with the official single-hop template. 
+
+Main result (Table 6). RealMem is the paper’s second positive end-to-end result alongside AMA-Bench. It reproduces the same compact-memory pattern on an independent benchmark. RSM-full is the top-scoring compact-memory method and strictly Pareto-dominates Budget-RAG (higher accuracy, +0 .69 pp, with fewer prompt tokens) while matching BM25-RAG’s accuracy at slightly fewer tokens (NS). It also significantly outperforms Streaming-Proto ( +2 .97 pp, p<. 001 ) and RSM-centroid ( +2 .08 pp, p<. 001 ). A-MEM is the closest reproduced 2025 agentic-memory comparator at +1 .65 pp ( p<. 001 ). The reproduced MemoryBank and MemGPT runs fall at or below the No-Memory floor under our harness, suggesting reproduction limitations on RealMem rather than a meaningful method-level comparison; we are investigating and have therefore omitted those rows from Table 6, with details in Appendix H. Cross-seed std is ≤ 0.013 
+
+for every reported RSM-full and baseline row, consistent with the order-invariance pattern in Table 20. 7Table 6: RealMem results on the full 10-persona set. ∆ denotes RSM-full minus baseline. 
+
+Method 3-seed mean Acc TotalTok ♡ ∆ vs RSM-full (pp) p-value 
+
+RSM-full (k=8 , ours) 0.4684 3,705 — —BM25-RAG 0.4657 3,773 +0 .27 0.47 NS Budget-RAG 0.4615 3,737 +0.69 ∗∗ 0.006 
+
+Full-RAG 0.4569 3,513 +1.15 ∗∗ 0.002 
+
+A-MEM † 0.4519 3,753+316 +1.65 ∗∗∗ < . 001 
+
+RSM-full-int8 0.4506 3,513 +1.78 ∗∗∗ < . 001 
+
+RSM-centroid ( k=1 ) 0.4477 3,515 +2.08 ∗∗∗ < . 001 
+
+Streaming-Proto 0.4388 3,512 +2.97 ∗∗∗ < . 001 
+
+No-Memory 0.2317 0 +23 .67 ∗∗∗ < . 001 
+
+> ♡
+
+TotalTok includes amortized LLM organization cost. † marks reproduced baseline. 
+
+Interpretation. RealMem differs from AMA-Bench in task structure and lexical content, but the qualitative conclusion is the same: compact-memory performance is strongest when clustering and grouped assembly preserve chunk-level detail under a tight token budget. The effect size is smaller than the AMA +4 .90 pp RSM-vs-K-Means gap, plausibly because RealMem has weaker atom structure and stronger lexical cues, but the direction is unchanged. We therefore treat RealMem as the paper’s second positive end-to-end benchmark and as external validation of the compact-memory Pareto claim. 
+
+4.4 Conditional external evidence and boundary conditions 
+
+LoCoMo-Plus grouped Cognitive provides conditional external evidence for the deployed full pipeline, while raw LoCoMo and LongMemEval define the boundary regimes where the clustered-memory advantage weakens. 
+
+LoCoMo-Plus grouped Cognitive: conditional external evidence (Table 7). Across the four relation families, RSM-full with v1 retrieval is significantly ahead of the v1-free RSM-centroid baseline on 
+
+causal and goal , while state and value families are null. LoCoMo-Plus therefore provides conditional external evidence that the retrieval-rule contrast can activate on a grouped multi-cue benchmark, on 2 of 4 relation families. A matched-qid flat-vs-grouped control in Appendix Table 10 is consistent with that interpretation. 
+
+Boundary regimes. On raw LoCoMo and LongMemEval, pure-dense methods underperform BM25/Full-RAG and RSM-full collapses toward RSM-centroid, consistent with the low-α operating envelope. Positive end-to-end claims are therefore scoped to AMA-Bench, RealMem, and the grouped LoCoMo-Plus slices, while raw LoCoMo and LongMemEval serve as boundary conditions. 
+
+# 5 Discussion 
+
+The evidence supports a simple hierarchy of claims. AMA-Bench establishes the main compact-memory operating-point result, RealMem reproduces the same pattern on an independent benchmark, and the matched AMA ablations explain the gain mainly through the max-member merge rule and the atom-aware grouped packer. The v1 retrieval rule remains conditional supporting evidence only: it is null on BGE-normalized AMA-Bench once clustering and packing are fixed, but activates on 2/4 LoCoMo-Plus grouped relation families. Practically, RSM-full is most relevant when answer quality must be maintained under roughly 2–5k prompt tokens and the stream contains enough repeated latent structure to form multi-member atoms. When that structure is weak, the method converges toward centroid-equivalent behavior and lexical or hybrid retrieval can become preferable; Table 8 should therefore be read only as a descriptive cross-benchmark 8Table 7: LoCoMo-Plus grouped Cognitive across all four relation families. 
+
+## Method / slice Causal (n=101 )State (n=100 )Goal (n=100 , new) Value (n=100 , new) 
+
+## RSM-full (v1, k=8 ) 0.396 / 3446 0.240 / 3913 0.210 / 398 0.310 / 4042 
+
+## RSM-cent-retr ( v1-free) 0.327 / 2319 ∗ 0.250 / 3128 0.190 / 314 0.370 / 3894 †
+
+## Full-RAG 0.347 / 2319 0.180 / 3128 ∗ 0.180 / 314 0.370 / 3894 †
+
+## Budget-RAG 0.327 / 3536 ∗ 0.250 / 3701 0.150 / 2765 † 0.310 / 3894 
+
+## Streaming-Proto 0.327 / 2319 ∗ 0.260 / 3128 0.150 / 314 † 0.350 / 3894 †
+
+## A-MEM ‡ 0.149 / 3783 0.110 / 3879 0.050 / 3435 0.270 / 3144 
+
+## No-Memory 0.218 / 0 0.140 / 0 0.120 / 0 0.170 / 0             
+
+> Entries report quality (avg) / mean prompt tokens. Superscripts denote paired McNemar significance vs. RSM-full (ties dropped): ∗p<. 05 ,∗∗ p<. 01 ,
+> ∗∗∗ p<. 001 ,†NS. Exact p-values by relation family are reported in Appendix Table 10.
+> †Budget-RAG on state is the only non-significant exception; ‡A-MEM is excluded because of configuration mismatch. RSM-cent-retr shares RSM-full’s clusters and atom-aware packer but swaps |v⊤
+> 1q|for centroid-cosine retrieval (retrieval-axis ablation).
+
+diagnostic. ToolBench and MMLU suggest that the same code path remains useful under matched-byte storage constraints and anti-forgetting stress tests, but higher-token methods remain stronger above 12 ktokens. 
+
+# 6 Limitations 
+
+Positive end-to-end claims are anchored by AMA-Bench and RealMem under a single BGE embedding stack; LoCoMo-Plus grouped Cognitive provides only conditional supporting evidence. End-to-end experiments use one embedder and one primary judge stack, so cross-embedder replication remains future work. RSM also does not support selective forgetting, and keyword-heavy settings can still favor lexical or hybrid retrieval. Finally, the long-horizon mechanism-extension ablation (§4.2, Appendix G) is run on AMA-Long Track-A super-trajectories stitched from AMA-Bench episodes, so it isolates bank-size compression rather than an independent long-horizon quality claim. 
+
+# Societal Impact 
+
+RSM reduces per-agent memory footprint but still requires safeguards against cross-session leakage, demographic-bucket clustering, and judge-amplified errors. 
+
+# 7 Conclusion 
+
+RSM-full defines a strong quality–token Pareto point in the compact-memory regime. Across AMA-Bench and RealMem, the main empirical pattern is consistent: under tight prompt budgets, compact-memory performance depends mainly on how streaming memories are merged and how retrieved content is assembled. On AMA-Bench, most of the gain comes from two simple design choices—the cosine-gated max-member merge rule and the atom-aware grouped packer—and on RealMem the same advantage reproduces under matched evaluation. RSM-full is therefore most useful when answer quality must be preserved under roughly 
+
+2k– 5k prompt tokens; outside that regime, lexical retrieval or higher-token systems can remain preferable. 9Future work includes selective forgetting, cross-embedder replication, and broader multi-seed validation of appendix-level checks. 
+
+# References 
+
+[1] Luiz C. Borro, Luiz A. B. Macarini, Gordon Tindall, Michael Montero, and Adam B. Struck. Memori: A persistent memory layer for efficient, context-aware LLM agents. arXiv preprint arXiv:2603.19935 , 2026. [2] Pengfei Du. Memory for autonomous LLM agents: Mechanisms, evaluation, and emerging frontiers. 
+
+arXiv preprint arXiv:2603.07670 , 2026. [3] Bernd Fritzke. A growing neural gas network learns topologies. Advances in Neural Information Processing Systems , 7, 1995. [4] Yunfan Gao, Yue Xiong, Xinyu Gao, Kang Jia, Jinliu Pan, Yuntian Bi, Yansong Dai, Jiawei Sun, Haofen Wang, et al. Retrieval-augmented generation for large language models: A survey. arXiv preprint arXiv:2312.10997 , 2023. [5] Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song, and Jacob Steinhardt. Measuring massive multitask language understanding. Proceedings of the International Conference on Learning Representations (ICLR) , 2021. [6] Mengkang Hu, Tianxing Chen, Qiguang Chen, Yao Mu, Wenqi Shao, and Ping Luo. HiAgent: Hierarchical working memory management for solving long-horizon agent tasks with large language model. arXiv preprint arXiv:2408.09559 , 2024. [7] Gautier Izacard, Patrick Lewis, Maria Lomeli, Lucas Hosseini, Fabio Petroni, Timo Schick, Jane Dwivedi-Yu, Armand Joulin, Sebastian Riedel, and Edouard Grave. Atlas: Few-shot learning with retrieval augmented language models. In Journal of Machine Learning Research , volume 24, pages 1–43, 2023. [8] Zixi Jia, Qinghua Liu, Hexiao Li, Yuyan Chen, and Jiqiang Liu. Evaluating the long-term memory of large language models. In Findings of the Association for Computational Linguistics: ACL 2025 , pages 19759–19777, 2025. [9] Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, and Saravan Rajmohan. ACON: Optimizing context compression for long-horizon LLM agents. 
+
+arXiv preprint arXiv:2510.00615 , 2025. [10] Brian Kulis and Michael I. Jordan. Revisiting k-means: New algorithms via bayesian nonparametrics. In Proceedings of the 29th International Conference on Machine Learning (ICML) , 2012. [11] Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich K"uttler, Mike Lewis, Wen-tau Yih, Tim Rockt"aschel, Sebastian Riedel, and Douwe Kiela. Retrieval-augmented generation for knowledge-intensive nlp tasks. In Advances in Neural Information Processing Systems , 2020. [12] Zeju Li, Y. Zhou, and Q. Xu. Latent context compilation: Distilling long context into compact portable memory. arXiv preprint arXiv:2602.21221 , 2026. [13] Adyasha Maharana, Dong-Ho Lee, Sergey Tulyakov, Mohit Bansal, Francesco Barbieri, and Yuwei Fang. Evaluating very long-term conversational memory of LLM agents. arXiv preprint arXiv:2402.17753 ,2024. [14] Erkki Oja. Simplified neuron model as a principal component analyzer. Journal of Mathematical Biology ,15(3):267–273, 1982. [15] Charles Packer, Vivian Fang, Shishir G. Patil, Kevin Lin, Sarah Wooders, and Joseph E. Gonzalez. MemGPT: Towards LLMs as operating systems. arXiv preprint arXiv:2310.08560 , 2023. 10 [16] Nikhil Verma. Active context compression: Autonomous memory management in LLM agents. arXiv preprint arXiv:2601.07190 , 2026. [17] Yaxiong Wu, Sheng Liang, Chen Zhang, Yichao Wang, Yongyue Zhang, Huifeng Guo, Ruiming Tang, and Yong Liu. From human memory to ai memory: A survey on memory mechanisms in the era of LLMs. arXiv preprint arXiv:2504.15965 , 2025. [18] Wujiang Xu, Zujie Liang, Jintao Chen, Tiantian Zhu, Xingjun Gao, Yuanhao Nie, and Yongfeng Tang. A-MEM: Agentic memory for LLM agents. arXiv preprint arXiv:2502.12110 , 2025. [19] Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. React: Synergizing reasoning and acting in language models. In International Conference on Learning Representations , 2023. [20] Yujie Zhao, Boqin Yuan, Junbo Huang, Haocheng Yuan, Zhongming Yu, Haozhou Xu, Lanxiang Hu, Abhilash Shankarampeta, Zimeng Huang, Wentao Ni, Yuandong Tian, and Jishen Zhao. AMA-Bench: Evaluating long-horizon memory for agentic applications. arXiv preprint arXiv:2602.22769 , 2026. [21] Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. Memorybank: Enhancing large language models with long-term memory. In Proceedings of the AAAI Conference on Artificial Intelligence ,2024. [22] Zijian Zhou, Ao Qu, Zhaoxuan Wu, Sunghwan Kim, Alok Prakash, Daniela Rus, Jinhua Zhao, Bryan Kian Hsiang Low, and Paul Pu Liang. MEM1: Learning to synergize memory and reasoning for efficient long-horizon agents. arXiv preprint arXiv:2506.15841 , 2025. 
+
+# A Supplementary Tables and Controls 
+
+Variant definitions. The main paper uses RSM-full as the algorithmic instance, RSM-full-int8 as the storage-compressed deployment variant, and RSM-centroid as a centroid-only control. The table below is retained for terminology consistency. Table 8: Atom-membership diagnostics across benchmarks. 
+
+Benchmark Atoms α (Basis%) AvgSize ∆ Control Judge 
+
+High-α regime ( α≥50% ): clustered-memory advantage activates 
+
+ToolBench-catbal ( N =2 ,000 ) 227 56 .8% 8.8 +0 .25 pp RSM-centroid GPT-4o AMA-Bench (208 ep) 2.3/ep 62% † 10.2 +4 .3 pp RSM-centroid GPT-5.4 
+
+Intermediate regime (partially untested) 
+
+ToolBench-hard ( N =500 ) 282 29 .8% 1.8 +1 .8 pp (int8) RSM-centroid GPT-4o 
+
+Low-α regime ( α≤5% ): RSM-full ≈ centroid, graceful degradation 
+
+LoCoMo (10 conv) 38.4 ≤5% ∼2.6 +0 .58 pp RSM-centroid Token F1 LongMemEval ( N =500 ) 47.6 1.2% 1.05 −0.3 pp RSM-centroid Token F1 
+
+High-α, different control (supporting evidence) 
+
+MMLU ( N =1 ,383 ) 31 ∼80% 44.6 +1 .8 pp ‡ Streaming-Proto Rule-based   
+
+> †AMA-Bench reports both atom-level and episode-level proxies because each episode contains only ∼2.3atoms on average.
+> ‡MMLU uses a sequential-stream protocol and a different control baseline.
+
+Matched-qid flat-vs-grouped control for LoCoMo-Plus. This control is useful for interpretation and rebuttal, but it is secondary to the main AMA and grouped-LoCoMo tables, so we report it here for completeness. 11 Table 9: RSM pipeline variants.                      
+
+> Name Rank ( k)Retrieval Context builder Storage/atom
+> RSM-full 2–8 |v⊤
+> 1q|atom-aware (k+1) dfloats
+> RSM-full-int8 2–8 |v⊤
+> 1q|atom-aware (k+1) dint8 RSM-centroid 0cos( q, μ m)basic (flat) dfloats
+
+Table 10: Flat-vs-grouped matched-qid control on LoCoMo-Plus (bal40, n=40 ). 
+
+Protocol RSM-full (v1, k=8 ) RSM-cent-retr Budget-RAG Streaming-Proto Full-RAG flat 0.175 / 3100 0.150 / 3106 0.225 / 3875 0.150 / 3260 0.100 / 3189 
+
+grouped 0.200 / 1914 0.100 / 2650 0.225 / 3852 0.200 / 2565 0.175 / 2752 ∆(grouped −flat) +0 .025 / −1187 −0.050 / −456 +0 .000 / −23 +0 .050 / −696 +0 .075 / −437        
+
+> Entries report mean quality / mean prompt tokens. Paired comparison (RSM-full vs. RSM-cent-retr): flat ∆=+2 .5pp ( p=1 .00 ); grouped ∆=+10 .0pp ( p=0 .22 ). At n=40 , the grouped effect is directional rather than conclusive. Budget-RAG remains at 0.225 under both protocols.
+
+# B Additional Experiments and Diagnostics 
+
+B.1 Method: Storage Extensions (stored basis, coefficient summary, merge update, adaptive rank, quantisation) 
+
+This subsection collects higher-rank storage machinery that is supplementary to the primary BGE-AMA benchmark. On MMLU sequential, k∈{ 2, 4, 8} are all equivalent in quality (Table 18), with RSM-full-int8 at 
+
+k=2 as the lowest-byte operating point. The higher-rank code path is retained for cross-geometry continuity and for deployment with streams of unknown dimensionality. 
+
+Per-atom stored basis Vm and coefficient summary cm. Each atom m stores an orthonormal basis 
+
+Vm ∈ Rd×k (top-k right singular vectors of Xm) and cm = 1
+
+> nm
+
+P 
+
+> i
+
+Xm[i, :] Vm ∈ Rk. Main-paper retrieval Eq. 2 uses Vm’s first column only. 
+
+Bounded-buffer exact SVD (the evaluated system). Each atom maintains up to MAX_MEMBER_VECS =20 buffered members; exact SVD is recomputed at each merge. Storage accounting distinguishes serialised 
+
+(persistent Vm + μm) from peak resident (transient workspace): peak resident overhead for AMA-Bench is 
+
+≈ 188 KB per episode, released after buffer flush. All matched-byte comparisons use serialised storage. 
+
+Online Grassmann merge (scalability path). When nm exceeds the buffer, basis updates use an approximate weighted Fréchet mean on G(d, k ) via QR + eigendecomposition in O(dk 2): B =
+
+wi(Q⊤Vi)( Q⊤Vi)⊤ + wn(Q⊤Vn)( Q⊤Vn)⊤, V ′ 
+
+> i
+
+= Q eig k(B) with Q the QR basis of [√wiVi, √wnVn]. The 
+
+k-truncation provides self-correction. Most AMA-Bench atoms accumulate ≤ 20 members, so Grassmann updates are exercised only rarely. 
+
+Coefficient update. c′ 
+
+> i
+
+= (nici + cn)/(ni + 1) ; task-utility-weighted variant uses reward weight 
+
+w(ρ)= exp( ρ/τ w).
+
+Adaptive rank selection. For open-domain streams, k∗(m) = min {k : Pki=1 σ2
+
+> m,i
+
+/ P 
+
+> j
+
+σ2 
+
+> m,j
+
+≥ η} with 
+
+η=0 .95 , kmin =16 , kmax =128 . Evaluated benchmarks use fixed rank k∈{ 1, 2, 4, 8} per operating point for controlled comparability. 12 Basis quantisation. int8 per-column min-max gives 4× smaller Vm with +0 .06 pp end-to-end quality on AMA-Bench (Table 15, RSM-full-int8); PQ gives ∼ 8×. Per-query complexity remains O(M d ).
+
+B.2 Algorithm E: Subspace-Projected Per-Chunk Scorer (Negative Result) 
+
+Motivation. The main paper’s retrieval rule |v⊤ 
+
+> 1
+
+q| only uses one direction of the stored k-column basis Vm.One might reasonably ask whether a denser rule that uses Vm more fully—akin to full subspace projection 
+
+∥V ⊤ 
+
+> m
+
+q∥2 but applied at the chunk level rather than the atom level—could extract empirical advantage from the 
+
+k−1 otherwise-unused columns, and thereby empirically justify higher-rank storage under BGE-normalised embeddings. 
+
+Algorithm. Let Vm ∈ Rd×k be atom m’s stored orthonormal basis (columns are the top-k mean-centred right singular vectors of the member matrix). Let xi denote the i-th member embedding and q the query. Algorithm E keeps the exact RSM write gate, the exact |v⊤
+
+> 1,m
+
+q| atom-level filter, and the exact atom-aware packer (§2). The only change is the per-member scoring function used inside the retrieve/pack step: ambient cosine x⊤ 
+
+> i
+
+q is replaced by the subspace-projected inner product score E(xi, q | m) = x⊤ 
+
+> i
+
+VmV ⊤ 
+
+> m
+
+q =
+
+> k
+
+X
+
+> j=1
+
+(v⊤
+
+> j,m
+
+xi)( v⊤
+
+> j,m
+
+q). (3) Every summand j≥2 contributes only when the query and the candidate chunk are both aligned with a non-principal singular direction of the atom, so this score is the minimal change that could in principle let k> 1
+
+basis columns pay off in scoring. RSM-full (rank-8 storage, k=8 , ambient cosine) and Algorithm E (rank-8 storage, k=8 , subspace-projected) are tested under the same pipeline; the only difference is the per-chunk scoring formula. 
+
+Protocol. Full 208-episode AMA-Bench ( n=2 ,496 paired QA). Agent gpt-4o-mini; judge gpt-5.4. Chunking, budget, and packer match Table 5’s lean pipeline. This is a single-seed run, not pooled with the three-seed {43 , 44 , 45 } cell A; absolute baseline differs by ∼0.4 pp (within the stream-permutation envelope), but paired ∆’s are within this run. Two paired conditions: RSM-full (ambient cosine) and Algorithm E (subspace-projected, k=8 ). Paired bootstrap ( 10 ,000 resamples). 
+
+Result. Table 11 reports the full n=2 ,496 paired comparison. The result is negative: subspace-projected per-chunk scoring does not outperform the standard RSM scorer, reinforcing the paper’s main reading that the causal gains on BGE come from clustering and packing rather than from deeper use of the stored basis during scoring. Table 11: Algorithm E vs. RSM-full on the full 208-episode AMA-Bench. 
+
+Method Mean score (correct/ n) ∆ vs RSM-full 95% CI p
+
+RSM-full (k=8 , ambient cosine, ref) 0.3185 (795 /2,496 ) (ref) — —Algorithm E ( k=8 , subspace-projected) 0.3109 (776 /2,496 ) −0.76 [−2.12 , +0 .60] 0.27               
+
+> Per-domain breakdown (Algorithm E −RSM-full): WEB +1 .01 pp ( p=.56 , high-α), OPENWORLD_QA +0 .79 (p=.74 ), Game −0.91 , SOFTWARE −1.26 , EMBODIED_AI −1.48 , and TEXT2SQL −1.89 (p=.15 ). No domain reaches p<. 05 .Raw data: data/rsm_multidir_v2_full208.json . Bootstrap script: scripts/experiment/multidir_v2_paired_bootstrap.py .
+
+Interpretation. On BGE-normalised embeddings, the |v⊤ 
+
+> 1
+
+q| atom filter already selects chunks within a tight within-cluster subspace, so ambient cosine approximately equals the projected score; the extra j≥2
+
+terms act as re-weighting rather than added signal. The small negative ∆ (−0.76 pp, CI [−2.12 , +0 .60] ) is under single-seed power and does not distinguish “small signal loss” from “null fluctuation”. The reading is that RSM’s structural novelty on BGE lives in clustering + packing, not in deeper scoring-level use of the stored basis. 13 B.3 RSM Operating Points per Section 
+
+Table 12: RSM operating points by experimental section. 
+
+Section Stored object Retrieval rule Write gate Charged storage §F (LLaMA h.s.) Full subspace Vm +
+
+centroid ( k∈{ 2, 4})Proj. |v⊤ 
+
+> 1
+
+q|
+
+(Eq. 2) Cosine τ =0 .65 (dk +d) × 4 B (f32); int8 optional Appendix B.4 (La-tency) Full subspace Vm
+
+(col-major) Proj. precom-puted V ⊤ 
+
+> m
+
+q
+
+N/A (isolated profiling) 
+
+dk ×4 B§F (MMLU seq.) Full subspace Vm +
+
+centroid ( k=2 )Proj. |v⊤ 
+
+> 1
+
+q|
+
+(Eq. 2) Cosine τ =0 .16 (2 d+d) × 4 B (f32); int8 optional §4.1 (AMA main table) Full subspace Vm +
+
+centroid ( k=8 )Proj. |v⊤ 
+
+> 1
+
+q| Cosine τ =0 .85 (dk +d) × 4 B (f32); int8 optional §4.1 (LoCoMo main ta-ble) Full subspace Vm +
+
+centroid ( k=8 )Proj. |v⊤ 
+
+> 1
+
+q|
+
+(pure dense) Cosine τ =0 .85 (dk +d) × 4 B (f32); int8 optional   
+
+> All rows instantiate the same RSM framework. We use the cosine gate as the deployed default because a residual-energy gate ( g=1 .2) matches AMA-Bench quality at matched pipeline but over-splits atoms on high-dimensional orthogonal embeddings (Table 15). Theory/noise sections and the sequential MMLU stress test use the full-subspace instance; centroid rows are deployment-restricted controls. Full-subspace int8 preserves near-centroid byte cost while retaining projection retrieval. ♭Setting C is a synthetic storage-scaling demonstration rather than a headline quality benchmark.
+
+B.4 Retrieval Latency 
+
+Table 13 reports median query latency (p50) for RSM-full versus Full-RAG cosine search at varying memory sizes M (number of stored atoms / vectors), profiled on a single CPU (no GPU). RSM-full-Opt uses a precomputed subspace basis ( Vm stored column-major); RSM-full-Naive recomputes the projection matrix 
+
+PVm = VmV ⊤ 
+
+> m
+
+per query. The main experiments use the top-1 score |v⊤
+
+> 1,m
+
+q|, which has the same O(M d )
+
+scaling as Full-RAG cosine. To provide a conservative upper bound, the table instead profiles the more expensive full-basis score ∥V ⊤ 
+
+> m
+
+q∥2. Even under this upper bound, RSM-full-Opt is 10–20 × faster than the naive implementation and adds only 0.15–0.37 ms over Full-RAG at M ≤50 , far below typical LLM inference latency. At M ≤50 (high-overlap workloads where RSM produces 10–50 atoms), the full-basis variant adds only 
+
+0.15 –0.37 ms per query—small compared to typical LLM inference latency ( ≥ 100 ms per forward pass). The top-1 score |v⊤
+
+> 1,m
+
+q| used in all main experiments requires only a single inner product per atom (O(d)), matching Full-RAG cosine search in both theoretical and practical latency. Table 13 profiles the full-basis ∥V ⊤ 
+
+> m
+
+q∥2 variant ( O(M kd )) as an upper bound for potential future multi-direction scoring variants; at M ≥200 the full-basis variant exceeds Full-RAG latency and is not recommended for that regime, but the deployed top-1 scorer remains O(M d ) throughout. RSM-full-Naive is 10 –20 × slower than RSM-full-Opt because it rebuilds PVm (O(kd 2)) on every query; precomputing basis columns is the critical optimization. 
+
+# C Notation Reference D AMA-Bench: Official GPT-4o Judge vs. GPT-5.4 Re-Judge 
+
+For cross-paper comparability, Table 15 reports the AMA-Bench compact-memory ranking under both the benchmark’s shipped GPT-4o binary judge and our uniform GPT-5.4 re-judge session, across all three tested budgets . The ranking among compact-memory methods is identical under both judges at all 3 budget levels : RSM-int8 > RSM-full > baselines at ≤4k; RSM-full > RSM-int8 > baselines at 
+
+∼5k. Full-Context’s absolute score differs across judges, reflecting known judge-model sensitivity, but the 
+
+within-compact-memory ordering—the basis of our quality ranking—is stable across judges and budgets. 14 Table 13: Median query latency (ms) as a function of memory size M .
+
+M Full-RAG (ms) RSM-full-Naive (ms) RSM-full-Opt (ms) Speedup (Naive/Opt) 10 0.030 3.390 0.176 19 ×
+
+20 0.033 1.213 0.340 4×
+
+50 0.085 3.354 0.367 9×
+
+100 0.060 10.997 9.889 1.1×
+
+200 4.481 14.775 18.699 —    
+
+> At M=100 , cache effects reduce RSM-full-Naive overhead; at M=200 , cache and memory-bandwidth effects dominate.
+
+GPT-5.4 re-judge split-half reliability and rerun stability. Because our headline numbers come from an author-run GPT-5.4 re-judge session rather than the shipped GPT-4o judge, we verify its internal reliability with two diagnostics at the bt =4k operating point. (a) Split-half ranking stability. Splitting the 208-episode set into odd and even episodes (104/104) under the single GPT-5.4 session, RSM-full beats Streaming-Proto by +2 .64 pp on the odd half and +3 .69 pp on the even half, and beats Budget-RAG by 
+
++4 .97 pp and +6 .81 pp respectively. The ranking RSM-full > SP > BR is preserved on every half and the margin is of the same order of magnitude as the full-set margin, so the headline ordering is not an artifact of one difficult sub-sample. (b) Per-episode rerun correlation. Across two independent GPT-5.4 re-runs of RSM-full (same agent outputs, independent judge sessions), the per-episode score vectors correlate at Pearson 
+
+r=0 .876 (208 episodes), with run-level means 0.318 and 0.320 —consistent with the 3× rerun std of 0.003 
+
+reported in the main text. Under the paper’s primary judge, per-episode scores are therefore stable to within roughly ±0.04 at the episode level and roughly ±0.003 at the full-test aggregate. 
+
+# E Reproducibility 
+
+All experiments are reproducible from code and result files at the project repository. Key files include: • ama_bench_full_all_baselines_20260320.json , ama_bench_fullsub_rsmfulv20_all208_20260 325p.json , data/token_matched/rejudge_gpt54_rsm_full_bt4096_rep2.json , data/token_mat ched/rejudge_gpt54_rsm_full_int8_bt4096_rep2.json , data/token_matched/sp_bt4880.json ,and data/token_matched/br_bt6240.json (AMA-Bench all-baselines, matched-token baselines, and RSM-full main-table results for Table 1). • data/rsm_multi_seed/rsm_full_bt{2048,4096,8192}_seed{42-45}_*.json and data/rejudge d_exp1234/exp34_{oja,online_kmeans}_bt{2048,4096,8192}_seed{42-45}.json (multi-seed AMA budget sweep for Table 2). Disclosure : the bt =8192 sub-cell for Oja and Online K-Means is a 3-seed sub-cell (seed ∈{ 42 , 43 , 44 }); the seed =45 run at bt =8192 was not completed in the release artifact, so the 4-seed mean for that single budget collapses to a 3-seed mean for those two baselines. All other budget ×method cells are full 4-seed. • kmeans_atom_aware_full208.json and kmeans_full208_paired_bootstrap.json (Table 5). • locomo_public_baselines_legacy_a050_all10_20260327.json and locomo_public_fullsub_legacy _k8_a050_all10_20260327.json (raw LoCoMo boundary test). • parallel_benchmark_20260414/locomoplus_cognitive_{causal,state,goal,value}_full_group ed_allbaselines_judged_llmmelon_gpt54.json (LoCoMo-Plus grouped Cognitive 4 families, Table 7). • parallel_benchmark_20260414/locomoplus_cognitive_bal40_{flat,grouped}_allbaselines_jud ged_llmmelon_gpt54.json (flat vs grouped matched-qid robustness control, Table 10). • data/ama_noise_n30_sigma08.json (end-to-end noise robustness probe; n=30 AMA-Bench episodes ×
+
+3 methods × 4 σ levels × 2 seeds = 8 ,640 judged QAs; Table 19, Figure 2). 15 Table 14: Key notation used throughout the paper. 
+
+Symbol Description 
+
+H ∈ Rn×d Trajectory matrix ( n time steps, hidden dimension d)
+
+Vm ∈ Rd×k Subspace basis matrix of atom m (orthonormal columns) 
+
+PVm = VmV ⊤ 
+
+> m
+
+Orthogonal projection onto span (Vm)
+
+cm ∈ Rk Coefficient summary vector of atom mem = Vmcm Reconstruction vector (legacy evaluation proxy only) 
+
+G(k, d ) Grassmann manifold of k-planes in Rd
+
+τ Merge threshold (cosine similarity gate for new trajectory) 
+
+τG Grassmann gate threshold for subspace fusion 
+
+η Spectral energy threshold for adaptive rank selection ( η=0 .95 )
+
+k∗ Adaptively selected subspace rank from singular-value energy spectrum 
+
+δ(m; h) Projection residual: ∥h∥22 − ∥ PVm h∥22
+
+α Importance weight in weighted merge update 
+
+M Current number of atoms in the memory bank 
+
+N Total number of trajectories processed (sequence length) 
+
+C Number of task categories in evaluation 
+
+∆ Minimum inter-centroid ℓ2 separation 
+
+σ Per-trajectory isotropic noise level (synthetic experiments) 
+
+Top1Proj Top-1 retrieval quality: subspace projection score |v⊤ 
+
+> 1,m ∗
+
+q|
+
+Top1Cos Top-1 retrieval quality: cosine-on-reconstruction (deprecated baseline) 
+
+QAME Quality-Adjusted Memory Efficiency: Compression Ratio × Top1Proj 
+
+Recall@ k Fraction of queries whose true atom appears in the top-k results 
+
+• data/ama_adversarial_maxcos_strict_n30_ct5.json (query-aware max-cosine adversarial injection probe, strict top-K; n=30 AMA-Bench episodes × 3 methods × 4 K levels × 2 seeds = 8 ,640 judged QAs; Table 21, Figure 3). • llm_eval_v10_catbal_n2000.json (ToolBench supporting reference). • mmlu_seq_fullsub_best_tau016_k2.json and mmlu_seq_fullsub_sweep.json (MMLU sequential supporting reference). Additional archived experiments are documented in experiments_archive.tex alongside their result files. All experiments use random seed 42 unless noted. 
+
+# F Supporting Cross-Geometry References (moved from main body) 
+
+§A.1 Real LLaMA Hidden States (matched-byte storage compression) 
+
+We evaluate RSM-full on real d=4096 LLaMA-3.1-8B hidden states from ToolBench ( N =2000 , 20 API categories, 80/20 split, 5 seeds). Metric: Category Recall@1 . Fair comparison: per-seed byte budget from natural RSM-full bank converted to the largest float32 vector budget. RSM rows use |v⊤ 
+
+> 1
+
+q| retrieval with 
+
+τ =0 .65 .At this operating point, the k=2 int8 row is the only clearly non-saturated contrast. RSM-full retains 
+
+99 .9% Recall@1 at 812 KB ( 31 .5× compression vs Full-RAG’s 25 .6 MB), beating same-byte Budget-RAG by +11 .0 pp and Streaming-Proto by +2 .6 pp. Offline RAG-KMeans is effectively tied with RSM-full at matched bytes (1.000 vs 0.999; ∆−0.1 pp is within sampling noise). The claim in this section is therefore confined to the online streaming-clustered comparison set (Budget-RAG and Streaming-Proto), not to offline 16 Table 15: AMA-Bench compact-memory ranking under the official GPT-4o judge and a GPT-5.4 re-judge.                                       
+
+> bt=2k bt=4k bt=8k Method 4o 5.4 4o 5.4 4o 5.4 RSM-full-int8 .250 .291 .342 .315 .276 .322
+> RSM-full .241 .288 .331 .311 .285 .323
+> Streaming-Proto .099 .125 .229 .287 .144 .174
+> RSM-centroid .125 .157 .227 .268 .161 .187
+> Budget-RAG .084 .111 .207 .259 .133 .168
+
+Table 16: ToolBench real hidden-state comparison ( N =2000 , d=4096 ; mean over 5 seeds). ‡Offline. 
+
+Setting RSM-full ( |v⊤ 
+
+> 1
+
+q|) Budget-RAG Stream-Proto KMeans ‡ Storage Compression Full-RAG (ref.) 1.000 — — — 25,600 KB 1×
+
+k=4, float32 0.999 0.996 0.999 1.000 2,624 KB 9.8×
+
+k=4, int8 0.999 0.948 0.996 1.000 1,064 KB 24 .1×
+
+k=2, float32 0.999 0.982 0.999 1.000 1,616 KB 15 .8×
+
+k=2, int8 0.999 0.890 0.974 0.996 812 KB 31 .5×
+
+batch-clustering methods. Table 17: Multi-budget comparison on ToolBench LLaMA-3.1-8B hidden states. 
+
+Budget/Compression RSM-centroid Budget-RAG Stream-Proto KMeans ‡
+
+72 .2 (22 .2×) 1.000 0.970 0.995 0.998 54 .8 (29 .2×) 1.000 0.902 0.998 0.998 34 .0 (47 .1×) 0.998 0.816 0.946 0.996 27 .4 (58 .4×) 0.949 0.759 0.881 0.993 24 .0 (66 .7×) 0.938 0.706 0.845 0.994 
+
+§A.2 MMLU Academic QA (sequential anti-forgetting stress test) 
+
+MMLU [5] ( N =1 ,383 , 10 STEM/social-science disciplines), sentence-transformers all- MiniLM- L6- v2 
+
+(d=384 ), global mean-centering + ℓ2-normalise. Sequential subject-order stream; vector baselines charged the same bytes as the row-matching RSM-k natural count. Across the rank sweep, RSM-full at k ∈ { 2, 4, 8} reaches the same 0.824 Recall@1 with full 10/10 subject coverage, while RSM-full-int8 at k=2 is the lowest-byte operating point at 88 .5 KB. The zero standard deviation reflects the deterministic RSM write gate under fixed subject ordering; seed variation comes only from baseline KMeans initialization or reservoir sampling. RSM-full at k∈{ 2, 4, 8} all reach 82 .4% Recall@1 with 10/10 subject coverage; increasing k above 2
+
+adds storage without improving quality. RSM-full at k=2 is +1 .8 pp over Streaming-Proto and +55 .1 pp over Budget-RAG (Budget-RAG degenerates to 1/10 coverage). RSM-full-int8 at k=2 preserves the same quality at 88 .5 KB (lowest byte point). Offline RAG-KMeans ( 0.831 ) slightly exceeds RSM-full ( 0.824 ) by 
+
+0.7 pp at matched bytes. The claim here is therefore specific to the online/streaming comparison ( +1 .8 pp vs Streaming-Proto), not to offline batch-clustering methods. 
+
+§A.3 Component ablation + scoring variants (summary) 
+
+Main-paper §4.2 gives the summary numbers. Block 1 (ablation pipeline, n=2496 ): −SVD merge NS (−0.76 pp, p=.16 ); −proj →full-basis −1.80 pp ( p=.010 ); −proj → cos( q, V mcm) −1.92 pp ( p=.006 ). Block 2 17 Table 18: Subject Recall@1 under a sequential topic stream on MMLU. Mean ±std is over 5 seeds for RSM-full at k=2 . ‡Offline. 
+
+Method Storage Recall@1 ( ↑) Coverage ( ↑)Full-RAG 1657.5 KB 0.849 10/10 Budget-RAG ( k=2 bytes) 174.0 KB 0.273 1/10 
+
+Streaming-Proto ( k=2 bytes) 174.0 KB 0.806 10/10 RAG-KMeans ‡ (k=2 bytes) 174.0 KB 0.831 10/10 
+
+RSM-full (τ =0 .16 , k=2 ) 174.0 KB 0.824 ± 0.000 (5 seeds) 10/10 
+
+RSM-full ( k=4 ) 277.5 KB 0.824 10/10 RSM-full ( k=8 ) 475.5 KB 0.824 10/10 
+
+RSM-full-int8 (k=2 ) 88.5 KB 0.824 10/10 
+
+(v20, 164-ep): −atom-aware →flat concat −6.60 pp ( p<. 001 ), sign-and-magnitude-consistent with the 3-seed 
+
++5 .02 ± 1.00 pp packer ablation. Extended retrieval scoring variants on 20 AMA episodes (directional sweep, 
+
+|t|<2): |v⊤ 
+
+> 1
+
+q| is the recommended default; hybrid and adaptive-k are NS; full-basis −2.1 pp. 
+
+§A.4 Additional diagnostics: rank-4 null, atom diagnostics, v1 centred vs non-centred (moved from main body) 
+
+Rank-4 RSM-full single-seed null check. We run RSM-full at k=4 on seed 43 full 208 episodes at bt =4096 , paired against the existing k=8 seed-43 result. Result : ∆( k=4 −k=8) = −0.64 pp, p=.34 NS; the two rank points are statistically indistinguishable at single-seed power on BGE AMA. MMLU matched-byte sweep (Table 18) extends the rank-invariance to k∈{ 2, 4, 8} at 0.824 Recall@1. 
+
+Tier-0 atom diagnostics. On full 208-ep AMA-Bench (3 seeds, pooled ∼ 3268 atoms): within-cluster cos-to-centroid mean 0.9796 , std 0.0058 (clusters span ∼ 11 .6◦ angular spread on unit sphere); multi-member-atom ratio 0.4215 ; ⟨vcentred  
+
+> 1
+
+, ˆμ⟩ mean 0.0484 (mean-centred v1 is essentially orthogonal to centroid); ⟨vnon-centred  
+
+> 1
+
+, ˆμ⟩
+
+mean 1.0000 (non-mean-centred v1 ≡ ˆμ on tight clusters). Raw: data/atom_diagnostics_tier0.json .
+
+vcentred  
+
+> 1
+
+vs vnon-centred  
+
+> 1
+
+vs centroid retrieval. Seed 43 full 208, n=2 ,496 . Accuracy: vcentred  
+
+> 1
+
+0.3053 ;
+
+vnon-centred  
+
+> 1
+
+0.3117 (∆+0 .65 NS p=.27 ); cos( q, ˆμ) 0 .3101 (∆+0 .47 NS p=.45 ). All three retrieval scores statistically indistinguishable on BGE-tight clusters. Extending to 3-seed AMA n=7 ,488 and RealMem 10-persona 3-seed n=4 ,243 , centred and non-centred SVD are empirically indistinguishable ( ∆= − 0.36 pp NS on AMA; ∆= − 0.24 pp NS on RealMem, paired McNemar p=.11 ). We therefore retain the classical mean-centred SVD formulation throughout the paper. 
+
+§A.5 End-to-end noise robustness: RSM-full, Streaming-Proto, Budget-RAG under chunk-side Gaussian noise 
+
+Protocol. Domain-balanced AMA-Bench subset ( n=50 episodes). BGE chunk embeddings perturbed by i.i.d. Gaussian N (0 , σ ) before clustering/indexing and re-normalised; queries clean. σ ∈ { 0.0, 1.0, 2.0, 3.0} (an extended stress-test range relative to the original σ≤0.8 setting), 2 noise seeds, 3 methods (RSM-full k=8 
+
+τ =0 .85 ; Streaming-Proto FIFO K=16 ; Budget-RAG B=5 ). Agent gpt-4o-mini; judge gpt-5.4; budget 4,000 
+
+tokens. Total 14 ,400 judged QAs. This uses a minimal self-contained pipeline ( chunk_turns =10 ), not the v20 production pipeline, so absolute σ=0 levels differ from Table 1; retention claims are paired within this probe. 18 Results. RSM-full retains 101 –105% of its own σ=0 quality across all positive σ (multi-member SVD averaging partially cancels additive noise). Streaming-Proto and Budget-RAG degrade by 2–4 pp. The head-to-head advantage of RSM-full over the two baselines widens from +0 .5 pp at σ=0 to +2 .9 pp at σ=2 .0,then stabilizes. Thus, all three methods are effectively tied at σ=0 , but as noise increases RSM-full behaves like a mild denoiser while the retrieval baselines drift downward. Full numeric results appear in Table 19; Figure 2 visualizes the same retention trend. Table 19: AMA-Bench noise-robustness results.                                                    
+
+> σ= 0 .0σ= 1 .0σ= 2 .0σ= 3 .0
+> Mean judge quality (0/0.5/1 scale):
+> RSM-full (k=8 )0.360 0.365 0.377 0.373
+> Streaming-Proto 0.355 0.341 0.348 0.350
+> Budget-RAG 0.355 0.344 0.347 0.345
+> Retention (% of own σ=0 baseline):
+> RSM-full 100 .0101 .4104 .7103 .6
+> Streaming-Proto 100 .096 .098 .198 .5
+> Budget-RAG 100 .096 .897 .797 .1
+> Head-to-head ∆(RSM-full −baseline, pp):
+> ∆vs Streaming-Proto +0 .5+2 .4+2.9+2 .3∆vs Budget-RAG +0 .5+2 .1+3.0+2 .80.0 0.4 0.6 0.8
+
+Chunk-side Gaussian noise (relative to unit-norm)   
+
+> 90.0 92.5 95.0 97.5 100.0 102.5 105.0 107.5
+> Quality retention (% of  = 0 baseline)
+> RSM-full vs Streaming-Proto
+> p= 0.021 (paired) Streaming-Proto
+> p= 0.016/0.012 (self-degrade)
+
+AMA-Bench noise robustness (n=30 episodes, 2 seeds, 3 methods) 
+
+> RSM-full (ours) Streaming-Proto Budget-RAG
+
+Figure 2: Quality retention under chunk-side Gaussian noise ( n=50 episodes, 2 seeds; error bars ±1 se). 
+
+Interpretation. The noise-robustness pattern is consistent with RSM-full’s multi-member SVD storage: the v1 direction computed over multiple (now noisy) members remains a stable variance axis because noise averages toward zero across members while the shared signal direction persists. Streaming-Proto’s FIFO slots lack this averaging, and Budget-RAG’s unclustered top-B retrieval propagates noise directly into chunk selection. The mechanism is the same one that governs adversarial robustness in §F. 
+
+§A.6 Stream-order invariance across methods 
+
+Setup. Lean pipeline, full 208-ep AMA-Bench, judge GPT-5.4. Stream-permutation seeds {42 , 43 , 44 , 45 }
+
+for Online K-Means and Oja ( k=4 ); {43 , 44 , 45 } for RSM-full (same 3-seed pool as Tables 2, 4). Budgets 
+
+{2048 , 4096 , 8192 } tokens. Table 20 reports between-seed standard deviations. 19 Table 20: Stream-order invariance on AMA-Bench. Lower values indicate greater stability.                                                    
+
+> Method bt=2048 bt=4096 bt=8192 Seeds
+> RSM-full 0.279 ±0.005 0.314 ±0.005 0.358 ±0.004 {43 ,44 ,45 }
+> Online K-Means 0.242 ±0.003 0.281 ±0.034 0.299 ±0.044 {42 ,43 ,44 ,45 }
+> Oja ( k=4 )0.232 ±0.004 0.248 ±0.033 0.265 ±0.042 {42 ,43 ,44 ,45 }
+> Relative std (coefficient of variation, %):
+> RSM-full 1.81.51.1
+> Online K-Means 1.211 .914 .8
+> Oja ( k=4 )1.713 .515 .7
+
+Interpretation. The claim is confined to the streaming-clustered family. Retrieval-only methods (Full-RAG, Budget-RAG, BM25-RAG) are trivially order-invariant by construction; we do not claim parity with those. Among streaming compressors, K-Means and Oja show 11 –16% between-seed variation at realistic budgets while RSM-full stays within 1–2% . The main qualitative pattern is that K-Means and Oja each have one adverse stream-permutation seed at bt =4096 and bt =8192 that falls 7–10 pp below the others, consistent with pathological cluster fragmentation under unfavorable orderings. RSM-full avoids this failure mode because the max-member merge rule allows a new chunk to merge with any atom containing a member above τ , not only with atoms whose centroid is already close. 
+
+§A.7 Adversarial chunk injection (query-aware max-cosine) 
+
+Setup. Beyond Gaussian embedding noise (§F), we examine a semantically targeted setting: inject K
+
+foreign chunks selected to maximize cosine similarity to the target episode’s questions (strict top-K max-cosine). We use a domain-balanced AMA-Bench subset ( n=50 episodes), production-matched chunk_turns =5 ,
+
+retrieve_k =6 , τ =0 .85 , and a budget of 4,000 tokens. The foreign pool contains 2,086 chunks from non-test episodes. We report the moderate-adversarial regime K ∈ { 0, 5, 15 } (extending our earlier short range 
+
+K≤5 to K=15 ); the saturation regime at K=30 is reported in the companion data release. We use two insertion-position seeds. The agent is GPT-4o-mini, the judge is GPT-5.4, the scoring set is {0, 0.5, 1}, and the total is 10 ,800 judged QAs across the three main-table K values. 
+
+Results. At K=0 the probe reproduces Table 1’s ordering: RSM-full 0.404 leads Streaming-Proto 0.358 
+
+(paired ∆=+4 .63 pp) and Budget-RAG 0.392 (∆=+1 .21 pp). The RSM-full advantage over Streaming-Proto stays near +5 pp across the moderate-adversarial range: +5 .08 pp at K=5 (paired p=0 .00036 ), +5 .21 pp at K=15 . RSM-full retains 88 .9% of its baseline at K=15 . In the saturation regime at K=30 (reported outside the main table), all three methods converge to roughly 0.32 —RSM-full 0.327 , Streaming-Proto 
+
+0.300 , Budget-RAG 0.331 —indicating that when foreign chunks exceed roughly 60 % of the memory pool, all compact-memory methods are effectively overwhelmed. Table 21 reports the moderate-adversarial regime; Figure 3 visualizes the retention trend. 
+
+Interpretation. RSM-full’s cosine merge rule isolates adversarial chunks whose cosine to legitimate atoms falls below τ =0 .85 : they form their own atoms that the query-aligned v1 projection does not select. Budget-RAG lacks this isolation; Streaming-Proto’s FIFO gives only partial protection. The +5 pp lead of RSM-full over Streaming-Proto is stable in the moderate-adversarial regime K∈{ 0, 5, 15 }. At K=30 (≥ 60% foreign) all three compact-memory methods converge to ≈ 0.32 ; the correlation between cosine-to-query and cosine-to-legitimate-memory pushes adversarial chunks across τ and pollutes the basis, so we do not claim discriminative robustness in that saturation regime. 
+
+# G RSM-cent-merge ablation: detailed data 
+
+This appendix supplies the supporting data for the long-horizon mechanism-extension paragraph of §4.2: a write-side ablation of the max-member fallback gate, run on AMA-Long Track-A super-trajectories at 20 Table 21: AMA-Bench max-cosine adversarial injection results in the moderate-adversarial regime.                                       
+
+> K=0 K=5 K=15
+> Mean judge quality:
+> RSM-full (k=8 )0.404 0.382 0.359
+> Streaming-Proto 0.358 0.331 0.307
+> Budget-RAG 0.392 0.368 0.345
+> Retention (% of own K=0 baseline):
+> RSM-full 100 .094 .588 .9
+> Streaming-Proto 100 .092 .585 .8
+> Budget-RAG 100 .093 .988 .2
+> Head-to-head ∆(RSM-full −baseline, pp):
+> ∆vs Streaming-Proto +4.63 +5.08 +5.21
+> ∆vs Budget-RAG +1 .21 +1 .37 +1 .33 0135
+
+Number of adversarial chunks injected ( K)  
+
+> 90 92 94 96 98 100 102
+> Quality retention (\% of  K = 0 baseline)
+> RSM-full vs SP
+> p= 0.00036 (paired) Budget-RAG self-degrade
+> p= . 006 (K=3), . 013 (K=5)
+
+AMA-Bench max-cosine adversarial injection (n=30, strict top-K)
+
+> RSM-full (ours) Streaming-Proto Budget-RAG
+
+Figure 3: Quality retention under query-aware max-cosine adversarial chunk injection ( n=50 episodes, 2 seeds). 
+
+N =16 k and N =32 k. The ablation isolates the merge rule’s effect on bank-size compression; we do not draw a horizon-scaling quality claim from these data, and we explicitly flag in the caveats that benchmark accuracy at N =32 k has reached the No-Memory ceiling, so the appendix speaks only to bank-size compression. 
+
+Setup. AMA-Long Track-A super-trajectories are constructed by stitching AMA-Bench episodes into long-horizon trajectories at N =16 k and N =32 k turns. Each N is run over 3 stream-permutation seeds 
+
+{42 , 123 , 1729 } × 5 domains ( EMBODIED-AI / Game / SOFTWARE / TEXT2SQL / WEB ) × 5 super-trajectory instances per (seed, domain) = 75 episodes per N , with pooled n=900 paired QA at each N . Agent: yunwu GPT-4o-mini at temperature 0; judge: llmmelon GPT-5.4 with the same template as AMA-Bench (Appendix D). Both arms share atom-aware packing, τ =0 .85 , retrieval k=5 (Track-A run config), the same chunked stream, and the same QA prompt pipeline; only the merge rule differs. The atom-count comparison is a within-episode paired test over 75 episodes per N ; the quality comparison is a per-QA paired test over 
+
+n=900 at each N .This write-side RSM-cent-merge ablation is distinct from the retrieval-side RSM-centroid used in Tables 1 and 6, which retains the max-member write gate but swaps the |v⊤ 
+
+> 1
+
+q| score for centroid-cosine retrieval. Equation 1 reduces to cos( h, μ m∗ ) ≥ τ in our ablation. Figure 4 visualizes the same mechanism-only pattern in compact form. The blue curve shows RSM-full atom growth from N =1 k to 32 k alongside a raw-chunk linear reference, and the orange markers overlay the 21 Table 22: RSM-cent-merge ablation (write-side: max-member fallback removed) on AMA-Long Track-A. 
+
+N nep RSM-full atoms RSM-cent.-merge atoms Atom ∆% (paired t, p) Quality ∆ (pp) 
+
+16 k 75 73 .16 79 .63 +8.84 % (t=21 .03 , p< 10 −32 ) −0.11 (p=.88 NS) 
+
+32 k 75 84 .31 93 .21 +10 .56 % (t=23 .14 , p< 10 −35 ) +0 .56 (p=.53 NS) Pooled 150 — — — +0 .22 (p=.70 NS)     
+
+> Atom ∆% compares paired atom counts; Quality ∆compares paired accuracy.
+
+two RSM-cent-merge ablation points at N =16 k and 32 k. We use the figure only to illustrate sublinear atom growth and the ablation’s atom-inflation effect, not to advance a separate long-horizon quality claim. 1k 2k 4k 8k 16k 32k Stream length N (turns) 24 
+
+> 25
+> 26
+> 27
+> 28
+> 29
+> 210
+> 211
+> 212
+> Bank size (count)
+> +8.8% +10.6%
+
+RSM atoms: sublinear growth + causal ablation 
+
+> RSM-full atoms RSM-centroid-merge (no max-member fallback) Raw chunks (linear ref.)
+
+Figure 4: Atom-count growth on AMA-Long Track-A. Blue: RSM-full. Orange: RSM-cent-merge ablation at 
+
+N =16 k and 32 k. Gray: raw-chunk linear reference. 
+
+Caveats. (i) AMA-Long Track-A is constructed by stitching AMA-Bench episodes into super-trajectories; this is not a native long-horizon benchmark, and the data above support only the mechanism extension — not a horizon-scaling quality claim. (ii) At N =32 k, RSM-full’s accuracy ( 0.179 ) is statistically indistinguishable from No-Memory ( 0.176 , paired ∆=+0 .33 pp, p=.79 NS) on this benchmark, so the ablation’s null quality gap reflects this benchmark ceiling at long horizon rather than a method-level quality property. We use the ablation only to verify that the max-member merge rule’s compression behavior is consistent when the input stream is much longer than AMA-Bench’s per-episode horizon; we do not claim a long-horizon Pareto. (iii) On LongMemEval, long-horizon scaling is reversed (low-α, keyword-heavy boundary regime as discussed in §6). 
+
+# H RealMem reproductions excluded from Table 6 (MemoryBank, MemGPT) 
+
+We attempted to reproduce MemoryBank [21] and MemGPT [15] on RealMem under the same matched-evaluation harness used for the other Table 6 rows (BGE-large embeddings, GPT-4o-mini agent at temperature 
+
+0, llmmelon GPT-5.4 single-hop judge, three stream-permutation seeds {43 , 44 , 45 }, all 10 personas). Both reproductions returned scores at or below the No-Memory floor on this benchmark (No-Memory =0 .2317 ), 22 specifically MemoryBank 0.2426 and MemGPT 0.2239 (each pooled over the three stream-permutation seeds; cross-seed standard deviation 0.011 in both cases, computed across the three seed-level pooled accuracies, 
+
+nseed =3 ). MemGPT’s score is below No-Memory by 0.8 pp, indicating that under our harness the MemGPT pipeline does not engage its hierarchical recall mechanism in a way that improves over an empty context on RealMem persona QA; MemoryBank sits within 1 pp of No-Memory, suggesting its consolidation step similarly fails to surface the relevant first-person facts under our retrieval setup. We treat these as harness-level reproduction limitations rather than method-level evidence. We attribute the failures to two specific configuration mismatches surfaced during a calibration smoke test on persona 
+
+ethan_hunt (seed 43 , n=162 paired QA): (i) MemoryBank’s default Ebbinghaus parameters ( S0=1 , δ=1 )cause the retention factor R(t)= exp( −(tnow −tlast )/S m) to decay essentially to zero after ∼50 ingested sessions, while RealMem personas have 135 –276 sessions; this collapses retrieval to a few most-recent sessions and yields 
+
+26 .5% refusal rate ("I don’t have information. . . "). (ii) MemGPT’s 60 -word LLM summaries of session-level chunks ( 500 –2,000 turns each) discard the entity, schema, and date details that RealMem QA requires, yielding 32 .6% refusal rate. A targeted calibration (MemoryBank S0=N/ 2 scaled to stream length; MemGPT working memory 20 , archival top-k 20 , summary length 300 tokens) on the same smoke persona raised MemoryBank by +1 .07 pp ( 0.242 →0.252 ) and MemGPT by +4 .96 pp ( 0.194 →0.244 ), with MemGPT’s refusal rate dropping from 57% to 30% . Both calibrated reproductions remain well below RSM-full ( ∼ 0.45 –0.47 )and below the closest legitimate comparator A-MEM ( 0.452 ), which we attribute to deeper method-design limitations on session-level persona memory (e.g., MemoryBank’s omitted hierarchical-summarisation step, MemGPT’s working-memory horizon). We therefore retain the exclusion in Table 6; the calibration improves the reproduction floor but does not change the qualitative conclusion that A-MEM is the closest competitive 2025 agentic-memory baseline on RealMem, with RSM-full ahead by +1 .65 pp ( p<. 001 ). 23

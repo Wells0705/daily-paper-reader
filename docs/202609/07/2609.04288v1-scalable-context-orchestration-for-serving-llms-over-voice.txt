@@ -1,0 +1,553 @@
+Title: Scalable Context Orchestration for Serving LLMs Over Voice
+
+URL Source: https://arxiv.org/pdf/2609.04288v1
+
+Published Time: Mon, 07 Sep 2026 00:03:31 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# Scalable Context Orchestration for Serving LLMs Over Voice 
+
+## Linyi Jiang 1,2 Silvery D. Fu 2 Yifei Zhu 1
+
+> 1
+
+Global College, Shanghai Jiao Tong University 2AgenticSys 
+
+## Abstract 
+
+Voice AI applications are gaining popularity as advances in large language models (LLMs) enable more natural and accessible spoken interactions. Serving these applications requires accounting not only for what users say, but also for how they speak ( e.g., speaking rate) and the conditions under which their audio is captured and transmitted ( e.g., 
+
+background noise and packet loss). However, existing LLM systems represent conversation context as a flat, growing sequence of messages, leaving voice-specific context implicit in the audio. As a result, they can generate responses that are poorly aligned with user preferences, degrade interaction quality under adverse environmental conditions, and incur high costs over long voice sessions. We present llmovoice , a context-management middleware that explicitly models voice context and orchestrates its use. At each turn, llmovoice constructs a bounded voice context from the current user input, relevant interaction history, and explicit paralinguistic and environmental states. It then uses the serving LLM to reason over this context and gener-ate runtime directives that guide how the system responds. We evaluate llmovoice on real-world voice applications and benchmarks. It reduces speaking-rate alignment error by 52.4%, lowers the false-interruption rate from 46.0% to 0.9% under packet loss, and reduces model usage cost by 79.2%. For long sessions, llmovoice reduces per-turn cost by up to 24.9 × while retaining up to 98.7% of baseline answer quality. 
+
+CCS Concepts: • Computer systems organization ; • 
+
+Computing methodologies → Artificial intelligence ; • 
+
+Information systems → Information systems applications ;
+
+Keywords: voice AI, large language model applications, con-text management, agentic systems 
+
+ACM Reference Format: 
+
+Linyi Jiang, Silvery D. Fu, and Yifei Zhu. 2026. Scalable Context Orchestration for Serving LLMs Over Voice. In Symposium on Operating Systems Principles (SOSP ’26), September 29–October 2, 2026, Prague, Czech Republic. ACM, New York, NY, USA, 15 pages. 
+
+https://doi.org/10.1145/3830418.3843860 
+
+> This work is licensed under a Creative Commons Attribution 4.0 Interna-tional License.
+> SOSP ’26, Prague, Czech Republic
+> © 2026 Copyright held by the owner/author(s). ACM ISBN 979-8-4007-2585-2/26/09
+> https://doi.org/10.1145/3830418.3843860
+
+## 1 Introduction 
+
+Voice has emerged as an important interface for AI/LLM applications [8, 13, 17, 38]. Compared with text interfaces, voice enables more natural and accessible interaction. For example, voice can extend LLM services via telephone net-works to users without reliable broadband [18, 28, 43] and lower barriers for those with limited literacy [19, 32]. These advantages are driving the adoption of voice AI applications across many domains, including healthcare [5], education [4], agriculture [22], and in-vehicle assistance [33]. In real-time LLM-over-voice systems, user interaction fol-lows a turn-by-turn streaming loop: the client application streams audio to the LLM service; once the end of the user’s turn is detected, the service invokes the model and streams the generated response to the client for playback [17, 38]. Each turn, the model processes inputs in a context window 
+
+containing system prompts, the current user input, and prior conversation history. Managing context in voice interac-tion is challenging. First, voice interaction is often UI-less: users cannot rely on visual artifacts such as tabs to organize conversation history or visual controls to adjust how the system responds. This requires the system itself to manage the context on the user’s behalf. Second, the system must account not only for what the user says, but also for how 
+
+the user speaks and the conditions under which the audio is captured and transmitted. In this paper, we use voice context 
+
+to refer collectively to these three types of information: (i) semantic content ( e.g., conversation history), (ii) paralinguis-tic cues ( e.g., speaking rate and tone), and (iii) environmental conditions, including acoustic ( e.g., background noise) and network conditions ( e.g., jitter and packet loss). Current LLM context-management techniques focus pri-marily on semantic content in text-based interactions [26, 30, 39] but offer limited support for the latter two forms of voice context. In particular, effective voice interaction relies on par-alinguistic cues such as speaking rate, tone, and turn-taking dynamics [1, 34]. For instance, a voice agent often needs to adjust its pacing ( e.g., faster for simple confirmations and slower for complex instructions) and adapt its delivery style to match user preferences. Existing systems leave these cues implicit in the audio, making it difficult to track them ex-plicitly across turns and use them for runtime adaptation. Consequently, a response can be semantically correct while its delivery remains misaligned with the user’s preferences. Voice interaction is also highly sensitive to environmen-tal conditions. Background noise can be mistaken for user arXiv:2609.04288v1 [cs.SD] 3 Sep 2026 speech, while network fluctuations such as jitter and packet loss can introduce apparent silence into the received audio. For example, because turn detection relies on observed si-lence, the system may mistake packet loss for the end of a turn and interrupt the user prematurely. Such false interrup-tions not only degrade interaction quality but also pollute the context processed in future turns, thereby increasing model usage costs. The key challenge in managing voice context is that par-alinguistic cues and environmental conditions cannot be in-terpreted independently of semantic content. For example, a user may explicitly ask the system to speak faster even when the user’s speaking rate suggests a preference for slower de-livery. Similarly, whether observed silence marks the end of a turn depends on both the semantic completeness of the cur-rent utterance and whether the silence results from network fluctuations. LLM systems must therefore explicitly maintain and jointly reason over semantic, paralinguistic, and envi-ronmental states when generating a response. Since a user instruction or preference expressed earlier may determine how the system should respond to current paralinguistic cues, the voice context required for such joint reasoning may span multiple historical turns during a voice session. Moreover, as conversational topics drift, branch, and recur, the system must also determine which prior information to retain in the context window. Existing systems commonly treat a voice session as a single, growing sequence of audio tokens and append as much of the conversation history as fits within the context window and reprocess it at every turn [17, 38]. This approach, however, is ineffective at select-ing relevant context and is also costly: one minute of voice interaction is approximately 49 × as expensive to process as the corresponding text interaction [38], and repeatedly processing the growing history causes cumulative cost to increase quadratically with session length. Together, these challenges make high-quality, long-running voice interac-tion difficult to scale. We argue that addressing these challenges is not merely a matter of implementation but one of architecture : LLM-over-voice systems require an explicit voice-context management 
+
+layer between applications and LLM services. The role of this layer is to transform unstructured and potentially unreliable streaming voice input, together with conversation history and environmental signals, into structured voice context that can be explicitly managed across turns and used for runtime adaptation. Our key insight is that fulfilling this role requires two coupled tasks per turn: (i) constructing a bounded voice context from the current input, history, and signals; and (ii) jointly reasoning over its semantic, paralinguistic, and environmental states to determine runtime controls .In this paper, we present llmovoice , a voice-context man-agement layer built around three design principles to sup-port these tasks: (1) explicitly modeling paralinguistic and environmental states in voice context while representing VAD 
+
+> Model User Turn
+
+## + 
+
+> User
+> LLM service Dialog History
+> Audio response
+
+Figure 1. Overview of the LLM-over-voice serving pipeline. semantic content at multiple levels of fidelity; (2) organizing voice context with a unified abstraction that bridges stream-ing voice interaction and memory; and (3) maintaining voice context through an orchestration loop that reasons jointly over its semantic, paralinguistic, and environmental states at each turn. Specifically, llmovoice derives paralinguistic and environmental states from incoming audio and runtime signals and represents them alongside semantic content in the voice context. Across turns, llmovoice materializes each completed interaction as a VoicePage ( vpage ) and groups related pages into VoiceThreads ( vthreads ) that capture higher-level conversational flows. Each vpage maintains its available audio, transcript, and summary representations, while each vthread maintains a compact summary and ref-erences to its constituent pages. This organization enables se-lective retrieval while preserving logical relationships among retrieved interactions. Upon receiving new user input, llmovoice retrieves rel-evant vthreads and vpages ; a cost-aware context projec-tor selects a representation for each retrieved item under the available context budget. The projected history is com-bined with the user’s current input to form the voice context, which also includes paralinguistic and environmental states. A context orchestrator uses the serving LLM to reason jointly over these states and generate runtime directives that guide response content, adjust delivery style, and control turn-taking behavior. The orchestrator then applies these direc-tives and calls the serving LLM to generate a response when needed. Finally, it commits the completed interaction as a new vpage and incorporates it into the vthread structure, closing the orchestration loop. Together, these abstractions allow llmovoice to maintain a bounded voice context that combines paralinguistic and environmental states with rele-vant semantic content represented at an appropriate fidelity, and to adapt runtime behavior at each turn. We implement llmovoice as middleware that exposes an interface compatible with existing LLM service APIs ( e.g., 
+
+OpenAI Realtime), enabling drop-in integration into voice ap-plications. We evaluate llmovoice on real-world applications and benchmarks. Our results show that llmovoice improves both interaction quality and long-session scalability: it re-duces speaking-rate alignment error by 52.4%, lowers the false-interruption rate from 46.0% to 0.9% under packet loss, and decreases network-induced cost by 79.2%. For long con-versations, llmovoice reduces per-turn cost by up to 24.9 ×
+
+while retaining up to 98.7% of baseline answer quality. 
+
+## 2 Background and Motivation 
+
+In this section, we provide background on existing LLM-over-voice serving pipelines and outline the key limitations that motivate our design. 
+
+2.1 LLM-over-Voice Serving Pipeline 
+
+LLM services increasingly support real-time, streaming voice interaction. In such systems, user audio is continuously trans-mitted over a persistent connection, processed incrementally, and used to generate low-latency spoken responses. Earlier production systems typically adopt a cascaded ar-chitecture: incoming audio is first converted to text via a streaming speech-to-text (STT) module, the transcript is pro-cessed by a text-based LLM, and the output is rendered back to speech using a text-to-speech (TTS) module [23, 41]. More recent systems move toward end-to-end speech-to-speech models, where audio streams are processed directly without explicit intermediate text representations [13, 17, 38]. Com-pared with cascaded architectures, these speech-native mod-els avoid separate STT and TTS stages, reducing interaction latency and preserving information that would otherwise be lost in intermediate text representations [8]. Specifically, interaction proceeds in a loop as illustrated in Figure 1. A client sends audio chunks over a communication channel that may drop packets. A turn-detection module, commonly voice activity detection (VAD), observes the ar-riving stream, determines when the user stops speaking, and commits the user turn. The service then invokes the model with a context window containing system prompts, the com-mitted utterance as the current input, and prior conversation history, and streams the generated audio back to the client. 
+
+2.2 Limitations of Existing Systems 
+
+Current LLM-over-voice systems have three key limitations. 
+
+(1) Voice-specific context remains implicit. Existing context-management mechanisms explicitly manage seman-tic content but leave paralinguistic cues and environmental conditions implicit in the audio stream. Without explicit paralinguistic states, the system cannot reliably adapt its response style to the user. Conversational partners naturally align their speaking behavior, a phenomenon known as con-versational entrainment [1, 2, 15]. For instance, a reply that is much slower than the user’s speech can feel sluggish, disrupt the conversational rhythm, and reduce user engagement. Without explicit environmental states, the system cannot distinguish natural silence from low-energy audio caused by packet loss. We illustrate this failure using a real-world packet-loss trace from the ICASSP 2024 Audio Deep PLC Challenge [10]. Specifically, in this pilot study, we replay Trace      
+
+> Lost frame
+> 0246810
+> Time (s)
+> −120 −80 −40 0
+> Decoded energy (dBFS)
+> VAD Energy Threshold
+> False endpoint
+
+Figure 2. Packet loss triggers a false VAD endpoint. 0 20 40 
+
+> History Length (Minutes)
+> 1510 15 20
+> Normalized Per-Turn Cost  0% cached 50% cached 100% cached
+
+Figure 3. Per-turn voice serv-ing cost grows with history. the validation trace val_0332 through a local WebRTC connection in Chromium using its default Opus pipeline. We configure the VAD proxy with representative settings: an energy threshold of −50 dBFS and a silence threshold of 500 ms. As shown in Figure 2, a loss burst drives the decoded audio below the energy threshold long enough to trigger a false endpoint and prematurely invoke the model. The resulting incomplete utterance and unnecessary response can pollute the interaction history, increase model usage cost, and degrade subsequent interaction quality. 
+
+(2) State effects are not coordinated. Different states can imply conflicting runtime actions. Consider a user who says, “Please respond as soon as I finish speaking,” over a con-nection experiencing packet loss. The semantic state favors decreasing the VAD silence threshold to reduce response latency, while the environmental state favors increasing the same threshold to prevent packet-loss-concealed audio from being mistaken for the end of the turn. The two states there-fore demand opposing updates to the same runtime parame-ter. Similar conflicts arise between semantic and paralinguis-tic states: the observed speaking rate may suggest a slower reply, while the user explicitly asks the agent to speak faster. These signals must therefore be coordinated before the run-time changes turn detection or response pacing. Separate rule-based controllers can make inconsistent decisions be-cause each considers only one state, while a fixed ruleset cannot cover the combinations of states that arise across users, applications, and conversational turns. 
+
+(3) Long-session context management does not scale. 
+
+Systems that directly invoke real-time LLM APIs for voice interaction typically construct the context window by ap-pending the conversation history as a monolithic, continu-ously growing sequence. Existing voice-serving systems may also support prompt caching, which reuses computation for an unchanged prefix and reduces repeated processing cost. We measure the OpenAI Realtime API on MSP-PODCAST under 0%, 50%, and an idealized 100% prompt-cache hit rate (detailed experimental setup in §5.1). For each cache setting, costs are normalized to the shortest session, whose cost is set to 1.0. Figure 3 shows that per-turn cost grows approx-imately linearly with conversation history under different Input   
+
+> Output
+> Context
+> orchestrator
+> I/O Layer LLM Layer Llmovoice
+> Runtime
+> directives
+> LLM
+> Context
+> Window
+> Function calls
+> Retrieve
+> VoiceThreads VoicePages
+> ... ...
+> Memory Layer
+> Semantic state
+> Environmental state
+> Paralinguistic state
+> Memory-to-Context
+> Construct
+> states
+> State snapshot
+> Commit
+> State-to-Control
+> Audio
+> Transcript
+> Summary
+> Query
+> Audio
+> History
+> Context
+> projector
+> Thread X
+> Thread B
+> Thread A
+
+Figure 4. System overview of llmovoice .cache settings. This shows that caching reduces cost but not its asymptotic growth rate: per-turn cost remains lin-ear in conversation length, yielding quadratic total session cost. Caching also does not increase context capacity, and long-running sessions may reach the context limit after ap-proximately 15-60 minutes [17, 38]. 
+
+## 3 System Design 
+
+To address the above limitations, llmovoice explicitly rep-resents semantic, paralinguistic, and environmental states, jointly reasons over them to derive runtime controls, and replaces a monolithic full-history context with structured interaction units that can be selectively included at differ-ent fidelities. We present these voice-context management designs in this section. 
+
+3.1 Architecture Overview 
+
+Figure 4 depicts the architecture of llmovoice , which oper-ates between an application’s streaming audio interface and an LLM service. Llmovoice runs a voice-context orchestra-tion loop comprising two paths: a memory-to-context path and a state-to-control path. Along the memory-to-context path , llmovoice represents each completed interaction as a 
+
+vpage containing the user input, model output, and their available representations. It organizes semantically related pages into vthreads that capture coherent conversational flows (§3.4). When a new request arrives, llmovoice retrieves the relevant vthreads and vpages , and the context projec-tor selects an audio, transcript, or summary representation for each retrieved item under the available context budget (§3.5). The selected representations form the projected his-tory, which is included in the context window and later used by the state-to-control path. Along the state-to-control path , llmovoice combines the projected history with the current input to form the voice context for the current turn. The semantic state captures the semantic content of the current input together with relevant prior information from the projected history. The paralin-guistic state captures how the current input is delivered, while the environmental state captures conditions that may affect how it is observed and interpreted (§3.2). The context orchestrator uses the serving LLM to reason jointly over these states and generate structured function calls. It then validates and converts the resulting function calls into run-time directives that guide response content, adjust delivery style, and control turn-taking behavior (§3.3). After applying the directives, the serving LLM generates a response. Once the interaction completes, llmovoice commits the completed interaction as a new vpage and incorporates it into the vthread structure. This commit makes the interac-tion available to the memory-to-context path in subsequent turns, closing the voice-context orchestration loop. 
+
+3.2 Voice Context Modeling 
+
+The state-to-control path extracts runtime observations and organizes them into three complementary states of voice interaction. The semantic state captures what the interaction is about, the paralinguistic state captures how the current input is delivered, and the environmental state captures the acoustic and network conditions under which it is observed. 
+
+Semantic state. The semantic state captures the model-visible information needed to interpret the current interac-tion. It combines the current user input with relevant prior information from history projected by context projection (§3.5) in the memory-to-context path. 
+
+Paralinguistic state. The paralinguistic state captures prop-erties of speech delivery that may affect how the system responds. In this paper, we focus on speaking rate as a rep-resentative paralinguistic signal. A single short or atypical utterance may provide unreliable evidence of the user’s cur-rent speaking behavior. Therefore, llmovoice maintains a bounded history of valid speaking-rate observations and gives greater weight to recent observations. This smooths turn-level variation while allowing the state to follow sus-tained changes in how the user speaks. 
+
+Environmental state. The environmental state captures conditions under which speech is captured or transmitted that may affect how the incoming audio is interpreted. These include acoustic conditions, such as background noise and echo, and network conditions, such as packet loss. In this paper, we focus on packet-loss telemetry as a representative environmental signal. Individual observations may be tran-sient and do not by themselves indicate whether an impair-ment is ongoing or has recovered. Llmovoice therefore aligns these observations with the received-audio timeline and pre-serves evidence of both active impairment and subsequent recovery. This temporal state helps the context orchestrator distinguish environmental effects from user behavior when interpreting the current audio. 
+
+3.3 Context Orchestration 
+
+Given the voice context constructed above, the state-to-control path determines how its semantic, paralinguistic, and environmental states jointly affect runtime control. Ap-plying separate rules to each state can produce conflicting Active configuration       
+
+> e.g., response speed, VAD silence
+> Typed function interface
+> Input
+> Paralinguistic
+> e.g., speaking rate
+> Environmental
+> e.g., network condition
+> State s napshot
+> Context orchestrator
+> Serving LLM Content directives
+> e.g., set_response_instruction
+> Style d irectives
+> e.g., set_response_speed
+> Turn-control d irectives
+> e.g., defer_response,
+> set_vad_silence_duration
+> Output
+> Semantic state
+> Context window
+> Structured function call
+> Validate and convert
+
+Figure 5. Context orchestrator maps the current states and runtime configuration to validated runtime directives. actions because each rule considers only part of the current voice context. For example, a user may explicitly ask the system to speak faster while speaking at a slower pace. The semantic state favors following the explicit request, while the paralinguistic state favors matching the observed speak-ing rate. Similarly, semantic evidence may suggest that a turn is complete, while recent network impairment suggests that an apparent pause may not reflect the user’s behavior. To resolve these conflicts, llmovoice introduces a context orchestrator that uses the serving LLM for in-band, state-aware reasoning, as shown in Figure 5. The same LLM used for response generation performs orchestration over the cur-rent voice context rather than delegating the decision to a separate model. Because the semantic state is already present in the model context window, the serving LLM can reuse the current input and projected history without serializing and synchronizing them with another out-of-band controller. It augments this semantic context with the current paralinguis-tic and environmental states so that the LLM can interpret the three states jointly. At each turn, the context orchestrator provides the serving LLM with three additional inputs. A state snapshot contains the current paralinguistic and environmental states. The 
+
+runtime configuration records the current values of the avail-able actuators, such as response speed and the active turn-detection configuration. A typed function interface defines the controls available to the LLM and constrains the type and valid range of each argument. The state snapshot and run-time configuration provide the information needed to choose runtime controls, while the typed interface prevents the LLM from issuing arbitrary commands to the LLM-serving layer. When control is needed, the serving LLM returns one or more structured function calls. The context orchestrator vali-dates the calls and converts valid calls into runtime directives for the LLM-serving layer. The directives cover three types of control: content directives modify the instructions used for the next response; style directives adjust supported delivery attributes; and turn-control directives determine turn-taking behavior ( e.g., whether response generation should be de-ferred and the VAD silence duration used for subsequent user speech). At each turn, the context orchestrator may Context                          
+
+> Projector
+> Context Window
+> Summary
+> Query
+> Audio
+> Budget
+> Audio
+> Transcript
+> Omit
+> Query
+> External Memory Layer
+> Instruction
+> Construct
+> History
+> VoiceThread Table
+> VoicePage Table
+> ... ...
+> ...
+> T1
+> T2
+> #Page Ptr Summary Embedding
+> 1[P1, P4] User plans a Tokyo
+> trip in March …
+> [0.12, -0.04, ...,
+> 0.88]
+> 2[P2, P3] User inquires about
+> Japanese …
+> [0.12, -0.04, ...,
+> 0.88]
+> ...
+> #Audio Transcript Summary Embedding
+> 1ptr "User: Plan
+> Japan..."
+> Japan trip
+> intent
+> [0.12, -0.04,
+> ..., 0.88]
+> 2ptr "User: Learn
+> Jap..."
+> Learn
+> language
+> [-0.23, 0.41,
+> ..., -0.12]
+> 3ptr "User: Say
+> Hi..."
+> Greeting
+> practice
+> [-0.21, 0.39,
+> ..., -0.10]
+> 4ptr "User: Go in
+> Mar..."
+> March
+> schedule
+> [0.15, -0.02,
+> ..., 0.84]
+> P1
+> P3
+> P2
+> P4
+
+Figure 6. Memory layout and context-window construction. The context projector uses vthreads and vpages to con-struct projected history under a context budget, selecting among audio, transcript, and summary representations. produce no directive, one directive, or multiple directives. For example, an environmental state indicating packet loss may lead to a turn-control directive that defers the response and adapts turn detection. At the same time, if packet loss causes information to be missing from the received content, the context orchestrator may also issue a content directive asking the user to repeat or confirm the missing information. The context orchestration overhead is conditional. If the current states do not require adjustment, the serving LLM does not return a function call, and response generation pro-ceeds with the existing configuration. When orchestration invokes control functions, it introduces additional model usage cost and latency, but it may avoid more expensive downstream actions, such as generating an unnecessary re-sponse after a premature turn boundary. We evaluate this conditional overhead in §5. 
+
+3.4 Structured Voice Memory 
+
+Constructing a bounded context first requires recovering con-versational structure from a continuous, unstructured stream of voice interactions. At the micro level, a voice session con-sists of discrete interactions ( i.e., user–LLM exchanges). At the macro level, these aggregate into coherent conversational flows around topics or goals, with future interactions selec-tively referencing subsets of these flows. Interactions within the same flow need not be temporally adjacent: a user may suspend one task, discuss another topic, and later return to the original task through an implicit spoken reference. A flat sequence cannot represent these two levels of structure, forcing the system either to retrieve isolated fragments or to include unrelated interactions. To represent both levels explicitly, llmovoice introduces two memory abstractions: a 
+
+vpage represents a bounded interaction, while a vthread or-ganizes related vpages into a coherent conversational flow, as shown in Figure 6. VoicePage. A vpage is the persistent unit for one completed voice interaction, typically comprising a user input and the corresponding model output. It records the exchange to-gether with its available representations, including refer-ences to audio, transcripts, summaries, and the metadata needed for retrieval. The retained audio preserves speech-delivery information, while the transcript and summary pro-vide progressively more compact semantic representations. 
+
+VoiceThread. Retrieving vpages independently can miss dependencies among interactions within the same conversa-tional flow. A vthread addresses this problem by maintain-ing an ordered set of references to vpages associated with the same topic or goal. For example, a “Trip Planning” thread can link a hotel discussion with travel dates established earlier, allowing a later request such as “Can you book that hotel?” to recover both pieces of information. Thread membership is many-to-many: a vthread may reference multiple vpages ,and a vpage may belong to multiple vthreads when one in-teraction constrains several topics or tasks. Vthreads store references rather than duplicating the audio and derived representations contained in their pages. 
+
+Thread Operations. Two operations organize a newly com-mitted vpage . Append associates the page with matching existing threads, whereas Spawn creates a new thread after page-level retrieval when no thread matches. After committing a vpage , llmovoice retrieves relevant 
+
+vthreads and appends the page to every matching thread. Supporting multiple matches is necessary because a single utterance may affect several ongoing tasks. For example, confirming a hotel for Tuesday while scheduling a client dinner for the same evening constrains both travel planning and meeting scheduling. If no vthread matches, llmovoice performs page-level re-trieval over the complete vpage index. Relevant historical pages are combined with the new page to spawn a new 
+
+vthread . If no prior page matches, llmovoice creates a sin-gleton vthread containing only the new page. This fallback handles topic drift and recovers details omitted by thread-level representations. For example, a food preference men-tioned during a travel discussion can later seed a “Dining Rec-ommendation” thread. Thread-level retrieval therefore pre-serves conversational continuity, while page-level retrieval recovers finer-grained details. 
+
+Maintenance. Updating a vthread ’s summary and retrieval representation on the latency-critical voice path would de-lay subsequent interactions. To avoid this delay, llmovoice 
+
+makes each new vpage immediately available for page-level retrieval while asynchronously refreshing the affected 
+
+vthread ’s representations; once refreshed, they serve sub-sequent thread-level retrieval. Separating page availability from thread refresh removes thread-level aggregation from the latency-critical path while keeping the latest interaction accessible. Details of page and thread construction and retrieval are provided in §4.2. 
+
+3.5 Multi-Fidelity Context Projection 
+
+Structured voice memory makes accumulated interaction history retrievable, but each model request remains subject to a bounded context budget. Constructing the context window therefore requires selecting only the history relevant to the current interaction. Furthermore, not all relevant history needs to be retained as audio. A transcript or summary may suffice. The system must therefore determine both which history to include and the fidelity at which to represent it. A common approach is to compact history according to recency, preserving recent interactions at high fidelity while compressing or discarding older ones. This approach as-sumes recent history is more relevant. Long-running voice conversations, however, frequently branch across topics and later return to earlier goals. An older interaction may contain the exact constraint needed by the current request, while several recent interactions may be unrelated. Uniformly com-pressing older history can therefore remove useful detail, whereas retaining all recent history can waste the context budget on irrelevant content. To address this problem, llmovoice introduces a context projector that jointly selects relevant history and its repre-sentation fidelity, as shown in Figure 6. The projector first retrieves candidate vthreads and vpages for the current request, then selects a representation for each candidate subject to the available context budget. 
+
+Candidate retrieval. Given the current request 𝑞 , the con-text projector first retrieves relevant vthreads . A matched thread provides a compact thread-level representation to-gether with references to the vpages that form its conver-sational flow. Thread-level retrieval preserves related con-straints that may not individually resemble the current re-quest. For example, retrieving a “Trip Planning” thread for a hotel-booking request also makes the earlier page containing the travel dates available for projection. If no vthread matches the request, the projector falls back to page-level retrieval. This fallback recovers relevant de-tails that may not be retained in thread-level representations. 
+
+Vpages referenced by multiple candidate threads are identi-fied by their page identifiers and considered only once. The result is a set of candidate vthreads and vpages from which the projector constructs the historical context. 
+
+Representation fidelity. Each candidate can be represented as audio , transcript , or summary , trading representation fi-delity for model-input cost. Audio retains original acoustic and semantic information, a transcript retains lexical con-tent without speech delivery, and a summary retains only compact information about topic and task. For a vpage , the projector selects one of its stored representations. A vthread 
+
+can enter the context as a compact thread summary or be expanded into its referenced vpages . When expanded, a 
+
+vthread is replaced by its referenced vpages , which are then scheduled independently. Let 𝐵 denote the total context budget. The projector reserves an output safety buffer 𝐵 safe 
+
+and uses 𝐵 ctx = 𝐵 − 𝐵 safe for historical context. The current request is retained as audio. 
+
+Policy. A natural formulation would select one represen-tation 𝑚 𝑖 for each candidate 𝑢 𝑖 to maximize the relevance-weighted information retained in the context while satis-fying Í𝑖 𝑐 𝑖,𝑚 𝑖 ≤ 𝐵 ctx , where 𝑐 𝑖,𝑚 𝑖 is the model-input cost of the selected representation. Solving this formulation ex-actly is impractical for real-time voice interaction: global optimization introduces additional runtime latency, and pre-cisely quantifying the absolute information gain of a specific modality is intractable. To resolve this, llmovoice uses a relevance-ordered layered-degradation heuristic. The projector initially assigns each candidate its highest available fidelity. If the projected con-text exceeds 𝐵 ctx , it processes candidates in increasing order of relevance and progressively degrades their representa-tions along audio → transcript → summary → omit . The projector skips representations that are unavailable and stops once the context satisfies the budget. This heuristic requires only an ordering over representation fidelity rather than an absolute estimate of information gain, while allowing more relevant interactions to retain higher-fidelity information when the budget permits. Finally, the context projector seri-alizes the selected representations in conversational order. These representations form the projected history used for context orchestration and response generation. The policy has 𝑂 (𝑁 log 𝑁 ) time complexity, where 𝑁 is the number of candidate units. Our empirical evaluations show that the scheduling overhead is around 1 ms, making it suitable for real-time applications. 
+
+## 4 Llmovoice Implementation 
+
+The llmovoice prototype comprises 1,246 lines of code (LoC), excluding model prompt templates, and includes a browser-based WebRTC media path with a Python control and context-management backend. The receiver runs in a Chromium-based browser and uses the browser’s native WebRTC/Opus stack and NetEq implementation for me-dia decoding and packet-loss concealment. The receiver collects WebRTC telemetry and forwards NetEq-decoded audio to the backend as 24-kHz PCM16 audio, preserving packet-loss concealment artifacts. A Python asynchronous bridge relays the PCM stream to the OpenAI Realtime API over WebSocket, processes VAD and response events, ex-ecutes orchestration decisions, and issues runtime VAD updates. Persistent conversation metadata and vector in-dexes are maintained in PostgreSQL with pgvector and HNSW-based retrieval. Llmovoice can be ported to other model APIs that support streaming I/O and incremental context updates, such as Gemini Live and GLM-Realtime. Open-source packages and demos for llmovoice are available at https://llmovoice.com .
+
+4.1 State-to-Control Path Paralinguistic state extraction. For speaking rate, the run-time divides the transcript word count of each completed utterance by its audio duration. It discards utterances shorter than 0.5 seconds and, for English speech, observations out-side 100–300 words per minute. The estimator retains the ten most recent valid observations. Let 𝑟 1, . . . , 𝑟 𝑛 denote these observations in chronological order. The current speaking-rate estimate is computed using a linearly weighted average: ˆ𝑟 𝑡 =   
+
+> Í𝑛 𝑖 =1𝑖𝑟 𝑖
+> Í𝑛 𝑖 =1𝑖
+
+. The linear weights smooth turn-level variation while allowing the estimate to follow sustained changes in the user’s speaking rate. 
+
+Environmental state extraction. The receiver samples We-bRTC reception statistics every 50 ms and aggregates them over a rolling window of length 𝑊 = max {1000 ms , 𝐷 VAD },where 𝐷 VAD is the current silence threshold used for turn detection. The resulting state records the total duration of concealed audio, the duration of concealment rendered as silence, and the elapsed time since the most recent conceal-ment. The first two measurements characterize the sever-ity and form of recent packet loss, while the last indicates whether the impairment remains recent. 
+
+Orchestration. The prototype runs joint state reasoning through an instruction that guides the serving LLM to gen-erate control decisions based on the voice context. When the environmental state indicates that the received input may be incomplete or unreliable, the instruction prioritizes obtain-ing a complete input before response generation. The LLM may therefore defer the response or ask the user to repeat missing information. Otherwise, an explicit request in the semantic state takes precedence over a delivery preference inferred from the paralinguistic state. For example, a request to “speak faster” overrides a slower speaking rate observed from the user. Subject to these principles, the LLM selects and coordinates controls for response content, speaking rate, response deferral, and future turn detection. This instruction guides context-dependent decisions without prescribing a fixed mapping from individual states to controls. 
+
+Directive execution. The runtime exposes these controls through four typed functions. set_response_instruction 
+
+adds a content instruction to the next response, and set_ response_speed updates the provider-supported speaking-rate setting. defer_response prevents immediate response generation while the current turn boundary remains pro-visional, whereas set_vad_silence_duration updates the VAD silence threshold for subsequent turn boundaries. Be-fore applying a function call, the runtime control adapter verifies that the requested control is supported and that its arguments satisfy the declared types and ranges. Invalid calls are rejected without changing the runtime configuration. 
+
+Style directives. When orchestration determines that the response delivery should be adapted ( e.g., to align with the user’s observed speaking rate or follow an explicit request), it invokes set_response_speed . Let 𝑠 min and 𝑠 max be the provider’s minimum and maximum speed settings, which profiling maps to response rates 𝑟 min and 𝑟 max . We map user rate 𝑟 to 
+
+𝑠 (𝑟 ) = clip 
+
+
+
+𝑠 min + 𝑟 − 𝑟 min 
+
+𝑟 max − 𝑟 min 
+
+(𝑠 max − 𝑠 min ), 𝑠 min , 𝑠 max 
+
+
+
+.
+
+For the OpenAI Realtime API used in our prototype, speed settings 𝑠 min = 0.8 and 𝑠 max = 1.5 yield 𝑟 min = 142 .4 and 
+
+𝑟 max = 267 .0 words per minute, respectively. 
+
+Turn-control directives. When the environmental state indicates that an apparent turn boundary may result from network impairment rather than the end of the user’s turn, orchestration may invoke defer_response to defer the cur-rent response. A deferred response is reconsidered after a 1.5-second soft deadline. If the network has recovered, the runtime generates the response. Otherwise, it continues wait-ing until a 5-second hard deadline forces response generation. If a speech_started event arrives while a response is pend-ing, the runtime treats the new speech as a continuation of the current interaction. It cancels the pending response, waits for the corresponding speech_stopped event, and generates one response over the combined input. This continuation confirms that the preceding VAD boundary was premature. The runtime therefore uses the inter-segment gap to adjust the VAD silence duration for subsequent turns. Let 𝑔 be the gap between the preceding speech_stopped and following 
+
+speech_started events. With safety margin 𝛿 , update 
+
+𝐷 new = min 
+
+
+
+𝐷 max , 𝑞 
+
+ 𝐷 VAD + 𝑔 + 𝛿 𝑞 
+
+ 
+
+.
+
+Here 𝑞 is the VAD granularity and 𝐷 max is the maximum threshold. Our prototype uses 𝑞 = 100 ms, 𝛿 = 200 ms, and 
+
+𝐷 max = 5000 ms, and restores the default after five consecu-tive seconds of healthy reception. When the current semantic and environmental states in-dicate that future turn boundaries require adapting the si-lence threshold, orchestration invokes set_vad_silence_ duration proactively. In contrast, the automatic VAD up-date above in defer_response requires no LLM function call and occurs only after subsequent speech confirms that a boundary was premature. 
+
+4.2 Memory-to-Context Path 
+
+The prototype stores vpage and vthread metadata in Post-greSQL and maintains their many-to-many relationships in a separate membership table. Audio payloads reside in the local file system, with their paths recorded in the correspond-ing vpage records. For content processing and retrieval, ll-movoice uses gpt-4o-mini-transcribe for transcription, gpt-4o-mini for summarization, and a locally executed BAAI/bge-small-en-v1.5 model to generate 384-dimensional retrieval embeddings. The embeddings are stored in a pgvector hier-archical navigable small world (HNSW) index [31]; relevance is computed using cosine similarity. Retrieval embeddings for vpages and vthreads are generated from their respec-tive summaries, while the transcript of the current request serves as the retrieval query. Representation availability is determined from the stored metadata. To estimate model-input costs, the projector applies the provider-specific pricing model to estimated audio and text token usage. Audio tokens are estimated from the total du-ration of the user and model-response audio, whereas text tokens for transcripts and summaries are estimated from their word counts. When selected vthreads are expanded into page-level representations, the runtime deduplicates shared vpages by identifier and sums the costs of the se-lected page representations. When a compact thread-level summary is selected instead, its cost is estimated directly from its word count. 
+
+## 5 Evaluation 
+
+We evaluate llmovoice by answering five research questions: 1. Does the system improve (a) speaking-rate alignment and (b) turn handling under network loss? (§5.2) 2. Can the system bound the cost of processing long conver-sation histories? (§5.3) 3. Can the system accurately retrieve historical information and preserve answer quality? (§5.4) 4. What are the sources of the system’s latency overhead, and how much does each contribute? (§5.5) 5. How does the system perform in real-world use? (§5.6) Our key findings are: (1) Voice-specific control : For RQ1, speaking-rate control reduces mean absolute error (MAE) by 52.4%. Under packet loss, turn-taking control re-duces the false-interruption rate (FIR) by 98.0% and network-induced cost by 79.2%. (2) Model usage cost : For RQ2, ll-movoice keeps per-turn cost bounded and is up to 24.9 ×
+
+cheaper than OpenAI (and still 1.8 × cheaper than the ide-alized 100%–cached OpenAI case) in long-context conver-sations. (3) Context quality : For RQ3, llmovoice achieves 86.9%/75.3% retrieval hit rates and 7.7/6.3 judge scores on RT2/MSP-PODCAST, outperforming the evaluated bounded-context alternatives in answer quality. (4) Overhead : For RQ4, context organization adds 78.4 ms (3.8%) on RT2 and 50.9 ms (2.7%) on MSP-PODCAST; turns that produce a con-trol function call incur a separate mean decision latency of 790.2 ms. (5) Robustness : For RQ5, our case studies show that explicit voice context and persistent memory improve interaction quality by supporting topic resumption, network-aware turn handling, and recovery from disconnections. 
+
+5.1 Experimental Setup Workloads. We use three conversational-speech workloads. (1) NIST Rich Transcription 2002 (RT2) : RT2 contains 60 real-world telephone conversations of approximately five min-utes each [14]. (2) MSP-PODCAST : MSP-PODCAST contains longer recordings with diverse speakers and acoustic condi-tions; we select 70 sessions with at least two speakers and 30 turns, averaging 58 minutes [3]. (3) ICASSP PLC : The validation set of the ICASSP 2024 Audio Deep Packet Loss Concealment (PLC) Challenge contains 800 clean 48-kHz recordings of natural human speech and packet-loss traces sampled from loss patterns observed in real Microsoft Teams user calls at 20-ms granularity. We use RT2 for the speaking-rate experiment in RQ1(a), the ICASSP PLC validation set for the packet-loss experiment in RQ1(b), and RT2 and MSP-PODCAST for the long-context experiments in RQ2–RQ3. 
+
+Benchmark. For RQ2–RQ3, we construct the long-context benchmark by first ingesting each RT2 and MSP-PODCAST session through the same runtime pipeline, which constructs 
+
+vpages and vthreads and stores transcripts, embeddings, and metadata. From each processed session, we sample a partial history and select a target fact whose evidence ap-pears in one vpage (single-page ) or spans multiple vpages 
+
+(multi-page ). For each fact, we generate a question and refer-ence answer, synthesize the question using tts-1 , and use the resulting audio as the query. The resulting benchmark contains 120 RT2 and 138 MSP-PODCAST queries. 
+
+Experimental platform. The experiments use the proto-type implementation described in §4, including its transcrip-tion, summarization, embedding, storage, and retrieval stack. We use gpt-realtime-mini for response generation and GPT-4o as the answer-quality judge. 
+
+Compared methods. For RQ1(a), we compare against 
+
+llmovoice w/o context orchestration , which uses the de-fault response speed. For RQ1(b), we compare against: (1) 
+
+Fixed-500 , which disables context orchestration and fixes 
+
+silence_duration_ms at 500 ms; (2) Static-Max , which uses a conservative but non-adaptive threshold of 3200 ms. For RQ2–RQ3, we compare: (1) OpenAI (Full History) ,which directly uses the default OpenAI Realtime API with full-history prompts, serving as an unconstrained upper bound on accuracy. We also compare prompt-cached vari-ants. However, cache hit rates cannot be expected to reach 100% in practice, since in-memory cached prefixes typically persist for only a short time ( e.g., 5–10 minutes of inactiv-ity) [37]. (2) Page-RAG , which retrieves at the page level using embedding similarity under the same cost budget as ours, representing a standard retrieval-based baseline without context structuring. (3) Compaction , which follows a commonly adopted implementation: after each assistant response, if the accumulated context exceeds the same cost budget as ours, earlier history is summarized while retaining only the most recent two turns verbatim [36]. This represents a practical compression-based baseline used in real-world LLM systems. (4) Hybrid RAG , which combines the latest two turns with relevance- and recency-based page retrieval. It unions the relevance and recency of the top-10 candidates and ranks them by 0 .7 × relevance + 0.3 × recency. (5) Hierarchical Summary , which combines the latest two turns with maintained summaries of older history, grouping older interactions into 10-turn chunks. In our figures, RAG , Comp. , H-RAG , H-Sum , and LOV de-note Page-RAG, Compaction, Hybrid RAG, Hierarchical Sum-mary, and llmovoice , respectively. 
+
+Controlled experimental protocol. For RQ1(a), both con-ditions receive the same query audio, selected context, model, prompt, and voice. The experiment changes only whether context orchestration maps the observed WPM state to the next response speed; it therefore measures speaking-rate alignment rather than subjective naturalness. For RQ1(b), each ICASSP packet-loss mask is applied to a fresh WebRTC session in Chromium. NetEq decodes the received stream, and all decoded PCM (including packet-loss-concealed au-dio) is forwarded to Realtime. Fixed-500, Static-Max, and 
+
+llmovoice receive the same source recording and loss mask, and each trace-condition pair uses a fresh Realtime session. 
+
+Parameter settings. Thread- and page-level retrieval use a cosine-similarity threshold of 0.35. All bounded-context methods use the same context budget within each compar-ison. Projection estimates audio at 9.98 tokens per second and text at 1.33 tokens per word based on profiling of the model’s input accounting. For VAD settings, llmovoice ini-tializes VAD silence threshold 𝐷 VAD to 500 ms. 
+
+Metrics. For RQ1(a), we use WPM Alignment Error (MAE) ,the mean absolute difference between user and response WPM ( 1
+
+> 𝑁
+
+Í𝑁 𝑖 =1 |WPM (𝑖 ) 
+
+> response
+
+− WPM (𝑖 ) 
+
+> user
+
+|). For RQ1(b), we re-port: (1) False-Interruption Rate (FIR) , the fraction of traces in which a premature endpoint produces audible response audio ( #traces with false responses #evaluated traces ); (2) Endpoint Response Latency ,measured from the final endpoint event to the first response audio ( 𝑡 (𝑖 ) 
+
+> first audio
+
+− 𝑡 (𝑖 )
+
+> final endpoint
+
+); and (3) Network-Induced Cost ,the average per-trace cost of false responses and orchestra-tion ( 𝐶 network = 𝐶 false responses +𝐶 orchestration  
+
+> 𝑁
+
+). For RQ3, we use: (1) Retrieval Hit Rate , the fraction of ground-truth vpages loaded into the final context; and (2) 
+
+LLM-as-a-Judge Score , for which GPT-4o rates semantic cor-rectness from 1 to 10 using the same prompt across methods. Semantically equivalent answers are accepted regardless of wording differences. For RQ4, we use time to first audio (TTFA) , measured from the end of the user query to the first response-audio token. Because the new stronger-baseline runs use a different real-time proxy, their TTFA is reported only descriptively and is not used for cross-experiment la-tency comparisons. 
+
+5.2 Runtime Control with Voice Context Paralinguistic-aware speaking-rate control. Without context orchestration, the model responds at its default speaking rate, resulting in a WPM MAE of 38.26. With context orchestration enabled, llmovoice maps the ob-served speaking rate encoded in the paralinguistic state to a response-speed directive, reducing the MAE to 18.23. Table 1. Turn-control results over ICASSP PLC traces. 
+
+Policy FIR Latency (ms) Network cost ($/trace) 
+
+Fixed-500 46.0% 1286.1 0.003344 Static-Max 0.0% 4021.4 0
+
+llmovoice 0.9% 1830.7 0.000695 2 4 6History Length (Minutes) 0.00 0.01 0.02 0.03 0.04 Cost per Turn ($ USD)      
+
+> OpenAI RAG Comp. H-RAG H-Sum LOV
+> (a) RT2 020 40 History Length (Minutes) 0.0 0.1 0.2 Cost per Turn ($ USD)
+> OpenAI RAG Comp. H-RAG H-Sum LOV (b) MSP-PODCAST
+
+Figure 7. Cost per turn versus conversation history length. This corresponds to an absolute reduction of 20.03 WPM and a relative reduction of 52.4%. The result shows that paralinguistic-aware control improves speaking-rate align-ment, although it does not, by itself, establish greater subjec-tive naturalness. 
+
+Environment-aware turn control. Table 1 reports turn-control effectiveness over the traces from the validation set of the ICASSP 2024 Audio Deep Packet Loss Concealment Challenge. Fixed-500 produced audible premature responses on 46.0% of traces, whereas llmovoice reduced FIR to 0.9%, a 98.0% relative reduction. Static-Max also eliminated false interruptions, but its conservative 3.2-s silence threshold increased median endpoint response latency to 4.02 s, com-pared with 1.29 s for Fixed-500 and 1.83 s for llmovoice . Fi-nally, Fixed-500 incurred $0.003344 per trace in costs from premature responses. In comparison, llmovoice reduced the total network-induced cost to $0.000695 per trace, a 79.2% reduction. This total comprises $0.000069 in residual false-response costs and $0.000626 in function-call costs for con-text orchestration. 
+
+5.3 Cost Scalability 
+
+As shown in Table 2, llmovoice remains cost-efficient on both workloads. On RT2, llmovoice is 4.4 × cheaper than OpenAI. On MSP-PODCAST, llmovoice is 24.9 × cheaper than OpenAI. Notably, llmovoice remains competitive even under strong OpenAI caching ( e.g., 90%–100%). On long conversations (MSP-PODCAST), llmovoice is still 1.8 × cheaper than the idealized 100%-cached OpenAI case. Figure 7 illustrates the scalability of llmovoice . As preloaded conversation history length grows (measured by cumulative user-audio duration, since the OpenAI API preloads only OpenAI RAG Comp. H-RAG H-Sum LOV 010 20 30 Avg. Number of Pages        
+
+> Audio Transcript Summary
+> (a) RT2 OpenAI RAG Comp. H-RAG H-Sum LOV 020 40 60 Avg. Number of Pages
+> Audio Transcript Summary (b) MSP-PODCAST
+
+Figure 8. Page composition in the context window. 
+
+Table 2. Average per-turn cost comparison.                         
+
+> Method RT2 MSP-PODCAST
+> OpenAI $0.025468 $0.140198 25% cached $0.020346 $0.107614 50% cached $0.015224 $0.075029 75% cached $0.010103 $0.042445 90% cached $0.007029 $0.022894 100% cached $0.004981 $0.009860 Page-RAG $0.011753 $0.010112 Compaction $0.005297 $0.010543 Hybrid RAG $0.007821 $0.009487 Hierarchical Summary $0.006686 $0.011446
+> llmovoice $0.005799 $0.005634
+
+user audio while agent history is loaded as transcripts), OpenAI exhibits a steep upward cost trend due to expand-ing context windows. In contrast, llmovoice remains flat and strictly bounded across history lengths. This advantage comes from the context projector described in §3.5. As shown in Figure 8, compared to OpenAI, which keeps expanding heavy raw-audio context, our projector explicitly down-grades less relevant pages into lightweight transcript and summary representations as history grows. Representation maintenance is also cheap: transcription and summarization account for only 4.6% ($0.000269/query) of llmovoice ’s full cost on RT2 and 5.1% ($0.000285/query) on MSP-PODCAST. Local embedding, search, and storage incur no additional external API cost, and their latency is reported in §5.5. 
+
+5.4 Context Efficacy 
+
+Under the same budget, the bounded-context baselines achieve costs comparable to llmovoice . The primary ques-tion is whether their selected context is equally effective. We first examine LLM-as-a-Judge ratings as shown in Figure 9. Llmovoice preserves the best answer quality compared to RAG and Compaction and remains close to OpenAI: ll-movoice retains 98.7% and 88.7% of OpenAI-level answer quality on RT2 and MSP-PODCAST, respectively. Both Com-paction and Hierarchical Summary achieve lower answer quality than llmovoice across both workloads. This is due to OpenAI RAG Comp. H-RAG H-Sum LOV 02468   
+
+> LLM-as-a-judge Rating (1-10)
+> 7.8 7.4 3.7 7.3 7.4 7.7
+
+(a) RT2 OpenAI RAG Comp. H-RAG H-Sum LOV 02468   
+
+> LLM-as-a-judge Rating (1-10)
+> 7.1 5.5 3.3 5.9 5.9 6.3
+
+(b) MSP-PODCAST 
+
+Figure 9. LLM-as-a-Judge answer-quality comparison. OpenAI RAG Comp. H-RAG H-Sum LOV 0% 25% 50% 75% 100% Retrieval Hit Rate (%)  100.0% 68.5% 100.0% 65.0% 99.6% 86.9% 
+
+(a) RT2 OpenAI RAG Comp. H-RAG H-Sum LOV  
+
+> 0% 25% 50% 75% 100% Retrieval Hit Rate (%)  100.0% 34.1% 100.0% 37.0% 69.6% 75.3%
+
+(b) MSP-PODCAST 
+
+Figure 10. Retrieval hit-rate comparison on both workloads. their static policies, which retain recent turns verbatim while compressing older history into summaries that can omit fine-grained details. In contrast, llmovoice performs dynamic, relevance-aware compaction at the thread and page levels. As shown in Figure 8, it retains more high-fidelity context when affordable and gradually shifts to compact representa-tions as sessions grow longer. For example, compared with RT2, llmovoice represents more of the older context as sum-maries rather than transcripts on the longer MSP-PODCAST sessions. However, this compression can also cause accuracy loss. We observe a 14.6% transcript-to-summary failure rate, counting a failure only when the answer is incorrect and the required fact is inferable from the full transcript but not from the loaded summary. Compared with llmovoice , Page-RAG retains 3.8% and 11.3% less OpenAI-level answer quality on RT2 and MSP-PODCAST, respectively. The corresponding quality gaps for Hybrid RAG are 4.5% and 4.8%. To better understand this gap, we next examine retrieval hit rate in Figure 10. Both Page-RAG and Hybrid RAG have substantially lower retrieval accuracy, especially on the longer MSP-PODCAST conversations. This limitation is particularly pronounced for multi-page queries. For example, the multi-page request hit rate of Page-RAG drops by 26.4% on RT2 (81.7% to 55.3%) and 27.4% on MSP-PODCAST (47.8% to 20.4%) relative to single-page queries. This reflects a shared locality failure: page-level retrieval breaks cross-page conversational locality, so evidence distributed across turns is not jointly retrieved. In contrast, llmovoice preserves this locality by organizing 
+
+Table 3. End-to-end TTFA by workload and method. 
+
+Workload Method TTFA (ms) 95% CI n
+
+RT2 OpenAI 2451 ±339 120 RT2 Page-RAG 2644 ±264 120 RT2 Compaction 1066 ±137 120 RT2 llmovoice 2070 ±156 120 MSP OpenAI 7510 ±864 138 MSP Page-RAG 2102 ±113 138 MSP Compaction 1117 ±105 138 MSP llmovoice 1909 ±92 138 2000 4000 Time-to-First-Audio (ms) 0.00 0.25 0.50 0.75 1.00 Cumulative Probability 
+
+> 1946ms 2207ms 885ms 1873ms OpenAI RAG Compaction Llmovoice
+
+(a) RT2 2000 4000 6000 8000 Time-to-First-Audio (ms) 0.00 0.25 0.50 0.75 1.00 Cumulative Probability  
+
+> 4531ms 1954ms 960ms 1759ms OpenAI RAG Compaction Llmovoice
+
+(b) MSP-PODCAST 
+
+Figure 11. Cumulative distribution of TTFA by workload. 
+
+vpages into coherent vthreads , enabling thread-level re-trieval of connected evidence. 
+
+5.5 System Overhead 
+
+We next evaluate the latency overhead introduced by the mid-dleware layer. We first measure the memory-to-context path using end-to-end TTFA. These long-context runs exercise context retrieval and projection without producing a func-tion call. Table 3 compares llmovoice with three representa-tive baselines across both workloads. Figure 11 shows the corresponding latency distributions. The CDFs further show a clear rightward shift for OpenAI on both workloads, espe-cially on MSP-PODCAST. In contrast, the llmovoice curves rise earlier and more steeply, indicating that a larger frac-tion of queries reach first audio with lower latency and less dispersion. OpenAI also exhibits a heavier high-latency tail, whereas llmovoice shows shorter tails. To identify latency sources, we provide a component-level breakdown in Table 4. Table 4 shows that the memory-to-context overhead of llmovoice remains lightweight in both workloads: 78.4 ms (3.8%) on RT2 and 50.9 ms (2.7%) on MSP-PODCAST. Most of this internal time comes from embedding and vector retrieval, while context projection and input con-struction are negligible. In contrast, external STT and gener-ation account for the dominant share of end-to-end TTFA, indicating that the memory-to-context path contributes only a minor fraction of total latency. Notably, our current imple-mentation performs embeddings over STT transcripts, while Table 4. Latency breakdown for llmovoice (Gen: generation, Emb: embedding, Vec: vector search, PJ: context projection).                                  
+
+> Component RT2 MSP-PODCAST Lat. (ms) %Lat. (ms) %
+> STT 525.4 25.4% 490.3 25.7% Gen 1465.4 70.8% 1367.5 71.7% Emb 60.6 2.9% 28.9 1.5% Vec 17.4 0.8% 20.9 1.1% PJ 0.3 0.0% 1.1 0.1% Input 0.1 0.0% 0.0 0.0%
+> Total 2069.1 100.0% 1908.7 100.0%
+
+audio-based embeddings are also feasible. This can bypass STT waiting time and further reduce TTFA in practice. The state-to-control path incurs a separate, conditional overhead when the serving LLM within the context orches-trator generates a function call. We measure decision latency from the submission of the state snapshot to the receipt of the structured function call. Among turns that generated such a call, the mean decision latency was 790.2 ms (median: 698.8 ms; 95th percentile: 1,286.6 ms). 
+
+5.6 Evaluating Llmovoice in the Real World 
+
+To examine dynamic interactions between users and voice applications in real-world settings, we deployed llmovoice to handle open-ended travel-planning tasks. In this experiment, each volunteer interacted with llmovoice , OpenAI Native (Realtime API) , and OpenAI with Context Compaction in randomized order. In each session, the volunteer stated two constraints ( e.g., location preference), switched to two sub-tasks, and then returned with an additional constraint and requested a final recommendation. We report three repre-sentative cases from these unscripted interactions. 
+
+Case #1: Maintaining detailed information across topic drifts. A volunteer is planning a trip and asks for tourist attraction recommendations. In Phase 1, they set two con-straints: "I want a niche, natural landscape with very few people." After several minutes of unrelated chitchat (Phase 2), the user returns to the topic in Phase 3 and adds: "For the attractions you just recommended, I want a place with convenient transportation." 
+
+Observation: In the OpenAI with Context Compaction base-line, the system suffers from "detail amnesia." Because of the sub-task chitchat, the background summarizer compressed the early history and completely forgot the "few people" constraint. It confidently recommended Dali Ancient City ,stating: "Dali has great transportation with high-speed rail and an airport." This recommendation violates the user’s require-ment, as Dali is highly crowded. OpenAI Native retained all constraints by processing the full history, but cost $0.54/min. In contrast, when the user returned to the topic, ll-movoice ’s thread-level retrieval precisely fetched the prior 
+
+vthread containing the tourist-attraction constraint. It successfully recommended Shuhe Ancient Town : "You can consider Shuhe; it is quiet, uncrowded, and relatively easy to reach." Because llmovoice projects only the relevant threads (in transcript) rather than the full audio history, it provided the correct answer at a cost of only $0.13/min. 
+
+Case #2: Preventing false triggers under natural net-work fluctuations. During the conversation, the volunteer experiences a temporary network fluctuation, causing un-predictable packet loss and audio delivery delays. 
+
+Observation: We observed a catastrophic failure mode in the baselines. Under network fluctuation, the baseline’s static VAD (with the default silence_duration_ms =200 ms) mis-interpreted network-induced audio gaps as the user pausing or finishing their sentence. Consequently, the baseline con-tinuously interrupted the user with fragmented, nonsensical responses: "Sure, no problem... Please go on... Understood, I will... Wait a moment... Okay, I’ll give you..." Because the base-line blindly feeds these false-triggered responses back into the context window, it rapidly accumulated an extra 7,206 wasted tokens in a very short time. This not only drove up the per-turn cost for the remainder of the session but also caused the agent to hallucinate based on fragmented audio until the user manually corrected the flow. In llmovoice , the network condition is explicitly represented in the environ-mental states. The context orchestrator reasons over the states and issues a VAD control directive, so delayed packets are awaited instead of prematurely triggering generation. This explicit state-driven control reduces false interruptions and avoids cascading token waste. 
+
+Case #3: State recovery upon disconnection. During se-vere network degradation, the assistant’s response audio became choppy and discontinuous, and TTFA rose to an intolerable level. After noticing the prolonged delay, a vol-unteer proactively hung up and reconnected. 
+
+Observation: In our experiment, the OpenAI Realtime base-line did not preserve session state across reconnection and therefore treated the reconnected interaction as a new ses-sion. When the volunteer asked, "Where were we?" , the base-line replied, "Hello! Nice to meet you! How can I help?" The user had to explain again, "I just asked you to recommend food." The baseline then asked, "Got it. You want me to recom-mend food again, right? Tell me what you like." This forced the user to repeat previously provided information. In con-trast, llmovoice stores prior turns independently of the ac-tive connection. When the volunteer reconnected and asked, 
+
+"Where were we?" , llmovoice retrieved the active thread and resumed the conversation from its pre-disconnection state: 
+
+"Hello! Nice to see you again! Shall we continue with the food recommendation, or do you want to talk about something else?" 6 Related Work 
+
+LLM-over-voice systems. Early voice conversational stacks mostly follow cascaded designs: input speech is transcribed to text, processed by an LLM, and then converted back to speech [23, 41]. To reduce response latency and retain speech information discarded during transcription, recent efforts shift toward end-to-end, real-time speech-native models [6, 9, 11, 13, 17, 35, 38, 45, 47]. However, this line of work pri-marily optimizes model-centric properties, such as speech quality, response latency, and duplex interaction, under con-trolled settings. Production LLM-over-voice systems must additionally maintain cross-turn states about how utterances are delivered and conditions under which audio arrives, and coordinate them with semantic context to control the live voice pipeline. Existing model architectures do not expose such a persistent serving state. Llmovoice fills this gap by providing explicit voice states and context orchestration. 
+
+Persistent conversational memory. Long-term-memory systems extend an LLM beyond its immediate context window by storing and recovering prior information. Long-Mem [42] augments a frozen language model with a re-trievable memory network. MemoryBank [48] continu-ously updates conversational memories and user profiles. MemGPT [39] moves information between in-context and external memory tiers. Mem0 [7] extracts, consolidates, and retrieves salient facts from multi-session conversations. Collectively, these systems show that supporting long-term interaction requires a persistent memory substrate separate from the model’s bounded working context. Llmovoice adopts this principle for voice interaction through vpage ,which stores each completed interaction together with its available representations and retrieval embeddings. This persistent record preserves both semantic content and speech-delivery evidence for downstream organization, retrieval, and orchestration. 
+
+RAG. RAG grounds generation by retrieving relevant pas-sages from an external corpus [21, 30]. Flat RAG [27] treats passages independently, whereas hierarchical RAG retrieves information across multiple levels of abstraction. RAP-TOR [40] recursively clusters and summarizes passages into a retrieval tree, while GraphRAG [12] and HippoRAG [20] use graphs to connect evidence across a corpus. These methods are designed around document passages, entities, or facts. In contrast, vthread captures the temporal evolu-tion of voice conversations by organizing ordered vpages 
+
+into coherent threads based on their voice characteristics, enabling hierarchical retrieval. 
+
+Context reduction. Context reduction techniques, such as summarization, context compaction, and windowing, trade representation detail for a smaller model input. LLMLin-gua [24] and LongLLMLingua [25] remove less informa-tive prompt tokens under a compression budget, while RE-COMP [44] learns extractive and abstractive compressors for retrieved passages and can omit retrieval when it adds no useful information. These techniques operate primarily on text and optimize which semantic content survives com-pression. Projection extends this idea to voice history: under a fixed context budget, it represents each exchange using audio, a transcript, or a summary, or omits it entirely. 
+
+Caching. Serving systems use prompt, prefix, and KV caching to reduce repeated context-processing cost by reusing previously computed model states. Prompt Cache precomputes attention states for reusable prompt mod-ules [16]. vLLM’s PagedAttention manages KV-cache mem-ory efficiently and enables sharing across requests [29]. CacheBlend [46] combines cached states when retrieved knowledge is assembled into a new prompt. These tech-niques optimize the processing of constructed context and complement llmovoice ’s context organization. Compared with these lines of work, llmovoice combines two capabilities that they do not jointly provide. Its state-to-control path goes beyond speech-native models by explicitly representing semantic, paralinguistic, and environmental states and jointly mapping them to runtime controls. Its memory-to-context path extends text-centric memory, RAG, and context-reduction techniques to voice interactions by organizing persistent, temporally ordered records and se-lecting among audio, transcript, summary, and omission under a context budget. Caching optimizes an already con-structed context, whereas llmovoice determines what voice context to construct. Together, these new capabilities make long-running voice interaction more scalable while adapting system behavior to maintain interaction quality. 
+
+## 7 Conclusion 
+
+This paper presents llmovoice , a voice-context management middleware that explicitly models semantic, paralinguistic, and environmental states in voice interaction. Through a voice-context orchestration loop, llmovoice jointly reasons over these states to derive runtime controls and constructs bounded context from structured interaction units repre-sented at multiple fidelities, rather than from monolithic full history. Across benchmarks and end-to-end cases, ll-movoice improves speaking-rate alignment and robustness to network fluctuations while reducing long-session costs and preserving response quality. 
+
+## Acknowledgments 
+
+We thank the anonymous reviewers and our shepherd for their insightful comments. The work conducted at Shanghai Jiao Tong University was supported by the National Key R&D Program of China (Grant No. 2024YFC3017100) and the National Natural Science Foundation of China (Grant No. 62302292). We also acknowledge technical support from AgenticSys Group ( https://agenticsys.com ). Corresponding author: Yifei Zhu ( yifei.zhu@sjtu.edu.cn ). References 
+
+[1] Stephanie A Borrie, Tyson S Barrett, Megan M Willi, and Visar Berisha. 2019. Syncing up for a good conversation: A clinically meaningful methodology for capturing conversational entrainment in the speech domain. J. Speech Lang. Hear. Res. 62, 2 (2019), 283–296. [2] Susan E Brennan et al. 1996. Lexical entrainment in spontaneous dialog. Proc. ISSD 96 (1996), 41–44. [3] Carlos Busso, Reza Lotfian, Kusha Sridhar, Ali N. Salman, Wei-Cheng Lin, Lucas Goncalves, Srinivas Parthasarathy, Abinay Reddy Naini, Seong-Gyun Leem, Luz Martinez-Lucas, Huang-Cheng Chou, and Pravin Mote. 2026. The MSP-Podcast Corpus. IEEE Trans. Affect. Comput. (2026), 1–19. [4] Enyao Chang, Xiaoping Che, and Jianing Zhang. 2026. Designing and evaluating LLM-driven coaching agents for VR public speaking practice. Front. Psychol. 17 (2026), 1886780. [5] Sirry Chen, Jieyi Wang, Wei Chen, and Zhongyu Wei. 2026. SpeechMedAssist: Efficiently and Effectively Adapting Speech Lan-guage Models for Medical Consultation. In Proc. ACL . 30914–30935. [6] Wenxi Chen, Ziyang Ma, Ruiqi Yan, Yuzhe Liang, Xiquan Li, Ruiyang Xu, Zhikang Niu, Yanqiao Zhu, Yifan Yang, Zhanxun Liu, et al. 2025. Slam-omni: Timbre-controllable voice interaction system with single-stage training. In Findings of ACL . 2262–2282. [7] Prateek Chhikara, Dev Khant, Saket Aryan, Taranjeet Singh, and Deshraj Yadav. 2025. Mem0: Building production-ready ai agents with scalable long-term memory. arXiv preprint arXiv:2504.19413 (2025). [8] Wenqian Cui, Dianzhi Yu, Xiaoqi Jiao, Ziqiao Meng, Guangyan Zhang, Qichao Wang, Steven Y Guo, and Irwin King. 2025. Recent advances in speech language models: A survey. In Proc. ACL . 13943–13970. [9] Alexandre Défossez, Laurent Mazaré, Manu Orsini, Amélie Royer, Patrick Pérez, Hervé Jégou, Edouard Grave, and Neil Zeghidour. 2024. Moshi: a speech-text foundation model for real-time dialogue. arXiv preprint arXiv:2410.00037 (2024). [10] Lorenz Diener, Solomiya Branets, Ando Saabas, and Ross Cutler. 2025. The ICASSP 2024 audio deep packet loss concealment grand challenge. 
+
+IEEE Open J. Signal Process. 6 (2025), 231–237. [11] Zhihao Du, Jiaming Wang, Qian Chen, Yunfei Chu, Zhifu Gao, Zerui Li, Kai Hu, Xiaohuan Zhou, Jin Xu, Ziyang Ma, et al. 2023. Lauragpt: Listen, attend, understand, and regenerate audio with gpt. arXiv preprint arXiv:2310.04673 (2023). [12] Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, Dasha Metropolitansky, Robert Os-azuwa Ness, and Jonathan Larson. 2024. From local to global: A graph rag approach to query-focused summarization. arXiv preprint arXiv:2404.16130 (2024). [13] Qingkai Fang, Shoutao Guo, Yan Zhou, Zhengrui Ma, Shaolei Zhang, and Yang Feng. 2025. Llama-omni: Seamless speech interaction with large language models. In Proc. ICLR , Vol. 2025. 57607–57624. [14] J Garofolo, Jonathan Fiscus, and Audrey Le. 2004. 2002 rich transcrip-tion broadcast news and conversational telephone speech. Linguistic Data Consortium (2004). [15] Simon Garrod and Anthony Anderson. 1987. Saying what you mean in dialogue: A study in conceptual and semantic co-ordination. Cognition 
+
+27, 2 (1987), 181–218. [16] In Gim, Guojun Chen, Seung-seob Lee, Nikhil Sarda, Anurag Khandel-wal, and Lin Zhong. 2024. Prompt cache: Modular attention reuse for low-latency inference. In Proc. MLSys , Vol. 6. 325–338. [17] Google. 2025. Gemini Live API Overview. https://ai.google.dev/gemi ni-api/docs/live-api (accessed Mar. 30, 2026). [18] GSMA. 2024. The State of Mobile Internet Connectivity 2024. https:// www.gsmaintelligence.com/research/the-state-of-mobile-internet-connectivity-2024 (accessed Sep. 17, 2025). [19] GSMA. 2025. Voice-First Generative AI for Impact: Insights from Viamo’s Ask Viamo Anything Pilot in Zambia. https://www.gsma .com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2025/03/GSMA_Viamo_Voice-First-Generative-AI-for-Impact_2025.pdf 
+
+[20] Bernal J Gutiérrez, Yiheng Shu, Yu Gu, Michihiro Yasunaga, and Yu Su. 2024. Hipporag: Neurobiologically inspired long-term memory for large language models. Proc. NeurIPS 37 (2024), 59532–59569. [21] Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat, and Mingwei Chang. 2020. Retrieval augmented language model pre-training. In 
+
+Proc. ICML . PMLR, 3929–3938. [22] Chris High, Namita Singh, and Gusztáv Nemes. 2026. Artificial intelli-gence for agricultural extension: Supporting transformative learning among smallholder farmers. J. Dev. Policy Pract. 11, 1 (2026), 61–80. [23] Rongjie Huang, Mingze Li, Dongchao Yang, Jiatong Shi, Xuankai Chang, Zhenhui Ye, Yuning Wu, Zhiqing Hong, Jiawei Huang, Jinglin Liu, et al. 2024. Audiogpt: Understanding and generating speech, music, sound, and talking head. In Proc. AAAI , Vol. 38. 23802–23804. [24] Huiqiang Jiang, Qianhui Wu, Chin-Yew Lin, Yuqing Yang, and Lili Qiu. 2023. Llmlingua: Compressing prompts for accelerated inference of large language models. In Proc. EMNLP . 13358–13376. [25] Huiqiang Jiang, Qianhui Wu, Xufang Luo, Dongsheng Li, Chin-Yew Lin, Yuqing Yang, and Lili Qiu. 2024. Longllmlingua: Accelerating and enhancing llms in long context scenarios via prompt compression. In 
+
+Proc. ACL . 1658–1677. [26] Zhengbao Jiang, Frank F Xu, Luyu Gao, Zhiqing Sun, Qian Liu, Jane Dwivedi-Yu, Yiming Yang, Jamie Callan, and Graham Neubig. 2023. Active retrieval augmented generation. In Proc. EMNLP . 7969–7992. [27] Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, and Wen-tau Yih. 2020. Dense passage retrieval for open-domain question answering. In Proc. EMNLP .6769–6781. [28] Muhammad Salar Khan, Hamza Umer, and Farhana Faruqe. 2024. Arti-ficial intelligence for low income countries. Humanit. Soc. Sci. Commun. 
+
+11, 1 (2024), 1422. [29] Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody Hao Yu, Joseph Gonzalez, Hao Zhang, and Ion Stoica. 2023. Efficient memory management for large language model serving with pagedattention. In Proc. ACM SOSP . 611–626. [30] Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel, et al. 2020. Retrieval-augmented generation for knowledge-intensive nlp tasks. Proc. NeurIPS 33 (2020), 9459–9474. [31] Yu A Malkov and Dmitry A Yashunin. 2018. Efficient and robust approximate nearest neighbor search using hierarchical navigable small world graphs. IEEE Trans. Pattern Anal. Mach. Intell. 42, 4 (2018), 824–836. [32] Indrani Medhi, Somani Patnaik, Emma Brunskill, S.N. Nagasena Gau-tama, William Thies, and Kentaro Toyama. 2011. Designing mobile interfaces for novice and low-literacy users. ACM Trans. Comput.-Hum. Interact. 18, 1, Article 2 (May 2011), 28 pages. [33] Chris Monk, Allegra Ayala, Christine SP Yu, Gregory M Fitch, and Dara Gruber. 2026. Visual and Cognitive Demands of a Large Lan-guage Model-Powered In-vehicle Conversational Agent. arXiv preprint arXiv:2601.15034 (2026). [34] Clifford Ivar Nass and Scott Brave. 2005. Wired for speech: How voice activates and advances the human-computer relationship . Vol. 9. MIT press Cambridge, MA. [35] Tu Anh Nguyen, Eugene Kharitonov, Jade Copet, Yossi Adi, Wei-Ning Hsu, Ali Elkahky, Paden Tomasello, Robin Algayres, Benoit Sagot, Abdelrahman Mohamed, et al. 2023. Generative spoken dialogue language modeling. Trans. Assoc. Comput. Linguist. 11 (2023), 250– 266. [36] OpenAI. 2026. Context Summarization with Realtime API. https: //developers.openai.com/cookbook/examples/context_summarizatio n_with_realtime_api (accessed Apr. 2, 2026). [37] OpenAI. 2026. Prompt Caching. https://developers.openai.com/api/ docs/guides/prompt-caching (accessed Aug. 9, 2026). [38] OpenAI. 2026. Realtime and Audio. https://developers.openai.com/ api/docs/guides/realtime (accessed Aug. 14, 2026). [39] Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G Patil, Ion Stoica, and Joseph E Gonzalez. 2023. Memgpt: Towards llms as operating systems. arXiv preprint arXiv:2310.08560 (2023). [40] Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, and Christopher Manning. 2024. Raptor: Recursive abstractive process-ing for tree-organized retrieval. In Proc. ICLR , Vol. 2024. 32628–32649. [41] Yongliang Shen, Kaitao Song, Xu Tan, Dongsheng Li, Weiming Lu, and Yueting Zhuang. 2023. Hugginggpt: Solving ai tasks with chatgpt and its friends in hugging face. Proc. NeurIPS 36 (2023), 38154–38180. [42] Weizhi Wang, Li Dong, Hao Cheng, Xiaodong Liu, Xifeng Yan, Jianfeng Gao, and Furu Wei. 2023. Augmenting language models with long-term memory. Proc. NeurIPS 36 (2023), 74530–74543. [43] Richard Wike, Laura Silver, Janell Fetterolf, Christine Huang, Sarah Austin, Laura Clancy, and Sneha Gubbala. 2022. Internet, Smartphone and Social Media Use. https://www.pewresearch.org/global/2022/ 12/06/internet-smartphone-and-social-media-use-in-advanced-economies-2022/ (accessed Aug. 19, 2025). [44] Fangyuan Xu, Weijia Shi, and Eunsol Choi. 2024. RECOMP: Improv-ing retrieval-augmented LMs with context compression and selective augmentation. In Proc. ICLR , Vol. 2024. 43478–43502. [45] Jin Xu, Zhifang Guo, Hangrui Hu, Yunfei Chu, Xiong Wang, Jinzheng He, Yuxuan Wang, Xian Shi, Ting He, Xinfa Zhu, et al. 2025. Qwen3-omni technical report. arXiv preprint arXiv:2509.17765 (2025). [46] Jiayi Yao, Hanchen Li, Yuhan Liu, Siddhant Ray, Yihua Cheng, Qizheng Zhang, Kuntai Du, Shan Lu, and Junchen Jiang. 2025. Cacheblend: Fast large language model serving for rag with cached knowledge fusion. In Proc. ACM EuroSys . 94–109. [47] Qinglin Zhang, Luyao Cheng, Chong Deng, Qian Chen, Wen Wang, Siqi Zheng, Jiaqing Liu, Hai Yu, Chao-Hong Tan, Zhihao Du, et al. 2025. Omniflatten: An end-to-end gpt model for seamless voice conversation. In Proc. ACL . 14570–14580. [48] Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. 2024. Memorybank: Enhancing large language models with long-term memory. In Proc. AAAI , Vol. 38. 19724–19731.

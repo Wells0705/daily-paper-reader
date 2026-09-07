@@ -1,0 +1,329 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-07T22:22:52.056876+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2609.04852v1",
+      "source": "arxiv",
+      "title": "KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU",
+      "abstract": "Modern LLM agents operate in persistent workspaces whose accumulated history can exceed both GPU KV capacity and the model's native context window. Existing systems typically compact older context into summaries or retrieve it later as text, either losing fine-grained execution evidence or repeatedly prefilling content that the model has already processed. We present KVMem, a KV-context virtualization system that preserves overflowed workspace history as paged KV state across GPU memory, host memory, and NVMe. KVMem uses lightweight, model-native attention-space indexes to select relevant historical blocks and materializes a query-dependent execution view bounded by the model's native context window. Extensive evaluations on long-context agent benchmarks spanning histories up to one million tokens, including LongMemEval, MemoryAgentBench, and AgentLongBench, show that KVMem generally achieves higher task utility and greater inference efficiency than compaction-based approaches, the de facto standard for handling context overflow. In the DeepSWE long-context test with Qwen3.8-27B, KVMem improves task success from 43.8% with compaction-only context management to 48.4%.   In our local-deployment evaluation, KVMem runs Qwen3.6/3.8-27B NVFP4 with MTP on an off-the-shelf laptop equipped with a 24\\,GB RTX 5090 Laptop GPU, virtualizing agent workspaces of up to 1M tokens-four times the model's native 256K-token context window. In a single-session setting, KVMem generates $\\sim$50 tokens/s, providing interactive responsiveness for local agent execution. More broadly, by decoupling addressable workspace size from the LLM's native context window, KVMem provides a practical path toward long-running agents whose workspaces can grow beyond that window.",
+      "authors": [
+        "Di Chai",
+        "Leye Wang",
+        "Zeshen Su",
+        "Zhiguo Xia",
+        "Zhihang Yu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-09-04T08:09:59+00:00",
+      "link": "https://arxiv.org/pdf/2609.04852v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "KV-context virtualization for histories exceeding native context window",
+      "llm_evidence_cn": "用KV上下文虚拟化应对超出原生窗口的历史",
+      "llm_evidence": "用KV上下文虚拟化应对超出原生窗口的历史",
+      "canonical_evidence": "用KV上下文虚拟化应对超出原生窗口的历史",
+      "llm_tldr_en": "LLM agent workspaces accumulate histories that can exceed both GPU KV cache and the model context window. KVMem virtualizes KV context by paging overflowed history to GPU memory, host memory, and NVMe, with attention-space indexes selecting relevant blocks to materialize a bounded execution view. This supports million-token workspaces on a consumer GPU.",
+      "llm_tldr_cn": "LLM智能体的持久化工作空间会累积超出GPU KV容量和模型原生上下文窗口的历史，现有方案要么把上下文总结成摘要、丢失细粒度执行证据，要么重复预填充已处理内容。KVMem提出KV上下文虚拟化，把溢出历史以分页KV状态放在显存、主机内存与NVMe中，并用轻量注意力索引选择相关块，在原生上下文窗口内物化查询相关的执行视图。在长上下文智能体基准上，它能让消费级GPU支撑百万Token级智能体工作空间。",
+      "llm_tldr": "LLM智能体的持久化工作空间会累积超出GPU KV容量和模型原生上下文窗口的历史，现有方案要么把上下文总结成摘要、丢失细粒度执行证据，要么重复预填充已处理内容。KVMem提出KV上下文虚拟化，把溢出历史以分页KV状态放在显存、主机内存与NVMe中，并用轻量注意力索引选择相关块，在原生上下文窗口内物化查询相关的执行视图。在长上下文智能体基准上，它能让消费级GPU支撑百万Token级智能体工作空间。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.29622v1",
+      "source": "arxiv",
+      "title": "AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing",
+      "abstract": "Retrieval-Augmented Generation (RAG) improves the factuality of large language models (LLMs), yet existing RAG systems often struggle with complex, multi-step reasoning that requires adaptive retrieval and continuous revision of intermediate contexts. Recent reinforcement learning (RL)-based agentic RAG methods partially alleviate this issue, but typically rely on coarse-grained action spaces and trajectory-level rewards, resulting in weak reward assignment and a bias toward short-horizon, stereotyped reasoning template. To address, we propose AgenticRag-R1, a RL framework that deeply integrates reasoning, retrieval, and memory via a memory stack and fine-grained action space, supported by hierarchical action-aware rewards and an information-aware trajectory rejection strategy to enable effective long-horizon learning. Experiments across a diverse set of multi-hop, open-domain, and agentic reasoning benchmarks, spanning multiple backbone model sizes, demonstrate that AgenticRag-R1 consistently outperforms strong baselines. Moreover, AgenticRag-R1 learns more robust, interpretable, and memory-aware reasoning behaviors, highlighting the effect of fine-grained action modeling and information-aware optimization for long-horizon reasoning. Our code is anonymous available at https://github.com/jiangxinke/Harness-RL/tree/AgenticRAG-R1-Whitebox.",
+      "authors": [
+        "Xinke Jiang",
+        "Yue Fang",
+        "Zhibang Yang",
+        "Jiaran Gao",
+        "Zhixin Zhang",
+        "Tao Feng",
+        "Rihong Qiu",
+        "Wentao Zhang",
+        "Hongxin Ding",
+        "Ruizhe Zhang",
+        "Yongxin Xu",
+        "Yuheng Huang",
+        "Xu Chu",
+        "Junfeng Zhao",
+        "Yasha Wang"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-08-30T07:31:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.29622v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "integrates memory stack with fine-grained actions for multi-step reasoning, retrieval and memorizing",
+      "llm_evidence_cn": "以栈式记忆整合推理检索记忆实现多步自主上下文维护",
+      "llm_evidence": "以栈式记忆整合推理检索记忆实现多步自主上下文维护",
+      "canonical_evidence": "以栈式记忆整合推理检索记忆实现多步自主上下文维护",
+      "llm_tldr_en": "Proposes AgenticRag-R1, an RL framework that deeply integrates reasoning, retrieval and memory through a memory stack and fine-grained action space for adaptive multi-step RAG.",
+      "llm_tldr_cn": "检索增强生成虽提升事实性，但在需要自适应检索和持续修正中间上下文的多步推理上仍困难。现有RL智能体RAG方法动作空间粗、奖励分配弱，易偏向短视套路。为此提出AgenticRag-R1，利用记忆栈与细粒度动作空间深度整合推理、检索和记忆，辅以分层奖励。该方法能够持续维护中间上下文并灵活调整检索策略，有效缓解短视模板化偏差。实验表明其在复杂多跳推理与信息记忆任务上取得显著改进。",
+      "llm_tldr": "检索增强生成虽提升事实性，但在需要自适应检索和持续修正中间上下文的多步推理上仍困难。现有RL智能体RAG方法动作空间粗、奖励分配弱，易偏向短视套路。为此提出AgenticRag-R1，利用记忆栈与细粒度动作空间深度整合推理、检索和记忆，辅以分层奖励。该方法能够持续维护中间上下文并灵活调整检索策略，有效缓解短视模板化偏差。实验表明其在复杂多跳推理与信息记忆任务上取得显著改进。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.04915v1",
+      "source": "arxiv",
+      "title": "Compact-Memory LLM Agents via Online Max-Member Clustering and Atom-Aware Packing",
+      "abstract": "Many long-horizon LLM deployments face tight prompt budgets: latency, cost, and context limits make full-context prompting impractical as interaction length grows. The key question is then not raw recall alone, but which memory design gives the best quality--token trade-off in the compact-memory regime. We present \\textbf{RSM-full}, an online clustered-memory pipeline designed for a strong quality--token Pareto point.   RSM-full combines two design choices: a cosine-gated \\emph{max-member merge} write rule and an atom-aware grouped context packer. On AMA-Bench, our primary compact-memory benchmark, it reaches $83%$ of Full-Context quality at $32%$ of the token cost at a $4$k budget; under four-seed averaging it beats the closest streaming-clustered baseline (Online K-Means) by $+3.5$--$6.0$,pp ($p{<}.001$) across the whole ${\\sim}2.6$k--${\\sim}5$k regime. Three-seed ablations show most of this gain comes from the merge rule ($+5.7$,pp over Online K-Means and matched-$τ$ DP-means) and the grouped packer ($+5.0$,pp over flat concatenation).   The pattern reproduces on RealMem, an independent long-horizon persona-memory benchmark: RSM-full improves on Budget-RAG ($+0.69$,pp, $p{=}.006$), is on par with BM25-RAG (paired $Δ{=}{+}0.27$,pp, $p{=}.47$; we do \\emph{not} claim BM25 equivalence in the equivalence-test sense), and significantly outperforms Streaming-Proto ($+2.97$,pp) and the closest reproduced 2025 agentic-memory baseline A-MEM ($+1.65$,pp, $p{<}.001$). Across benchmarks the message is consistent: under tight budgets, compact-memory performance is driven mainly by how streaming memories are merged and how retrieved content is assembled.   Overall, RSM-full is most useful when answeroughly $2k$--$5k$ prompt tokens, where itdefines a strong compact-memory Pareto point; higher-token baselines remain stronger outside this regime.",
+      "authors": [
+        "Jiahe Geng",
+        "Jinpeng Wang",
+        "Kun Yuan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-04T09:19:00+00:00",
+      "link": "https://arxiv.org/pdf/2609.04915v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "online clustered-memory pipeline for LLM agents designed for quality-token trade-offs under context and prompt limits",
+      "llm_evidence_cn": "面向上下文受限场景的LLM智能体在线聚类记忆管线，兼顾质量与令牌开销",
+      "llm_evidence": "面向上下文受限场景的LLM智能体在线聚类记忆管线，兼顾质量与令牌开销",
+      "canonical_evidence": "面向上下文受限场景的LLM智能体在线聚类记忆管线，兼顾质量与令牌开销",
+      "llm_tldr_en": "RSM-full online clustered-memory pipeline for LLM agents pairs cosine-gated max-member merge memory writing with atom-aware grouped context packing, reaching 83 percent of full-context quality at 32 percent token cost on AMA-Bench.",
+      "llm_tldr_cn": "长程LLM部署常受上下文长度与令牌预算限制，全量上下文并不现实。RSM-full利用在线聚类记忆与原子感知分组打包，在紧凑记忆下追求质量与令牌开销的最优帕累托。在AMA-Bench上，4k预算能达到全上下文质量的83%，令牌成本只要32%，并优于现有流式聚类方法。结果显示紧凑记忆能同时兼顾召回与效率。",
+      "llm_tldr": "长程LLM部署常受上下文长度与令牌预算限制，全量上下文并不现实。RSM-full利用在线聚类记忆与原子感知分组打包，在紧凑记忆下追求质量与令牌开销的最优帕累托。在AMA-Bench上，4k预算能达到全上下文质量的83%，令牌成本只要32%，并优于现有流式聚类方法。结果显示紧凑记忆能同时兼顾召回与效率。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.05232v1",
+      "source": "arxiv",
+      "title": "Substrate-Aware AI Agents: Execution Context as a First-Class Input",
+      "abstract": "Autonomous AI agents increasingly select actions in environments whose memory, execution-time, runtime, compute, and operational constraints determine what counts as a suitable plan. We call the absence of this execution context from an agent's planning state substrate blindness. We test this general proposition through numerical code generation, where selected implementation choices and operational consequences are directly observable. Three frontier model configurations--Anthropic Claude Opus 5, OpenAI GPT-5.6-Sol, and Google Gemini 3.7 Flash--generate code for a high-dimensional pairwise Euclidean-distance task either from the task alone or with a 128 MB RAM and 10.0 s wall-time contract. Contract disclosure reduced measured peak process memory in 13 of 14 executable index-aligned task-only versus contract-disclosed comparisons and reduced mean wall time in all three cohorts, making execution up to 3.1x faster. Across the audited corpus, disclosure produced structural code changes including bounded blocking, float32 retention, upper-triangle traversal, and in-place or memory-mapped buffers. At a tighter 96 MB contract, independently sampled contract-disclosed cohorts achieved correct-and-within-budget outcomes of 4/5 for Claude Opus 5, 5/5 for GPT-5.6-Sol, and 3/5 for Gemini 3.7 Flash, compared with task-only outcomes of 0/5, 1/5, and 0/5; cohort mean MaxRSS and wall time were 49-74% and 35-64% lower than their task-only references. These results establish a controlled proof of concept for substrate-aware agent planning: a minimal execution contract induces proactive structural adaptation in generated programs, shifting computation away from unconstrained allocations and substantially improving observed resource-time profiles before execution.",
+      "authors": [
+        "Manu Agrawal"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-04T14:57:17+00:00",
+      "link": "https://arxiv.org/pdf/2609.05232v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes execution context as first-class input for agent planning (substrate awareness)",
+      "llm_evidence_cn": "将执行上下文作为规划的一等输入以消除基底盲区",
+      "llm_evidence": "将执行上下文作为规划的一等输入以消除基底盲区",
+      "canonical_evidence": "将执行上下文作为规划的一等输入以消除基底盲区",
+      "llm_tldr_en": "Introduces substrate-blindness as missing execution constraints in agent planning; shows that disclosing memory and time contracts to frontier LLMs reduces peak memory in code generation tasks.",
+      "llm_tldr_cn": "自主智能体往往忽略内存、运行时间等执行环境约束，导致生成方案不切实际，作者称之为基底盲区。本文主张将执行上下文作为智能体规划的一等输入，并在数值代码生成任务上验证。对Anthropic Claude、OpenAI GPT、Google Gemini等前沿模型披露128MB内存与10秒墙钟约束后，多个配置的峰值进程内存显著下降。结果表明，把执行上下文纳入规划能够提升智能体在真实环境中的可用性。",
+      "llm_tldr": "自主智能体往往忽略内存、运行时间等执行环境约束，导致生成方案不切实际，作者称之为基底盲区。本文主张将执行上下文作为智能体规划的一等输入，并在数值代码生成任务上验证。对Anthropic Claude、OpenAI GPT、Google Gemini等前沿模型披露128MB内存与10秒墙钟约束后，多个配置的峰值进程内存显著下降。结果表明，把执行上下文纳入规划能够提升智能体在真实环境中的可用性。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.00618v2",
+      "source": "arxiv",
+      "title": "Towards Effective Structured Context Modeling for Conversational Recommender Systems via Dual-node Monte Carlo Tree Search",
+      "abstract": "We investigate the role of conversational context modeling in user preference tracking for Conversational Recommendation Systems (CRSs). In this regard, we propose DREAMS, a novel tree-structured context modeling framework that explicitly captures user preference evolution throughout multi-turn interactions. DREAMS introduces two specialized node types to support the two fundamental objectives of CRSs: preference elicitation and preference exploitation. Specifically, elicitation nodes leverage Monte Carlo Tree Search (MCTS) to strategically explore conversational actions and infer latent user preferences, while exploitation nodes employ LLM-based refinement to transform the tracked preference state into structured retrieval queries for recommendation. Extensive experiments on benchmark datasets demonstrate the effectiveness of DREAMS and its design.",
+      "authors": [
+        "Jincheng Zhang",
+        "Chen Huang",
+        "Wenqiang Lei",
+        "See-Kiong Ng",
+        "Yang Deng"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-09-01T03:02:58+00:00",
+      "link": "https://arxiv.org/pdf/2609.00618v2",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "tree-structured context modeling to capture user preference evolution in conversational recommender systems",
+      "llm_evidence_cn": "在对话推荐中用双节点树形上下文建模追踪用户偏好演化",
+      "llm_evidence": "在对话推荐中用双节点树形上下文建模追踪用户偏好演化",
+      "canonical_evidence": "在对话推荐中用双节点树形上下文建模追踪用户偏好演化",
+      "llm_tldr_en": "DREAMS models conversational context in recommender systems as a dual-node tree: elicitation nodes use Monte Carlo tree search to infer latent preferences while exploitation nodes use LLM-based refinement to turn tracked preferences into recommendations, improving multi-turn preference tracking.",
+      "llm_tldr_cn": "对话推荐系统需要在多轮交互中理解会话上下文以追踪用户偏好，但简单的平面上下文难以刻画偏好演化。为此提出DREAMS树形上下文建模框架，其中偏好采集节点用蒙特卡洛树搜索探索并推断潜在偏好，偏好利用节点经由LLM优化将偏好状态用于推荐。双节点结构显式建模用户偏好变化，为对话推荐系统的上下文建模提供了结构化新思路。",
+      "llm_tldr": "对话推荐系统需要在多轮交互中理解会话上下文以追踪用户偏好，但简单的平面上下文难以刻画偏好演化。为此提出DREAMS树形上下文建模框架，其中偏好采集节点用蒙特卡洛树搜索探索并推断潜在偏好，偏好利用节点经由LLM优化将偏好状态用于推荐。双节点结构显式建模用户偏好变化，为对话推荐系统的上下文建模提供了结构化新思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "conversation context understanding in dialogue systems",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.04288v1",
+      "source": "arxiv",
+      "title": "Scalable Context Orchestration for Serving LLMs Over Voice",
+      "abstract": "Voice AI applications are gaining popularity as advances in large language models (LLMs) enable more natural and accessible spoken interactions. Serving these applications requires accounting not only for what users say, but also for how they speak (e.g., speaking rate) and the conditions under which their audio is captured and transmitted (e.g., background noise and packet loss). However, existing LLM systems represent conversation context as a flat, growing sequence of messages, leaving voice-specific context implicit in the audio. As a result, they can generate responses that are poorly aligned with user preferences, degrade interaction quality under adverse environmental conditions, and incur high costs over long voice sessions.   We present llmovoice, a context-management middleware that explicitly models voice context and orchestrates its use. At each turn, llmovoice constructs a bounded voice context from the current user input, relevant interaction history, and explicit paralinguistic and environmental states. It then uses the serving LLM to reason over this context and generate runtime directives that guide how the system responds. We evaluate llmovoice on real-world voice applications and benchmarks. It reduces speaking-rate alignment error by 52.4%, lowers the false-interruption rate from 46.0% to 0.9% under packet loss, and reduces model usage cost by 79.2%. For long sessions, llmovoice reduces per-turn cost by up to 24.9 times while retaining up to 98.7% of baseline answer quality.",
+      "authors": [
+        "Linyi Jiang",
+        "Silvery D. Fu",
+        "Yifei Zhu"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "eess.AS"
+      ],
+      "published": "2026-09-03T09:27:00+00:00",
+      "link": "https://arxiv.org/pdf/2609.04288v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "voice-specific context orchestration for serving LLM applications",
+      "llm_evidence_cn": "面向语音LLM服务的上下文编排，可视为上下文工程的技术方案",
+      "llm_evidence": "面向语音LLM服务的上下文编排，可视为上下文工程的技术方案",
+      "canonical_evidence": "面向语音LLM服务的上下文编排，可视为上下文工程的技术方案",
+      "llm_tldr_en": "Voice LLM services ignore speech rate, noise, and packet loss by treating context as flat text. We introduce lmovoice, a scalable context orchestration scheme that encodes voice-specific context, improving alignment, robustness in adverse conditions, and cost over long sessions.",
+      "llm_tldr_cn": "现有语音大模型服务把对话上下文看作一条条增长的扁平消息列表，把语速、信道噪声、丢包等语音专属上下文排除在外，导致响应与用户偏好不一致且成本偏高。本文提出lmovoice，一个可扩展的上下文编排框架，将语音及传输环境特征显式纳入上下文进行管理。在语音场景下的实验表明，该方法能更好贴合用户偏好，在噪声和丢包条件下维持交互质量并降低长会话开销，为语音LLM服务提供了一套系统的上下文工程方案。",
+      "llm_tldr": "现有语音大模型服务把对话上下文看作一条条增长的扁平消息列表，把语速、信道噪声、丢包等语音专属上下文排除在外，导致响应与用户偏好不一致且成本偏高。本文提出lmovoice，一个可扩展的上下文编排框架，将语音及传输环境特征显式纳入上下文进行管理。在语音场景下的实验表明，该方法能更好贴合用户偏好，在噪声和丢包条件下维持交互质量并降低长会话开销，为语音LLM服务提供了一套系统的上下文工程方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.04570v1",
+      "source": "arxiv",
+      "title": "Dynamic Adaptation of the LLM Context for Generating Routines with Coupled Semantics",
+      "abstract": "LLM-based code generation fails when correctness depends on execution-dependent coupling: the meaning of one routine is defined by the runtime behavior of another, a relationship that cannot be resolved from textual descriptions alone. This limitation, which we call static binding, is not confined to explicitly coupled problems; it appears to varying degrees whenever correctness depends on joint execution behavior across components, from explicit cross-coupled optimizers to subtler joint constraints in packing, routing, and symbolic search. This paper proposes dynamic context adaptation, a sample-efficient validation-generation loop designed for this setting. A validation agent extracts structured diagnostic information from execution traces, providing gradient-like guidance to a generation agent that proposes multiple candidates per iteration. A knowledge graph derived from the problem description supplies semantic constraints to the generation agent. Simulated annealing selects among candidates to avoid greedy collapse. Our method outperforms zero-shot, Reflexion, and OpenEvolve on seven of eight problems at both 300 and 600 evaluations (p < 0.01), a regime where population-based search has not yet accumulated sufficient diversity to compete. Notably, on the primary motivating problem (cross-coupled optimization), our method also achieves the best score at 1000 evaluations, consistent with the hypothesis that structured execution feedback is most beneficial when correctness depends on runtime coupling. Ablation results confirm that structured execution feedback is the primary driver.",
+      "authors": [
+        "Gnaneswar Villuri",
+        "Hashmath Shaik",
+        "Alex Doboli"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T23:56:18+00:00",
+      "link": "https://arxiv.org/pdf/2609.04570v1",
+      "tags": [
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dynamic context adaptation and validation agent for LLM code generation",
+      "llm_evidence_cn": "面向LLM代码生成的动态上下文调整与验证循环",
+      "llm_evidence": "面向LLM代码生成的动态上下文调整与验证循环",
+      "canonical_evidence": "面向LLM代码生成的动态上下文调整与验证循环",
+      "llm_tldr_en": "LLM code generation fails when correctness depends on execution-coupled semantics that text alone cannot capture. The paper introduces dynamic context adaptation, a sample-efficient validation-generation loop where a validation agent extracts structured diagnostics from execution traces and iteratively revises the LLM context to handle static binding and produce coupled-semantics routines.",
+      "llm_tldr_cn": "本工作针对LLM代码生成中因组件间执行行为耦合而难以仅凭文本描述正确生成的问题，提出动态上下文自适应方法。该方法由验证智能体从执行轨迹中提取结构化诊断信息，并据此迭代替换或增强LLM上下文，以解决静态绑定问题。其验证-生成循环样本效率高，可用于生成具有耦合语义的代码例程，体现了上下文工程在代码智能体中的关键作用。",
+      "llm_tldr": "本工作针对LLM代码生成中因组件间执行行为耦合而难以仅凭文本描述正确生成的问题，提出动态上下文自适应方法。该方法由验证智能体从执行轨迹中提取结构化诊断信息，并据此迭代替换或增强LLM上下文，以解决静态绑定问题。其验证-生成循环样本效率高，可用于生成具有耦合语义的代码例程，体现了上下文工程在代码智能体中的关键作用。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2609.02750v1",
+      "source": "arxiv",
+      "title": "Bilevel Coordinated Reflection: A Game-Theoretic Approach to Multi-Agent LLM Systems",
+      "abstract": "Multi-agent LLM systems commonly use an orchestrator to decompose a task for a team of workers and then improve through textual reflection. Despite strong empirical results, these systems lack a unified account of coordination, memory improvement, and the role of external verification. We model orchestrator-worker interaction as a bilevel coordination game: under bounded coupling, the workers' local-update game is an approximate potential game whose equilibrium slack is controlled by decomposition quality. We then analyse reflection as stochastic movement over semantic memory states. For free-form reflection, we derive a finite-time upper bound, prove worst-case tightness, and give a positive lower bound under a falsifiable persistent-harm condition. We further prove an information-theoretic impossibility result: no gate that observes only the generated transcript can improve uniformly over text-indistinguishable environments, whereas an environment-grounded gate can. Motivated by this separation, we introduce Stochastic Reflective Memory Ascent (SRMA), which accepts a candidate memory only after a grounded evaluation risk strictly decreases. Under calibration and non-degenerate corrective mass, SRMA converges exactly, geometrically or polynomially; matching constructions show that both rate regimes are order-tight. We also provide confidence gating for stochastic evaluation and re-anchoring guarantees for piecewise-stationary environments. Experiments instantiate these objects with environment-grounded metrics and test the predicted coordination and drift laws. On 500 SWE-bench instances, the complete Kimi-based system resolves 72.2% versus a 70.8% public mini-SWE-agent reference. Code: https://github.com/YihangChen9/Bilevel-Coordinated-Reflection",
+      "authors": [
+        "Yihang Chen",
+        "Yuxiang Chen",
+        "Yuxuan Huang",
+        "Meng Fang",
+        "Weilin Luo",
+        "Jun Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-02T15:50:10+00:00",
+      "link": "https://arxiv.org/pdf/2609.02750v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "analyzes reflection and memory improvement over semantic memory states",
+      "llm_evidence_cn": "对多智能体中的语义记忆状态与反思过程进行建模分析",
+      "llm_evidence": "对多智能体中的语义记忆状态与反思过程进行建模分析",
+      "canonical_evidence": "对多智能体中的语义记忆状态与反思过程进行建模分析",
+      "llm_tldr_en": "This paper provides a game-theoretic account of orchestrator-worker LLM systems, modeling reflection as stochastic movement over semantic memory states and bounding its finite-time convergence. It establishes when local updates form an approximate potential game, offering theoretical grounding for memory and reflection management in multi-agent LLM systems.",
+      "llm_tldr_cn": "多智能体LLM系统中已有反思机制效果好但缺乏对协调、记忆改进与外部验证的统一解释。本文将编排者与工人交互建模为双层协调博弈，并证明有界耦合下工人局部更新形成近似势博弈。作者进一步把反思看作语义记忆状态上的随机运动，给出有限时间收敛上界和下界等分析结果。该工作为理解和设计智能体记忆与反思机制提供了理论支撑。",
+      "llm_tldr": "多智能体LLM系统中已有反思机制效果好但缺乏对协调、记忆改进与外部验证的统一解释。本文将编排者与工人交互建模为双层协调博弈，并证明有界耦合下工人局部更新形成近似势博弈。作者进一步把反思看作语义记忆状态上的随机运动，给出有限时间收敛上界和下界等分析结果。该工作为理解和设计智能体记忆与反思机制提供了理论支撑。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
