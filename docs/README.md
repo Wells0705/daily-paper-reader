@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-07</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-08</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 8 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 1 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>6</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>0</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>1</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-07 22:27:59 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-08 22:38:17 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,10 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日共生成 8 篇推荐（精读 6 篇，速读 2 篇）</p>
-<p>精读：《KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU》（10.0/10）, 《AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing》（9.0/10）</p>
-<p>速读：《Dynamic Adaptation of the LLM Context for Generating Routines with Coupled Semantics》（8.0/10）, 《Bilevel Coordinated Reflection: A Game-Theoretic Approach to Multi-Agent LLM Systems》（6.0/10）</p>
-<p>这些结果覆盖了当下较热的方向，建议先看精读区论文的关键问题与方法。</p>
+<p>今日仅速读1篇论文，聚焦LLM智能体的信念基础世界模型方向。</p>
+<p>值得关注的是《Towards a Belief-Based World Model for LLM Agents》，评分6.0/10，可了解如何用信念建模提升智能体环境理解。</p>
+<p>建议普通读者先看摘要与实验结论，暂不必精读全文，等待后续更高分相关研究。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -74,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">6 篇</strong>
+    <strong class="dpr-home-dashboard-count">0 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU">KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU</span></li><li><span class="dpr-home-dashboard-paper-title" title="AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing">AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing</span></li><li><span class="dpr-home-dashboard-paper-title" title="Compact-Memory LLM Agents via Online Max-Member Clustering and Atom-Aware Packing">Compact-Memory LLM Agents via Online Max-Member Clustering and Atom-Aware Packing</span></li></ul>
+<p class="dpr-home-dashboard-empty">今日暂无推荐。</p>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
+
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -87,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">1 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Dynamic Adaptation of the LLM Context for Generating Routines with Coupled Semantics">Dynamic Adaptation of the LLM Context for Generating Routines with Coupled Semantics</span></li><li><span class="dpr-home-dashboard-paper-title" title="Bilevel Coordinated Reflection: A Game-Theoretic Approach to Multi-Agent LLM Systems">Bilevel Coordinated Reflection: A Game-Theoretic Approach to Multi-Agent LLM Systems</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Towards a Belief-Based World Model for LLM Agents">Towards a Belief-Based World Model for LLM Agents</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
 </section>
 </div>
 

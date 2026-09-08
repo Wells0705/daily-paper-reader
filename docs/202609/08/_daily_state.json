@@ -1,0 +1,25 @@
+{
+  "date": "20260908",
+  "date_label": "",
+  "generated_at": "2026-09-08 22:38:17 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.00455v1",
+      "route": "202609/08/2609.00455v1-towards-a-belief-based-world-model-for-llm-agents",
+      "title": "Towards a Belief-Based World Model for LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "提出信念化世界模型来维护当前状态不确定性，属于LLM智能体内部状态/上下文管理机制",
+      "first_seen_at": "2026-09-08 22:38:17 UTC",
+      "updated_at": "2026-09-08 22:38:17 UTC"
+    }
+  ]
+}

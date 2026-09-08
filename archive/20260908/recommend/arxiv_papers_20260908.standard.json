@@ -1,0 +1,55 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-08T22:37:02.599951+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2609.00455v1",
+      "source": "arxiv",
+      "title": "Towards a Belief-Based World Model for LLM Agents",
+      "abstract": "Large language models (LLMs) are being used as policies for autonomous decision-making and planning in many domains. Despite their strong reasoning capabilities, LLMs struggle with long-horizon tasks, especially under partial observability. World models are a promising way to enhance policy performance, both during training and inference. During inference, agents currently use world models to simulate the consequences of candidate actions before committing to an action, which can improve decision-making. However, we argue that simulation alone is an incomplete interface for decision-making under partial observability: simulation doesn't adequately capture uncertainty about the current state, which agents may need for accurate decision-making. We address this limitation with Belief-Based World Models (BB-WMs), which model and maintain a belief that LLMs can query to access information on what is known and uncertain about the current state. Before developing methods to learn accurate BB-WMs, we first ask a more fundamental question: does exposing a world model's belief directly to an LLM policy improve decision-making? Our results show that giving LLM agents access to world model beliefs improves task performance under partial observability, while remaining complementary to existing simulation-based world models. Code is released at https://github.com/skumar-ml/belief-world-models.",
+      "authors": [
+        "Shubham Kumar",
+        "Harshit Kumar",
+        "Narendra Ahuja",
+        "Saurabh Jha"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-31T22:48:38+00:00",
+      "link": "https://arxiv.org/pdf/2609.00455v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes belief-based world model to capture state uncertainty, an internal context/state management mechanism for LLM agents",
+      "llm_evidence_cn": "提出信念化世界模型来维护当前状态不确定性，属于LLM智能体内部状态/上下文管理机制",
+      "llm_evidence": "提出信念化世界模型来维护当前状态不确定性，属于LLM智能体内部状态/上下文管理机制",
+      "canonical_evidence": "提出信念化世界模型来维护当前状态不确定性，属于LLM智能体内部状态/上下文管理机制",
+      "llm_tldr_en": "LLM policies struggle in long-horizon partial-observability tasks. The paper argues pure simulation is insufficient and moves toward a belief-based world model that tracks uncertainty about the current state to support more accurate decisions.",
+      "llm_tldr_cn": "大语言模型策略在长视界、部分可观测环境中往往因不清楚当前状态而难以稳定决策。虽然世界模型通过模拟候选动作后果能帮助推断，但模拟本身不能表达对当前状态的信念不确定性。本文据此提出信念化世界模型的研究方向，让智能体在决策前同时维护当前状态的信念分布，以更充分地利用上下文信息。该思路将状态估计中的上下文整合问题显式化，为长视界LLM智能体设计提供参考。",
+      "llm_tldr": "大语言模型策略在长视界、部分可观测环境中往往因不清楚当前状态而难以稳定决策。虽然世界模型通过模拟候选动作后果能帮助推断，但模拟本身不能表达对当前状态的信念不确定性。本文据此提出信念化世界模型的研究方向，让智能体在决策前同时维护当前状态的信念分布，以更充分地利用上下文信息。该思路将状态估计中的上下文整合问题显式化，为长视界LLM智能体设计提供参考。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

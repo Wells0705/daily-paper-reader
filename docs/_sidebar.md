@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-09-08 <!--dpr-date:20260908-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/08/2609.00455v1-towards-a-belief-based-world-model-for-llm-agents" data-sidebar-item="{&quot;title&quot;: &quot;Towards a Belief-Based World Model for LLM Agents&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.00455v1-towards-a-belief-based-world-model-for-llm-agents&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;context-mgmt&quot;}], &quot;evidence&quot;: &quot;提出信念化世界模型来维护当前状态不确定性，属于LLM智能体内部状态/上下文管理机制&quot;}">Towards a Belief-Based World Model for LLM Agents</a>
   * 2026-09-07 <!--dpr-date:20260907-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/07/2609.04852v1-kvmem-virtualizing-million-token-agent-workspaces-on-a-consumer-gpu" data-sidebar-item="{&quot;title&quot;: &quot;KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.04852v1-kvmem-virtualizing-million-token-agent-workspaces-on-a-consumer-gpu&quot;, &quot;score&quot;: &quot;10.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;context-mgmt&quot;}], &quot;evidence&quot;: &quot;用KV上下文虚拟化应对超出原生窗口的历史&quot;}">KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU</a>
