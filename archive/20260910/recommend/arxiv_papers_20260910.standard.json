@@ -1,0 +1,362 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-10T21:41:15.577497+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 6,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2609.10132v1",
+      "source": "arxiv",
+      "title": "Context operations to architecture modelling output from large language models and evaluation criteria for their use in systems engineering design",
+      "abstract": "The development of generative artificial intelligence resources enables opportunities of speeding up systems and engineering design work. This contribution introduces a framework of formal operations for assembling context in LLM-based engineering design. This framework involves the assembly of modular context units, including policy prompts, reference units with persistence, and user questions with prompt vectoring. This approach enables the systematic structuring of interactions with generative models. A formal method for evaluating modelling-as-code LLM outputs is also presented, which enables the evaluation of compliance to intent from LLM answers and thereby asses the support from LLMs for systems architecture modelling.",
+      "authors": [
+        "Vinicius Kaster Marini",
+        "Petter Krus"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY",
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-09-09T13:09:01+00:00",
+      "link": "https://arxiv.org/pdf/2609.10132v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "formal operations for assembling context in LLM-based design with modular context units",
+      "llm_evidence_cn": "面向LLM设计的上下文组装形式化操作与模块化上下文单元",
+      "llm_evidence": "面向LLM设计的上下文组装形式化操作与模块化上下文单元",
+      "canonical_evidence": "面向LLM设计的上下文组装形式化操作与模块化上下文单元",
+      "llm_tldr_en": "Introduces a framework of formal context operations for LLM-based engineering design, assembling modular context units such as policy prompts and persistent reference units, plus evaluation criteria for intent compliance.",
+      "llm_tldr_cn": "生成式AI可加速系统工程设计，但缺乏系统化组织LLM交互上下文的规范方法。本文提出一套上下文组装的形式化操作框架，将策略提示、具持久性的参考单元与用户问题组织为模块化上下文单元，并引入提示向量化。作者还给出评估建模即代码输出的形式化方法，用于衡量回答对设计意图的符合程度。该工作为LLM智能体的上下文工程设计提供了可复用、可评估的构造范式。",
+      "llm_tldr": "生成式AI可加速系统工程设计，但缺乏系统化组织LLM交互上下文的规范方法。本文提出一套上下文组装的形式化操作框架，将策略提示、具持久性的参考单元与用户问题组织为模块化上下文单元，并引入提示向量化。作者还给出评估建模即代码输出的形式化方法，用于衡量回答对设计意图的符合程度。该工作为LLM智能体的上下文工程设计提供了可复用、可评估的构造范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.10144v1",
+      "source": "arxiv",
+      "title": "Kernel-Managed Shared Memory for System-Wide Personalization",
+      "abstract": "AI systems become more useful when they can adapt to the people using them, but in multi-agent systems, useful context learned by one agent often remains unavailable to others. We present kernel-managed shared memory, a system-level abstraction in which specialized agents write structured, tagged memories while the agent-system kernel, not individual agents, governs retrieval, privacy enforcement, and prompt injection. We implement and evaluate this design on AIOS and compare it against three alternatives across three assistant models (GPT-4o, Llama-3.1:8B, Qwen-2.5:7B) and 1,800 total trials. Against an unmanaged external memory backend (Mem0) using identical underlying storage, kernel-managed retrieval and injection improve personalization scores by 2.4-4.0 points on a 5-point scale (e.g., 1.05 to 4.69 profile usage on GPT-4o), with every comparison significant at p < 10^-18. Against standard retrieval-augmented injection, gains are similarly large and consistent across all three models. Against full, unfiltered context concatenation, a soft ceiling on available context rather than on response quality, kernel-managed injection statistically matches performance on two of three models and shows a small, model-specific deficit on the third, while using substantially shorter prompts: end-to-end latency is 15-61% lower across all three models, with corresponding reductions in per-call token usage and inference cost. These results indicate that centralizing memory management in the agent-system kernel, rather than leaving retrieval and privacy enforcement to individual agents, delivers most of the personalization benefit of unconstrained context at a fraction of its cost.",
+      "authors": [
+        "Ryan Lum",
+        "Yongfeng Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-09-09T13:20:47+00:00",
+      "link": "https://arxiv.org/pdf/2609.10144v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "kernel-managed shared memory governs retrieval and prompt injection for agents",
+      "llm_evidence_cn": "内核管理的共享记忆统一治理检索与提示注入",
+      "llm_evidence": "内核管理的共享记忆统一治理检索与提示注入",
+      "canonical_evidence": "内核管理的共享记忆统一治理检索与提示注入",
+      "llm_tldr_en": "Kernel-managed shared memory lets a system kernel, not individual agents, govern memory retrieval, privacy, and prompt injection, improving personalization over unmanaged backends.",
+      "llm_tldr_cn": "多智能体系统中，一个智能体学到的有用上下文往往无法被其他智能体使用。本文提出内核管理共享记忆，由智能体系统内核而非单个智能体负责结构化记忆的检索、隐私执行与提示注入。在AIOS上对三种助手模型进行1800次试验，相比未管理的外部记忆后端Mem0，个性化得分提升2.4至4.0分。该设计为系统级上下文与记忆治理提供了可复用的抽象。",
+      "llm_tldr": "多智能体系统中，一个智能体学到的有用上下文往往无法被其他智能体使用。本文提出内核管理共享记忆，由智能体系统内核而非单个智能体负责结构化记忆的检索、隐私执行与提示注入。在AIOS上对三种助手模型进行1800次试验，相比未管理的外部记忆后端Mem0，个性化得分提升2.4至4.0分。该设计为系统级上下文与记忆治理提供了可复用的抽象。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.10263v1",
+      "source": "arxiv",
+      "title": "What Should an Agent Forget? Separating What Is Stored from What Is Used",
+      "abstract": "Persistent language agents need stored experience to remain available across time, while each answer requires evidence suited to a particular question. A superseded fact can mislead a current-state answer and still be essential for a historical query. We present RD-Forget, a training-free framework that separates what an agent stores from what it uses. A retained source archive preserves observations, and a query-conditioned memory view controls their influence on the current answer. A frozen language-model curator extracts relevant evidence, groups facts into semantic slots, and preserves the relations needed for multi-hop reasoning. Same-slot replacement links suppress superseded values in current-state contexts, while intent-aware retrieval makes earlier evidence eligible again. A rate-distortion formulation guides construction of the answer-time view within a memory budget. Experiments span conversational memory, knowledge updating, fact consolidation, long-context reasoning, and personalization under a shared answering pipeline. The results associate accurate answers with both query-relevant evidence construction and control over obsolete alternatives. Configurations without forgetting or query conditioning have the largest score deficits, while slot grouping, historical access, and relation preservation contribute complementary functions. Retaining history while selectively controlling its use offers a practical way to accommodate changing facts and future questions.",
+      "authors": [
+        "Yuhang Li",
+        "Yuchen Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-09T14:48:09+00:00",
+      "link": "https://arxiv.org/pdf/2609.10263v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "separates what an agent stores from what it uses via query-conditioned memory view",
+      "llm_evidence_cn": "区分智能体存储与使用的内容，构建查询条件化记忆视图",
+      "llm_evidence": "区分智能体存储与使用的内容，构建查询条件化记忆视图",
+      "canonical_evidence": "区分智能体存储与使用的内容，构建查询条件化记忆视图",
+      "llm_tldr_en": "RD-Forget is a training-free framework that separates what a persistent agent stores from what it uses, using a retained source archive and a query-conditioned memory view to suppress superseded facts while preserving historical evidence.",
+      "llm_tldr_cn": "持久化语言智能体需长期保存经验，但过时事实会干扰当前状态回答，而历史查询又需要这些旧证据。本文提出免训练的RD-Forget框架，将存储与使用分离：保留源档案，并用查询条件化记忆视图控制其对当前回答的影响。冻结语言模型策展器抽取相关证据、归入语义槽并保留多跳推理关系。同槽替换与意图感知检索在抑制过时值的同时维持历史查询准确性。",
+      "llm_tldr": "持久化语言智能体需长期保存经验，但过时事实会干扰当前状态回答，而历史查询又需要这些旧证据。本文提出免训练的RD-Forget框架，将存储与使用分离：保留源档案，并用查询条件化记忆视图控制其对当前回答的影响。冻结语言模型策展器抽取相关证据、归入语义槽并保留多跳推理关系。同槽替换与意图感知检索在抑制过时值的同时维持历史查询准确性。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.09233v1",
+      "source": "arxiv",
+      "title": "Subagents vs Agent Skills: Executing Reusable Knowledge for Long-Horizon Agentic Tasks",
+      "abstract": "How can language model agents effectively leverage libraries of reusable knowledge to solve long-horizon tasks? Recent work has increasingly focused on agent skills: reusable capabilities represented as skill packages, i.e., multi-file bundles containing instructions, scripts, and other resources that help agents perform specific tasks. Agent skills are typically executed by loading their skill instructions into an agent's context and relying on the agent to follow them. As task horizons grow, however, this approach becomes increasingly brittle, because reasoning quality degrades as more information accumulates in the context window. We investigate an alternative approach in which skill packages are instead invoked as subagents. Rather than loading skill instructions into the main context, subagent execution spawns fresh context windows dedicated to solving individual subtasks. We show that subagent execution outperforms agent-skill execution when skill packages expose clear input-output contracts and their instructions encode the procedural knowledge needed to fulfill those contracts. The tradeoff is additional communication overhead, as extra tokens are required to coordinate between the main agent and its subagents. Our results show that the benefit of reusable knowledge depends not only on its content, but also on how it is organized and invoked.",
+      "authors": [
+        "Wasu Top Piriyakulkij",
+        "Rachel Lawrence",
+        "Alicia Curth",
+        "Sushrut Karmalkar",
+        "Niranjani Prasad"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-09-07T20:14:11+00:00",
+      "link": "https://arxiv.org/pdf/2609.09233v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "skill instructions loaded into agent context; context window accumulation degrades reasoning",
+      "llm_evidence_cn": "技能指令载入智能体上下文，上下文窗口累积导致推理退化",
+      "llm_evidence": "技能指令载入智能体上下文，上下文窗口累积导致推理退化",
+      "canonical_evidence": "技能指令载入智能体上下文，上下文窗口累积导致推理退化",
+      "llm_tldr_en": "Loading reusable skill instructions into an agent's context becomes brittle as task horizons grow because reasoning degrades with accumulating context. The paper studies invoking skill packages as subagents instead of in-context execution.",
+      "llm_tldr_cn": "语言模型智能体如何利用可复用知识库完成长程任务？当前做法是把技能包中的指令加载进智能体上下文并依赖其遵循，但随着任务变长，上下文窗口中信息不断累积，推理质量下降，该方式愈发脆弱。本文研究另一种方案：将技能包作为子智能体调用，而非直接塞入上下文执行。研究对比了子智能体与智能体技能两种执行范式，揭示上下文膨胀对长程智能体任务的影响，为智能体上下文管理提供了新的设计思路。",
+      "llm_tldr": "语言模型智能体如何利用可复用知识库完成长程任务？当前做法是把技能包中的指令加载进智能体上下文并依赖其遵循，但随着任务变长，上下文窗口中信息不断累积，推理质量下降，该方式愈发脆弱。本文研究另一种方案：将技能包作为子智能体调用，而非直接塞入上下文执行。研究对比了子智能体与智能体技能两种执行范式，揭示上下文膨胀对长程智能体任务的影响，为智能体上下文管理提供了新的设计思路。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.09778v1",
+      "source": "arxiv",
+      "title": "ROAM: Robust Organization of Atomic Memories for Agents through Semantic Relations",
+      "abstract": "Long-term language-model agents rely on external memory across interactions. Atomic memories are particularly useful: their fine-grained semantic boundaries enable precise retrieval and direct comparison between observations. Yet accumulating atoms inevitably become redundant, overlapping, or conflicting. Existing methods often ask an LLM manager to add, update, delete, or rewrite memories directly, coupling semantic interpretation, storage decisions, and content generation in one error-prone operation. We introduce ROAM, a relation-guided framework that uses atomicity for management while allowing richer answer-time representations. ROAM classifies incoming--stored atom pairs as independent, equivalent, directionally subsuming, or conflicting, then organizes observations into active Primary and supporting Evidence roles. Fusion subsequently combines complementary details and temporal changes into compact, potentially non-atomic views. Only Primary views are retrieved for answering, preventing redundant or outdated atoms from competing independently. Across models and evaluation settings, ROAM improves answer accuracy by up to 29.8 percentage points. Ablations show complementary benefits from different relations and consistent gains from fusion beyond role organization. Mechanism analysis further finds 15.6-point higher answer-critical source recall and an 11.5-point lower confounder-token share. ROAM remains robust across manager scales.",
+      "authors": [
+        "Jianjie Zheng",
+        "Peng Lai",
+        "Sijie Cheng",
+        "Jiehui Zhao",
+        "Lei Yang",
+        "Guanhua Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-09T06:29:38+00:00",
+      "link": "https://arxiv.org/pdf/2609.09778v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "external memory organization for long-term agents",
+      "llm_evidence_cn": "长期智能体的外部记忆组织",
+      "llm_evidence": "长期智能体的外部记忆组织",
+      "canonical_evidence": "长期智能体的外部记忆组织",
+      "llm_tldr_en": "Long-term agents rely on external atomic memories that become redundant, overlapping or conflicting. ROAM uses a relation-guided framework classifying incoming-stored atom pairs as independent, equivalent, subsuming or conflicting to manage memory without error-prone direct rewriting.",
+      "llm_tldr_cn": "长期语言模型智能体依赖跨交互的外部记忆，原子记忆虽便于精确检索与比较，但累积后不可避免出现冗余、重叠与冲突。现有方法常让LLM管理器直接增删改写记忆，把语义解释、存储决策与内容生成耦合在一次易错操作中。本文提出ROAM关系引导框架，将新入记忆与已存原子对分类为独立、等价、方向性包含或冲突等关系，据此进行稳健管理并保留更丰富的作答表示。实验表明基于语义关系的组织能减少冗余与冲突，提升检索精度与长期记忆一致性，为智能体外部记忆管理提供了关系驱动的方案。",
+      "llm_tldr": "长期语言模型智能体依赖跨交互的外部记忆，原子记忆虽便于精确检索与比较，但累积后不可避免出现冗余、重叠与冲突。现有方法常让LLM管理器直接增删改写记忆，把语义解释、存储决策与内容生成耦合在一次易错操作中。本文提出ROAM关系引导框架，将新入记忆与已存原子对分类为独立、等价、方向性包含或冲突等关系，据此进行稳健管理并保留更丰富的作答表示。实验表明基于语义关系的组织能减少冗余与冲突，提升检索精度与长期记忆一致性，为智能体外部记忆管理提供了关系驱动的方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.10441v1",
+      "source": "arxiv",
+      "title": "ConvMem: Convolutional Memory for Long-Context Reasoning",
+      "abstract": "While Large Language Models (LLMs) have demonstrated impressive capabilities, they often struggle with extremely long contexts due to fixed context limits. To address this, sequential approaches like MemAgent extend the effective context by reading text in segments and iteratively updating a fixed-size memory. However, this sequential paradigm suffers from high latency and requires costly reinforcement learning (RL) training, which can lead to overfitting on specific datasets. To overcome these limitations, we propose ConvMem, a training-free, highly parallelizable framework that reformulates long-context reasoning as a hierarchical convolution. Inspired by CNNs, ConvMem treats an LLM prompted with a specific query as a convolutional kernel. This kernel summarizes text segments hierarchically, shortening the reasoning path from a linear chain into a logarithmic tree. Specifically, ConvMem integrates \\textit{Configurable Strides} and \\textit{Skip Connections} to ensure robust evidence capture and propagation, while employing \\textit{Multi-Kernel Convolution} to decompose complex queries into disentangled semantic channels. This design not only mitigates error accumulation but also enables massive parallelization across both text segments and reasoning threads. Experiments on RULER-HotpotQA and RULER-2WikiMultiHopQA demonstrate that ConvMem outperforms training-free baselines and avoids the risk of overfitting to parametric priors often observed in RL-trained models on out-of-distribution tasks.",
+      "authors": [
+        "Hongming Zhang",
+        "Zhaozhen Gu",
+        "Fengshuo Bai",
+        "Ming Hao",
+        "Qingyang Zhang",
+        "Yuanyuan Wang",
+        "Shiyang Tang",
+        "Yanna Wang",
+        "Bo Xu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-09-09T16:53:02+00:00",
+      "link": "https://arxiv.org/pdf/2609.10441v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "fixed-size memory for long-context reasoning via hierarchical convolution",
+      "llm_evidence_cn": "以层次卷积构建固定大小记忆实现长上下文推理",
+      "llm_evidence": "以层次卷积构建固定大小记忆实现长上下文推理",
+      "canonical_evidence": "以层次卷积构建固定大小记忆实现长上下文推理",
+      "llm_tldr_en": "LLMs struggle with very long contexts; sequential memory agents extend context but are slow and need costly RL training. ConvMem is a training-free, parallelizable framework reformulating long-context reasoning as hierarchical convolution.",
+      "llm_tldr_cn": "大型语言模型受固定上下文长度限制，在超长文本上表现不佳。此前的顺序式记忆智能体通过分段阅读并迭代更新固定大小记忆来扩展有效上下文，但存在延迟高、需昂贵强化学习训练且易过拟合的问题。本文提出ConvMem，将长上下文推理重构为层次卷积，把带查询提示的LLM视作卷积核，实现免训练、高度并行的记忆处理。该方法在降低延迟的同时缓解数据集过拟合，为长上下文智能体的记忆架构提供了高效替代方案。",
+      "llm_tldr": "大型语言模型受固定上下文长度限制，在超长文本上表现不佳。此前的顺序式记忆智能体通过分段阅读并迭代更新固定大小记忆来扩展有效上下文，但存在延迟高、需昂贵强化学习训练且易过拟合的问题。本文提出ConvMem，将长上下文推理重构为层次卷积，把带查询提示的LLM视作卷积核，实现免训练、高度并行的记忆处理。该方法在降低延迟的同时缓解数据集过拟合，为长上下文智能体的记忆架构提供了高效替代方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.07782v1",
+      "source": "arxiv",
+      "title": "TrajectoryDB: A New Database for Agent Trajectories",
+      "abstract": "AI agents generate rich execution trajectories that capture their interactions with large language models, tools, and external environments. These trajectories are increasingly valuable for downstream tasks such as memory extraction, model fine-tuning, runtime optimization, and security and cost monitoring. Yet trajectory data today is fragmented across files, databases, and observability systems, with no persistent data management system designed around its unique structure and access patterns.   We argue that trajectories should be treated as a distinct data type. A trajectory combines hierarchical execution structure, large volumes of text whose analysis often requires semantic reasoning, and rich dependencies and lineage among events, intermediate states, and derived artifacts. These properties introduce new requirements throughout the data lifecycle. Ingestion must reconstruct and preserve execution structure and lineage; storage must efficiently organize large but highly redundant contexts while maintaining relationships among records; and query processing must jointly reason over structure, temporal order, semantics, and lineage.   We therefore envision TrajectoryDB, a trajectory-native data management system that co-designs ingestion, storage, and query processing to efficiently manage and analyze agent execution trajectories.",
+      "authors": [
+        "Yunjia Zheng",
+        "Juncheng Yang"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB"
+      ],
+      "published": "2026-09-07T17:29:17+00:00",
+      "link": "https://arxiv.org/pdf/2609.07782v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "persistent data management for agent trajectories supporting memory extraction",
+      "llm_evidence_cn": "面向智能体轨迹的持久数据管理，支持记忆抽取",
+      "llm_evidence": "面向智能体轨迹的持久数据管理，支持记忆抽取",
+      "canonical_evidence": "面向智能体轨迹的持久数据管理，支持记忆抽取",
+      "llm_tldr_en": "TrajectoryDB treats agent execution trajectories as a distinct data type, offering a persistent management system designed for hierarchical execution structure, semantic reasoning over text and event lineage.",
+      "llm_tldr_cn": "AI智能体产生的执行轨迹对记忆抽取、模型微调与运行时优化很有价值，但当前数据分散在文件、数据库与观测系统中。本文主张将轨迹视为独立数据类型，设计专门的持久化管理系统TrajectoryDB。系统针对轨迹的层级执行结构、大规模文本语义分析与事件血缘依赖进行优化。该工作为智能体记忆与上下文相关的数据管理提供了基础设施支撑。",
+      "llm_tldr": "AI智能体产生的执行轨迹对记忆抽取、模型微调与运行时优化很有价值，但当前数据分散在文件、数据库与观测系统中。本文主张将轨迹视为独立数据类型，设计专门的持久化管理系统TrajectoryDB。系统针对轨迹的层级执行结构、大规模文本语义分析与事件血缘依赖进行优化。该工作为智能体记忆与上下文相关的数据管理提供了基础设施支撑。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.09153v1",
+      "source": "arxiv",
+      "title": "Procedural Graphs: Self-Evolving Execution Structures for LLM Agents",
+      "abstract": "Large language models are increasingly deployed as agents that plan over long horizons and act through external tools. Most agents select actions through unconstrained generation over an accumulating history, leaving implicit the procedural knowledge of what to do, in what order, and under which conditions. As trajectories lengthen, agents can lose track of their objectives, invoke tools out of order, and repeat unproductive actions. We introduce the Procedural Graph: just as a knowledge graph organizes factual knowledge into (entity, relation, entity) triplets for what-is questions, a Procedural Graph organizes procedural knowledge into (procedure, relation, procedure) triplets for what-to-do questions. At each decision step, the framework localizes the agent's active node, and a guidance model translates the surrounding subgraph into step-level situational guidance that biases the solver's next action without dictating it. The graph is self-evolving: an LLM refiner contrasts failed trajectories with successful ones and edits the graph's topology and attributes, committing edits that preserve or improve held-out validation performance while retaining rejected ones to discourage repetition. Starting from a minimal skeleton, the loop builds graphs that match or surpass hand-designed ones. It can also repair a flawed expert prior. Across multiple datasets, task types, and LLMs, the Procedural Graph delivers consistent gains over memory-based baselines, and self-evolution further improves performance without manual engineering.",
+      "authors": [
+        "Yuxing Lu",
+        "Yicheng Chen",
+        "Shanchan Wu",
+        "Sercan Ö. Arık"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.MA"
+      ],
+      "published": "2026-09-08T17:59:41+00:00",
+      "link": "https://arxiv.org/pdf/2609.09153v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "agents lose track of objectives as trajectories lengthen over accumulating history",
+      "llm_evidence_cn": "轨迹变长、历史累积时智能体易迷失目标",
+      "llm_evidence": "轨迹变长、历史累积时智能体易迷失目标",
+      "canonical_evidence": "轨迹变长、历史累积时智能体易迷失目标",
+      "llm_tldr_en": "Procedural Graph organizes procedural knowledge into triplets so LLM agents avoid losing track of objectives as accumulating history and lengthening trajectories degrade action selection.",
+      "llm_tldr_cn": "LLM智能体通常在不断累积的历史上无约束地生成动作，随着轨迹变长容易迷失目标、乱序调用工具并重复无效动作。本文提出程序图，将过程性知识组织为（过程，关系，过程）三元组，并在每个决策步定位相关子过程以约束动作选择。实验显示该结构能减少无序与重复行为，提升长程任务的执行稳定性。其意义在于把隐含的过程知识显式结构化，缓解历史累积带来的上下文失控。",
+      "llm_tldr": "LLM智能体通常在不断累积的历史上无约束地生成动作，随着轨迹变长容易迷失目标、乱序调用工具并重复无效动作。本文提出程序图，将过程性知识组织为（过程，关系，过程）三元组，并在每个决策步定位相关子过程以约束动作选择。实验显示该结构能减少无序与重复行为，提升长程任务的执行稳定性。其意义在于把隐含的过程知识显式结构化，缓解历史累积带来的上下文失控。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.10036v1",
+      "source": "arxiv",
+      "title": "Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability",
+      "abstract": "Large language model agents produce fluent action sequences across a wide range of tasks, yet they fail in characteristic ways once the environment becomes partially observable. Ambiguous feedback pushes them into premature commitments. A single informative observation can collapse their uncertainty onto the wrong hypothesis. Policies drift as the history grows. We trace these symptoms to a common structural cause. An LLM agent, as commonly deployed, is a history-conditioned policy with no explicit belief over hidden state.   We propose an architectural fix. The Belief-State Engine (BSE) is an inference module placed outside the LLM. It maintains a Bayesian posterior over the latent states of a given POMDP (Partially Observable Markov Decision Process) model, and at each decision step it exposes only that posterior to the LLM. The raw action-observation log is not shown. We set out a minimal four-axiom specification of what a belief-consistent internal state must satisfy, and prove that the LLM paired with the BSE is a sound Markov policy on the belief MDP induced by the underlying POMDP. It therefore inherits the Bellman optimality guarantees of classical POMDP theory, provided the LLM is never exposed to the raw history.   We evaluate the architecture on the Tiger POMDP and a red-team attack-graph task, against six baselines: a reactive LLM, Chain-of-Thought, ReAct, a natural-language belief tracker, QMDP, and POMCP. Across both domains, the BSE-augmented agent improves task return, belief calibration, and decision consistency. Ten targeted ablations isolate the contribution of each architectural choice confirms that the effect is not specific to any one model. Code, environment specifications, prompt templates, and seed logs accompany this paper.",
+      "authors": [
+        "Arnab Chattopadhayay",
+        "Debdipta Halder"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-09-09T11:07:47+00:00",
+      "link": "https://arxiv.org/pdf/2609.10036v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "policies drift as history grows, architectural fix for history-conditioned policy",
+      "llm_evidence_cn": "历史增长导致策略漂移，为历史条件化策略提供架构修复",
+      "llm_evidence": "历史增长导致策略漂移，为历史条件化策略提供架构修复",
+      "canonical_evidence": "历史增长导致策略漂移，为历史条件化策略提供架构修复",
+      "llm_tldr_en": "The Belief-State Engine is an external inference module maintaining a Bayesian posterior over latent POMDP states, addressing LLM agent policy drift as history grows under partial observability.",
+      "llm_tldr_cn": "LLM智能体在部分可观测环境中容易过早承诺、误判假设，且随历史增长出现策略漂移。作者将其归因于智能体只是历史条件化策略，缺乏对隐藏状态的显式信念。为此提出信念状态引擎BSE，在LLM之外维护对POMDP潜在状态的贝叶斯后验。该模块缓解了历史累积带来的策略漂移，提升了部分可观测下的规划稳定性。",
+      "llm_tldr": "LLM智能体在部分可观测环境中容易过早承诺、误判假设，且随历史增长出现策略漂移。作者将其归因于智能体只是历史条件化策略，缺乏对隐藏状态的显式信念。为此提出信念状态引擎BSE，在LLM之外维护对POMDP潜在状态的贝叶斯后验。该模块缓解了历史累积带来的策略漂移，提升了部分可观测下的规划稳定性。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-09</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-10</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 14 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 9 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>7</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>7</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>6</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>3</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-09 21:20:20 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-10 21:48:03 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日聚焦 LLM 智能体记忆与长上下文推理，精读 2 篇高分论文，速读 3 篇路由与规划方向。</p>
-<p>最值得关注：无 LLM 的多锚点超图记忆构建（EdgeMem）与并行阅读-深度推理框架（PARSER），双双获 9.0 分。</p>
-<p>建议普通读者先看 PARSER 的长上下文并行推理思路，更贴近实际 agent 应用场景。</p>
+<p>今日筛完9篇、精读6篇，两篇9.0分领跑：LLM架构建模输出与系统级个性化共享内存最抢眼。</p>
+<p>最值得看的方向是“LLM用于系统工程设计评估”和“内核管理共享内存做系统级个性化”，速读可补Agent轨迹数据库、自演化执行结构、部分可观测规划三篇6分。</p>
+<p>普通读者建议先读两篇9分精读，再按兴趣挑速读，快速建立LLM智能体基础设施与规划的全景。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -73,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">7 篇</strong>
+    <strong class="dpr-home-dashboard-count">6 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="EdgeMem: LLM-Free Agent Memory Construction and Retrieval via Evidence-Preserving Multi-Anchor Hypergraph">EdgeMem: LLM-Free Agent Memory Construction and Retrieval via Evidence-Preserving Multi-Anchor Hypergraph</span></li><li><span class="dpr-home-dashboard-paper-title" title="PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents">PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="MEMO: Multimodal Evidence Memory Organization for Long-Horizon LLM Agents">MEMO: Multimodal Evidence Memory Organization for Long-Horizon LLM Agents</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Context operations to architecture modelling output from large language models and evaluation criteria for their use in systems engineering design">Context operations to architecture modelling output from large language models and evaluation criteria for their use in systems engineering design</span></li><li><span class="dpr-home-dashboard-paper-title" title="Kernel-Managed Shared Memory for System-Wide Personalization">Kernel-Managed Shared Memory for System-Wide Personalization</span></li><li><span class="dpr-home-dashboard-paper-title" title="What Should an Agent Forget? Separating What Is Stored from What Is Used">What Should an Agent Forget? Separating What Is Stored from What Is Used</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>7</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -86,12 +86,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">7 篇</strong>
+    <strong class="dpr-home-dashboard-count">3 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Beyond Top-$k$ Skill Retrieval: Diversity-Aware Skill Routing for LLM Agents">Beyond Top-$k$ Skill Retrieval: Diversity-Aware Skill Routing for LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Safe Task Planning with Long-Term Graph Memory for Embodied Agents">Safe Task Planning with Long-Term Graph Memory for Embodied Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="SENTINEL-RL: Offloading Topological Reasoning from LLM Agents in the Security Operations Center">SENTINEL-RL: Offloading Topological Reasoning from LLM Agents in the Security Operations Center</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="TrajectoryDB: A New Database for Agent Trajectories">TrajectoryDB: A New Database for Agent Trajectories</span></li><li><span class="dpr-home-dashboard-paper-title" title="Procedural Graphs: Self-Evolving Execution Structures for LLM Agents">Procedural Graphs: Self-Evolving Execution Structures for LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability">Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>7</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
 </section>
 </div>
 

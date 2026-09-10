@@ -1,0 +1,153 @@
+{
+  "date": "20260910",
+  "date_label": "",
+  "generated_at": "2026-09-10 21:48:03 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.10132v1",
+      "route": "202609/10/2609.10132v1-context-operations-to-architecture-modelling-output-from-large-language-models-and-evaluation-criteria-for-their-use-in-systems-engineering-design",
+      "title": "Context operations to architecture modelling output from large language models and evaluation criteria for their use in systems engineering design",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向LLM设计的上下文组装形式化操作与模块化上下文单元",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.10144v1",
+      "route": "202609/10/2609.10144v1-kernel-managed-shared-memory-for-system-wide-personalization",
+      "title": "Kernel-Managed Shared Memory for System-Wide Personalization",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "内核管理的共享记忆统一治理检索与提示注入",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.10263v1",
+      "route": "202609/10/2609.10263v1-what-should-an-agent-forget-separating-what-is-stored-from-what-is-used",
+      "title": "What Should an Agent Forget? Separating What Is Stored from What Is Used",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "区分智能体存储与使用的内容，构建查询条件化记忆视图",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.09233v1",
+      "route": "202609/10/2609.09233v1-subagents-vs-agent-skills-executing-reusable-knowledge-for-long-horizon-agentic-tasks",
+      "title": "Subagents vs Agent Skills: Executing Reusable Knowledge for Long-Horizon Agentic Tasks",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "技能指令载入智能体上下文，上下文窗口累积导致推理退化",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.09778v1",
+      "route": "202609/10/2609.09778v1-roam-robust-organization-of-atomic-memories-for-agents-through-semantic-relations",
+      "title": "ROAM: Robust Organization of Atomic Memories for Agents through Semantic Relations",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "长期智能体的外部记忆组织",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.10441v1",
+      "route": "202609/10/2609.10441v1-convmem-convolutional-memory-for-long-context-reasoning",
+      "title": "ConvMem: Convolutional Memory for Long-Context Reasoning",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "以层次卷积构建固定大小记忆实现长上下文推理",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.07782v1",
+      "route": "202609/10/2609.07782v1-trajectorydb-a-new-database-for-agent-trajectories",
+      "title": "TrajectoryDB: A New Database for Agent Trajectories",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "面向智能体轨迹的持久数据管理，支持记忆抽取",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.09153v1",
+      "route": "202609/10/2609.09153v1-procedural-graphs-self-evolving-execution-structures-for-llm-agents",
+      "title": "Procedural Graphs: Self-Evolving Execution Structures for LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "轨迹变长、历史累积时智能体易迷失目标",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    },
+    {
+      "paper_id": "2609.10036v1",
+      "route": "202609/10/2609.10036v1-belief-state-engine-augmenting-llms-for-principled-planning-under-partial-observability",
+      "title": "Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "历史增长导致策略漂移，为历史条件化策略提供架构修复",
+      "first_seen_at": "2026-09-10 21:48:03 UTC",
+      "updated_at": "2026-09-10 21:48:03 UTC"
+    }
+  ]
+}
