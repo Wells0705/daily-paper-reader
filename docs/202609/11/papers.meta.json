@@ -1,0 +1,54 @@
+{
+  "label": "2026-09-11",
+  "date": "2026-09-11",
+  "generated_at": "2026-09-11T21:39:52",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202609/11/2609.11728v1-reproducibility-in-the-age-of-agentic-ai-context-engineering-at-the-timescale-of-a-codebase",
+      "section": "deep",
+      "title_en": "Reproducibility in the Age of Agentic AI: Context Engineering at the Timescale of a Codebase",
+      "authors": "Lorena A. Barba",
+      "date": "2026-09-10",
+      "pdf": "https://arxiv.org/pdf/2609.11728v1",
+      "score": "8.0",
+      "evidence": "以仓库制品为AI编码智能体做上下文工程",
+      "tldr": "在智能体 AI 时代，可复现性不再只是文档与脚本问题，而是贯穿代码库生命周期的上下文工程。论文提出，测试、提交历史、仓库结构、指令与决策记录等实践，本质上是为 AI 编程智能体提供上下文。智能体降低了维护这些制品的成本，并让收益即时显现。但研究者仍需核验制品及其编码的科学判断，不能将责任完全外包，这要求把可复现性视为代码库尺度的持续实践。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Reproducible research practices are context engineering for AI coding agents. I argue that agents lower the cost of maintaining tests, commit histories, repository structure, instructions, and decision records while making their benefits immediate. Researchers remain responsible for verifying these artifacts and the scientific judgments they encode.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/11/2609.05774v1-inference-time-graph-engineering-for-multi-agent-llm-workflows",
+      "section": "quick",
+      "title_en": "Inference-Time Graph Engineering for Multi-Agent LLM Workflows",
+      "authors": "Katherine Tieu, Dongqi Fu, Yinglong Xia, Hong Li, Hong Yan, Jingrui He",
+      "date": "2026-09-04",
+      "pdf": "https://arxiv.org/pdf/2609.05774v1",
+      "score": "6.0",
+      "evidence": "以图工程组织智能体间通信语义",
+      "tldr": "多智能体LLM系统常依赖图结构通信协调专用智能体，但静态拓扑难以适配任务需求。ReActNet从推理时图工程视角出发，将查询与角色智能体编译为按推理阶段展开的有向通信图，边上附带自然语言指令，再通过结构化消息传递执行。在知识推理、数学、代码与GAIA助手任务上，它优于固定和可学习拓扑基线，且推理成本有竞争力。该工作表明，多智能体编排的关键不仅是让谁通信，更在于工程化可执行的工作流图，明确信息何时、为何与如何流动。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Recent multi-agent LLM systems increasingly rely on graph-structured communication to coordinate specialized agents. We revisit multi-agent orchestration from a graph-engineering perspective: rather than optimizing a static topology, we synthesize a task-conditioned temporal workflow graph that jointly specifies agent connectivity and edge-level communication semantics. We introduce ReActNet, a training-free framework that compiles a query and a set of role-specialized agents into a sequence of directed communication graphs. Each graph snapshot corresponds to one reasoning stage, and each edge carries a natural-language instruction specifying the message that a source agent should provide to a target agent. The compiled temporal graph is then executed through structured message passing: agents update their reasoning states by integrating their previous states with messages from controller-assigned neighbors, and a final aggregator synthesizes the resulting states into the answer. This design separates graph compilation from graph execution, making multi-agent coordination explicit, inspectable, and task-conditioned without requiring reinforcement learning or gradient-based topology optimization. Across knowledge reasoning, mathematical problem solving, code generation, and GAIA-style assistant tasks, ReActNet consistently improves over fixed-topology and learned-topology baselines while maintaining competitive inference cost. These results suggest that effective multi-agent orchestration depends not only on which agents communicate, but also on engineering executable workflow graphs that encode when, why, and how information should flow during reasoning.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/11/2609.08919v1-experience-funnel-a-state-policy-alternating-loop-for-self-evolving-agents",
+      "section": "quick",
+      "title_en": "Experience Funnel: A State-Policy Alternating Loop for Self-Evolving Agents",
+      "authors": "Wenbo Gao, Zhaomou Song, Zhiyuan Ji, Renxi Liu, Xing Li, Xianzhi Yu, Xiaoguang Li, James Chung-wai Cheung, Weizhe Lin, Yaoyuan Wang",
+      "date": "2026-09-08",
+      "pdf": "https://arxiv.org/pdf/2609.08919v1",
+      "score": "6.0",
+      "evidence": "文本状态导致对外部上下文的持续依赖",
+      "tldr": "LLM智能体在交互中不断积累经验，但如何把大量任务特定经验转化为可复用能力、同时保留快速适应新证据的能力，是一大难题：文本状态（技能、harness）易改却依赖外部上下文，参数化策略紧凑可复用却更新缓慢。为此作者提出 Experience Funnel，用快状态适应与慢策略固化交替循环：先把轨迹蒸馏为显式文本状态并快速验证，再筛选跨状态修订仍有效的行为，通过迁移感知蒸馏固化进策略，更新后的状态-策略对再生成新 rollout 供下一轮使用。多个智能体基准上，它持续优于仅状态演化与策略内化方法，并逐步把有用显式经验转为自主策略能力。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Autonomous agents powered by large language models (LLMs) continuously accumulate experience through interaction, creating an opportunity to improve future behavior through self-evolution. A fundamental challenge is how to transform abundant, task-specific interaction experience into reusable model competence without sacrificing the ability to adapt rapidly to newly observed evidence. Explicit textual states, such as skills and agent harnesses, provide fast, human-readable and editable adaptation, but incur persistent dependence on external context; parametric policies provide compact and reusable competence, but are substantially slower to update. We present \\textit{Experience Funnel}, a self-evolving framework that couples fast state adaptation with slow policy consolidation in an alternating loop. Interaction trajectories are first distilled into an explicit textual state, where newly acquired experience can be rapidly incorporated and validated. The framework then selectively identifies state-enabled behavior that remains useful across state revisions and consolidates it into the policy through transition-aware distillation. The updated state--policy pair subsequently generates new rollouts, providing fresh evidence for the next round of state adaptation and policy consolidation. Experiments across diverse agent benchmarks show that \\textit{Experience Funnel} consistently improves agent capability over state-only evolution and policy-internalization approaches, while progressively converting useful explicit experience into autonomous policy competence.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

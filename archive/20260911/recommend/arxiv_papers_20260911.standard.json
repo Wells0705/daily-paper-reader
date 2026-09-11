@@ -1,0 +1,137 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-11T21:36:21.949503+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2609.11728v1",
+      "source": "arxiv",
+      "title": "Reproducibility in the Age of Agentic AI: Context Engineering at the Timescale of a Codebase",
+      "abstract": "Reproducible research practices are context engineering for AI coding agents. I argue that agents lower the cost of maintaining tests, commit histories, repository structure, instructions, and decision records while making their benefits immediate. Researchers remain responsible for verifying these artifacts and the scientific judgments they encode.",
+      "authors": [
+        "Lorena A. Barba"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.CY"
+      ],
+      "published": "2026-09-10T15:43:34+00:00",
+      "link": "https://arxiv.org/pdf/2609.11728v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "context engineering for AI coding agents via repository artifacts",
+      "llm_evidence_cn": "以仓库制品为AI编码智能体做上下文工程",
+      "llm_evidence": "以仓库制品为AI编码智能体做上下文工程",
+      "canonical_evidence": "以仓库制品为AI编码智能体做上下文工程",
+      "llm_tldr_en": "This position paper argues that reproducible research practices such as tests, commit histories, repository structure and decision records are essentially context engineering for AI coding agents, while researchers stay responsible for verifying them.",
+      "llm_tldr_cn": "本文指出可复现研究实践本质上就是面向AI编码智能体的上下文工程。作者认为，测试、提交历史、仓库结构、指令与决策记录等制品既降低了维护成本，也让其收益即时显现，从而增强智能体的工作上下文。研究者仍需负责验证这些制品及其编码的科学判断。该观点文章将可复现性与上下文工程联系起来，为智能体工作环境设计提供了新视角。",
+      "llm_tldr": "本文指出可复现研究实践本质上就是面向AI编码智能体的上下文工程。作者认为，测试、提交历史、仓库结构、指令与决策记录等制品既降低了维护成本，也让其收益即时显现，从而增强智能体的工作上下文。研究者仍需负责验证这些制品及其编码的科学判断。该观点文章将可复现性与上下文工程联系起来，为智能体工作环境设计提供了新视角。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.05774v1",
+      "source": "arxiv",
+      "title": "Inference-Time Graph Engineering for Multi-Agent LLM Workflows",
+      "abstract": "Recent multi-agent LLM systems increasingly rely on graph-structured communication to coordinate specialized agents. We revisit multi-agent orchestration from a graph-engineering perspective: rather than optimizing a static topology, we synthesize a task-conditioned temporal workflow graph that jointly specifies agent connectivity and edge-level communication semantics. We introduce ReActNet, a training-free framework that compiles a query and a set of role-specialized agents into a sequence of directed communication graphs. Each graph snapshot corresponds to one reasoning stage, and each edge carries a natural-language instruction specifying the message that a source agent should provide to a target agent. The compiled temporal graph is then executed through structured message passing: agents update their reasoning states by integrating their previous states with messages from controller-assigned neighbors, and a final aggregator synthesizes the resulting states into the answer. This design separates graph compilation from graph execution, making multi-agent coordination explicit, inspectable, and task-conditioned without requiring reinforcement learning or gradient-based topology optimization. Across knowledge reasoning, mathematical problem solving, code generation, and GAIA-style assistant tasks, ReActNet consistently improves over fixed-topology and learned-topology baselines while maintaining competitive inference cost. These results suggest that effective multi-agent orchestration depends not only on which agents communicate, but also on engineering executable workflow graphs that encode when, why, and how information should flow during reasoning.",
+      "authors": [
+        "Katherine Tieu",
+        "Dongqi Fu",
+        "Yinglong Xia",
+        "Hong Li",
+        "Hong Yan",
+        "Jingrui He"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-04T23:32:11+00:00",
+      "link": "https://arxiv.org/pdf/2609.05774v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "graph-engineering of inter-agent communication semantics",
+      "llm_evidence_cn": "以图工程组织智能体间通信语义",
+      "llm_evidence": "以图工程组织智能体间通信语义",
+      "canonical_evidence": "以图工程组织智能体间通信语义",
+      "llm_tldr_en": "ReActNet compiles a query and role-specialized agents into a task-conditioned temporal workflow graph where each edge carries natural-language instructions, revisiting multi-agent orchestration as graph engineering.",
+      "llm_tldr_cn": "针对多智能体大模型系统静态通信拓扑难以适配任务的问题，本文将编排重构为图工程，提出免训练框架ReActNet，把查询与角色化智能体编译为时序工作流图，每条边携带自然语言指令指定源智能体应传给目标智能体的消息。每个图快照对应一个推理阶段，从而在推理时动态生成智能体连通性与通信语义，为多智能体协作中的上下文传递提供结构化编排。",
+      "llm_tldr": "针对多智能体大模型系统静态通信拓扑难以适配任务的问题，本文将编排重构为图工程，提出免训练框架ReActNet，把查询与角色化智能体编译为时序工作流图，每条边携带自然语言指令指定源智能体应传给目标智能体的消息。每个图快照对应一个推理阶段，从而在推理时动态生成智能体连通性与通信语义，为多智能体协作中的上下文传递提供结构化编排。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.08919v1",
+      "source": "arxiv",
+      "title": "Experience Funnel: A State-Policy Alternating Loop for Self-Evolving Agents",
+      "abstract": "Autonomous agents powered by large language models (LLMs) continuously accumulate experience through interaction, creating an opportunity to improve future behavior through self-evolution. A fundamental challenge is how to transform abundant, task-specific interaction experience into reusable model competence without sacrificing the ability to adapt rapidly to newly observed evidence. Explicit textual states, such as skills and agent harnesses, provide fast, human-readable and editable adaptation, but incur persistent dependence on external context; parametric policies provide compact and reusable competence, but are substantially slower to update. We present \\textit{Experience Funnel}, a self-evolving framework that couples fast state adaptation with slow policy consolidation in an alternating loop. Interaction trajectories are first distilled into an explicit textual state, where newly acquired experience can be rapidly incorporated and validated. The framework then selectively identifies state-enabled behavior that remains useful across state revisions and consolidates it into the policy through transition-aware distillation. The updated state--policy pair subsequently generates new rollouts, providing fresh evidence for the next round of state adaptation and policy consolidation. Experiments across diverse agent benchmarks show that \\textit{Experience Funnel} consistently improves agent capability over state-only evolution and policy-internalization approaches, while progressively converting useful explicit experience into autonomous policy competence.",
+      "authors": [
+        "Wenbo Gao",
+        "Zhaomou Song",
+        "Zhiyuan Ji",
+        "Renxi Liu",
+        "Xing Li",
+        "Xianzhi Yu",
+        "Xiaoguang Li",
+        "James Chung-wai Cheung",
+        "Weizhe Lin",
+        "Yaoyuan Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-08T15:48:11+00:00",
+      "link": "https://arxiv.org/pdf/2609.08919v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "textual states cause persistent dependence on external context",
+      "llm_evidence_cn": "文本状态导致对外部上下文的持续依赖",
+      "llm_evidence": "文本状态导致对外部上下文的持续依赖",
+      "canonical_evidence": "文本状态导致对外部上下文的持续依赖",
+      "llm_tldr_en": "Experience Funnel couples fast textual state adaptation with slower parametric policy learning to turn accumulated interaction experience into reusable competence without losing rapid adaptability.",
+      "llm_tldr_cn": "由大模型驱动的自主智能体在交互中不断积累经验，如何把大量任务特定经验转化为可复用能力而不牺牲快速适应是一大挑战。显式文本状态如技能与智能体框架便于快速编辑，却持续依赖外部上下文；参数化策略紧凑可复用，但更新缓慢。本文提出经验漏斗这一自演化框架，耦合快速状态适应与参数化策略学习。该工作为智能体的经验记忆与能力沉淀提供了交替循环方案。",
+      "llm_tldr": "由大模型驱动的自主智能体在交互中不断积累经验，如何把大量任务特定经验转化为可复用能力而不牺牲快速适应是一大挑战。显式文本状态如技能与智能体框架便于快速编辑，却持续依赖外部上下文；参数化策略紧凑可复用，但更新缓慢。本文提出经验漏斗这一自演化框架，耦合快速状态适应与参数化策略学习。该工作为智能体的经验记忆与能力沉淀提供了交替循环方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

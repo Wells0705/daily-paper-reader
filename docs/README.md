@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-10</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-11</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 9 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 3 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>6</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>3</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>1</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-10 21:48:03 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-11 21:39:51 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,7 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日筛完9篇、精读6篇，两篇9.0分领跑：LLM架构建模输出与系统级个性化共享内存最抢眼。</p>
-<p>最值得看的方向是“LLM用于系统工程设计评估”和“内核管理共享内存做系统级个性化”，速读可补Agent轨迹数据库、自演化执行结构、部分可观测规划三篇6分。</p>
-<p>普通读者建议先读两篇9分精读，再按兴趣挑速读，快速建立LLM智能体基础设施与规划的全景。</p>
+<p>今日精读1篇、速读2篇，聚焦智能体AI的可复现性、多智能体图工程与自进化智能体。最值得看的是8.0分的《Reproducibility in the Age of Agentic AI》，关注代码库尺度的上下文工程如何保障可复现。普通读者可先读这篇精读，再按兴趣浏览两篇速读了解多智能体工作流与经验漏斗思路。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -73,12 +71,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">6 篇</strong>
+    <strong class="dpr-home-dashboard-count">1 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Context operations to architecture modelling output from large language models and evaluation criteria for their use in systems engineering design">Context operations to architecture modelling output from large language models and evaluation criteria for their use in systems engineering design</span></li><li><span class="dpr-home-dashboard-paper-title" title="Kernel-Managed Shared Memory for System-Wide Personalization">Kernel-Managed Shared Memory for System-Wide Personalization</span></li><li><span class="dpr-home-dashboard-paper-title" title="What Should an Agent Forget? Separating What Is Stored from What Is Used">What Should an Agent Forget? Separating What Is Stored from What Is Used</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Reproducibility in the Age of Agentic AI: Context Engineering at the Timescale of a Codebase">Reproducibility in the Age of Agentic AI: Context Engineering at the Timescale of a Codebase</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>6</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -86,12 +84,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">3 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="TrajectoryDB: A New Database for Agent Trajectories">TrajectoryDB: A New Database for Agent Trajectories</span></li><li><span class="dpr-home-dashboard-paper-title" title="Procedural Graphs: Self-Evolving Execution Structures for LLM Agents">Procedural Graphs: Self-Evolving Execution Structures for LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability">Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Inference-Time Graph Engineering for Multi-Agent LLM Workflows">Inference-Time Graph Engineering for Multi-Agent LLM Workflows</span></li><li><span class="dpr-home-dashboard-paper-title" title="Experience Funnel: A State-Policy Alternating Loop for Self-Evolving Agents">Experience Funnel: A State-Policy Alternating Loop for Self-Evolving Agents</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 </div>
 
