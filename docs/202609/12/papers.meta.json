@@ -1,0 +1,39 @@
+{
+  "label": "2026-09-12",
+  "date": "2026-09-12",
+  "generated_at": "2026-09-12T21:20:37",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202609/12/2609.11209v1-reva-reusable-evidence-view-aggregation-for-context-efficient-rag-serving",
+      "section": "quick",
+      "title_en": "REVA: Reusable Evidence View Aggregation for Context-Efficient RAG Serving",
+      "authors": "Tuan Nguyen, Qiran Hu, Banruo Liu, Khoa D. Doan, Kok-Seng Wong, Fan Lai",
+      "date": "2026-09-10",
+      "pdf": "https://arxiv.org/pdf/2609.11209v1",
+      "score": "7.0",
+      "evidence": "上下文窗口成本降低与上下文高效服务",
+      "tldr": "RAG 通过检索文档提升知识密集型任务效果，但长上下文带来延迟、KV 缓存和 token 成本上升，现有后检索压缩器多按单查询独立工作且依赖辅助模型，在线开销可能抵消收益。REVA 从数据挖掘视角出发，把历史查询—文档—模型交互聚合为可复用的证据视图，将生成器注意力轨迹挖掘成按文档索引、与预算无关的评分库，再渲染保留文档顺序的纯文本视图。在四个基准和多种现代 LLM 上，生成质量提升 1.0–5.8 分，压缩开销降低 5.3–15.6 倍，额外延迟不到 40 毫秒。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Retrieval-augmented generation (RAG) improves knowledge-intensive large language model (LLM) applications by conditioning generation on retrieved documents, but longer contexts increase latency, key-value (KV) cache memory, and token cost. Post-retrieval compression can reduce this cost, yet existing compressors often operate independently for each query, rely on auxiliary models or rewriting, and introduce online overhead that can offset the benefit of shorter prompts. We revisit RAG compression from a data-mining perspective by aggregating historical query--document--model interactions into reusable evidence views. We first show that modern compressors have unstable gains over simple truncation and can add substantial inference-time latency. We then propose Reusable Evidence View Aggregation (REVA), a framework that mines the target generator's historical attention traces into a document-keyed, budget-agnostic score store. REVA maps token-level attention to readable word units, aggregates importance across repeated document accesses, and renders budget-specific plain-text views that preserve document order and the standard RAG interface. Across four representative benchmarks and modern LLMs, REVA improves generation quality by 1.0--5.8 points over existing advances, while reducing compression overhead by a factor of 5.3 to 15.6, adding less than 40 ms of latency.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202609/12/2609.05563v1-look-before-you-prompt-and-after-scaffolding-human-ai-collaboration-in-software-tutorial-creation",
+      "section": "quick",
+      "title_en": "Look Before You Prompt, and After: Scaffolding Human-AI Collaboration in Software Tutorial Creation",
+      "authors": "Avinash Bhat, Vy Bui, Jin L. C. Guo",
+      "date": "2026-09-03",
+      "pdf": "https://arxiv.org/pdf/2609.05563v1",
+      "score": "6.0",
+      "evidence": "可编辑模型上下文的上下文管理器",
+      "tldr": "大语言模型让软件教程创作变成引导模型输出并整理成连贯准确的学习资源，但现有工具对写作者支持不足。作者访谈17名技术写作者，提炼出组装与结构化多轮LLM响应、管理上下文、验证生成内容三项需求，并设计dBlocks：用块界定内容、上下文管理器编辑上下文、内联执行验证代码。经5人迭代与16人对照实验，dBlocks显著提升教程信心，促使用户边写边验证，并避免翻找长对话历史。该工作为SE工作流中的人机协作工具提供设计启示。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "With LLMs, creating software tutorials now involves steering the model's output and shaping it into a coherent, accurate learning resource, yet existing LLM tools offer writers little support for this work. By analyzing interviews with technical writers ($N=17$), we identify three requirements for how they assemble and structure multiple LLM responses, curate the context the model uses, and verify the generated content. We designed a tool called dBlocks with the following features: blocks to scope content, a context manager to edit context, and inline execution to verify code. Following a human-centered design method, we iteratively refined the design through a user study ($N=5$). In a within-subjects lab study ($N=16$) comparing dBlocks with participants' preferred workflows for LLM-assisted authoring, participants reported significantly higher confidence in the tutorials they produced with dBlocks. In addition, the tool reduced friction in verification, with writers verifying code as they drafted rather than deferring or skipping it, and helped them avoid searching long chat histories by scoping their work into blocks that kept each tutorial section and its LLM conversation together. More broadly, our work offers implications for tools that scaffold human-AI collaboration in SE workflows and shows how human-centered design can guide the development of LLM-integrated tools.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

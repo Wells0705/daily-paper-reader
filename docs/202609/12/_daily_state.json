@@ -1,0 +1,41 @@
+{
+  "date": "20260912",
+  "date_label": "",
+  "generated_at": "2026-09-12 21:20:36 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.11209v1",
+      "route": "202609/12/2609.11209v1-reva-reusable-evidence-view-aggregation-for-context-efficient-rag-serving",
+      "title": "REVA: Reusable Evidence View Aggregation for Context-Efficient RAG Serving",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "上下文窗口成本降低与上下文高效服务",
+      "first_seen_at": "2026-09-12 21:20:36 UTC",
+      "updated_at": "2026-09-12 21:20:36 UTC"
+    },
+    {
+      "paper_id": "2609.05563v1",
+      "route": "202609/12/2609.05563v1-look-before-you-prompt-and-after-scaffolding-human-ai-collaboration-in-software-tutorial-creation",
+      "title": "Look Before You Prompt, and After: Scaffolding Human-AI Collaboration in Software Tutorial Creation",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "可编辑模型上下文的上下文管理器",
+      "first_seen_at": "2026-09-12 21:20:36 UTC",
+      "updated_at": "2026-09-12 21:20:36 UTC"
+    }
+  ]
+}

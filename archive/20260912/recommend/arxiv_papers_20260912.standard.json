@@ -1,0 +1,97 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-12T21:19:06.047395+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2609.11209v1",
+      "source": "arxiv",
+      "title": "REVA: Reusable Evidence View Aggregation for Context-Efficient RAG Serving",
+      "abstract": "Retrieval-augmented generation (RAG) improves knowledge-intensive large language model (LLM) applications by conditioning generation on retrieved documents, but longer contexts increase latency, key-value (KV) cache memory, and token cost. Post-retrieval compression can reduce this cost, yet existing compressors often operate independently for each query, rely on auxiliary models or rewriting, and introduce online overhead that can offset the benefit of shorter prompts. We revisit RAG compression from a data-mining perspective by aggregating historical query--document--model interactions into reusable evidence views. We first show that modern compressors have unstable gains over simple truncation and can add substantial inference-time latency. We then propose Reusable Evidence View Aggregation (REVA), a framework that mines the target generator's historical attention traces into a document-keyed, budget-agnostic score store. REVA maps token-level attention to readable word units, aggregates importance across repeated document accesses, and renders budget-specific plain-text views that preserve document order and the standard RAG interface. Across four representative benchmarks and modern LLMs, REVA improves generation quality by 1.0--5.8 points over existing advances, while reducing compression overhead by a factor of 5.3 to 15.6, adding less than 40 ms of latency.",
+      "authors": [
+        "Tuan Nguyen",
+        "Qiran Hu",
+        "Banruo Liu",
+        "Khoa D. Doan",
+        "Kok-Seng Wong",
+        "Fan Lai"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-09-10T08:14:22+00:00",
+      "link": "https://arxiv.org/pdf/2609.11209v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "context window cost reduction and context-efficient serving",
+      "llm_evidence_cn": "上下文窗口成本降低与上下文高效服务",
+      "llm_evidence": "上下文窗口成本降低与上下文高效服务",
+      "canonical_evidence": "上下文窗口成本降低与上下文高效服务",
+      "llm_tldr_en": "REVA tackles the latency, KV-cache and token cost of long contexts in RAG by aggregating historical query-document-model interactions into reusable evidence views, offering context-efficient serving.",
+      "llm_tldr_cn": "针对检索增强生成中长上下文带来的延迟、KV缓存内存与token成本上升，以及现有后检索压缩收益不稳定、引入在线开销的问题，本文提出REVA。该方法从数据挖掘角度聚合历史查询-文档-模型交互，构建可复用的证据视图以压缩上下文。分析表明现代压缩器相对简单截断增益不稳定，而可复用证据视图能有效降低服务成本，为上下文高效RAG提供新方案。",
+      "llm_tldr": "针对检索增强生成中长上下文带来的延迟、KV缓存内存与token成本上升，以及现有后检索压缩收益不稳定、引入在线开销的问题，本文提出REVA。该方法从数据挖掘角度聚合历史查询-文档-模型交互，构建可复用的证据视图以压缩上下文。分析表明现代压缩器相对简单截断增益不稳定，而可复用证据视图能有效降低服务成本，为上下文高效RAG提供新方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.05563v1",
+      "source": "arxiv",
+      "title": "Look Before You Prompt, and After: Scaffolding Human-AI Collaboration in Software Tutorial Creation",
+      "abstract": "With LLMs, creating software tutorials now involves steering the model's output and shaping it into a coherent, accurate learning resource, yet existing LLM tools offer writers little support for this work. By analyzing interviews with technical writers ($N=17$), we identify three requirements for how they assemble and structure multiple LLM responses, curate the context the model uses, and verify the generated content. We designed a tool called dBlocks with the following features: blocks to scope content, a context manager to edit context, and inline execution to verify code. Following a human-centered design method, we iteratively refined the design through a user study ($N=5$). In a within-subjects lab study ($N=16$) comparing dBlocks with participants' preferred workflows for LLM-assisted authoring, participants reported significantly higher confidence in the tutorials they produced with dBlocks. In addition, the tool reduced friction in verification, with writers verifying code as they drafted rather than deferring or skipping it, and helped them avoid searching long chat histories by scoping their work into blocks that kept each tutorial section and its LLM conversation together. More broadly, our work offers implications for tools that scaffold human-AI collaboration in SE workflows and shows how human-centered design can guide the development of LLM-integrated tools.",
+      "authors": [
+        "Avinash Bhat",
+        "Vy Bui",
+        "Jin L. C. Guo"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.HC"
+      ],
+      "published": "2026-09-03T21:26:36+00:00",
+      "link": "https://arxiv.org/pdf/2609.05563v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "context manager to edit model context",
+      "llm_evidence_cn": "可编辑模型上下文的上下文管理器",
+      "llm_evidence": "可编辑模型上下文的上下文管理器",
+      "canonical_evidence": "可编辑模型上下文的上下文管理器",
+      "llm_tldr_en": "dBlocks scaffolds software tutorial creation by giving writers blocks to scope content, a context manager to edit model context, and inline execution to verify code, validated in user studies.",
+      "llm_tldr_cn": "针对技术写作者在利用LLM创作软件教程时难以组织多轮模型输出、管理模型上下文并验证生成内容的问题，本文提出dBlocks工具。该工具提供内容分块、可编辑的上下文管理器以及内联代码执行验证功能，并通过迭代设计与受试者实验进行评估。结果显示该脚手架能更好支持写作者组装和校验教程内容，体现了上下文管理在人机协作写作中的实用价值。",
+      "llm_tldr": "针对技术写作者在利用LLM创作软件教程时难以组织多轮模型输出、管理模型上下文并验证生成内容的问题，本文提出dBlocks工具。该工具提供内容分块、可编辑的上下文管理器以及内联代码执行验证功能，并通过迭代设计与受试者实验进行评估。结果显示该脚手架能更好支持写作者组装和校验教程内容，体现了上下文管理在人机协作写作中的实用价值。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
