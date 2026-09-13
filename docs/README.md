@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-12</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-13</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 2 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 5 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>0</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>3</dd></div>
     <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-12 21:20:36 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-13 21:13:28 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,9 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日速读2篇论文，聚焦RAG服务效率与软件教程中的人机协作。最值得看的是《REVA》提出的可复用证据视图聚合，用于上下文高效的RAG服务（7.0分）；《Look Before You Prompt, and After》则探讨软件教程创作中的人机协作支架设计（6.0分）。普通读者可优先了解REVA如何降低RAG上下文成本，再按需关注人机协作教程设计。</p>
+<p>今日精读3篇、速读2篇，主线落在软件工程智能体的轨迹压缩与长周期自动化渗透测试。</p>
+<p>最值得看的是《AttnCompress》（9.0/10）用动态注意力引导轨迹压缩，以及《Staying on the Attack Path》（8.0/10）以结构化状态支撑长周期渗透测试。</p>
+<p>普通读者可先读这两篇精读，再顺带扫《Revoked but Still Authoritative》与《Co-Evolving Harnesses and Models》两篇速读，了解智能体记忆撤销执行与弱模型追平的最新实证结论。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +73,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">0 篇</strong>
+    <strong class="dpr-home-dashboard-count">3 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p class="dpr-home-dashboard-empty">今日暂无推荐。</p>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="AttnCompress: Dynamic Attention-Guided Trajectory Compression for Software Engineering Agents">AttnCompress: Dynamic Attention-Guided Trajectory Compression for Software Engineering Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Staying on the Attack Path: Structured State for Long-Horizon Automated Penetration Testing">Staying on the Attack Path: Structured State for Long-Horizon Automated Penetration Testing</span></li><li><span class="dpr-home-dashboard-paper-title" title="PRAGMA: Evaluating Personalized Guidance with Memory Alignment in Lifelong Conversations">PRAGMA: Evaluating Personalized Guidance with Memory Alignment in Lifelong Conversations</span></li></ul>
   </div>
-
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -87,7 +89,7 @@
     <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="REVA: Reusable Evidence View Aggregation for Context-Efficient RAG Serving">REVA: Reusable Evidence View Aggregation for Context-Efficient RAG Serving</span></li><li><span class="dpr-home-dashboard-paper-title" title="Look Before You Prompt, and After: Scaffolding Human-AI Collaboration in Software Tutorial Creation">Look Before You Prompt, and After: Scaffolding Human-AI Collaboration in Software Tutorial Creation</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Revoked but Still Authoritative: An Empirical Study of Revocation Enforcement in Agent-Memory Systems">Revoked but Still Authoritative: An Empirical Study of Revocation Enforcement in Agent-Memory Systems</span></li><li><span class="dpr-home-dashboard-paper-title" title="Co-Evolving Harnesses and Models: On-Policy Correction Helps Weaker Models Catch Up Where Imitation Fails">Co-Evolving Harnesses and Models: On-Policy Correction Helps Weaker Models Catch Up Where Imitation Fails</span></li></ul>
   </div>
   <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>

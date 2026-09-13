@@ -1,0 +1,89 @@
+{
+  "date": "20260913",
+  "date_label": "",
+  "generated_at": "2026-09-13 21:13:28 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.08318v1",
+      "route": "202609/13/2609.08318v1-attncompress-dynamic-attention-guided-trajectory-compression-for-software-engineering-agents",
+      "title": "AttnCompress: Dynamic Attention-Guided Trajectory Compression for Software Engineering Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "注意力引导的上下文压缩以缓解上下文窗口限制",
+      "first_seen_at": "2026-09-13 21:13:28 UTC",
+      "updated_at": "2026-09-13 21:13:28 UTC"
+    },
+    {
+      "paper_id": "2609.07344v1",
+      "route": "202609/13/2609.07344v1-staying-on-the-attack-path-structured-state-for-long-horizon-automated-penetration-testing",
+      "title": "Staying on the Attack Path: Structured State for Long-Horizon Automated Penetration Testing",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "将长程状态从LLM上下文窗口外化到持久化DAG",
+      "first_seen_at": "2026-09-13 21:13:28 UTC",
+      "updated_at": "2026-09-13 21:13:28 UTC"
+    },
+    {
+      "paper_id": "2609.09664v1",
+      "route": "202609/13/2609.09664v1-pragma-evaluating-personalized-guidance-with-memory-alignment-in-lifelong-conversations",
+      "title": "PRAGMA: Evaluating Personalized Guidance with Memory Alignment in Lifelong Conversations",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向终身长对话的记忆系统与上下文检索",
+      "first_seen_at": "2026-09-13 21:13:28 UTC",
+      "updated_at": "2026-09-13 21:13:28 UTC"
+    },
+    {
+      "paper_id": "2609.08258v1",
+      "route": "202609/13/2609.08258v1-revoked-but-still-authoritative-an-empirical-study-of-revocation-enforcement-in-agent-memory-systems",
+      "title": "Revoked but Still Authoritative: An Empirical Study of Revocation Enforcement in Agent-Memory Systems",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "智能体持久记忆系统的检索行为实证研究",
+      "first_seen_at": "2026-09-13 21:13:28 UTC",
+      "updated_at": "2026-09-13 21:13:28 UTC"
+    },
+    {
+      "paper_id": "2609.09134v1",
+      "route": "202609/13/2609.09134v1-co-evolving-harnesses-and-models-on-policy-correction-helps-weaker-models-catch-up-where-imitation-fails",
+      "title": "Co-Evolving Harnesses and Models: On-Policy Correction Helps Weaker Models Catch Up Where Imitation Fails",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "智能体脚手架包含模型周边的上下文管理结构",
+      "first_seen_at": "2026-09-13 21:13:28 UTC",
+      "updated_at": "2026-09-13 21:13:28 UTC"
+    }
+  ]
+}

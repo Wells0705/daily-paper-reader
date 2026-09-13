@@ -1,0 +1,219 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-13T21:09:20.606850+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2609.08318v1",
+      "source": "arxiv",
+      "title": "AttnCompress: Dynamic Attention-Guided Trajectory Compression for Software Engineering Agents",
+      "abstract": "The transition from human-centric assistance to Autonomous Software Engineering (ASE) agents has enabled the resolution of complex real-world SE tasks. However, the trial-and-error nature of these agents generates lengthy interaction trajectories, creating severe bottlenecks in terms of context window limits and cost. While context compression offers a potential remedy, prior approaches suffer from static pruning strategies and granularity mismatches, often failing to preserve the semantic dependencies and syntactic details crucial for SE tasks. To strictly preserve critical task evidence while reducing context length, we introduce AttnCompress, a dynamic attention-guided trajectory compression framework. Unlike existing approaches, AttnCompress bridges the gap between semantic integrity and dynamic adaptability through three key mechanisms: (1) structure-aware segmentation via perplexity (PPL) spikes to preserve the syntactic structure of code and logs; (2) relevance estimation using proxy attention weights to quantify the precise relevance of historical blocks to the agent's current reasoning; and (3) a dynamic rolling window to re-evaluate and recall historical context as the task evolves. Extensive evaluation on SWE-Bench-Verified and Multi-SWE-Bench demonstrates that AttnCompress achieves a pass rate of 53.17%, outperforming prior state-of-the-art baselines while reducing token consumption by 21.6% and total costs by 33.6%. The framework proves to be model-agnostic and generalizes effectively across diverse programming languages.",
+      "authors": [
+        "Zhengran Zeng",
+        "Yixin Li",
+        "Rui Xie",
+        "Wei Ye",
+        "Shikun Zhang"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-09-08T06:42:24+00:00",
+      "link": "https://arxiv.org/pdf/2609.08318v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "attention-guided context compression to relieve context window limits",
+      "llm_evidence_cn": "注意力引导的上下文压缩以缓解上下文窗口限制",
+      "llm_evidence": "注意力引导的上下文压缩以缓解上下文窗口限制",
+      "canonical_evidence": "注意力引导的上下文压缩以缓解上下文窗口限制",
+      "llm_tldr_en": "Autonomous software engineering agents generate long trial-and-error trajectories that strain context windows and cost. AttnCompress uses dynamic attention-guided compression to shrink context while preserving critical evidence, semantic dependencies and syntactic details.",
+      "llm_tldr_cn": "自主软件工程智能体因反复试错产生冗长交互轨迹，带来上下文窗口限制与成本瓶颈，而现有压缩方法多采用静态剪枝、粒度不匹配。作者提出AttnCompress，利用注意力信号动态引导轨迹压缩，在保留关键任务证据、语义依赖与语法细节的同时缩短上下文长度。实验表明该方法能有效压缩上下文并保持软件工程任务表现。该工作为长轨迹智能体的上下文窗口管理提供了动态压缩方案。",
+      "llm_tldr": "自主软件工程智能体因反复试错产生冗长交互轨迹，带来上下文窗口限制与成本瓶颈，而现有压缩方法多采用静态剪枝、粒度不匹配。作者提出AttnCompress，利用注意力信号动态引导轨迹压缩，在保留关键任务证据、语义依赖与语法细节的同时缩短上下文长度。实验表明该方法能有效压缩上下文并保持软件工程任务表现。该工作为长轨迹智能体的上下文窗口管理提供了动态压缩方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.07344v1",
+      "source": "arxiv",
+      "title": "Staying on the Attack Path: Structured State for Long-Horizon Automated Penetration Testing",
+      "abstract": "Large language model (LLM) based agents are increasingly applied to cybersecurity tasks such as vulnerability discovery and automated penetration testing. On long-horizon security tasks, however, such agents remain limited by context forgetting and intent drift: early critical facts and causal reasoning chains are lost over extended interactions, and the agent falls into aimless, repetitive exploration. This paper proposes Intentest, an intent-graph-guided automated penetration testing agent that externalizes long-horizon state from the LLM's context window onto a persistent fact-intent directed acyclic graph (DAG), thereby substantially reducing invalid transitions. We evaluate Intentest on automated penetration testing of web applications, a representative long-tail task in cybersecurity. In the DAG, verified network states are stored as immutable fact nodes, and exploration directions are constrained as intent edges bounded by predecessor facts. The system adopts a three-layer architecture, in which the fact-intent mapping layer maintains the global state, the task scheduling and allocation layer ensures execution stability through two-phase degradation recovery and multi-dimensional adaptive load balancing, and the intent retrieval and prediction layer provides tactical priors through a top-down five-stage filtering algorithm. On a benchmark of real CTF challenges covering more than ten vulnerability types across three difficulty levels, Intentest achieves an overall success rate of 88.2% and a success rate of 75.0% on hard tasks, improving over the baseline by approximately 44 and 50 percentage points. Ablation experiments further show that the intent retrieval and prediction reduce the average number of rounds on successful medium and hard tasks by about 33% and 48%, respectively, without changing the set of solvable tasks.",
+      "authors": [
+        "Weizhe Wang",
+        "Yitong Zhang",
+        "Yao Zhang",
+        "Xiaoqiang Di",
+        "Zhigang Li",
+        "Bin Wu",
+        "Guangquan Xu"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-09-07T11:09:01+00:00",
+      "link": "https://arxiv.org/pdf/2609.07344v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "externalizes long-horizon state from the LLM context window to a persistent DAG",
+      "llm_evidence_cn": "将长程状态从LLM上下文窗口外化到持久化DAG",
+      "llm_evidence": "将长程状态从LLM上下文窗口外化到持久化DAG",
+      "canonical_evidence": "将长程状态从LLM上下文窗口外化到持久化DAG",
+      "llm_tldr_en": "Intentest tackles context forgetting and intent drift in long-horizon penetration testing by externalizing state from the LLM context window into a persistent fact-intent DAG.",
+      "llm_tldr_cn": "在长程网络安全任务中，基于LLM的智能体受限于上下文遗忘与意图漂移，早期关键事实与因果推理链在长时间交互中丢失，导致盲目重复探索。本文提出Intentest，一种意图图引导的自动化渗透测试智能体，将长程状态从LLM的上下文窗口外化到持久的事实-意图有向无环图上，从而大幅减少无效状态转移。该工作为长程智能体的上下文与状态管理提供了可迁移的结构化外部记忆方案。",
+      "llm_tldr": "在长程网络安全任务中，基于LLM的智能体受限于上下文遗忘与意图漂移，早期关键事实与因果推理链在长时间交互中丢失，导致盲目重复探索。本文提出Intentest，一种意图图引导的自动化渗透测试智能体，将长程状态从LLM的上下文窗口外化到持久的事实-意图有向无环图上，从而大幅减少无效状态转移。该工作为长程智能体的上下文与状态管理提供了可迁移的结构化外部记忆方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.09664v1",
+      "source": "arxiv",
+      "title": "PRAGMA: Evaluating Personalized Guidance with Memory Alignment in Lifelong Conversations",
+      "abstract": "Large language models (LLMs) are increasingly deployed as personalized assistants that interact with users over extended periods of time. As conversations grow longer, relying on full interaction histories becomes increasingly inefficient and unreliable: long contexts introduce substantial computational overhead, making it difficult for models to consistently identify and utilize the most relevant information for the current request. These challenges have motivated memory systems that structure and retrieve user-specific information. In realistic interactions, users often seek practical guidance such as recommendations, planning, and decision support. Unlike factual recall tasks, personalized guidance requires models to integrate information across multiple past conversations and reason about changing user preferences and experiences. However, existing conversational memory evaluations mainly focus on retrieval and factual recall. To study this challenge, we introduce PRAGMA, a benchmark for evaluating personalized guidance in long-term conversations. PRGAMA contains curated longitudinal conversation histories, evidence annotations, and guidance scenarios grounded in evolving user contexts and incorrect user assumptions. Experiments across retrieval systems, memory systems, and long-context models reveal that current systems struggle both to recover the appropriate conversational evidence and to effectively use it for personalized guidance. Our results highlight the need for memory architectures that support robust conversational retrieval and memory-grounded reasoning beyond evidence recall.",
+      "authors": [
+        "Hyojeong Yu",
+        "Hyukhun Koh",
+        "Minsung Kim",
+        "Yunah Jang",
+        "Kyomin Jung"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-09T03:31:47+00:00",
+      "link": "https://arxiv.org/pdf/2609.09664v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "memory systems for long lifelong conversations to retrieve relevant context",
+      "llm_evidence_cn": "面向终身长对话的记忆系统与上下文检索",
+      "llm_evidence": "面向终身长对话的记忆系统与上下文检索",
+      "canonical_evidence": "面向终身长对话的记忆系统与上下文检索",
+      "llm_tldr_en": "PRAGMA evaluates personalized guidance with memory alignment in lifelong conversations, addressing how long contexts and memory systems must retrieve user-specific information for recommendations, planning and decision support beyond factual recall.",
+      "llm_tldr_cn": "大模型日益作为长期个性化助手与用户持续交互，但对话变长后依赖完整历史既低效又不可靠，长上下文带来巨大计算开销，模型难以稳定定位当前请求所需信息。为此出现结构化并检索用户信息的记忆系统。PRAGMA面向终身对话评估个性化指导中的记忆对齐，要求模型整合推荐、规划与决策支持等信息，超越单纯事实回忆，从而暴露记忆对齐在长时程交互中的不足。",
+      "llm_tldr": "大模型日益作为长期个性化助手与用户持续交互，但对话变长后依赖完整历史既低效又不可靠，长上下文带来巨大计算开销，模型难以稳定定位当前请求所需信息。为此出现结构化并检索用户信息的记忆系统。PRAGMA面向终身对话评估个性化指导中的记忆对齐，要求模型整合推荐、规划与决策支持等信息，超越单纯事实回忆，从而暴露记忆对齐在长时程交互中的不足。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.08258v1",
+      "source": "arxiv",
+      "title": "Revoked but Still Authoritative: An Empirical Study of Revocation Enforcement in Agent-Memory Systems",
+      "abstract": "Long-running language-model agents depend on persistent memory. Many agent-memory systems preserve history through soft revocation: a contradicted fact is marked invalid and retained rather than deleted. However, whether that mark is enforced at retrieval time is unexamined. In this paper, we measure five such systems: we load each with a revoked policy and its replacement, track whether the revoked fact is returned at retrieval and whether the agent then acts on it across nine policy scenarios and nine models, and score every trial under six defense conditions. We find that no system enforces revocation by default: the revoked fact is returned wherever the revocation label is visible to the retrieval layer, outranks its replacement, and leads agents to the unsafe action. Based on these findings, we develop a guard that sits between the agent and any memory backend and withholds records that are revoked or conflict with their replacement.",
+      "authors": [
+        "Yi Ting Shen",
+        "Kentaroh Toyoda",
+        "Alex Leung"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CR"
+      ],
+      "published": "2026-09-08T05:03:09+00:00",
+      "link": "https://arxiv.org/pdf/2609.08258v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "empirical study of persistent agent memory systems and retrieval",
+      "llm_evidence_cn": "智能体持久记忆系统的检索行为实证研究",
+      "llm_evidence": "智能体持久记忆系统的检索行为实证研究",
+      "canonical_evidence": "智能体持久记忆系统的检索行为实证研究",
+      "llm_tldr_en": "Long-running LLM agents rely on persistent memory, yet whether soft revocation marks are enforced at retrieval is unexamined. Testing five agent-memory systems across nine scenarios and nine models, the study finds none enforce revocation by default.",
+      "llm_tldr_cn": "长时运行的LLM智能体依赖持久记忆，而现有记忆系统多采用软撤销，仅在事实旁标注失效而非删除。作者向五种智能体记忆系统注入被撤销政策及其替代版本，在九种政策场景、九个模型与六种防御条件下追踪检索与行为。结果显示默认没有任何系统真正执行撤销，被撤销事实仍被返回甚至优先于替代事实。该工作揭示记忆治理缺陷，为安全检索设计提供依据。",
+      "llm_tldr": "长时运行的LLM智能体依赖持久记忆，而现有记忆系统多采用软撤销，仅在事实旁标注失效而非删除。作者向五种智能体记忆系统注入被撤销政策及其替代版本，在九种政策场景、九个模型与六种防御条件下追踪检索与行为。结果显示默认没有任何系统真正执行撤销，被撤销事实仍被返回甚至优先于替代事实。该工作揭示记忆治理缺陷，为安全检索设计提供依据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.09134v1",
+      "source": "arxiv",
+      "title": "Co-Evolving Harnesses and Models: On-Policy Correction Helps Weaker Models Catch Up Where Imitation Fails",
+      "abstract": "Agent harnesses (the system prompt, tool set, execution hooks, and context-management scaffolding around a model) are a critical determinant of agentic task success. Automated harness evolution can enable smaller models to perform well on domain-specific tasks at a fraction of frontier-model cost. Since both the harness and model weights shape behavior, we ask how harness evolution and lightweight fine-tuning should be combined. Across seven enterprise agent tasks, we first evolve a harness with the weaker model, then find that a stronger expert often uses it more effectively, suggesting expert supervision could close the remaining gap. However, training the weaker model on the expert's complete trajectories under the evolved harness backfires: performance regresses on all seven tasks by 4 to 30 points across Qwen3-Coder and Gemma 4, even though the same procedure helps under the unevolved harness. Our analysis shows that imitation transfers knowledge and increases scaffold usage, but disrupts model-harness fit: the weaker model adopts the expert's planning strategy without the competence to execute it and no longer matches the harness evolved around its native planning style. We therefore develop an on-policy expert-correction pipeline, automated by a meta-level MLE agent, that localizes the failing turn in the weaker model's own rollout and asks the expert to rewrite only that turn. This preserves the model's planning style and combines the gains of harness evolution and model adaptation. Our results identify and resolve a source of contention between harness and weight updates, yielding a compatibility-preserving recipe for economical co-evolution on domain-specific enterprise tasks.",
+      "authors": [
+        "Zhou Yu",
+        "Bin Bi",
+        "Shiva Kumar Pentyala",
+        "Shubham Mehrotra",
+        "Sougata Chaudhuri",
+        "Shilpa Bhagavath",
+        "Zeyuan Chen",
+        "Ran Xu",
+        "Phil Mui",
+        "James Zhu",
+        "Sitaram Asur"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-08T17:53:49+00:00",
+      "link": "https://arxiv.org/pdf/2609.09134v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "agent harness includes context-management scaffolding around the model",
+      "llm_evidence_cn": "智能体脚手架包含模型周边的上下文管理结构",
+      "llm_evidence": "智能体脚手架包含模型周边的上下文管理结构",
+      "canonical_evidence": "智能体脚手架包含模型周边的上下文管理结构",
+      "llm_tldr_en": "Agent harnesses, including context-management scaffolding, system prompts and tools, shape agentic task success. This work evolves a harness with weaker models, finds stronger experts use it better, and shows on-policy correction narrows the gap across seven enterprise tasks.",
+      "llm_tldr_cn": "智能体脚手架（含系统提示、工具集、执行钩子与上下文管理结构）是任务成败的关键，但脚手架演化与模型微调如何结合尚不清楚。作者先在较弱模型上演化脚手架，再对比强专家模型的使用效果，并尝试基于专家轨迹的同策略纠正训练。七项企业智能体任务显示，脚手架演化可让弱模型以低成本提升表现，专家监督进一步缩小差距。该工作给出脚手架与模型协同优化路径。",
+      "llm_tldr": "智能体脚手架（含系统提示、工具集、执行钩子与上下文管理结构）是任务成败的关键，但脚手架演化与模型微调如何结合尚不清楚。作者先在较弱模型上演化脚手架，再对比强专家模型的使用效果，并尝试基于专家轨迹的同策略纠正训练。七项企业智能体任务显示，脚手架演化可让弱模型以低成本提升表现，专家监督进一步缩小差距。该工作给出脚手架与模型协同优化路径。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
