@@ -1,0 +1,73 @@
+{
+  "date": "20260914",
+  "date_label": "",
+  "generated_at": "2026-09-14 22:31:28 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.12320v1",
+      "route": "202609/14/2609.12320v1-aim-a-privacy-aware-interoperable-memory-framework-for-multi-agent-multi-user-llm-systems",
+      "title": "AIM: A Privacy-Aware Interoperable Memory Framework for Multi-Agent Multi-User LLM Systems",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向多智能体多用户LLM系统的隐私感知互操作记忆框架",
+      "first_seen_at": "2026-09-14 22:31:28 UTC",
+      "updated_at": "2026-09-14 22:31:28 UTC"
+    },
+    {
+      "paper_id": "2609.12655v1",
+      "route": "202609/14/2609.12655v1-lifemem-enabling-lifelong-experience-reuse-for-llm-agents",
+      "title": "LifeMem: Enabling Lifelong Experience Reuse for LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向LLM智能体的终身记忆与跨环境经验复用",
+      "first_seen_at": "2026-09-14 22:31:28 UTC",
+      "updated_at": "2026-09-14 22:31:28 UTC"
+    },
+    {
+      "paper_id": "2609.12436v1",
+      "route": "202609/14/2609.12436v1-lifefuse-mem-lifecycle-aware-state-fusion-against-temporary-overwriting-for-long-term-memory",
+      "title": "LifeFuse-Mem: Lifecycle-Aware State Fusion Against Temporary Overwriting for Long-Term Memory",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "面向长期运行智能体的生命周期感知记忆",
+      "first_seen_at": "2026-09-14 22:31:28 UTC",
+      "updated_at": "2026-09-14 22:31:28 UTC"
+    },
+    {
+      "paper_id": "2609.12686v1",
+      "route": "202609/14/2609.12686v1-residual-vector-based-reconstruction-as-long-context-recall-regardless-of-context-window-size",
+      "title": "Residual Vector-based Reconstruction as Long-Context Recall Regardless of Context Window Size",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "超越上下文窗口长度的长上下文召回",
+      "first_seen_at": "2026-09-14 22:31:28 UTC",
+      "updated_at": "2026-09-14 22:31:28 UTC"
+    }
+  ]
+}
