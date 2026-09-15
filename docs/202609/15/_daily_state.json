@@ -1,0 +1,121 @@
+{
+  "date": "20260915",
+  "date_label": "",
+  "generated_at": "2026-09-15 22:42:09 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.14168v1",
+      "route": "202609/15/2609.14168v1-towards-evolving-context-parameterization-for-large-language-models",
+      "title": "Towards Evolving Context Parameterization for Large Language Models",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向大模型的上下文参数化与记忆更新",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    },
+    {
+      "paper_id": "2609.14773v1",
+      "route": "202609/15/2609.14773v1-pull-lazy-materialization-of-working-memory-for-stateful-llm-conversations",
+      "title": "Pull: Lazy Materialization of Working Memory for Stateful LLM Conversations",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向长对话的上下文管理：工作记忆的惰性物化",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    },
+    {
+      "paper_id": "2609.12839v2",
+      "route": "202609/15/2609.12839v2-evaluating-context-segmentation-in-locally-deployable-slms-for-cybersecurity-ctf-tasks",
+      "title": "Evaluating Context Segmentation in Locally Deployable SLMs for Cybersecurity CTF Tasks",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "上下文分割将任务拆分为上下文隔离的子问题以缓解上下文膨胀",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    },
+    {
+      "paper_id": "2609.14138v1",
+      "route": "202609/15/2609.14138v1-limbo-lifelong-inference-time-memory-and-budget-optimization-for-llm-agents",
+      "title": "LIMBO: Lifelong Inference-Time Memory and Budget Optimization for LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "提示预算下经验回放、检索与推理的推理时记忆分配",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    },
+    {
+      "paper_id": "2609.15009v1",
+      "route": "202609/15/2609.15009v1-comem-collective-individual-memory-synergy-for-evolutionary-multi-agent-systems",
+      "title": "CoMem: Collective-Individual Memory Synergy for Evolutionary Multi-Agent Systems",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向大模型多智能体系统的记忆机制",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    },
+    {
+      "paper_id": "2609.14399v1",
+      "route": "202609/15/2609.14399v1-moscopt-mixture-of-skills-collective-optimization-for-llm-agents",
+      "title": "MOSCOPT: Mixture-of-Skills Collective Optimization for LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "联合优化技能池与每步动态选择K个技能的门控技能，属智能体上下文组织",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    },
+    {
+      "paper_id": "2609.14652v1",
+      "route": "202609/15/2609.14652v1-natural-language-knowledge-graph-query-execution-leveraging-controlled-semantics-in-the-llm-context-window",
+      "title": "Natural Language Knowledge Graph Query Execution: Leveraging Controlled Semantics in the LLM Context Window",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "通过受控语义本体设计放入LLM上下文窗口的内容",
+      "first_seen_at": "2026-09-15 22:42:09 UTC",
+      "updated_at": "2026-09-15 22:42:09 UTC"
+    }
+  ]
+}

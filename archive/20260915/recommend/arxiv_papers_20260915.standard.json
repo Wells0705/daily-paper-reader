@@ -1,0 +1,277 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-15T22:37:56.012119+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2609.14168v1",
+      "source": "arxiv",
+      "title": "Towards Evolving Context Parameterization for Large Language Models",
+      "abstract": "Context parameterization enables large language models (LLMs) to internalize contexts into reusable model parameters, avoiding repeated processing across subsequent queries. However, existing methods typically assume static contexts and lack explicit mechanisms for distinguishing validity states under continual updates. To study this real-world scenario, we formalized the Memory Updating with Sequential Evolution (MUSE) task and constructed MUSE-bench to evaluate update incorporation and unaffected-information preservation. The resulting challenge requires preserving the global state while adjusting the contribution of memory evidence. Motivated by this, we proposed PLUME, a training-free method that constructs a global update representation, activates memory evidence to form a local parameter view, and adaptively integrates their predictions during decoding. Comprehensive evaluation on MUSE-bench demonstrated PLUME's effectiveness in sequential evolution settings, yielding relative improvements of 29.9% in average ROUGE-L Recall and 54.9% in LLM-as-a-Judge. Our codes are available at: https://github.com/xiaobingshi-LLM/PLUME.",
+      "authors": [
+        "Xiaobing Shi",
+        "Zherui Li",
+        "Yiming Jiang",
+        "Kun Wang",
+        "Yufei Guo"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-09-12T21:55:33+00:00",
+      "link": "https://arxiv.org/pdf/2609.14168v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "context parameterization and memory updating for LLMs",
+      "llm_evidence_cn": "面向大模型的上下文参数化与记忆更新",
+      "llm_evidence": "面向大模型的上下文参数化与记忆更新",
+      "canonical_evidence": "面向大模型的上下文参数化与记忆更新",
+      "llm_tldr_en": "This paper studies context parameterization under continual updates, formalizing the MUSE task and proposing PLUME, a training-free method to preserve global state while adjusting memory evidence.",
+      "llm_tldr_cn": "上下文参数化可将上下文内化为可复用参数，避免重复处理，但现有方法假设上下文静态，缺乏在持续更新下区分有效性状态的机制。本文将这一真实场景形式化为记忆随序列演化任务并构建MUSE-bench，评估更新吸收与未受影响信息的保持。为此提出免训练方法PLUME，构造全局更新表示并在保留全局状态的同时调整记忆证据的贡献。该工作为动态上下文与记忆管理提供了新的评测基准与方法。",
+      "llm_tldr": "上下文参数化可将上下文内化为可复用参数，避免重复处理，但现有方法假设上下文静态，缺乏在持续更新下区分有效性状态的机制。本文将这一真实场景形式化为记忆随序列演化任务并构建MUSE-bench，评估更新吸收与未受影响信息的保持。为此提出免训练方法PLUME，构造全局更新表示并在保留全局状态的同时调整记忆证据的贡献。该工作为动态上下文与记忆管理提供了新的评测基准与方法。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.14773v1",
+      "source": "arxiv",
+      "title": "Pull: Lazy Materialization of Working Memory for Stateful LLM Conversations",
+      "abstract": "As LLM conversations grow to hundreds of turns, full-context injection incurs $O(N^2)$ cumulative token costs, while lossy summarization or hard truncation irreversibly discards historical state. We propose Pull, a session router that maintains an addressable metadata directory via a local, deterministic Purifier (zero LLM calls, millisecond-level latency). At query time, the LLM lazily materializes only the turns it needs; unmaterialized turns remain accessible but collapsed. Unlike irreversible compression, Pull's materialization is reversible; subsequent queries can expand any collapsed turn. On LoCoEval (128 conversations, 12,780 turns), Pull reduces per-query context tokens (Phase 2) by 75.1 percent on single-hop tasks with equivalent quality ($Δ= -0.002$, n.s.) and by 72.0 percent on multi-hop tasks with no quality loss ($Δ= +0.017$). A controlled routing benchmark (7,831 queries x 10 methods) shows that entity lifecycle tracking is empirically a prerequisite for distance-independent routing. On BEAM 1M (14 conversations, 263 questions), Pull improves F1 by +55.2 percent over a truncation baseline.",
+      "authors": [
+        "Jiangang Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-13T20:26:13+00:00",
+      "link": "https://arxiv.org/pdf/2609.14773v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "lazy materialization of working memory to manage context in long LLM conversations",
+      "llm_evidence_cn": "面向长对话的上下文管理：工作记忆的惰性物化",
+      "llm_evidence": "面向长对话的上下文管理：工作记忆的惰性物化",
+      "canonical_evidence": "面向长对话的上下文管理：工作记忆的惰性物化",
+      "llm_tldr_en": "Long LLM conversations cause quadratic token costs, while summarization or truncation destroys history. Pull keeps an addressable metadata directory via a deterministic Purifier and lazily materializes only needed turns, cutting per-query context tokens by 75.1 percent with equal quality.",
+      "llm_tldr_cn": "随着大模型对话扩展到数百轮，全量上下文注入会带来O(N^2)的累计token开销，而有损摘要或硬截断又会不可逆地丢失历史状态。本文提出Pull，一种会话路由器，借助本地确定性Purifier维护可寻址的元数据目录，零LLM调用且毫秒级延迟，查询时仅惰性物化所需轮次，未物化轮次保持可访问但折叠。在LoCoEval的128段对话、12780轮数据上，单跳任务每查询上下文token减少75.1%且质量相当。该可逆物化机制为长对话上下文管理提供了高效且无损的新范式。",
+      "llm_tldr": "随着大模型对话扩展到数百轮，全量上下文注入会带来O(N^2)的累计token开销，而有损摘要或硬截断又会不可逆地丢失历史状态。本文提出Pull，一种会话路由器，借助本地确定性Purifier维护可寻址的元数据目录，零LLM调用且毫秒级延迟，查询时仅惰性物化所需轮次，未物化轮次保持可访问但折叠。在LoCoEval的128段对话、12780轮数据上，单跳任务每查询上下文token减少75.1%且质量相当。该可逆物化机制为长对话上下文管理提供了高效且无损的新范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how do large language model agents manage context",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.12839v2",
+      "source": "arxiv",
+      "title": "Evaluating Context Segmentation in Locally Deployable SLMs for Cybersecurity CTF Tasks",
+      "abstract": "The proliferation of highly capable open-weight Small Language Models (SLMs) democratizes access to advanced cybersecurity capabilities, posing a escalating risk as these models can bypass proprietary API guardrails when deployed locally. However, SLMs deployed as autonomous agents often struggle with long-horizon, exploratory tasks like cybersecurity Capture The Flag (CTF) challenges due to context bloat and cognitive degradation from accumulated tool-call outputs. To understand and mitigate this cybersecurity threat, we introduce context segmentation, a two-level agentic framework that divides complex exploitation tasks into manageable, contextually isolated sub-problems. Evaluating on the picoCTF dataset using memory-constrained gemma-4 models, we demonstrate that for the E4B model, our strategy acts as an intelligent search, achieving competitive rewards with superior token efficiency compared to brute-force retries, and successfully solving 18.52% of tasks that standard agentic execution fails to complete. Code is available at https://github.com/9xeb/context-segmentation.",
+      "authors": [
+        "Sebastiano Nordio",
+        "Michele Lotto"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-09-11T13:34:48+00:00",
+      "link": "https://arxiv.org/pdf/2609.12839v2",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Context segmentation splits tasks into contextually isolated sub-problems to combat context bloat",
+      "llm_evidence_cn": "上下文分割将任务拆分为上下文隔离的子问题以缓解上下文膨胀",
+      "llm_evidence": "上下文分割将任务拆分为上下文隔离的子问题以缓解上下文膨胀",
+      "canonical_evidence": "上下文分割将任务拆分为上下文隔离的子问题以缓解上下文膨胀",
+      "llm_tldr_en": "This paper studies context bloat and cognitive degradation in SLM agents on long-horizon CTF tasks, proposing context segmentation, a two-level agentic framework that isolates sub-problems.",
+      "llm_tldr_cn": "本地部署的小语言模型智能体在长时程探索任务中常因工具调用输出累积导致上下文膨胀与认知退化。本文提出上下文分割这一双层智能体框架，将复杂利用任务拆分为上下文隔离的子问题。在picoCTF数据集上的评估显示该框架能缓解上下文膨胀问题。研究为智能体上下文工程与上下文管理提供了可操作方法，并揭示了相关安全风险。",
+      "llm_tldr": "本地部署的小语言模型智能体在长时程探索任务中常因工具调用输出累积导致上下文膨胀与认知退化。本文提出上下文分割这一双层智能体框架，将复杂利用任务拆分为上下文隔离的子问题。在picoCTF数据集上的评估显示该框架能缓解上下文膨胀问题。研究为智能体上下文工程与上下文管理提供了可操作方法，并揭示了相关安全风险。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context engineering techniques for AI agents",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.14138v1",
+      "source": "arxiv",
+      "title": "LIMBO: Lifelong Inference-Time Memory and Budget Optimization for LLM Agents",
+      "abstract": "As LLM agents become integrated into increasingly complex workflows, they must continually acquire new capabilities while retaining competence on previously learned tasks. Lifelong agents address this through experience replay, injecting past interactions into the prompt to leverage prior experience during inference. However, replay is not free: every replayed trajectory competes with retrieval, reasoning, tool use, and verification for the same limited prompt and compute budget, making effective resource allocation essential. Existing approaches allocate these resources using fixed replay policies, regardless of whether replay is beneficial for the current task. We identify this as inference-time memory allocation, a distinct problem class for lifelong agents, and introduce LIMBO: the first online framework to our knowledge that treats memory as a controllable inference-time resource and jointly optimizes memory strategy and inference budget for each incoming task. Unlike prior approaches that fix the replay policy or require model weights, teacher supervision, or offline retraining, LIMBO learns this allocation online in a single pass, explicitly balancing task performance and inference cost without modifying the underlying agent. Across three LLM backbones on LifelongAgentBench, LIMBO achieves better cost-accuracy tradeoffs than state-of-the-art memory-augmented baselines and nearly matches all strongest such baselines at up to ~83% lower inference cost (~53% on average). LIMBO adapts its policy across models and environments without retraining, demonstrating that effective allocation can be learned online rather than manually specified.",
+      "authors": [
+        "Siddharth Sharma",
+        "Nilesh Prasad Pandey",
+        "Onat Gungor",
+        "Tajana Rosing"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-12T20:39:45+00:00",
+      "link": "https://arxiv.org/pdf/2609.14138v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "inference-time memory allocation for replay, retrieval and reasoning under prompt budget",
+      "llm_evidence_cn": "提示预算下经验回放、检索与推理的推理时记忆分配",
+      "llm_evidence": "提示预算下经验回放、检索与推理的推理时记忆分配",
+      "canonical_evidence": "提示预算下经验回放、检索与推理的推理时记忆分配",
+      "llm_tldr_en": "The paper identifies inference-time memory allocation as a distinct problem, where replayed trajectories compete with retrieval, reasoning and tool use for limited prompt and compute budget, and proposes LIMBO for lifelong memory and budget optimization for LLM agents.",
+      "llm_tldr_cn": "本文针对终身学习型LLM智能体在经验回放中面临的资源竞争问题，指出每条回放轨迹都要与检索、推理、工具使用和验证争夺有限的提示与计算预算。作者将这一现象界定为推理时记忆分配这一独立问题，并提出LIMBO框架，按任务需要动态优化记忆回放与预算分配。该工作为智能体上下文与计算资源的自适应分配提供了新方法。",
+      "llm_tldr": "本文针对终身学习型LLM智能体在经验回放中面临的资源竞争问题，指出每条回放轨迹都要与检索、推理、工具使用和验证争夺有限的提示与计算预算。作者将这一现象界定为推理时记忆分配这一独立问题，并提出LIMBO框架，按任务需要动态优化记忆回放与预算分配。该工作为智能体上下文与计算资源的自适应分配提供了新方法。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.15009v1",
+      "source": "arxiv",
+      "title": "CoMem: Collective-Individual Memory Synergy for Evolutionary Multi-Agent Systems",
+      "abstract": "Designing effective memory mechanisms is crucial for advancing LLM-driven Multi-Agent Systems (MAS), helping agents learn together and perform better over time. While recent work has led to strong cooperation skills, most methods still use flat, unstructured memories, which easily get filled with noise and erase differences between agents. To address this, we introduce the concept of collective-individual memory synergy and propose CoMem, an architecture that unifies both private experience and shared knowledge for multi-agent learning. CoMem features:(i) Private Experience Sedimentation, which lets each agent keep and update its own useful memories over time;(ii) Collective Wisdom Curation, which carefully selects only widely proven ideas to be shared among agents;(iii)Parallel Dual-Stream Retrieval, which allows agents to draw both from their own memory and the group's wisdom, using clustering to ensure diversity.Experiments on ALFWorld and PDDL benchmarks show that CoMem achieves strong overall performance and robustly avoids memory pollution.",
+      "authors": [
+        "Chengxin Yu",
+        "Zhaoxin Fan",
+        "Faguo Wu",
+        "Hongwei Zheng",
+        "Yun Zhou",
+        "Zhiyu Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-14T04:15:55+00:00",
+      "link": "https://arxiv.org/pdf/2609.15009v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "memory architecture for LLM multi-agent systems",
+      "llm_evidence_cn": "面向大模型多智能体系统的记忆机制",
+      "llm_evidence": "面向大模型多智能体系统的记忆机制",
+      "canonical_evidence": "面向大模型多智能体系统的记忆机制",
+      "llm_tldr_en": "CoMem addresses flat, unstructured memories in LLM multi-agent systems by unifying private experience and shared knowledge, improving long-term cooperation and agent differentiation.",
+      "llm_tldr_cn": "针对大模型多智能体系统中记忆扁平无结构、易被噪声填满且抹平个体差异的问题，本文提出集体-个体记忆协同概念与CoMem架构。该架构包含私有经验沉淀与集体智慧筛选两个组件，让每个智能体保留并更新自身有用记忆，同时只采纳被广泛验证的共享知识。实验表明该设计有助于智能体长期协同学习并提升表现。其贡献在于为多智能体记忆管理提供了结构化、可演化的协同方案。",
+      "llm_tldr": "针对大模型多智能体系统中记忆扁平无结构、易被噪声填满且抹平个体差异的问题，本文提出集体-个体记忆协同概念与CoMem架构。该架构包含私有经验沉淀与集体智慧筛选两个组件，让每个智能体保留并更新自身有用记忆，同时只采纳被广泛验证的共享知识。实验表明该设计有助于智能体长期协同学习并提升表现。其贡献在于为多智能体记忆管理提供了结构化、可演化的协同方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.14399v1",
+      "source": "arxiv",
+      "title": "MOSCOPT: Mixture-of-Skills Collective Optimization for LLM Agents",
+      "abstract": "Natural language prompts and skills serve as the strategic backbone of LLM-based agents. Recent advances in prompt and skill optimization have achieved notable gains, yet all existing methods optimize a \\emph{single} text template---missing the synergy among multiple complementary strategies. We propose MOSCOPT, a text-native, parameter-free algorithm that jointly optimizes a pool of $N$ skills and a gating skill $G$ that dynamically selects $K$ skills per step. To effectively optimize the skills, we build the EditAdam with internally maintained dual states. Through the three-phase interleaved updates with EditAdam, the system monotonically improves without gradient or parameter tuning. Extensive experiments and detailed ablations across 5 benchmarks and 3 target LLMs demonstrate that MOSCOPT consistently outperforms all baselines, and confirm that both the mixture-of-skills architecture with selective activation and the collective evolution with three-phase interleaving are essential to its superior performance. Code is released https://github.com/zhangzhenyu13/SummerClaw/tree/master/summerclaw/agent_trainer/algorithms/moscopt.",
+      "authors": [
+        "Zhenyu Zhang1",
+        "Jiudong Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-09-13T09:57:59+00:00",
+      "link": "https://arxiv.org/pdf/2609.14399v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "jointly optimizes a skill pool and a gating skill that selects K skills per step, a form of agent context organization",
+      "llm_evidence_cn": "联合优化技能池与每步动态选择K个技能的门控技能，属智能体上下文组织",
+      "llm_evidence": "联合优化技能池与每步动态选择K个技能的门控技能，属智能体上下文组织",
+      "canonical_evidence": "联合优化技能池与每步动态选择K个技能的门控技能，属智能体上下文组织",
+      "llm_tldr_en": "Existing prompt and skill optimization tunes only a single template, missing synergy among complementary strategies. MOSCOPT jointly optimizes a pool of N skills and a gating skill that selects K skills per step, using EditAdam dual states for gradient-free monotonic gains across 5 benchmarks and 3 models.",
+      "llm_tldr_cn": "现有提示与技能优化方法通常只优化单一文本模板，忽略了多种互补策略之间的协同。论文提出MOSCOPT，一种文本原生、无需参数的算法，联合优化N个技能池与一个动态选择每步K个技能的门控技能，并借助内部双状态的EditAdam进行三阶段交替更新。在5个基准与3个模型上的实验与消融表明系统可单调提升，为大模型智能体的上下文与技能组织提供了免梯度优化方案。",
+      "llm_tldr": "现有提示与技能优化方法通常只优化单一文本模板，忽略了多种互补策略之间的协同。论文提出MOSCOPT，一种文本原生、无需参数的算法，联合优化N个技能池与一个动态选择每步K个技能的门控技能，并借助内部双状态的EditAdam进行三阶段交替更新。在5个基准与3个模型上的实验与消融表明系统可单调提升，为大模型智能体的上下文与技能组织提供了免梯度优化方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.14652v1",
+      "source": "arxiv",
+      "title": "Natural Language Knowledge Graph Query Execution: Leveraging Controlled Semantics in the LLM Context Window",
+      "abstract": "Large Language Model (LLM) applications often transfer domain concepts into the model's context informally, through prompt prose, schema dumps, and examples. We show that for database queries, data model concepts pass to LLMs more effectively through representations whose vocabulary terms carry declared, machine-readable semantics (controlled semantics). NLKGQ is a working system and reusable framework that does this for data modeled in a knowledge graph. A formal OWL ontology serves as the transfer mechanism, concentrating the meaning of the data into semantically precise tokens the model can use directly. In a single LLM call, NLKGQ places in the context a system prompt instructing on SPARQL, the complete domain OWL ontology, and a domain-specific prompt addition, together with the user's natural language query. The model then generates the SPARQL query directly, zero-shot. Where the native vocabulary of an existing database or federation of databases is opaque, a wrapper ontology substitutes clean terms and a runtime rewriter restores the native forms. Evaluating on DBLP-QuAD 2.0 showed that its scores depend on the graph snapshot, the endpoint used, and the wording of its machine-generated questions, so we propose DBLP-QuAD 3.1, which maintains the intent of 2.0 while making reference results deterministic, revising reference SPARQL where needed, and rewriting the natural language questions, with a frontier model, to state each reference query's intent clearly and completely. We evaluate on the DBLP-QuAD 2.0 benchmark (57.6% Match under deterministic re-scoring), DBLP-QuAD 3.1 (89.9% Match on 1,000 questions), SemOpenAlex (98% Match against a published baseline's 86% on the identical test set), and neuroimaging metadata (100%).",
+      "authors": [
+        "Blake G. Fitch"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI"
+      ],
+      "published": "2026-09-13T16:36:40+00:00",
+      "link": "https://arxiv.org/pdf/2609.14652v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Designs what to place in the LLM context window via controlled semantics ontology",
+      "llm_evidence_cn": "通过受控语义本体设计放入LLM上下文窗口的内容",
+      "llm_evidence": "通过受控语义本体设计放入LLM上下文窗口的内容",
+      "canonical_evidence": "通过受控语义本体设计放入LLM上下文窗口的内容",
+      "llm_tldr_en": "NLKGQ shows that transferring domain concepts into the LLM context window through machine-readable controlled semantics (OWL ontology) outperforms informal prompt prose and schema dumps for knowledge-graph query generation.",
+      "llm_tldr_cn": "现有LLM应用常以提示词散文、模式转储等方式非正式地把领域概念放入上下文窗口，效果受限。本文提出NLKGQ，用形式化OWL本体作为传递机制，将数据含义浓缩为语义精确的标记直接置于上下文中。实验表明受控语义表示能更有效地支持知识图谱查询执行。该工作为上下文工程与上下文窗口内容设计提供了可复用框架。",
+      "llm_tldr": "现有LLM应用常以提示词散文、模式转储等方式非正式地把领域概念放入上下文窗口，效果受限。本文提出NLKGQ，用形式化OWL本体作为传递机制，将数据含义浓缩为语义精确的标记直接置于上下文中。实验表明受控语义表示能更有效地支持知识图谱查询执行。该工作为上下文工程与上下文窗口内容设计提供了可复用框架。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
