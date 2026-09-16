@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-15</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-16</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 7 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 1 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>5</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>0</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>1</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-15 22:42:09 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-16 22:04:35 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,8 +62,7 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>2026-09-15日报：7篇推荐中精读5篇、速读2篇，两篇9分论文聚焦LLM上下文与记忆管理。</p>
-<p>最值得看的是《Towards Evolving Context Parameterization for Large Language Models》和《Pull: Lazy Materialization of Working Memory for Stateful LLM Conversations》，方向落在上下文参数化与有状态对话的工作记忆</p>
+<p>今日速读1篇LLM智能体训练方向论文，无精读。最值得关注的是《Ecdysis》提出的LLM智能体运行时框架高效训练方法，评分6.0/10，适合了解智能体工程化的读者浏览。普通读者可先从这篇速读入手，判断是否需要深入跟进智能体运行时优化这一方向。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -72,12 +71,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">5 篇</strong>
+    <strong class="dpr-home-dashboard-count">0 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Towards Evolving Context Parameterization for Large Language Models">Towards Evolving Context Parameterization for Large Language Models</span></li><li><span class="dpr-home-dashboard-paper-title" title="Pull: Lazy Materialization of Working Memory for Stateful LLM Conversations">Pull: Lazy Materialization of Working Memory for Stateful LLM Conversations</span></li><li><span class="dpr-home-dashboard-paper-title" title="Evaluating Context Segmentation in Locally Deployable SLMs for Cybersecurity CTF Tasks">Evaluating Context Segmentation in Locally Deployable SLMs for Cybersecurity CTF Tasks</span></li></ul>
+<p class="dpr-home-dashboard-empty">今日暂无推荐。</p>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>5</strong></span></div>
+
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -85,12 +84,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">1 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="MOSCOPT: Mixture-of-Skills Collective Optimization for LLM Agents">MOSCOPT: Mixture-of-Skills Collective Optimization for LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Natural Language Knowledge Graph Query Execution: Leveraging Controlled Semantics in the LLM Context Window">Natural Language Knowledge Graph Query Execution: Leveraging Controlled Semantics in the LLM Context Window</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents">Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
 </section>
 </div>
 

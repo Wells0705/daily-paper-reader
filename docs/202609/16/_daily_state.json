@@ -1,0 +1,25 @@
+{
+  "date": "20260916",
+  "date_label": "",
+  "generated_at": "2026-09-16 22:04:35 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.11677v1",
+      "route": "202609/16/2609.11677v1-ecdysis-efficient-and-effective-training-of-runtime-harnesses-for-llm-agents",
+      "title": "Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "演化LLM智能体运行时框架，含上下文管理脚手架",
+      "first_seen_at": "2026-09-16 22:04:35 UTC",
+      "updated_at": "2026-09-16 22:04:35 UTC"
+    }
+  ]
+}

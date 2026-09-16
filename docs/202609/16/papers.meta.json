@@ -1,0 +1,24 @@
+{
+  "label": "2026-09-16",
+  "date": "2026-09-16",
+  "generated_at": "2026-09-16T22:04:36",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202609/16/2609.11677v1-ecdysis-efficient-and-effective-training-of-runtime-harnesses-for-llm-agents",
+      "section": "quick",
+      "title_en": "Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents",
+      "authors": "Ruiqing Yue, Yu Cui, Zhuoyu Sun, Sicheng Pan, Xianhong Xue, Tingyu Li, Ting Li, Wenzhuo Zhu, Yi Chen, Yifei Liu, Baohan Huang, Zhe Cui, Haibin Zhang, Cong Zuo",
+      "date": "2026-09-10",
+      "pdf": "https://arxiv.org/pdf/2609.11677v1",
+      "score": "6.0",
+      "evidence": "演化LLM智能体运行时框架，含上下文管理脚手架",
+      "tldr": "现有LLM智能体运行时装备自进化方法依赖迭代搜索，反复执行与修改候选代码，训练开销大且易过拟合具体失败，泛化受限。Ecdysis将失败诊断作为核心，通过批级跨实例失败聚合区分模型特有问题与装备系统缺陷，并用失败驱动协同精炼迭代修正装备规格。实验在装备训练上最高加速1.84倍，同时将所得装备的推理准确率提升18.56%。该工作为高效、可泛化的智能体运行时装备进化提供了新范式。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Self-evolving runtime harnesses can substantially improve the capabilities of large language model (LLM) agents and provide a promising paradigm for optimizing agent execution. Existing harness evolution methods typically rely on iterative search, repeatedly evaluating and revising candidate harnesses based on execution feedback from task instances. While this paradigm enables continuous harness optimization, it incurs substantial time overhead due to repeated agent executions and code modifications, and may overfit to observed tasks and specific failure patterns, resulting in degraded generalization to unseen tasks. We identify the lack of principled failure diagnosis as a key bottleneck in harness evolution: an observed failure can reflect either model-specific deficiencies or systematic harness deficiencies, and directly optimizing against individual failures can lead to unnecessary model-specific accommodation. We therefore propose Ecdysis, an efficient and effective framework that distinguishes model-specific accommodation from harness-level repair and biases adaptation toward systematic harness deficiencies by identifying recurring cross-task failure patterns. Ecdysis adopts a batch-level cross-instance failure aggregation paradigm to jointly analyze failure evidence from multiple task instances and further introduces Failure-Driven Collaborative Refinement to diagnose failure causes and iteratively refine harness modification specifications. By combining cross-instance failure analysis with multi-role diagnosis, Ecdysis enables more effective harness evolution with lower training time. Experiments show that Ecdysis achieves up to a 1.84x speedup in harness training compared with existing harness evolution methods, while improving the reasoning accuracy of the resulting harnesses by 18.56%.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

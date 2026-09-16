@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-09-16 <!--dpr-date:20260916-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/16/2609.11677v1-ecdysis-efficient-and-effective-training-of-runtime-harnesses-for-llm-agents" data-sidebar-item="{&quot;title&quot;: &quot;Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.11677v1-ecdysis-efficient-and-effective-training-of-runtime-harnesses-for-llm-agents&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;context-mgmt&quot;}], &quot;evidence&quot;: &quot;演化LLM智能体运行时框架，含上下文管理脚手架&quot;}">Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents</a>
   * 2026-09-15 <!--dpr-date:20260915-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/15/2609.14168v1-towards-evolving-context-parameterization-for-large-language-models" data-sidebar-item="{&quot;title&quot;: &quot;Towards Evolving Context Parameterization for Large Language Models&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.14168v1-towards-evolving-context-parameterization-for-large-language-models&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;context-mgmt&quot;}], &quot;evidence&quot;: &quot;面向大模型的上下文参数化与记忆更新&quot;}">Towards Evolving Context Parameterization for Large Language Models</a>

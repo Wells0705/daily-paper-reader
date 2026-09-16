@@ -1,0 +1,66 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-16T22:03:39.323960+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2609.11677v1",
+      "source": "arxiv",
+      "title": "Ecdysis: Efficient and Effective Training of Runtime Harnesses for LLM Agents",
+      "abstract": "Self-evolving runtime harnesses can substantially improve the capabilities of large language model (LLM) agents and provide a promising paradigm for optimizing agent execution. Existing harness evolution methods typically rely on iterative search, repeatedly evaluating and revising candidate harnesses based on execution feedback from task instances. While this paradigm enables continuous harness optimization, it incurs substantial time overhead due to repeated agent executions and code modifications, and may overfit to observed tasks and specific failure patterns, resulting in degraded generalization to unseen tasks. We identify the lack of principled failure diagnosis as a key bottleneck in harness evolution: an observed failure can reflect either model-specific deficiencies or systematic harness deficiencies, and directly optimizing against individual failures can lead to unnecessary model-specific accommodation. We therefore propose Ecdysis, an efficient and effective framework that distinguishes model-specific accommodation from harness-level repair and biases adaptation toward systematic harness deficiencies by identifying recurring cross-task failure patterns. Ecdysis adopts a batch-level cross-instance failure aggregation paradigm to jointly analyze failure evidence from multiple task instances and further introduces Failure-Driven Collaborative Refinement to diagnose failure causes and iteratively refine harness modification specifications. By combining cross-instance failure analysis with multi-role diagnosis, Ecdysis enables more effective harness evolution with lower training time. Experiments show that Ecdysis achieves up to a 1.84x speedup in harness training compared with existing harness evolution methods, while improving the reasoning accuracy of the resulting harnesses by 18.56%.",
+      "authors": [
+        "Ruiqing Yue",
+        "Yu Cui",
+        "Zhuoyu Sun",
+        "Sicheng Pan",
+        "Xianhong Xue",
+        "Tingyu Li",
+        "Ting Li",
+        "Wenzhuo Zhu",
+        "Yi Chen",
+        "Yifei Liu",
+        "Baohan Huang",
+        "Zhe Cui",
+        "Haibin Zhang",
+        "Cong Zuo"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-09-10T15:09:08+00:00",
+      "link": "https://arxiv.org/pdf/2609.11677v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolving runtime harness for LLM agents, which includes context-management scaffolding",
+      "llm_evidence_cn": "演化LLM智能体运行时框架，含上下文管理脚手架",
+      "llm_evidence": "演化LLM智能体运行时框架，含上下文管理脚手架",
+      "canonical_evidence": "演化LLM智能体运行时框架，含上下文管理脚手架",
+      "llm_tldr_en": "Self-evolving runtime harnesses improve LLM agents, but iterative search is costly and overfits. Ecdysis diagnoses failures principledly to train harnesses efficiently, cutting overhead while improving generalization to unseen tasks.",
+      "llm_tldr_cn": "自演化运行时框架能提升LLM智能体能力，但现有演化方法依赖迭代搜索与反复执行，时间开销大且易过拟合到已见任务。本文指出缺乏有原则的失败诊断是瓶颈，并提出Ecdysis方法以高效训练运行时框架。实验表明该方法在降低开销的同时改善了向未见任务的泛化。该工作为智能体运行时框架（含上下文管理脚手架）的自动化优化提供了更高效范式。",
+      "llm_tldr": "自演化运行时框架能提升LLM智能体能力，但现有演化方法依赖迭代搜索与反复执行，时间开销大且易过拟合到已见任务。本文指出缺乏有原则的失败诊断是瓶颈，并提出Ecdysis方法以高效训练运行时框架。实验表明该方法在降低开销的同时改善了向未见任务的泛化。该工作为智能体运行时框架（含上下文管理脚手架）的自动化优化提供了更高效范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "how to design and optimize context for LLM based agents",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
