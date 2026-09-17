@@ -1,0 +1,340 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-17T22:13:20.868429+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2609.16461v1",
+      "source": "arxiv",
+      "title": "Protocol-Preserving Context Trimming for Agentic Workflows: Benefits, Failure Regimes, and Budget Guardrails",
+      "abstract": "Agentic large language model (LLM) systems rely on long interaction histories to preserve instructions, tool states, intermediate decisions, and unresolved dependencies, but unrestricted context growth increases computational cost and can reduce efficiency. This study evaluates protocol-preserving context trimming as a reliability-constrained approach for multi-step agentic workflows. Five trimming strategies - recency-based, relevance-based, summarization, protocol-aware trimming, and adaptive budget guardrails - were compared across retained-context levels and workflow-complexity classes using task success, protocol adherence, valid tool calls, token savings, latency reduction, cascading failures, and critical context thresholds. Conventional strategies achieved about 60% mean token savings but lower task success (66.6-77.3%) and protocol adherence (85.5-88.6%). Protocol-aware trimming improved task success to 92.2%, while adaptive guardrails achieved 96.0% task success, 96.3% protocol adherence, and 1.0% cascading failure with 56.0% mean token savings. Retained-context budgets of 25% or less increased failure odds 10.92-fold relative to budgets of 50% or more (p < 0.001). Protocol-aware trimming produced 5.24-fold greater odds of successful completion than conventional methods under aggressive budgets, while adaptive guardrails further increased success odds 2.11-fold versus fixed protocol-aware trimming (p < 0.001). Critical context thresholds also increased with workflow complexity. These findings indicate that reliable context reduction depends more on preserving protocol-critical state than on maximizing token removal, and that adaptive guardrails can improve efficiency, scalability, and reliability in long-horizon agentic systems.",
+      "authors": [
+        "Harish Gaggar"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-09-15T00:27:37+00:00",
+      "link": "https://arxiv.org/pdf/2609.16461v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "protocol-preserving context trimming strategies for multi-step agentic workflows",
+      "llm_evidence_cn": "面向多步智能体工作流的协议保持上下文裁剪策略",
+      "llm_evidence": "面向多步智能体工作流的协议保持上下文裁剪策略",
+      "canonical_evidence": "面向多步智能体工作流的协议保持上下文裁剪策略",
+      "llm_tldr_en": "Agentic LLM systems rely on long interaction histories but unrestricted context growth raises cost and hurts efficiency. The paper evaluates five context trimming strategies, including protocol-aware trimming and budget guardrails, across retained-context levels and workflow complexity.",
+      "llm_tldr_cn": "智能体式大模型系统依赖长交互历史来保存指令、工具状态与未决依赖，但上下文无限制增长会推高成本并降低效率。作者系统评估协议保持的上下文裁剪方法，比较基于近因、相关性、摘要、协议感知裁剪与自适应预算护栏五种策略，并跨保留上下文水平与工作流复杂度考察任务成功率、协议遵守、有效工具调用、token节省与级联失败等指标。结果刻画了各策略的收益区间与失效情形。该工作为智能体上下文工程提供了可靠性约束下的实用裁剪指南。",
+      "llm_tldr": "智能体式大模型系统依赖长交互历史来保存指令、工具状态与未决依赖，但上下文无限制增长会推高成本并降低效率。作者系统评估协议保持的上下文裁剪方法，比较基于近因、相关性、摘要、协议感知裁剪与自适应预算护栏五种策略，并跨保留上下文水平与工作流复杂度考察任务成功率、协议遵守、有效工具调用、token节省与级联失败等指标。结果刻画了各策略的收益区间与失效情形。该工作为智能体上下文工程提供了可靠性约束下的实用裁剪指南。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management and context engineering in large language model agents",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.16053v1",
+      "source": "arxiv",
+      "title": "Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents",
+      "abstract": "Long-term memory is essential for LLM-based agents operating over extended interactions. Existing memory systems primarily update memory when new information arrives, treating retrieval as the endpoint of memory access rather than a driver of memory evolution. Consequently, retrieval feedback is rarely exploited to reorganize memory for future access continuously. Moreover, most existing approaches rely on predefined memory structures together with fixed retrieval pipelines, limiting the agent's ability to organize and evolve its own memory autonomously. Inspired by memory reconsolidation in cognitive neuroscience, we propose \\textbf{REALM}, a \\textbf{r}econsolidation-\\textbf{e}volution \\textbf{a}gentic \\textbf{l}ong-term \\textbf{m}emory framework. It models long-term memory as a continual lifecycle by autonomously organizing memories into a heterogeneous cognitive graph, retrieving evidence via adaptively composed graph-search atoms, and continually reconsolidating memories based on retrieval feedback. REALM achieves an average accuracy of 75.97\\% on LoCoMo and 65.11\\% on LongMemEval, outperforming the strongest baselines by 7.17 and 1.31 points respectively. Ablation studies confirm that memory reconsolidation consistently boosts performance, with further analyses revealing that it progressively reorganizes related memory units into more coherent local structures for collective evidence recall and utilization during reasoning. These results suggest that retrieval-driven memory reconsolidation provides an effective mechanism for continually evolving long-term memory in LLM agents.",
+      "authors": [
+        "Yuanyi Song",
+        "Yukai Wang",
+        "Xinbei Ma",
+        "Zhihui Fu",
+        "Jianghao Lin",
+        "Weiwen Liu",
+        "Jun Wang",
+        "Huarong Deng",
+        "Yong Yu",
+        "Weinan Zhang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-09-13T05:17:37+00:00",
+      "link": "https://arxiv.org/pdf/2609.16053v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "retrieval-driven memory reconsolidation for long-term LLM agents",
+      "llm_evidence_cn": "面向长期LLM智能体的检索驱动记忆再巩固",
+      "llm_evidence": "面向长期LLM智能体的检索驱动记忆再巩固",
+      "canonical_evidence": "面向长期LLM智能体的检索驱动记忆再巩固",
+      "llm_tldr_en": "Existing long-term memory systems treat retrieval as an endpoint and rely on fixed structures; REALM, inspired by memory reconsolidation, lets agents reorganize and evolve their memory using retrieval feedback.",
+      "llm_tldr_cn": "长期记忆对长时交互的LLM智能体至关重要，但现有系统仅在新信息到来时更新记忆，把检索视为记忆访问的终点，且依赖预定义结构与固定检索流程，限制了智能体自主组织记忆的能力。受认知神经科学中记忆再巩固启发，作者提出REALM再巩固-演化式长期记忆框架，利用检索反馈持续重组记忆。该工作把检索从被动终点转变为记忆演化的驱动力，为自主记忆管理提供了新范式。",
+      "llm_tldr": "长期记忆对长时交互的LLM智能体至关重要，但现有系统仅在新信息到来时更新记忆，把检索视为记忆访问的终点，且依赖预定义结构与固定检索流程，限制了智能体自主组织记忆的能力。受认知神经科学中记忆再巩固启发，作者提出REALM再巩固-演化式长期记忆框架，利用检索反馈持续重组记忆。该工作把检索从被动终点转变为记忆演化的驱动力，为自主记忆管理提供了新范式。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.17088v1",
+      "source": "arxiv",
+      "title": "Interactive Memory Learning for Long-Term Conversations",
+      "abstract": "Recent advancements in large language models have significantly enhanced the capabilities of agents in modeling long-term conversations. Despite these successes, existing approaches typically adopt a static heuristic paradigm, where information is passively archived without adaptive memory valuation. Consequently, these methods fail to self-evolve or align their memory management with evolving user needs. To address this, we propose ICML (InteraCtive Memory Learning), a multi-agent framework that transforms the memory mechanism from a passive archive into a learnable, interactive memory policy. Specifically, we first employ a session synthesis pipeline to generate expert data, facilitating rapid test-time adaptation in unseen scenarios. Building on this, ICML utilizes an online reinforcement learning mechanism where a Planner agent selectively encodes high-value information and a Trigger agent dynamically retrieves it to optimize response quality, whereby the two agents co-evolve through continuous interaction feedback. Crucially, both agents are synchronized through a delayed reward mechanism that propagates future feedback back to earlier storage decisions, ensuring memory policies are precisely aligned with user expectations. Experimental results demonstrate that ICML significantly outperforms strong baselines, exhibiting the unique capability to continuously improve response quality as interactions accumulate.",
+      "authors": [
+        "Cai Ke",
+        "Jiangyue Yan",
+        "Han Zhang",
+        "Xin Liu",
+        "Zike Yuan",
+        "Yue Yu",
+        "Hui Wang",
+        "Ruifeng Xu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-09-15T12:21:41+00:00",
+      "link": "https://arxiv.org/pdf/2609.17088v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "learnable interactive memory policy for long-term conversation agents",
+      "llm_evidence_cn": "面向长期对话智能体的可学习交互式记忆策略",
+      "llm_evidence": "面向长期对话智能体的可学习交互式记忆策略",
+      "canonical_evidence": "面向长期对话智能体的可学习交互式记忆策略",
+      "llm_tldr_en": "Existing long-term conversation agents passively archive memory without adaptive valuation; this paper proposes ICML, a multi-agent framework that turns memory into a learnable interactive policy using a session synthesis pipeline for expert data and test-time adaptation.",
+      "llm_tldr_cn": "现有大模型智能体在长期对话中多采用静态启发式记忆，信息被被动归档而缺乏自适应价值评估，难以随用户需求演化。为此作者提出ICML多智能体框架，把记忆机制从被动存档转变为可学习、可交互的记忆策略。该方法先用会话合成管线生成专家数据，以支持在未见场景下的快速测试时自适应。实验表明交互式记忆学习能更贴合不断变化的用户需求。该工作推进了智能体长期记忆架构的自演化能力。",
+      "llm_tldr": "现有大模型智能体在长期对话中多采用静态启发式记忆，信息被被动归档而缺乏自适应价值评估，难以随用户需求演化。为此作者提出ICML多智能体框架，把记忆机制从被动存档转变为可学习、可交互的记忆策略。该方法先用会话合成管线生成专家数据，以支持在未见场景下的快速测试时自适应。实验表明交互式记忆学习能更贴合不断变化的用户需求。该工作推进了智能体长期记忆架构的自演化能力。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.17921v1",
+      "source": "arxiv",
+      "title": "Collaborative Memory for Multi-Agent VLM Systems",
+      "abstract": "Vision-language model (VLM) agents combine specialized perception, tools, and reasoning to address complex visual tasks. In multi-agent settings, different agents inspect different image regions, video frames, or visual representations, so collaboration extends beyond distributed reasoning to distributed perception. This makes shared visual context a central problem in VLM agent collaboration. In this paper, we frame memory hierarchy, cross-agent sharing, and consistency mechanisms around the need to reconcile interpretations and update dependent reasoning. Effective collaboration requires agents to build on contributions from other agents, recover missing visual context, and reconcile differing interpretations as new evidence emerges. Shared visual memory preserves not only images or textual summaries but also the dependencies among observations, agent interpretations, and subsequent reasoning. Together, these design considerations shape how information flows and evolves across VLM agents. The proposed framework provides a foundation for building reliable and resource-efficient agent teams.",
+      "authors": [
+        "Huixin Zhang",
+        "Shao-Jun Xia",
+        "Di Wang",
+        "Liangxi Liu",
+        "Hainan Xiong",
+        "Zihao Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-15T23:31:09+00:00",
+      "link": "https://arxiv.org/pdf/2609.17921v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "shared visual memory with memory hierarchy and cross-agent sharing for VLM agents",
+      "llm_evidence_cn": "为VLM智能体设计带记忆层级与跨智能体共享的共享视觉记忆",
+      "llm_evidence": "为VLM智能体设计带记忆层级与跨智能体共享的共享视觉记忆",
+      "canonical_evidence": "为VLM智能体设计带记忆层级与跨智能体共享的共享视觉记忆",
+      "llm_tldr_en": "In multi-agent VLM systems collaboration extends to distributed perception, making shared visual context central; this paper frames memory hierarchy, cross-agent sharing and consistency to reconcile interpretations and update dependent reasoning.",
+      "llm_tldr_cn": "视觉语言模型智能体协作中，不同智能体负责不同图像区域或视频帧，协作不仅是分布式推理更是分布式感知，共享视觉上下文因而成为核心难题。本文围绕记忆层级、跨智能体共享与一致性机制展开，使智能体能在他者贡献基础上继续推理、恢复缺失的视觉上下文并随新证据调和不同解读。该工作将共享记忆架构引入多智能体视觉系统，为跨智能体的上下文管理提供了具体机制。",
+      "llm_tldr": "视觉语言模型智能体协作中，不同智能体负责不同图像区域或视频帧，协作不仅是分布式推理更是分布式感知，共享视觉上下文因而成为核心难题。本文围绕记忆层级、跨智能体共享与一致性机制展开，使智能体能在他者贡献基础上继续推理、恢复缺失的视觉上下文并随新证据调和不同解读。该工作将共享记忆架构引入多智能体视觉系统，为跨智能体的上下文管理提供了具体机制。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.19128v1",
+      "source": "arxiv",
+      "title": "Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments",
+      "abstract": "Language agents remain brittle in interactive environments, where success requires long-horizon state tracking, valid action execution, and recovery from failed steps. We extend SwiftSage, a dual-process agent that combines a fast action proposer with a slower planner, using two modular cognitive extensions: an Adaptive Memory Module (AMM) for salience-gated episodic storage and trigger-driven retrieval, and a Self-Reflection Module (SRM) for bounded execution-time validation and corrective intervention. Both modules are implemented as feature-flagged extensions over the same execution substrate, enabling controlled ablations on ScienceWorld. Across four configurations---baseline, baseline+AMM, baseline+SRM, and the full system---the full system achieves the best mean final score (64.62), success rate (43.17%), and successful-step efficiency (19.33 steps), while SRM is the strongest standalone contributor. The results suggest that execution-time control is the dominant bottleneck in this setting, while episodic memory becomes most useful once the runtime loop is stabilized.",
+      "authors": [
+        "João Meneses dos Santos",
+        "Arlindo L. Oliveira"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-09-16T17:50:42+00:00",
+      "link": "https://arxiv.org/pdf/2609.19128v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "adaptive memory module for language agents",
+      "llm_evidence_cn": "语言智能体的自适应记忆模块",
+      "llm_evidence": "语言智能体的自适应记忆模块",
+      "canonical_evidence": "语言智能体的自适应记忆模块",
+      "llm_tldr_en": "The paper extends the SwiftSage dual-process agent with an Adaptive Memory Module and a Self-Reflection Module to improve long-horizon state tracking and failure recovery, validated by ablations on ScienceWorld.",
+      "llm_tldr_cn": "语言智能体在交互环境中易受长时程状态跟踪与失败恢复的困扰。本文在SwiftSage双过程智能体上加入两个模块化认知扩展：用于显著度门控情景存储与触发式检索的自适应记忆模块，以及执行期校验与纠错的自我反思模块。在ScienceWorld上以四种配置进行受控消融，验证各模块对智能体鲁棒性的贡献，为智能体记忆架构设计提供了可复用方案。",
+      "llm_tldr": "语言智能体在交互环境中易受长时程状态跟踪与失败恢复的困扰。本文在SwiftSage双过程智能体上加入两个模块化认知扩展：用于显著度门控情景存储与触发式检索的自适应记忆模块，以及执行期校验与纠错的自我反思模块。在ScienceWorld上以四种配置进行受控消融，验证各模块对智能体鲁棒性的贡献，为智能体记忆架构设计提供了可复用方案。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2609.18182v1",
+      "source": "arxiv",
+      "title": "WFM: Wiki Foundation Model for Complex Agentic Reasoning",
+      "abstract": "Real-world agents fundamentally require persistent non-parametric knowledge for dynamic reasoning, i.e., long-term memory and retrieval-augmented generation. While graphs have shown reliable advantages in providing structured evidence, the sparse graph representations naturally restrict machine readability and semantic density required for complex agentic workflows. Driven by this limitation, the entire industry is witnessing a paradigm shift from traditional sparse graphs to LLM Wiki, an agent-native knowledge representation that couples dense document contexts with markdown files containing multi-layered topological linkages. However, parameterizing such rich semantics is challenging to encode dense textual contexts using traditional sparse graph embeddings. Moreover, learning LLM Wiki with existing graph encoders could overwhelm distributed system overheads that hinder deployment in large-scale commercial scenarios. To this end, we propose a novel paradigm Wiki Foundation Model, i.e., WFM, tailored for scalable, agent-native representation and retrieval. Specifically, (i) we formalize a Wiki Graph schema that seamlessly bridges fine-grained structures with dense contexts, maintaining explicit topologies alongside continuous semantics; (ii) A query-conditioned attentive aggregation is tailored for rich wiki message passing and explicit attention variance regularization; (iii) We engineer an infrastructural NCCL boundary exchange protocol that hoists static partition indices and leverages fixed-shape GPU-to-GPU collectives, bypassing CPU serialization and memory copy overheads. Extensive evaluations across five long-term agent memory and multi-hop reasoning benchmarks demonstrate the remarkable performance of WFM, while achieving a 10.5 times training acceleration on distributed clusters.",
+      "authors": [
+        "Junnan Dong",
+        "Linhao Luo",
+        "Senlei Zhang",
+        "Gong Chen",
+        "Taian Guo",
+        "Yifei Yu",
+        "Rong Tao",
+        "Tao Guo",
+        "Qian-Wen Zhang",
+        "Siyu An",
+        "Ruizhi Qiao",
+        "Xing Sun"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-16T06:13:33+00:00",
+      "link": "https://arxiv.org/pdf/2609.18182v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "persistent long-term memory and retrieval for agents",
+      "llm_evidence_cn": "智能体的持久长期记忆与检索",
+      "llm_evidence": "智能体的持久长期记忆与检索",
+      "canonical_evidence": "智能体的持久长期记忆与检索",
+      "llm_tldr_en": "WFM introduces an agent-native LLM Wiki knowledge representation coupling dense document contexts with markdown topological links, providing persistent long-term memory and retrieval for complex agentic reasoning.",
+      "llm_tldr_cn": "真实世界智能体需要持久化的非参数知识，即长期记忆与检索增强生成，但传统稀疏图表示限制了机器可读性与语义密度。本文提出WFM维基基础模型，将密集文档上下文与含多层拓扑链接的Markdown文件耦合为智能体原生的LLM Wiki表示。该工作为复杂智能体工作流提供了结构化且语义密集的持久知识支撑，推动了智能体长期记忆与检索的表示范式演进。",
+      "llm_tldr": "真实世界智能体需要持久化的非参数知识，即长期记忆与检索增强生成，但传统稀疏图表示限制了机器可读性与语义密度。本文提出WFM维基基础模型，将密集文档上下文与含多层拓扑链接的Markdown文件耦合为智能体原生的LLM Wiki表示。该工作为复杂智能体工作流提供了结构化且语义密集的持久知识支撑，推动了智能体长期记忆与检索的表示范式演进。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "memory architecture for large language model agents",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2609.17346v1",
+      "source": "arxiv",
+      "title": "Where Should a Document Live: Context, Representations, or Parameters?",
+      "abstract": "To answer questions outside of their pre-training data, large language models (LLMs) need access to new information, which can be presented in the context window as documents, encoded into the model's parameters, or injected as latent representations. However, each of these methods comes with different efficiency, cost, and performance trade-offs, with no single winner. We present a controlled comparison of representation-based (KV-cache based) and parametric (fine-tuning-based) adaptation methods on five knowledge-intensive benchmarks. We show that in the oracle setting, Cartridges (KV) are the most accurate injection method at nearly every storage budget, outperforming parametric methods by 10 points. Compaction (KV) matches Cartridges only at low compression rates, lagging behind the parametric methods by 10 points at rates higher than $50\\times$. In the more realistic multi-document retrieval scenario, Cartridges are the only method that matches in-context learning (ICL), leading the parametric methods by 29 points and Compaction by 15 points. Nonetheless, Cartridges are also the only method, besides full fine-tuning and large MLP adapters, that suffers from catastrophic forgetting, i.e., a 6% performance degradation on control benchmarks, with 13% in coding.",
+      "authors": [
+        "Nathanaël Carraz Rakotonirina",
+        "Momchil Hardalov",
+        "Gonzalo Iglesias",
+        "Adrià de Gispert"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-09-15T15:47:02+00:00",
+      "link": "https://arxiv.org/pdf/2609.17346v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "comparison of context window vs latent representations vs parameters for injecting knowledge",
+      "llm_evidence_cn": "对比上下文窗口、隐表示与参数三种知识注入方式",
+      "llm_evidence": "对比上下文窗口、隐表示与参数三种知识注入方式",
+      "canonical_evidence": "对比上下文窗口、隐表示与参数三种知识注入方式",
+      "llm_tldr_en": "LLMs access new information via the context window, latent representations or parameters, each with trade-offs; a controlled comparison finds KV-based Cartridges most accurate across storage budgets.",
+      "llm_tldr_cn": "大模型要回答预训练数据之外的问题，需要引入新信息，这些信息可放入上下文窗口、编码进模型参数或作为隐表示注入，但三者各有成本与性能权衡。作者在五个知识密集基准上对基于KV缓存的表示法与基于微调的参数法进行了受控对比。结果显示在存储预算下Cartridges（KV）几乎总是最准确的注入方式，比参数法高约10个点。该研究为上下文窗口与参数化之间的选择提供了实证依据。",
+      "llm_tldr": "大模型要回答预训练数据之外的问题，需要引入新信息，这些信息可放入上下文窗口、编码进模型参数或作为隐表示注入，但三者各有成本与性能权衡。作者在五个知识密集基准上对基于KV缓存的表示法与基于微调的参数法进行了受控对比。结果显示在存储预算下Cartridges（KV）几乎总是最准确的注入方式，比参数法高约10个点。该研究为上下文窗口与参数化之间的选择提供了实证依据。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context window handling in large language models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2609.18304v1",
+      "source": "arxiv",
+      "title": "Rollback the World, Keep the Reflection: Rollback-Induced Reflection for Long-Horizon LLM Agents",
+      "abstract": "Large language model (LLM) agents increasingly tackle long-horizon tasks through multi-step environment interaction, yet a single erroneous action can alter subsequent states and observations, causing errors to compound over time. Existing methods either correct the context without repairing altered environment states or restore earlier states while discarding useful experience, making it difficult to both eliminate failure conditions and avoid repeating past mistakes. We argue that reliable recovery should instead be treated as a rollback-boundary control problem that jointly determines when to intervene, where to resume, and what information should survive recovery. Based on this view, we propose Rollback-Induced Reflection (RIR), a unified recovery framework that restores execution to a selected prior state while carrying forward reusable knowledge distilled from the abandoned trajectory to guide subsequent decisions. We further characterize recovery through a unified operator over rollback depth and retained memory, providing a general view of state restoration and knowledge retention. Experiments on three long-horizon benchmarks demonstrate that RIR consistently improves task performance across multiple LLM backbones, with structured reflection memory preserving useful experience and selective rollback enabling efficient recovery.",
+      "authors": [
+        "Yi Yu",
+        "Liuyi Yao",
+        "Yaliang Li",
+        "Enshu Wang",
+        "Libing Wu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.RO"
+      ],
+      "published": "2026-09-16T08:26:14+00:00",
+      "link": "https://arxiv.org/pdf/2609.18304v1",
+      "tags": [
+        "keyword:context-mgmt",
+        "query:context-mgmt"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "rollback-boundary control deciding what context and information should survive recovery",
+      "llm_evidence_cn": "回滚边界控制决定哪些上下文与信息在恢复中保留",
+      "llm_evidence": "回滚边界控制决定哪些上下文与信息在恢复中保留",
+      "canonical_evidence": "回滚边界控制决定哪些上下文与信息在恢复中保留",
+      "llm_tldr_en": "Long-horizon LLM agents compound errors as wrong actions alter states and observations; this work frames recovery as rollback-boundary control deciding when to intervene, where to resume, and which information survives, proposing Rollback-Induced Reflection.",
+      "llm_tldr_cn": "长时程大模型智能体在多次环境交互中，一次错误动作会改变后续状态与观测，使错误不断累积。现有方法要么只修正上下文而不修复环境状态，要么恢复状态却丢弃有用经验，难以兼顾消除失败条件与避免重蹈覆辙。本文把可靠恢复视为回滚边界控制问题，联合决定何时干预、从何处恢复以及哪些信息应当保留，并提出回滚诱导反思方法。该视角为智能体的上下文与经验管理提供了新的控制式框架。",
+      "llm_tldr": "长时程大模型智能体在多次环境交互中，一次错误动作会改变后续状态与观测，使错误不断累积。现有方法要么只修正上下文而不修复环境状态，要么恢复状态却丢弃有用经验，难以兼顾消除失败条件与避免重蹈覆辙。本文把可靠恢复视为回滚边界控制问题，联合决定何时干预、从何处恢复以及哪些信息应当保留，并提出回滚诱导反思方法。该视角为智能体的上下文与经验管理提供了新的控制式框架。",
+      "llm_tags": [
+        "query:context-mgmt"
+      ],
+      "matched_query_tag": "query:context-mgmt",
+      "matched_query_text": "context management for language model agents",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

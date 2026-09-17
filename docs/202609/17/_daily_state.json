@@ -1,0 +1,137 @@
+{
+  "date": "20260917",
+  "date_label": "",
+  "generated_at": "2026-09-17 22:19:30 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.16461v1",
+      "route": "202609/17/2609.16461v1-protocol-preserving-context-trimming-for-agentic-workflows-benefits-failure-regimes-and-budget-guardrails",
+      "title": "Protocol-Preserving Context Trimming for Agentic Workflows: Benefits, Failure Regimes, and Budget Guardrails",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "面向多步智能体工作流的协议保持上下文裁剪策略",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.16053v1",
+      "route": "202609/17/2609.16053v1-retrieval-driven-memory-reconsolidation-for-long-term-llm-agents",
+      "title": "Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向长期LLM智能体的检索驱动记忆再巩固",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.17088v1",
+      "route": "202609/17/2609.17088v1-interactive-memory-learning-for-long-term-conversations",
+      "title": "Interactive Memory Learning for Long-Term Conversations",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向长期对话智能体的可学习交互式记忆策略",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.17921v1",
+      "route": "202609/17/2609.17921v1-collaborative-memory-for-multi-agent-vlm-systems",
+      "title": "Collaborative Memory for Multi-Agent VLM Systems",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "为VLM智能体设计带记忆层级与跨智能体共享的共享视觉记忆",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.19128v1",
+      "route": "202609/17/2609.19128v1-cognitive-extensions-for-dual-process-language-agents-memory-and-self-reflection-in-interactive-environments",
+      "title": "Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "语言智能体的自适应记忆模块",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.18182v1",
+      "route": "202609/17/2609.18182v1-wfm-wiki-foundation-model-for-complex-agentic-reasoning",
+      "title": "WFM: Wiki Foundation Model for Complex Agentic Reasoning",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "智能体的持久长期记忆与检索",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.18304v1",
+      "route": "202609/17/2609.18304v1-rollback-the-world-keep-the-reflection-rollback-induced-reflection-for-long-horizon-llm-agents",
+      "title": "Rollback the World, Keep the Reflection: Rollback-Induced Reflection for Long-Horizon LLM Agents",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 7.0,
+      "evidence": "回滚边界控制决定哪些上下文与信息在恢复中保留",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    },
+    {
+      "paper_id": "2609.17346v1",
+      "route": "202609/17/2609.17346v1-where-should-a-document-live-context-representations-or-parameters",
+      "title": "Where Should a Document Live: Context, Representations, or Parameters?",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "对比上下文窗口、隐表示与参数三种知识注入方式",
+      "first_seen_at": "2026-09-17 22:19:30 UTC",
+      "updated_at": "2026-09-17 22:19:30 UTC"
+    }
+  ]
+}
