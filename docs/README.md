@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-17</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-18</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 8 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 4 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>5</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>3</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-17 22:19:30 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-18 21:49:31 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,9 +62,7 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>今日筛出 8 篇 Agent 论文，精读 5 篇、速读 3 篇，聚焦智能体上下文管理与长期记忆。</p>
-<p>最值得看的是 9.0 分的《Protocol-Preserving Context Trimming for Agentic Workflows》——它同时梳理了上下文裁剪的收益、失效边界和预算护栏；8.0 分的《Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents》则给出长期记忆再巩固的检索思路。</p>
-<p>普通读者可优先从这两篇入手，先理解&quot;裁剪与预算控制&quot;和&quot;记忆再巩固&quot;两条主线，再按需回看速读中的回滚反思与文档存放位置问题。</p>
+<p>2026-09-18 日报精选4篇，精读两篇9分长时程智能体架构与编码智能体测试架设计。最值得看的是长时程智能体的层级—节拍—级联智能架构，以及编码智能体的经验性测试架设计。普通读者可先读这两篇精读，再按需浏览多智能体协作与多模态ASR速读。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -73,12 +71,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">5 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Protocol-Preserving Context Trimming for Agentic Workflows: Benefits, Failure Regimes, and Budget Guardrails">Protocol-Preserving Context Trimming for Agentic Workflows: Benefits, Failure Regimes, and Budget Guardrails</span></li><li><span class="dpr-home-dashboard-paper-title" title="Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents">Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Interactive Memory Learning for Long-Term Conversations">Interactive Memory Learning for Long-Term Conversations</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence">An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence</span></li><li><span class="dpr-home-dashboard-paper-title" title="An Empirical Study of Harness Design for Coding Agents">An Empirical Study of Harness Design for Coding Agents</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>5</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -86,12 +84,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">3 篇</strong>
+    <strong class="dpr-home-dashboard-count">2 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="WFM: Wiki Foundation Model for Complex Agentic Reasoning">WFM: Wiki Foundation Model for Complex Agentic Reasoning</span></li><li><span class="dpr-home-dashboard-paper-title" title="Rollback the World, Keep the Reflection: Rollback-Induced Reflection for Long-Horizon LLM Agents">Rollback the World, Keep the Reflection: Rollback-Induced Reflection for Long-Horizon LLM Agents</span></li><li><span class="dpr-home-dashboard-paper-title" title="Where Should a Document Live: Context, Representations, or Parameters?">Where Should a Document Live: Context, Representations, or Parameters?</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Rethinking Multi-Agent Collaboration: When More Is Less">Rethinking Multi-Agent Collaboration: When More Is Less</span></li><li><span class="dpr-home-dashboard-paper-title" title="Multimodal Conversational Context for LLM-Based ASR: Data Construction, Training, and Benchmark">Multimodal Conversational Context for LLM-Based ASR: Data Construction, Training, and Benchmark</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>3</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
 </section>
 </div>
 

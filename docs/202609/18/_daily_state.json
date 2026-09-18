@@ -1,0 +1,73 @@
+{
+  "date": "20260918",
+  "date_label": "",
+  "generated_at": "2026-09-18 21:49:31 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.19519v1",
+      "route": "202609/18/2609.19519v1-an-architecture-for-long-horizon-agents-levels-ticks-and-cascaded-intelligence",
+      "title": "An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "任务超出任何上下文窗口，用有界文件总结下层",
+      "first_seen_at": "2026-09-18 21:49:31 UTC",
+      "updated_at": "2026-09-18 21:49:31 UTC"
+    },
+    {
+      "paper_id": "2609.20804v1",
+      "route": "202609/18/2609.20804v1-an-empirical-study-of-harness-design-for-coding-agents",
+      "title": "An Empirical Study of Harness Design for Coding Agents",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 9.0,
+      "evidence": "组件级研究，变化五种上下文管理策略与上下文窗口预算",
+      "first_seen_at": "2026-09-18 21:49:31 UTC",
+      "updated_at": "2026-09-18 21:49:31 UTC"
+    },
+    {
+      "paper_id": "2609.19759v1",
+      "route": "202609/18/2609.19759v1-rethinking-multi-agent-collaboration-when-more-is-less",
+      "title": "Rethinking Multi-Agent Collaboration: When More Is Less",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "多智能体协作带来不断增长的上下文开销",
+      "first_seen_at": "2026-09-18 21:49:31 UTC",
+      "updated_at": "2026-09-18 21:49:31 UTC"
+    },
+    {
+      "paper_id": "2609.19765v1",
+      "route": "202609/18/2609.19765v1-multimodal-conversational-context-for-llm-based-asr-data-construction-training-and-benchmark",
+      "title": "Multimodal Conversational Context for LLM-Based ASR: Data Construction, Training, and Benchmark",
+      "section": "quick",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 6.0,
+      "evidence": "跨轮次多模态对话上下文理解",
+      "first_seen_at": "2026-09-18 21:49:31 UTC",
+      "updated_at": "2026-09-18 21:49:31 UTC"
+    }
+  ]
+}
