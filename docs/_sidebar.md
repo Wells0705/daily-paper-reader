@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-09-19 <!--dpr-date:20260919-->
+    * 精读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/19/2609.14872v1-agentkv-phase-aware-kv-eviction-for-agentic-llms" data-sidebar-item="{&quot;title&quot;: &quot;AgentKV: Phase-Aware KV Eviction for Agentic LLMs&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.14872v1-agentkv-phase-aware-kv-eviction-for-agentic-llms&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;context-mgmt&quot;}], &quot;evidence&quot;: &quot;面向智能体LLM长上下文的阶段感知KV淘汰&quot;}">AgentKV: Phase-Aware KV Eviction for Agentic LLMs</a>
   * 2026-09-18 <!--dpr-date:20260918-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202609/18/2609.19519v1-an-architecture-for-long-horizon-agents-levels-ticks-and-cascaded-intelligence" data-sidebar-item="{&quot;title&quot;: &quot;An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2609.19519v1-an-architecture-for-long-horizon-agents-levels-ticks-and-cascaded-intelligence&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;context-mgmt&quot;}], &quot;evidence&quot;: &quot;任务超出任何上下文窗口，用有界文件总结下层&quot;}">An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence</a>

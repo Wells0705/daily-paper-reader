@@ -1,0 +1,24 @@
+{
+  "label": "2026-09-19",
+  "date": "2026-09-19",
+  "generated_at": "2026-09-19T21:02:31",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202609/19/2609.14872v1-agentkv-phase-aware-kv-eviction-for-agentic-llms",
+      "section": "deep",
+      "title_en": "AgentKV: Phase-Aware KV Eviction for Agentic LLMs",
+      "authors": "Taowen Tony Liu, Jeffrey T. H. Wong, Can Xiao, Bowen Yang, Hao Mark Chen, Yiren Zhao",
+      "date": "2026-09-14",
+      "pdf": "https://arxiv.org/pdf/2609.14872v1",
+      "score": "8.0",
+      "evidence": "面向智能体LLM长上下文的阶段感知KV淘汰",
+      "tldr": "智能体服务消耗的 token 远超聊天场景，KV 缓存容量与解码带宽承压。现有 KV 驱逐方法用最近 token 作代表查询打分，但智能体的未来查询来自 think、act、tool 等阶段的混合分布，各阶段占据不同查询子空间，近期代表会低估后续阶段所需键。AGENTKV 为每个阶段维护小型查询缓冲，用其并集为缓存键打分，并在多轮服务中跨轮携带压缩 KV 状态、在线整理保留页。在两模型、六任务域、三种 KV 预算下，任务得分平均比 R-KV 高 5.5 分、比 Tri-attention 高 5.3 分，输出吞吐最高提升 1.80 倍。",
+      "tags": "query:context-mgmt",
+      "abstract_en": "Agentic serving can consume orders of magnitude more tokens than chatbot workloads, stressing both KV-cache capacity and decode-time bandwidth. Most KV-eviction methods score cached keys against representative queries drawn from the most recent tokens, assuming future attention resembles recent attention. We show that agentic generation violates this assumption: future queries form a mixture over think, act, tool, and others phases, and principal-angle analysis shows these components occupy measurably different query subspaces, so recency representatives systematically undervalue keys that upcoming phases will need. We propose AGENTKV, which maintains a small query buffer per phase and scores cached keys against their union. We further implement AGENTKV in a persistent multi-turn serving path that carries compressed KV state across turns and compacts retained KV pages online. Across two models, six task domains, and three KV budgets each, AGENTKV improves task score by 5.5 points on average over R-KV and 5.3 over Tri-attention. Relative to upstream full-KV SGLang, AGENTKV improves output-token throughput by up to 1.80x. Code: https://github.com/LiuTaowen-Tony/agentkv.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

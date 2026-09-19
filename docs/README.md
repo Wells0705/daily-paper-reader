@@ -41,17 +41,17 @@
 <section class="dpr-home-dashboard-card dpr-home-report-card">
   <div class="dpr-home-dashboard-header">
     <div>
-      <span class="dpr-home-dashboard-kicker">2026-09-18</span>
+      <span class="dpr-home-dashboard-kicker">2026-09-19</span>
       <h3 class="dpr-home-dashboard-title">今日汇总</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">共 4 篇</strong>
+    <strong class="dpr-home-dashboard-count">共 1 篇</strong>
   </div>
   <dl class="dpr-home-dashboard-stats">
     <div class="dpr-home-dashboard-stat"><dt>累计更新</dt><dd>1 次</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>2</dd></div>
-    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>2</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>精读</dt><dd>1</dd></div>
+    <div class="dpr-home-dashboard-stat"><dt>速读</dt><dd>0</dd></div>
   </dl>
-  <p class="dpr-home-dashboard-body">最近更新：2026-09-18 21:49:31 UTC<br>状态：成功</p>
+  <p class="dpr-home-dashboard-body">最近更新：2026-09-19 21:02:30 UTC<br>状态：成功</p>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-brief-card">
   <div class="dpr-home-dashboard-header">
@@ -62,7 +62,7 @@
     <strong class="dpr-home-dashboard-count">AI</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<p>2026-09-18 日报精选4篇，精读两篇9分长时程智能体架构与编码智能体测试架设计。最值得看的是长时程智能体的层级—节拍—级联智能架构，以及编码智能体的经验性测试架设计。普通读者可先读这两篇精读，再按需浏览多智能体协作与多模态ASR速读。</p>
+<p>今日精读 1 篇 8.0 分论文，聚焦 Agentic LLM 的 KV 缓存淘汰优化。最值得看的是《AgentKV》提出的&quot;阶段感知&quot;淘汰思路：针对智能体任务不同阶段的缓存需求差异做取舍。普通读者可留意后续是否有开源实现或实测对比，判断它能否真正降低长链路智能体的推理成本。</p>
   </div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-deep-card">
@@ -71,12 +71,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">精读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">1 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence">An Architecture for Long-Horizon Agents: Levels, Ticks and Cascaded Intelligence</span></li><li><span class="dpr-home-dashboard-paper-title" title="An Empirical Study of Harness Design for Coding Agents">An Empirical Study of Harness Design for Coding Agents</span></li></ul>
+<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="AgentKV: Phase-Aware KV Eviction for Agentic LLMs">AgentKV: Phase-Aware KV Eviction for Agentic LLMs</span></li></ul>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>1</strong></span></div>
 </section>
 <section class="dpr-home-dashboard-card dpr-home-skim-card">
   <div class="dpr-home-dashboard-header">
@@ -84,12 +84,12 @@
       <span class="dpr-home-dashboard-kicker">今日累计</span>
       <h3 class="dpr-home-dashboard-title">速读推荐</h3>
     </div>
-    <strong class="dpr-home-dashboard-count">2 篇</strong>
+    <strong class="dpr-home-dashboard-count">0 篇</strong>
   </div>
   <div class="dpr-home-dashboard-body">
-<ul class="dpr-home-dashboard-paper-list"><li><span class="dpr-home-dashboard-paper-title" title="Rethinking Multi-Agent Collaboration: When More Is Less">Rethinking Multi-Agent Collaboration: When More Is Less</span></li><li><span class="dpr-home-dashboard-paper-title" title="Multimodal Conversational Context for LLM-Based ASR: Data Construction, Training, and Benchmark">Multimodal Conversational Context for LLM-Based ASR: Data Construction, Training, and Benchmark</span></li></ul>
+<p class="dpr-home-dashboard-empty">今日暂无推荐。</p>
   </div>
-  <div class="dpr-home-dashboard-tags"><span class="dpr-home-dashboard-tag">context-mgmt <strong>2</strong></span></div>
+
 </section>
 </div>
 

@@ -1,0 +1,25 @@
+{
+  "date": "20260919",
+  "date_label": "",
+  "generated_at": "2026-09-19 21:02:30 UTC",
+  "recommend_exists": true,
+  "run_count": 1,
+  "papers": [
+    {
+      "paper_id": "2609.14872v1",
+      "route": "202609/19/2609.14872v1-agentkv-phase-aware-kv-eviction-for-agentic-llms",
+      "title": "AgentKV: Phase-Aware KV Eviction for Agentic LLMs",
+      "section": "deep",
+      "tags": [
+        {
+          "kind": "query",
+          "label": "context-mgmt"
+        }
+      ],
+      "score": 8.0,
+      "evidence": "面向智能体LLM长上下文的阶段感知KV淘汰",
+      "first_seen_at": "2026-09-19 21:02:30 UTC",
+      "updated_at": "2026-09-19 21:02:30 UTC"
+    }
+  ]
+}
